@@ -32,5 +32,25 @@
       (rename-buffer new-name))))
 
 
+(defun refined/move-line-up ()
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+
+(defun refined/move-line-down ()
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+
+;;; Binds to helpers
+(global-set-key [M-down] 'refined/move-line-down)
+(global-set-key [M-up] 'refined/move-line-up)
+
+
 (provide 'init-helpers)
 ;;; init-helpers ends here
