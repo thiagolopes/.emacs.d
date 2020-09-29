@@ -116,6 +116,6 @@
 
 ;;; Load tools configs
 (require 'init-helpers)
-(require 'init-git)
+(require 'init-base-packages)
 
 ;;; init ends here
