@@ -1,4 +1,4 @@
-;;; init-base-packages.el -*- lexical-binding: t; -*-
+;;; init-packages.el -*- lexical-binding: t; -*-
 
 ;;; Code:
 
@@ -12,5 +12,5 @@
   :init (global-undo-tree-mode)
         (defalias 'undo! 'undo-tree-visualize))
 
-(provide 'init-base-packages)
-;;; init-base-packages ends here
+(provide 'init-packages)
+;;; init-packages ends here

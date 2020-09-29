@@ -115,6 +115,6 @@
 
 ;;; Load tools configs
 (require 'init-helpers)
-(require 'init-base-packages)
+(require 'init-packages)
 
 ;;; init ends here
