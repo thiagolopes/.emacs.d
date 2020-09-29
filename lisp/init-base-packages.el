@@ -8,5 +8,9 @@
   :init (setq exec-path-from-shell-arguments nil)
   :config (exec-path-from-shell-initialize))
 
+(use-package undo-tree
+  :init (global-undo-tree-mode)
+        (defalias 'undo! 'undo-tree-visualize))
+
 (provide 'init-base-packages)
 ;;; init-base-packages ends here
