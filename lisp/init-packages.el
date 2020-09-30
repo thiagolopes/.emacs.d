@@ -3,6 +3,10 @@
 ;;; Code:
 
 (use-package magit)
+(use-package pkgbuild-mode)
+(use-package clojure-mode)
+(use-package sudo-edit)
+
 
 (use-package exec-path-from-shell
   :init (setq exec-path-from-shell-arguments nil)
@@ -10,7 +14,8 @@
 
 (use-package undo-tree
   :init (global-undo-tree-mode)
-        (defalias 'undo! 'undo-tree-visualize))
+  (defalias 'undo! 'undo-tree-visualize))
+
 
 (provide 'init-packages)
 ;;; init-packages ends here
