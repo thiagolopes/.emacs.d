@@ -53,12 +53,16 @@
 ;;; Useful Defaults
 (setq-default cursor-type 'bar)           ; Line-style cursor similar to other text editors
 (setq inhibit-startup-screen t)           ; Disable startup screen
+(setq scroll-step 1
+      scroll-conservatively 10000)
 (setq initial-scratch-message "Hi! emacs love you!")
 (setq-default frame-title-format '("%b")) ; Make window title the buffer name
 (setq ring-bell-function 'ignore)         ; Disable bell sound
 (fset 'yes-or-no-p 'y-or-n-p)             ; y-or-n-p makes answering questions faster
 (show-paren-mode 1)                       ; Show closing parens by default
 (setq linum-format "%4d ")                ; Line number format
+(desktop-save-mode 1)
+(setq desktop-restore-eager 4)
 (delete-selection-mode 1)                 ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)               ; Auto-update buffer if file has changed on disk
 (add-hook 'before-save-hook
