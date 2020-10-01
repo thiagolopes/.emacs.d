@@ -130,7 +130,12 @@
 
 (use-package git-gutter+
   :init
-  (global-git-gutter+-mode))
+  (global-git-gutter+-mode)
+  :config
+  (custom-set-variables
+   '(git-gutter:update-interval 0))
+  :commands
+  git-gutter:linum-setup)
 
 (use-package counsel
   :bind
