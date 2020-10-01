@@ -124,5 +124,14 @@
   :init
   (global-git-gutter+-mode))
 
+(use-package counsel
+  :bind
+  ("M-?" . counsel-ag)
+  ("C-M-?" . counsel-fzf))
+
+(use-package expand-region
+  :bind
+  ("M-@" . er/expand-region))
+
 (provide 'init-packages)
 ;;; init-packages ends here
