@@ -26,6 +26,7 @@
   (highlight-numbers-mode))
 
 (use-package flycheck
+  :defer t
   :init
   (highlight-numbers-mode 1))
 
