@@ -47,9 +47,16 @@
   (indent-according-to-mode))
 
 
+(defun refined/newline-at-end-of-line ()
+  (interactive)
+  (move-end-of-line 1)
+  (newline-and-indent))
+
+
 ;;; Binds to helpers
 (global-set-key [M-down] 'refined/move-line-down)
 (global-set-key [M-up] 'refined/move-line-up)
+(global-set-key (kbd "C-<return>") 'refined/newline-at-end-of-line)
 
 
 (provide 'init-helpers)
