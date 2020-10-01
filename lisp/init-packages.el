@@ -8,6 +8,7 @@
 (use-package sudo-edit)
 (use-package virtualenvwrapper)
 (use-package ivy)
+(use-package zoom)
 
 (use-package rainbow-delimiters
   :init
@@ -34,8 +35,7 @@
 
 (use-package projectile
   :bind
-  ("C-c p" . projecPtile-command-map)
-  ("s-p" . projectile-command-map)
+  ("C-c C-p" . projectile-command-map)
   :config
   (projectile-mode 1))
 
