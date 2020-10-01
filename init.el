@@ -56,13 +56,10 @@
 (setq initial-scratch-message "Hi! emacs love you!")
 (setq-default frame-title-format '("%b")) ; Make window title the buffer name
 (setq ring-bell-function 'ignore)         ; Disable bell sound
-;;; (setq tab-always-indent 'complete)
 (fset 'yes-or-no-p 'y-or-n-p)             ; y-or-n-p makes answering questions faster
 (show-paren-mode 1)                       ; Show closing parens by default
 (setq linum-format "%4d ")                ; Line number format
 (delete-selection-mode 1)                 ; Selected text will be overwritten when you start typing
-(global-hl-line-mode 1)                   ; Highlight Current Line
-;; disable mouse
 (global-auto-revert-mode t)               ; Auto-update buffer if file has changed on disk
 (add-hook 'before-save-hook
 	  'delete-trailing-whitespace)    ; Delete trailing whitespace on save
