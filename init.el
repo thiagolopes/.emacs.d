@@ -21,8 +21,8 @@
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 (add-hook 'after-init-hook #'(lambda ()
-                               ;; restore after startup
-                               (setq gc-cons-threshold gc-cons-threshold-original)))
+			       ;; restore after startup
+			       (setq gc-cons-threshold gc-cons-threshold-original)))
 
 (let (file-name-handler-alist)
   ;; Ensure is running out of this file's directory
@@ -56,6 +56,7 @@
 (setq initial-scratch-message "Hi! emacs love you!")
 (setq-default frame-title-format '("%b")) ; Make window title the buffer name
 (setq ring-bell-function 'ignore)         ; Disable bell sound
+;;; (setq tab-always-indent 'complete)
 (fset 'yes-or-no-p 'y-or-n-p)             ; y-or-n-p makes answering questions faster
 (show-paren-mode 1)                       ; Show closing parens by default
 (setq linum-format "%4d ")                ; Line number format
@@ -66,9 +67,9 @@
 (add-hook 'before-save-hook
 	  'delete-trailing-whitespace)    ; Delete trailing whitespace on save
 (add-hook 'prog-mode-hook                 ; Show line numbers in programming modes
-          (if (and (fboundp 'display-line-numbers-mode) (display-graphic-p))
-              #'display-line-numbers-mode
-            #'linum-mode))
+	  (if (and (fboundp 'display-line-numbers-mode) (display-graphic-p))
+	      #'display-line-numbers-mode
+	    #'linum-mode))
 
 ;;; Keybindings
 (global-set-key (kbd "C->") 'indent-rigidly-right-to-tab-stop) ; Indent selection by one tab length
@@ -111,7 +112,7 @@
 	  (lambda ()
 	    (require 'server)
 	    (unless (server-running-p)
-              (server-start))))
+	      (server-start))))
 
 ;;; Load tools configs
 (require 'init-helpers)
