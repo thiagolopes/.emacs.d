@@ -7,8 +7,11 @@
 (use-package clojure-mode)
 (use-package sudo-edit)
 (use-package virtualenvwrapper)
-(use-package ivy)
 (use-package zoom)
+
+(use-package ivy
+  :init
+  (ivy-mode 1))
 
 (use-package highlight-parentheses
   :init
