@@ -59,7 +59,6 @@
 (setq-default frame-title-format '("%b")) ; Make window title the buffer name
 (setq ring-bell-function 'ignore)         ; Disable bell sound
 (fset 'yes-or-no-p 'y-or-n-p)             ; y-or-n-p makes answering questions faster
-(show-paren-mode 1)                       ; Show closing parens by default
 (setq linum-format "%4d ")                ; Line number format
 (desktop-save-mode 1)
 (setq desktop-restore-eager 4)

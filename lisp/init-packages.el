@@ -10,6 +10,10 @@
 (use-package ivy)
 (use-package zoom)
 
+(use-package highlight-parentheses
+  :init
+  (global-highlight-parentheses-mode))
+
 (use-package rainbow-delimiters
   :init
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
