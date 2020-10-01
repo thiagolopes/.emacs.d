@@ -58,6 +58,12 @@
   (if (= (point) (progn (back-to-indentation) (point)))
       (beginning-of-line)))
 
+
+(defun workon ()
+  (interactive)
+  (venv-workon)
+  (lsp-restart-workspace))
+
 ;;; Binds to helpers
 (global-set-key [M-down] 'refined/move-line-down)
 (global-set-key [M-up] 'refined/move-line-up)

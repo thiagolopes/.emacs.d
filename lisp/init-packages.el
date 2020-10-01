@@ -97,7 +97,7 @@
   :custom
   (lsp-prefer-flymake nil)
   :hook
-  (python-mode . lsp-mode))
+  (prog-mode . lsp-mode))
 
 (use-package lsp-ui
   :diminish
