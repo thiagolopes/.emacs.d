@@ -87,7 +87,7 @@
 
 (use-package cyberpunk-theme
   :init
-  (load-theme 'cyberpunk t))
+  (load-theme 'cyberpunk))
 
 (use-package lsp-mode
   :custom

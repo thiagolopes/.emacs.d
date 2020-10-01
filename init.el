@@ -103,10 +103,6 @@
 ;;; Lockfiles unfortunately cause more pain than benefit
 (setq create-lockfiles nil)
 
-;;; Load wheatgrass as the default theme if one is not loaded already
-(if (not custom-enabled-themes)
-    (load-theme 'wheatgrass t))
-
 ;; Start server
 (add-hook 'after-init-hook
 	  (lambda ()
