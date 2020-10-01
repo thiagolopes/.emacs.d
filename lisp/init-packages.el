@@ -11,7 +11,7 @@
 
 (use-package rainbow-delimiters
   :init
-  (rainbow-delimiters-mode))
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package highlight-numbers
   :init
@@ -72,6 +72,8 @@
 
 (use-package helm-swoop
   :after helm
+  :custom
+  (helm-swoop-speed-or-color t)
   :bind
   ("C-s" . helm-swoop))
 
