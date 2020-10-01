@@ -53,11 +53,16 @@
   (newline-and-indent))
 
 
+(defun refined/back-to-indentation-or-beginning ()
+  (interactive)
+  (if (= (point) (progn (back-to-indentation) (point)))
+      (beginning-of-line)))
+
 ;;; Binds to helpers
 (global-set-key [M-down] 'refined/move-line-down)
 (global-set-key [M-up] 'refined/move-line-up)
 (global-set-key (kbd "C-<return>") 'refined/newline-at-end-of-line)
-
+(global-set-key (kbd "C-a") 'refined/back-to-indentation-or-beginning)
 
 (provide 'init-helpers)
 ;;; init-helpers ends here
