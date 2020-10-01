@@ -140,5 +140,9 @@
   :bind
   ("M-@" . er/expand-region))
 
+(use-package goto-last-change
+  :bind
+  ("C-:" . goto-last-change))
+
 (provide 'init-packages)
 ;;; init-packages ends here
