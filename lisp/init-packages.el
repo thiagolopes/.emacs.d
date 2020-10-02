@@ -163,5 +163,11 @@
   :bind
   ("C-:" . goto-last-change))
 
+(use-package smart-mode-line
+   :custom
+   (sml/theme 'respectful)
+   :config
+   (sml/setup))
+
 (provide 'init-packages)
 ;;; init-packages ends here
