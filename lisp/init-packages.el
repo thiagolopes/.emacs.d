@@ -47,14 +47,20 @@
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
+(use-package company-box
+  :hook
+  (company-mode . company-box-mode))
+
 (use-package projectile
+  :delight '(:eval (concat " " (projectile-project-name)))
   :bind
-  ("C-c C-p" . projectile-command-map)
+  ("C-c p" . projectile-command-map)
   :config
-  (projectile-mode 1))
+  (projectile-mode 1)
+  (setq projectile-completion-system 'ivy))
 
 (use-package which-key
-  :config
+  :init
   (which-key-mode))
 
 (use-package exec-path-from-shell
