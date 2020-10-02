@@ -98,7 +98,6 @@
   ("C-s" . helm-swoop))
 
 (use-package dap-mode
-  :diminish
   :commands (dap-debug dap-debug-edit-template))
 
 (use-package cyberpunk-theme
@@ -112,7 +111,6 @@
   (prog-mode . lsp-mode))
 
 (use-package lsp-ui
-  :diminish
   :after
   lsp-mode
   :commands
@@ -141,6 +139,7 @@
   (global-disable-mouse-mode))
 
 (use-package git-gutter+
+  :defer t
   :init
   (global-git-gutter+-mode)
   :config
@@ -150,6 +149,8 @@
   git-gutter:linum-setup)
 
 (use-package counsel
+  :defer t
+  :after ivy
   :bind
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf))
