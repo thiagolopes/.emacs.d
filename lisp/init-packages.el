@@ -2,16 +2,23 @@
 
 ;;; Code:
 
-(use-package magit)
 (use-package pkgbuild-mode)
 (use-package clojure-mode)
 (use-package sudo-edit)
 (use-package virtualenvwrapper)
 (use-package zoom)
 
+(use-package magit
+  :defer t)
+
 (use-package ivy
-  :init
-  (ivy-mode 1))
+  :defer t
+  :delight
+  :custom
+  (ivy-count-format "(%d/%d) ")
+  (ivy-use-virtual-buffers t)
+  :config
+  (ivy-mode))
 
 (use-package highlight-parentheses
   :init
