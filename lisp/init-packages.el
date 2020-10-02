@@ -40,7 +40,6 @@
 (use-package company
   :init
   (global-company-mode)
-  :diminish company-mode
   :config
   (setq company-selection-wrap-around t)
   (setq company-minimum-prefix-length 1)
