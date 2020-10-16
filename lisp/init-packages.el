@@ -3,7 +3,6 @@
 ;;; Code:
 
 (use-package pkgbuild-mode)
-(use-package clojure-mode)
 (use-package sudo-edit)
 (use-package virtualenvwrapper)
 (use-package zoom)
@@ -168,6 +167,29 @@
    (sml/theme 'respectful)
    :config
    (sml/setup))
+
+(use-package clojure-mode
+  :ensure t
+  :mode (("\\.clj\\'" . clojure-mode)
+         ("\\.edn\\'" . clojure-mode)))
+
+(use-package cider
+  :after clojure-mode
+  :config
+  (add-hook 'clojure-mode-hook #'cider-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode)
+  (setq nrepl-log-messages t
+        cider-repl-display-in-current-window t
+        cider-repl-use-clojure-font-lock t
+	cider-save-file-on-load t
+        cider-prompt-save-file-on-load 'always-save
+        cider-font-lock-dynamically '(macro core function var)
+        nrepl-hide-special-buffers t
+        cider-overlays-use-font-lock t)
+  (cider-repl-toggle-pretty-printing))
+
+(use-package fira-code-mode
+  :config (global-fira-code-mode))
 
 (provide 'init-packages)
 ;;; init-packages ends here
