@@ -71,10 +71,6 @@
   (defalias 'undo! 'undo-tree-visualize))
 
 (use-package helm
-  :init
-  :custom
-  (helm-buffer-max-length 5)
-  (helm-candidate-number-limit 5)
   :config
   (helm-autoresize-mode 1)
   :bind
