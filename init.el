@@ -58,6 +58,8 @@
 (setq initial-scratch-message "Hi! emacs love you!")
 (setq-default frame-title-format '("%b")) ; Make window title the buffer name
 (setq ring-bell-function 'ignore)         ; Disable bell sound
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)             ; y-or-n-p makes answering questions faster
 (setq linum-format "%4d ")                ; Line number format
 (desktop-save-mode 1)
