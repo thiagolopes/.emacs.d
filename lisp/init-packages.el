@@ -95,9 +95,9 @@
 (use-package dap-mode
   :commands (dap-debug dap-debug-edit-template))
 
-(use-package cyberpunk-theme
+(use-package solarized-theme
   :init
-  (load-theme 'cyberpunk))
+  (load-theme 'solarized-dark))
 
 (use-package lsp-mode
   :custom
@@ -185,6 +185,7 @@
   (cider-repl-toggle-pretty-printing))
 
 (use-package fira-code-mode
+  :custom (fira-code-mode-disabled-ligatures '("[]" "#_" "#_(" "x"))
   :config (global-fira-code-mode))
 
 (provide 'init-packages)
