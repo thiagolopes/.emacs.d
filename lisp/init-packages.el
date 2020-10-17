@@ -97,7 +97,13 @@
 
 (use-package solarized-theme
   :init
-  (load-theme 'solarized-dark))
+  (load-theme 'solarized-dark)
+  :custom
+  (solarized-use-variable-pitch nil)
+  (solarized-use-more-italic t)
+  (solarized-scale-org-headlines nil)
+  (solarized-emphasize-indicators nil)
+  (x-underline-at-descent-line t))
 
 (use-package lsp-mode
   :custom
