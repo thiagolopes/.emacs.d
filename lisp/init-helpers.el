@@ -69,6 +69,8 @@
 (global-set-key [M-up] 'refined/move-line-up)
 (global-set-key (kbd "C-<return>") 'refined/newline-at-end-of-line)
 (global-set-key (kbd "C-a") 'refined/back-to-indentation-or-beginning)
+(global-set-key [?\M- ] 'delete-horizontal-space)
+(global-set-key (kbd "M-\\") 'just-one-space)
 
 (provide 'init-helpers)
 ;;; init-helpers ends here
