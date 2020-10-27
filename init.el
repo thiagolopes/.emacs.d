@@ -1,13 +1,14 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Emacs Refined.			       ;;
-;; - Usigin Sanemacs version 0.3.0 as template ;;
-;; - References:			       ;;
-;; -- spacemacs				       ;;
-;; -- doomemacs				       ;;
-;; -- purcell				       ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Emacs Refined.					   ;;
+;; - Usigin Sanemacs version 0.3.0 as template		   ;;
+;; - References:					   ;;
+;; -- spacemacs						   ;;
+;; -- doomemacs						   ;;
+;; -- purcell						   ;;
+;; -- http://www.i3s.unice.fr/~malapert/emacs_orgmode.html ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Author:  Thiago Lopes <thiagolopes@pm.me>
 ;; URL:     https://github.com/thiagolopes/emacs-refined
@@ -126,5 +127,6 @@
 ;;; Load tools configs
 (require 'init-helpers)
 (require 'init-packages)
+(require 'init-org)
 
 ;;; init ends here
