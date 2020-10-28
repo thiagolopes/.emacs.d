@@ -3,6 +3,7 @@
 ;;; Code:
 
 (use-package pkgbuild-mode)
+(use-package i3wm-config-mode)
 (use-package sudo-edit)
 (use-package virtualenvwrapper)
 (use-package zoom)
