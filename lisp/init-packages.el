@@ -217,7 +217,8 @@
 	centaur-tabs-set-icons t
 	centaur-tabs-style "slant"
 	uniquify-separator "/"
-	uniquify-buffer-name-style 'forward)
+	uniquify-buffer-name-style 'forward
+	centaur-tabs-cycle-scope 'tabs)
   :bind
   ("C-M-n" . centaur-tabs-backward)
   ("C-M-p" . centaur-tabs-forward)
