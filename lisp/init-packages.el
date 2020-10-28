@@ -97,6 +97,7 @@
   :commands (dap-debug dap-debug-edit-template))
 
 (use-package solarized-theme
+  :disabled ;; disable until centaur support
   :init
   (load-theme 'solarized-dark)
   :custom
@@ -105,6 +106,17 @@
   (solarized-scale-org-headlines nil)
   (solarized-emphasize-indicators nil)
   (x-underline-at-descent-line t))
+
+(use-package chocolate-theme
+  :disabled
+  :ensure t
+  :config
+  (load-theme 'chocolate t))
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-wilmersdorf t))
 
 (use-package lsp-mode
   :custom
