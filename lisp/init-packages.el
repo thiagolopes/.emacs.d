@@ -207,5 +207,22 @@
   :custom (fira-code-mode-disabled-ligatures '("[]" "#_" "#_(" "x"))
   :config (global-fira-code-mode))
 
+(use-package centaur-tabs
+  :config
+  (centaur-tabs-headline-match)
+  (setq centaur-tabs-height 36
+	x-underline-at-descent-line t
+	centaur-tabs-plain-icons t
+	centaur-tabs-set-modified-marker t
+	centaur-tabs-set-icons t
+	centaur-tabs-style "slant"
+	uniquify-separator "/"
+	uniquify-buffer-name-style 'forward)
+  :bind
+  ("C-M-n" . centaur-tabs-backward)
+  ("C-M-p" . centaur-tabs-forward)
+  :init
+  (centaur-tabs-mode t))
+
 (provide 'init-packages)
 ;;; init-packages ends here
