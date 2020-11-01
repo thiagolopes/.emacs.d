@@ -75,6 +75,14 @@
 
 (use-package helm
   :config
+  (setq helm-split-window-in-side-p           t
+	helm-move-to-line-cycle-in-source     t
+	helm-ff-search-library-in-sexp        t
+	helm-scroll-amount                    8
+	helm-ff-file-name-history-use-recentf t
+	helm-echo-input-in-header-line        t
+	helm-autoresize-max-height            0
+	helm-autoresize-min-height            20)
   (helm-autoresize-mode 1)
   :bind
   ("M-x" . helm-M-x)
