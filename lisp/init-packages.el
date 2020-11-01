@@ -25,6 +25,12 @@
   :config
   (ivy-mode))
 
+(use-package smex
+  :config
+  (smex-initialize)
+  :bind
+  ("M-x" . smex))
+
 (use-package highlight-parentheses
   :init
   (global-highlight-parentheses-mode))
