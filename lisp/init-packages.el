@@ -34,7 +34,7 @@
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package highlight-numbers
-  :init
+  :config
   (highlight-numbers-mode))
 
 (use-package flycheck
