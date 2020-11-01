@@ -25,11 +25,9 @@
   :config
   (ivy-mode))
 
-(use-package smex
+(use-package amx
   :config
-  (smex-initialize)
-  :bind
-  ("M-x" . smex))
+  (amx-mode))
 
 (use-package highlight-parentheses
   :init
