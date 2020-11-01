@@ -14,6 +14,8 @@
 (use-package ivy
   :defer t
   :delight
+  :bind
+  ("C-s" . swiper)
   :custom
   (ivy-count-format "(%d/%d) ")
   (ivy-use-virtual-buffers t)
@@ -85,13 +87,6 @@
         ("C-i" . helm-execute-persistent-action)
         ("C-z" . helm-select-action)
         ("C-h" . delete-backward-char)))
-
-(use-package helm-swoop
-  :after helm
-  :custom
-  (helm-swoop-speed-or-color t)
-  :bind
-  ("C-s" . helm-swoop))
 
 (use-package dap-mode
   :commands (dap-debug dap-debug-edit-template))
