@@ -213,12 +213,13 @@
 (use-package centaur-tabs
   :config
   (centaur-tabs-headline-match)
-  (setq centaur-tabs-height 36
+  (setq centaur-tabs-build-helm-source t)
+  (setq centaur-tabs-height 28
 	x-underline-at-descent-line t
 	centaur-tabs-plain-icons t
 	centaur-tabs-set-modified-marker t
 	centaur-tabs-set-icons t
-	centaur-tabs-style "slant"
+	centaur-tabs-style "alternate"
 	uniquify-separator "/"
 	uniquify-buffer-name-style 'forward
 	centaur-tabs-cycle-scope 'tabs)
