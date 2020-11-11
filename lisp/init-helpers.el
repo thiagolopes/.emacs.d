@@ -59,6 +59,10 @@
       (beginning-of-line)))
 
 
+(defun refined/kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
 (defun workon ()
   (interactive)
   (venv-workon)
