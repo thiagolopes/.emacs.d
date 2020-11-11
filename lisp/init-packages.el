@@ -191,7 +191,7 @@
   (cider-repl-toggle-pretty-printing))
 
 (use-package fira-code-mode
-  :custom (fira-code-mode-disabled-ligatures '("[]" "#_" "#_(" "x"))
+  :custom (fira-code-mode-disabled-ligatures '("[]" "#_" "#_(" "x" "#("))
   :config (global-fira-code-mode))
 
 (use-package centaur-tabs
