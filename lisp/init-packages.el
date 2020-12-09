@@ -7,6 +7,11 @@
 (use-package sudo-edit)
 (use-package virtualenvwrapper)
 (use-package zoom)
+(use-package go-mode)
+
+(use-package beacon
+  :init
+  (beacon-mode 1))
 
 (use-package magit
   :defer t)
