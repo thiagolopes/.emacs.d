@@ -108,7 +108,7 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-wilmersdorf t))
+  (load-theme 'doom-monokai-classic t))
 
 (use-package lsp-mode
   :custom
