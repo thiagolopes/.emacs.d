@@ -76,6 +76,13 @@
 	      #'display-line-numbers-mode
 	    #'linum-mode))
 
+;;; font config
+(set-face-attribute 'default nil
+                    :family "JetBrains Mono"
+                    :height 100
+                    :weight 'normal
+                    :width 'normal)
+
 ;;; Keybindings
 (global-set-key (kbd "C->") 'indent-rigidly-right-to-tab-stop) ; Indent selection by one tab length
 (global-set-key (kbd "C-<") 'indent-rigidly-left-to-tab-stop)  ; De-indent selection by one tab length
