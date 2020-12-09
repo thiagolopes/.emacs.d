@@ -220,7 +220,7 @@
 
 (use-package scala-mode
   :interpreter
-    ("scala" . scala-mode))
+  ("scala" . scala-mode))
 
 (provide 'init-packages)
 ;;; init-packages ends here
