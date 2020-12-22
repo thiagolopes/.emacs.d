@@ -18,7 +18,7 @@
 
 ;;; For performance
 (setq gc-cons-threshold-original gc-cons-threshold)
-(setq gc-cons-threshold most-positive-fixnum)
+(setq gc-cons-threshold (* 1024 1024 1024))
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 (add-hook 'after-init-hook #'(lambda ()
