@@ -65,6 +65,11 @@
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
+(use-package company-lsp
+  :after company-mode
+  :ensure t
+  :commands company-lsp)
+
 (use-package company-box
   :hook
   (company-mode . company-box-mode))
@@ -117,8 +122,16 @@
 (use-package lsp-mode
   :custom
   (lsp-prefer-flymake nil)
+  (lsp-gopls-staticcheck t)
+  (lsp-eldoc-render-all t)
+  (lsp-gopls-complete-unimported t)
+  :commands
+  (lsp lsp-deferred)
   :hook
-  (prog-mode . lsp-mode))
+  (prog-mode . lsp-mode)
+  (go-mode . lsp-deferred)
+  (python-mode . lsp-deferred)
+  )
 
 (use-package lsp-ui
   :after
