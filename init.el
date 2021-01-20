@@ -87,6 +87,7 @@
 (setq desktop-restore-eager 4)
 (delete-selection-mode 1)                 ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)               ; Auto-update buffer if file has changed on disk
+(setq site-run-file nil)
 (add-hook 'before-save-hook
 	  'delete-trailing-whitespace)    ; Delete trailing whitespace on save
 (add-hook 'prog-mode-hook                 ; Show line numbers in programming modes
