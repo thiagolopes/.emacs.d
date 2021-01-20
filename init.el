@@ -95,12 +95,47 @@
 	      #'display-line-numbers-mode
 	    #'linum-mode))
 
-;;; font config
-(set-face-attribute 'default nil
-                    :family "JetBrains Mono"
-                    :height 100
-                    :weight 'normal
-                    :width 'normal)
+;;; add recentf
+(add-hook 'after-init-hook
+	  (recentf-mode 1))
+(setq recentf-auto-cleanup "05:00am")
+(setq recentf-max-saved-items 200)
+(setq recentf-exclude '((expand-file-name package-user-dir)
+                     ".cache"
+                     ".cask"
+                     ".elfeed"
+                     "bookmarks"
+                     "cache"
+                     "ido.*"
+                     "persp-confs"
+                     "recentf"
+                     "undo-tree-hist"
+                     "url"
+                     "COMMIT_EDITMSG\\'"))
+(save-place-mode 1)
+(setq-default history-length 500)
+
+;;; font confi
+(defvar font-list '(("JetBrains Mono" . 10) ("Input" . 10) ("FiraCode" . 10) ("Consolas" . 12)))
+(defun change-font ()
+  "Documentation."
+  (interactive)
+  (let* (available-fonts font-name font-size font-setting)
+    (dolist (font font-list (setq available-fonts (nreverse available-fonts)))
+      (when (member (car font) (font-family-list))
+        (push font available-fonts)))
+    (if (not available-fonts)
+        (message "No fonts from the chosen set are available")
+      (if (called-interactively-p 'interactive)
+          (let* ((chosen (assoc-string (completing-read "What font to use? " available-fonts nil t) available-fonts)))
+            (setq font-name (car chosen) font-size (read-number "Font size: " (cdr chosen))))
+        (setq font-name (caar available-fonts) font-size (cdar available-fonts)))
+      (setq font-setting (format "%s-%d" font-name font-size))
+      (set-frame-font font-setting nil t)
+      (add-to-list 'default-frame-alist (cons 'font font-setting)))))
+
+(when (display-graphic-p)
+  (change-font))
 
 ;;; Keybindings
 (global-set-key (kbd "C->") 'indent-rigidly-right-to-tab-stop) ; Indent selection by one tab length
