@@ -273,11 +273,6 @@
   :interpreter
   ("scala" . scala-mode))
 
-(use-package color-rg
-  :load-path (lambda () (expand-file-name "site-elisp/color-rg" user-emacs-directory))
-  :if (executable-find "rg")
-  :bind ("C-M-s" . color-rg-search-input))
-
 (use-package disk-usage
   :commands (disk-usage))
 
