@@ -7,7 +7,11 @@
 (use-package sudo-edit)
 (use-package virtualenvwrapper)
 (use-package zoom)
-(use-package go-mode)
+
+(use-package go-mode
+  :hook
+  (before-save-hook . lsp-format-buffer)
+  (before-save-hook . lsp-organize-imports))
 
 (use-package beacon
   :init
