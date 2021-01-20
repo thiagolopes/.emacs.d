@@ -8,6 +8,8 @@
 ;; -- doomemacs						   ;;
 ;; -- purcell						   ;;
 ;; -- http://www.i3s.unice.fr/~malapert/emacs_orgmode.html ;;
+;; -- https://github.com/manateelazycat/delete-block	   ;;
+;; -- https://github.com/MatthewZMD/.emacs.d		   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Author:  Thiago Lopes <thiagolopes@pm.me>
