@@ -185,6 +185,30 @@
 	    (unless (server-running-p)
 	      (server-start))))
 
+;; better compilation
+(setq-default compilation-always-kill t) ; kill compilation process before starting another
+(setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
+(setq-default compilation-scroll-output t)
+
+;; Add a newline automatically at the end of the file upon save.
+(setq require-final-newline t)
+
+;; Vertical Scroll
+(setq scroll-step 1)
+(setq scroll-margin 1)
+(setq scroll-conservatively 101)
+(setq scroll-up-aggressively 0.01)
+(setq scroll-down-aggressively 0.01)
+(setq auto-window-vscroll nil)
+(setq fast-but-imprecise-scrolling nil)
+
+;; Horizontal Scroll
+(setq hscroll-step 1)
+(setq hscroll-margin 1)
+
+;; Load subword
+(require 'subword)
+
 ;;; Load tools configs
 (require 'init-helpers)
 (require 'init-packages)
