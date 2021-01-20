@@ -176,7 +176,7 @@
    backup-directory-alist `((".*" . ,emacs-tmp-dir)))
 
 ;;; Lockfiles unfortunately cause more pain than benefit
-(setq create-lockfiles nil)
+(setq-default create-lockfiles nil)
 
 ;; Start server
 (add-hook 'after-init-hook
