@@ -4,12 +4,26 @@
 
 (use-package pkgbuild-mode)
 (use-package i3wm-config-mode)
-(use-package sudo-edit)
 (use-package virtualenvwrapper)
 (use-package zoom)
 
+(use-package sudo-edit
+  :commands (sudo-edit))
+
+(use-package avy
+  :defer t
+  :bind
+  ("C-;" . avy-goto-char-timer)
+  :custom
+  (avy-timeout-seconds 0.3)
+  (avy-style 'pre)
+  :custom-face
+  (avy-lead-face ((t (:background "#51afef" :foreground "#870000" :weight bold)))));
+
 (use-package go-mode
+  :mode "\\.go\\'"
   :hook
+  (before-save-hook . gofmt-before-save)
   (before-save-hook . lsp-format-buffer)
   (before-save-hook . lsp-organize-imports))
 
@@ -31,6 +45,10 @@
   :custom
   (ivy-count-format "(%d/%d) ")
   (ivy-use-virtual-buffers t)
+  (ivy-height 10)
+  (ivy-on-del-error-function nil)
+  (ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
+  (ivy-wrap t)
   :config
   (ivy-mode))
 
@@ -56,12 +74,19 @@
   (highlight-numbers-mode 1))
 
 (use-package company
+  :diminish company-mode
   :init
   (global-company-mode)
+  :custom
+  (company-selection-wrap-around t)
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.1)
+  (company-minimum-prefix-length 1)
+  (company-tooltip-align-annotations t)
+  (company-require-match 'never)
+  (company-show-numbers t)
+  (company-global-modes '(not shell-mode eaf-mode))
   :config
-  (setq company-selection-wrap-around t)
-  (setq company-minimum-prefix-length 1)
-  (setq company-idle-delay 0)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
@@ -78,9 +103,11 @@
   :delight '(:eval (concat " " (projectile-project-name)))
   :bind
   ("C-c p" . projectile-command-map)
+  :custom
+  (projectile-completion-system 'ivy)
   :config
   (projectile-mode 1)
-  (setq projectile-completion-system 'ivy))
+  (add-to-list 'projectile-globally-ignored-directories "node_modules"))
 
 (use-package which-key
   :init
@@ -115,9 +142,17 @@
   (load-theme 'chocolate t))
 
 (use-package doom-themes
-  :ensure t
+  :custom-face
+  (cursor ((t (:background "BlanchedAlmond"))))
   :config
-  (load-theme 'doom-monokai-classic t))
+  ;; (doom-themes-visual-bell-config)
+  (doom-themes-org-config)
+  (load-theme 'doom-one t)
+  (defun switch-theme ()
+    "An interactive funtion to switch themes."
+    (interactive)
+    (disable-theme (intern (car (mapcar #'symbol-name custom-enabled-themes))))
+    (call-interactively #'load-theme)))
 
 (use-package lsp-mode
   :custom
@@ -125,13 +160,13 @@
   (lsp-gopls-staticcheck t)
   (lsp-eldoc-render-all t)
   (lsp-gopls-complete-unimported t)
+  (lsp-file-watch-threshold 2000)
+  (read-process-output-max (* 1024 1024))
+  (lsp-eldoc-hook nil)
   :commands
   (lsp lsp-deferred)
   :hook
-  (prog-mode . lsp-mode)
-  (go-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
-  )
+  ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
 
 (use-package lsp-ui
   :after
@@ -147,18 +182,14 @@
 	([remap xref-find-references] . lsp-ui-peek-find-references)
 	("C-c u" . lsp-ui-imenu))
   :custom
-  (lsp-ui-doc-enable t)
-  (lsp-ui-peek-enable t)
   (lsp-ui-doc-header t)
+  (lsp-ui-peek-enable t)
   (lsp-ui-doc-include-signature t)
-  (lsp-ui-doc-position 'top)
-  (lsp-ui-imenu-enable t)
+  (lsp-ui-doc-border (face-foreground 'default))
   (lsp-ui-flycheck-enable t)
   (lsp-ui-sideline-enable nil)
   (lsp-ui-sideline-ignore-duplicate t)
-  (lsp-ui-sideline-show-code-actions nil)
-  :config
-  (setq lsp-ui-sideline-ignore-duplicate t))
+  (lsp-ui-sideline-show-code-actions nil))
 
 (use-package disable-mouse
   :init
@@ -242,5 +273,39 @@
   :interpreter
   ("scala" . scala-mode))
 
+(use-package color-rg
+  :load-path (lambda () (expand-file-name "site-elisp/color-rg" user-emacs-directory))
+  :if (executable-find "rg")
+  :bind ("C-M-s" . color-rg-search-input))
+
+(use-package disk-usage
+  :commands (disk-usage))
+
+(use-package winner
+  :ensure nil
+  :custom
+  (winner-boring-buffers
+   '("*Completions*"
+     "*Compile-Log*"
+     "*inferior-lisp*"
+     "*Fuzzy Completions*"
+     "*Apropos*"
+     "*Help*"
+     "*cvs*"
+     "*Buffer List*"
+     "*Ibuffer*"
+     "*esh command on file*"))
+  :config
+  (winner-mode 1))
+
+(use-package page-break-lines
+  :diminish
+  :init (global-page-break-lines-mode))
+
+(use-package quickrun
+  :bind
+  (("<f5>" . quickrun)
+   ("M-<f5>" . quickrun-shell)))
+
 (provide 'init-packages)
-;;; init-packages ends here
+;;; init-packages ends her
