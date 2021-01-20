@@ -148,9 +148,12 @@
 	("C-c u" . lsp-ui-imenu))
   :custom
   (lsp-ui-doc-enable t)
+  (lsp-ui-peek-enable t)
   (lsp-ui-doc-header t)
   (lsp-ui-doc-include-signature t)
   (lsp-ui-doc-position 'top)
+  (lsp-ui-imenu-enable t)
+  (lsp-ui-flycheck-enable t)
   (lsp-ui-sideline-enable nil)
   (lsp-ui-sideline-ignore-duplicate t)
   (lsp-ui-sideline-show-code-actions nil)
