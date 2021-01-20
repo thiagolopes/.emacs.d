@@ -19,16 +19,32 @@
 ;;; Code:
 
 ;;; For performance
-(setq gc-cons-threshold-original gc-cons-threshold)
-(setq gc-cons-threshold (* 1024 1024 1024))
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq gc-cons-threshold 100000000)
+(setq better-gc-cons-threshold 67108864) ; 64mb
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (if (boundp 'after-focus-change-function)
+                (add-function :after after-focus-change-function
+                              (lambda ()
+                                (unless (frame-focus-state)
+                                  (garbage-collect))))
+              (add-hook 'after-focus-change-function 'garbage-collect))
+            (defun gc-minibuffer-setup-hook ()
+              (setq gc-cons-threshold (* better-gc-cons-threshold 2)))
 
-(add-hook 'after-init-hook #'(lambda ()
-			       ;; restore after startup
-			       (setq gc-cons-threshold gc-cons-threshold-original)))
+            (defun gc-minibuffer-exit-hook ()
+              (garbage-collect)
+              (setq gc-cons-threshold better-gc-cons-threshold))
+
+            (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
+            (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)))
+
+;; disable package-enable
+(setq package-enable-at-startup nil)
 
 (let (file-name-handler-alist)
   ;; Ensure is running out of this file's directory
+  (setq file-name-handler-alist nil)
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
 ;;; Disable menu-bar, tool-bar, and scroll-bar.
