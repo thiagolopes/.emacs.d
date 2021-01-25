@@ -63,35 +63,6 @@
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
-(defun refined/delete-block-forward ()
-  (interactive)
-  (if (eobp)
-      (message "End of buffer")
-    (let* ((syntax-move-point
-            (save-excursion
-              (skip-syntax-forward (string (char-syntax (char-after))))
-              (point)
-              ))
-           (subword-move-point
-            (save-excursion
-              (subword-forward)
-              (point))))
-      (kill-region (point) (min syntax-move-point subword-move-point)))))
-
-(defun refined/delete-block-backward ()
-  (interactive)
-  (if (bobp)
-      (message "Beginning of buffer")
-    (let* ((syntax-move-point
-            (save-excursion
-              (skip-syntax-backward (string (char-syntax (char-before))))
-              (point)
-              ))
-           (subword-move-point
-            (save-excursion
-              (subword-backward)
-              (point))))
-      (kill-region (point) (max syntax-move-point subword-move-point)))))
 
 (defun workon ()
   (interactive)
@@ -105,11 +76,6 @@
 (global-set-key (kbd "C-a") 'refined/back-to-indentation-or-beginning)
 (global-set-key [?\M- ] 'delete-horizontal-space)
 (global-set-key (kbd "M-\\") 'just-one-space)
-
-(global-set-key (kbd "M-d") 'refined/delete-block-forward)
-(global-set-key (kbd "C-<backspace>") 'refined/delete-block-backward)
-(global-set-key (kbd "M-<backspace>") 'refined/delete-block-backward)
-(global-set-key (kbd "M-DEL") 'refined/delete-block-backward)
 
 ;; Truncate lines
 (global-set-key (kbd "C-x C-l") #'toggle-truncate-lines)
