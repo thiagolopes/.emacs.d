@@ -64,6 +64,18 @@
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
 
+(defun refined/set-emacs-frames (variant)
+  (dolist (frame (frame-list))
+    (let* ((window-id (frame-parameter frame 'outer-window-id))
+	   (id (string-to-number window-id))
+	   (cmd (format "xprop -id 0x%x -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"%s\""
+			id variant)))
+      (call-process-shell-command cmd))))
+
+(defun refined/set-emacs-theme-dark ()
+  (interactive)
+  (refined/set-emacs-frames "dark"))
+
 (defun workon ()
   (interactive)
   (venv-workon)
@@ -86,6 +98,9 @@
 ;; Move up/down paragraph
 (global-set-key (kbd "M-n") #'forward-paragraph)
 (global-set-key (kbd "M-p") #'backward-paragraph)
+
+(if (window-system)
+    (refined/set-emacs-theme-dark))
 
 (provide 'init-helpers)
 ;;; init-helpers ends here
