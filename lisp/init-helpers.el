@@ -99,7 +99,7 @@
 (global-set-key (kbd "M-n") #'forward-paragraph)
 (global-set-key (kbd "M-p") #'backward-paragraph)
 
-(if (window-system)
+(if (and (window-system) (eq system-type 'gnu/linux))
     (refined/set-emacs-theme-dark))
 
 (provide 'init-helpers)
