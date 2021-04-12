@@ -5,6 +5,8 @@
 (use-package pkgbuild-mode)
 (use-package i3wm-config-mode)
 (use-package virtualenvwrapper)
+(use-package blacken)
+(use-package isortify)
 (use-package zoom)
 
 (use-package sudo-edit
