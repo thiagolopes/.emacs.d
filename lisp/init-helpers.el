@@ -102,5 +102,9 @@
 (if (and (window-system) (eq system-type 'gnu/linux))
     (refined/set-emacs-theme-dark))
 
+
+(defalias 'switch-project 'projectile-switch-project)
+(defalias 'find-projects-in 'projectile-discover-projects-in-directory)
+
 (provide 'init-helpers)
 ;;; init-helpers ends here

@@ -10,6 +10,14 @@
 (use-package zoom)
 (use-package evil)
 (use-package web-mode)
+(use-package yaml-mode)
+(use-package lua-mode)
+(use-package nyan-mode
+  :init
+  (nyan-mode 1)
+  :custom
+  (nyan-animate-nyancat t)
+  (nyan-wavy-trail t))
 
 (use-package sudo-edit
   :commands (sudo-edit))

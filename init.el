@@ -96,8 +96,10 @@
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
-(setq desktop-restore-eager 4)
+(setq desktop-restore-eager 4
+      desktop-save t)
 (desktop-read)
+
 
 ;;; add recentf
 (add-hook 'after-init-hook
@@ -139,7 +141,7 @@
       (add-to-list 'default-frame-alist (cons 'font font-setting)))))
 
 (when (display-graphic-p)
-  (change-font))
+  (switch-font))
 
 ;;; Keybindings
 (global-set-key (kbd "C->") 'indent-rigidly-right-to-tab-stop) ; Indent selection by one tab length
