@@ -11,9 +11,9 @@
   "Delete the current file, and kill the buffer."
   (interactive)
   (unless (buffer-file-name)
-    (error "No file is currently being edited"))
-  (when (yes-or-no-p (format "Really delete '%s'?"
-                             (file-name-nondirectory buffer-file-name)))
+    (error
+     "No file is currently being edited"))
+  (when (yes-or-no-p (format "Really delete '%s'?" (file-name-nondirectory buffer-file-name)))
     (delete-file (buffer-file-name))
     (kill-this-buffer)))
 
@@ -22,14 +22,15 @@
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
   (let ((name (buffer-name))
-        (filename (buffer-file-name)))
+	(filename (buffer-file-name)))
     (unless filename
-      (error "Buffer '%s' is not visiting a file!" name))
-    (progn
-      (when (file-exists-p filename)
-        (rename-file filename new-name 1))
-      (set-visited-file-name new-name)
-      (rename-buffer new-name))))
+      (error
+       "Buffer '%s' is not visiting a file!"
+       name))
+    (progn (when (file-exists-p filename)
+	     (rename-file filename new-name 1))
+	   (set-visited-file-name new-name)
+	   (rename-buffer new-name))))
 
 
 (defun refined/move-line-up ()
@@ -55,21 +56,24 @@
 
 (defun refined/back-to-indentation-or-beginning ()
   (interactive)
-  (if (= (point) (progn (back-to-indentation) (point)))
+  (if (= (point)
+	 (progn (back-to-indentation)
+		(point)))
       (beginning-of-line)))
 
 
 (defun refined/kill-all-buffers ()
   (interactive)
-  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+  (mapc 'kill-buffer (delq (current-buffer)
+			   (buffer-list))))
 
 
 (defun refined/set-emacs-frames (variant)
   (dolist (frame (frame-list))
     (let* ((window-id (frame-parameter frame 'outer-window-id))
 	   (id (string-to-number window-id))
-	   (cmd (format "xprop -id 0x%x -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"%s\""
-			id variant)))
+	   (cmd (format "xprop -id 0x%x -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"%s\"" id
+			variant)))
       (call-process-shell-command cmd))))
 
 (defun refined/set-emacs-theme-dark ()
@@ -99,7 +103,8 @@
 (global-set-key (kbd "M-n") #'forward-paragraph)
 (global-set-key (kbd "M-p") #'backward-paragraph)
 
-(if (and (window-system) (eq system-type 'gnu/linux))
+(if (and (window-system)
+	 (eq system-type 'gnu/linux))
     (refined/set-emacs-theme-dark))
 
 
