@@ -8,6 +8,8 @@
 (use-package blacken)
 (use-package isortify)
 (use-package zoom)
+(use-package evil)
+(use-package web-mode)
 
 (use-package sudo-edit
   :commands (sudo-edit))
