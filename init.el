@@ -97,7 +97,6 @@
 ;;; desktop-save-mode
 (desktop-save-mode 1)
 (setq desktop-restore-eager 4)
-(setq desktop-path '("~/.emacs.d/.cache/"))
 (desktop-read)
 
 ;;; add recentf
