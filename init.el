@@ -81,10 +81,7 @@
 (set-default-coding-systems 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)             ; y-or-n-p makes answering questions faster
 (setq linum-format "%4d ")                ; Line number format
-(desktop-save-mode 1)
-(setq desktop-load-locked-desktop nil)
 (visual-line-mode 1)                      ; enable visual line mode, "wrap lines in end"
-(setq desktop-restore-eager 4)
 (delete-selection-mode 1)                 ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)               ; Auto-update buffer if file has changed on disk
 (setq site-run-file nil)
@@ -94,6 +91,12 @@
 	  (if (and (fboundp 'display-line-numbers-mode) (display-graphic-p))
 	      #'display-line-numbers-mode
 	    #'linum-mode))
+
+;;; desktop-save-mode
+(desktop-save-mode 1)
+(setq desktop-restore-eager 4)
+(setq desktop-path '("~/.emacs.d/.cache/"))
+(desktop-read)
 
 ;;; add recentf
 (add-hook 'after-init-hook
