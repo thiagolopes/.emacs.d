@@ -146,7 +146,7 @@
   :config
   ;; (doom-themes-visual-bell-config)
   (doom-themes-org-config)
-  (load-theme 'doom-one t)
+  (load-theme 'doom-homage-black t)
   (defun switch-theme ()
     "An interactive funtion to switch themes."
     (interactive)
