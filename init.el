@@ -20,7 +20,9 @@
 
 ;;; For performance
 (setq gc-cons-threshold 100000000)
-(setq better-gc-cons-threshold 67108864) ; 64mb
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+;;; (setq better-gc-cons-threshold 67108864) ; 64mb
+(setq better-gc-cons-threshold 800000)
 (add-hook 'emacs-startup-hook
           (lambda ()
             (if (boundp 'after-focus-change-function)
