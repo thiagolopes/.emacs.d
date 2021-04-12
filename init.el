@@ -122,8 +122,8 @@
 (setq-default history-length 500)
 
 ;;; font confi
-(defvar font-list '(("JetBrains Mono" . 10) ("Input" . 10) ("FiraCode" . 10) ("Consolas" . 12)))
-(defun change-font ()
+(defvar font-list '(("JetBrains Mono" . 10) ("Input" . 10) ("FiraCode" . 10) ("Consolas" . 10)))
+(defun switch-font ()
   "Documentation."
   (interactive)
   (let* (available-fonts font-name font-size font-setting)
