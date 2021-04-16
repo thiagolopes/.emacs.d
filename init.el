@@ -83,6 +83,7 @@
 (visual-line-mode 1)	; enable visual line mode, "wrap lines in end"
 (delete-selection-mode 1) ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t) ; Auto-update buffer if file has changed on disk
+(global-hl-line-mode 1)
 (setq site-run-file nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace) ; Delete trailing whitespace on save
 (add-hook 'prog-mode-hook     ; Show line numbers in programming modes
