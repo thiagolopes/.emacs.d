@@ -80,6 +80,12 @@
   (interactive)
   (refined/set-emacs-frames "dark"))
 
+(defun switch-theme ()
+    "An interactive funtion to switch themes."
+    (interactive)
+    (disable-theme (intern (car (mapcar #'symbol-name custom-enabled-themes))))
+    (call-interactively #'load-theme))
+
 (defun workon ()
   (interactive)
   (venv-workon)

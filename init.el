@@ -207,4 +207,7 @@
 (require 'init-packages)
 (require 'init-org)
 
+;;; Theme
+(load-theme 'modus-vivendi t)
+
 ;;; init ends here

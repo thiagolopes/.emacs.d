@@ -29,6 +29,10 @@
   (nyan-wavy-trail t))
 
 (use-package
+  smooth-scrolling
+  :init (smooth-scrolling-mode 1))
+
+(use-package
   sudo-edit
   :commands (sudo-edit))
 
@@ -141,6 +145,9 @@
   :commands (dap-debug dap-debug-edit-template))
 
 (use-package
+  modus-themes)
+
+(use-package
   solarized-theme
   :disabled ;; disable until centaur support
   :init
@@ -163,13 +170,7 @@
 			 (:background "BlanchedAlmond"))))
   :config
   ;; (doom-themes-visual-bell-config)
-  (doom-themes-org-config)
-  (load-theme 'doom-homage-black t)
-  (defun switch-theme ()
-    "An interactive funtion to switch themes."
-    (interactive)
-    (disable-theme (intern (car (mapcar #'symbol-name custom-enabled-themes))))
-    (call-interactively #'load-theme)))
+  (doom-themes-org-config))
 
 (use-package
   lsp-mode
