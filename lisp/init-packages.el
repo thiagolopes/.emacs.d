@@ -13,6 +13,8 @@
 (use-package
   isortify)
 (use-package
+  pytest)
+(use-package
   zoom)
 (use-package
   evil)
@@ -22,6 +24,13 @@
   yaml-mode)
 (use-package
   lua-mode)
+(use-package
+  resize-window)
+
+(use-package
+  aggressive-indent
+  :init (global-aggressive-indent-mode 1))
+
 (use-package
   nyan-mode
   :init (nyan-mode 1)
@@ -145,7 +154,12 @@
   :commands (dap-debug dap-debug-edit-template))
 
 (use-package
-  modus-themes)
+  modus-themes
+  :custom (modus-themes-bold-constructs t)
+  (modus-themes-syntax 'yellow-comments-green-strings)
+  (modus-themes-mode-line 'bordeless-3d)
+  (modus-themes-hl-line 'underline-only-accented)
+  (modus-themes-paren-match 'subtle-bold))
 
 (use-package
   solarized-theme
