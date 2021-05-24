@@ -92,12 +92,8 @@
   :config (amx-mode))
 
 (use-package
-  highlight-parentheses
-  :init (global-highlight-parentheses-mode))
-
-(use-package
   rainbow-delimiters
-  :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  :hook (prog-mode-hook . rainbow-delimiters-mode))
 
 (use-package
   highlight-numbers
