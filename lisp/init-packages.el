@@ -171,12 +171,6 @@
   (x-underline-at-descent-line t))
 
 (use-package
-  chocolate-theme
-  :disabled
-  :ensure t
-  :config (load-theme 'chocolate t))
-
-(use-package
   doom-themes
   :custom-face (cursor ((t
 			 (:background "BlanchedAlmond"))))
@@ -284,10 +278,6 @@
 (use-package
   scala-mode
   :interpreter ("scala" . scala-mode))
-
-(use-package
-  disk-usage
-  :commands (disk-usage))
 
 (use-package
   winner
