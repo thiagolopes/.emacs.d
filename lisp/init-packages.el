@@ -27,13 +27,15 @@
 (use-package
   resize-window)
 
+(use-package minions
+  :config (minions-mode 1))
+
 (use-package
   aggressive-indent
   :init (global-aggressive-indent-mode 1))
 
 (use-package
   nyan-mode
-  :init (nyan-mode 1)
   :custom (nyan-animate-nyancat t)
   (nyan-wavy-trail t))
 
