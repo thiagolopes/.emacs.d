@@ -2,6 +2,15 @@
 
 ;;; Code:
 
+(defun refined/change-state-on-view-mode ()
+  (let ((is-active? view-mode)
+	(bg-active (modus-themes-color 'red-refine-bg))
+	(bg-inactive (modus-themes-color 'bg-active))
+	(hl-background (modus-themes-color 'bg-inactive)))
+    (setq cursor-type (if is-active? 'box 'bar))
+    (set-face-background 'mode-line (if is-active? bg-active bg-inactive))
+    (set-face-background 'hl-line (if is-active? hl-background nil))))
+
 ;;; Automatically overriding stale locks
 (defun emacs-process-p (pid)
   "If pid is the process ID of an emacs process, return t, else nil.
@@ -143,9 +152,11 @@ Also returns nil if pid is nil."
 	 (eq system-type 'gnu/linux))
     (refined/set-emacs-theme-dark))
 
-
 (defalias 'switch-project 'projectile-switch-project)
 (defalias 'find-projects-in 'projectile-discover-projects-in-directory)
+
+;; hooks
+(add-hook 'view-mode-hook 'refined/change-state-on-view-mode)
 
 (provide 'init-helpers)
 ;;; init-helpers ends here
