@@ -27,7 +27,8 @@
 (use-package
   resize-window)
 
-(use-package minions
+(use-package
+  minions
   :config (minions-mode 1))
 
 (use-package
@@ -266,6 +267,7 @@
 
 (use-package
   page-break-lines
+
   :diminish
   :init (global-page-break-lines-mode))
 
@@ -274,11 +276,10 @@
   :bind (("<f5>" . quickrun)
 	 ("M-<f5>" . quickrun-shell)))
 
-(use-package view
+(use-package
+  view
   :custom (view-read-only t)
-  :bind (("<escape>" . view-mode)
-	 :map view-mode-map
-	 ("n" . forward-line)
+  :bind (("<escape>" . view-mode) :map view-mode-map ("n" . forward-line)
 	 ("p" . previous-line)))
 
 (provide 'init-packages)
