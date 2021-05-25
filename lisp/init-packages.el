@@ -157,26 +157,8 @@
   (modus-themes-syntax 'yellow-comments-green-strings)
   (modus-themes-mode-line 'bordeless-3d)
   (modus-themes-hl-line 'underline-only-accented)
+  (x-underline-at-descent-line t)
   (modus-themes-paren-match 'subtle-bold))
-
-(use-package
-  solarized-theme
-  :disabled ;; disable until centaur support
-  :init
-  (load-theme 'solarized-dark)
-  :custom (solarized-use-variable-pitch nil)
-  (solarized-use-more-italic t)
-  (solarized-scale-org-headlines nil)
-  (solarized-emphasize-indicators nil)
-  (x-underline-at-descent-line t))
-
-(use-package
-  doom-themes
-  :custom-face (cursor ((t
-			 (:background "BlanchedAlmond"))))
-  :config
-  ;; (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
 
 (use-package
   lsp-mode
