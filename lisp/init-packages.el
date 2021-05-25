@@ -220,11 +220,6 @@
   :bind ("C-:" . goto-last-change))
 
 (use-package
-  smart-mode-line
-  :custom (sml/theme 'respectful)
-  :config (sml/setup))
-
-(use-package
   clojure-mode
   :ensure t
   :mode (("\\.clj\\'" . clojure-mode)
