@@ -274,5 +274,12 @@
   :bind (("<f5>" . quickrun)
 	 ("M-<f5>" . quickrun-shell)))
 
+(use-package view
+  :custom (view-read-only t)
+  :bind (("<escape>" . view-mode)
+	 :map view-mode-map
+	 ("n" . forward-line)
+	 ("p" . previous-line)))
+
 (provide 'init-packages)
 ;;; init-packages ends her
