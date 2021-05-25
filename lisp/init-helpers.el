@@ -5,9 +5,7 @@
 (defun refined/change-state-on-view-mode ()
   (let ((is-active? view-mode)
 	(bg-active (modus-themes-color 'red-refine-bg))
-	(bg-inactive (modus-themes-color 'bg-active))
-	(hl-background (modus-themes-color 'bg-inactive))
-	(actual-frame (window-frame (frame-selected-window))))
+	(bg-inactive (modus-themes-color 'bg-active)))
     (setq-local cursor-type (if is-active? 'box 'bar))
     (face-remap-add-relative 'mode-line :background (if is-active? bg-active bg-inactive))))
 
