@@ -6,10 +6,10 @@
   (let ((is-active? view-mode)
 	(bg-active (modus-themes-color 'red-refine-bg))
 	(bg-inactive (modus-themes-color 'bg-active))
-	(hl-background (modus-themes-color 'bg-inactive)))
-    (setq cursor-type (if is-active? 'box 'bar))
-    (set-face-background 'mode-line (if is-active? bg-active bg-inactive))
-    (set-face-background 'hl-line (if is-active? hl-background nil))))
+	(hl-background (modus-themes-color 'bg-inactive))
+	(actual-frame (window-frame (frame-selected-window))))
+    (setq-local cursor-type (if is-active? 'box 'bar))
+    (face-remap-add-relative 'mode-line :background (if is-active? bg-active bg-inactive))))
 
 ;;; Automatically overriding stale locks
 (defun emacs-process-p (pid)
