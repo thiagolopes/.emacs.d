@@ -100,7 +100,7 @@
 
 (use-package
   rainbow-delimiters
-  :hook (prog-mode-hook . rainbow-delimiters-mode))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package
   highlight-numbers
