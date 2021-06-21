@@ -283,7 +283,24 @@
   view
   :custom (view-read-only t)
   :bind (("<escape>" . view-mode) :map view-mode-map ("n" . forward-line)
-	 ("p" . previous-line)))
+	 ("p" . previous-line)
+	 ("f" . forward-char)
+	 ("b" . backward-char)
+	 ("e" . move-end-of-line)
+	 ("a" . refined/back-to-indentation-or-beginning)))
+
+(use-package
+  smartparens
+  :hook (prog-mode . smartparens-mode))
+
+(use-package dired+
+  :quelpa (dired+ :fetcher github :repo "emacsmirror/dired-plus")
+  :ensure nil
+  :init
+  (setq diredp-hide-details-initially-flag nil)
+  (setq diredp-hide-details-propagate-flag nil)
+  :config
+  (diredp-toggle-find-file-reuse-dir 1))
 
 (provide 'init-packages)
 ;;; init-packages ends her
