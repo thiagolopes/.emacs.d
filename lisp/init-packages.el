@@ -161,7 +161,7 @@
   :custom (modus-themes-bold-constructs t)
   (modus-themes-syntax 'yellow-comments-green-strings)
   (modus-themes-mode-line 'bordeless-3d)
-  (modus-themes-hl-line 'underline-only-accented)
+  (modus-themes-hl-line 'underline-accented)
   (x-underline-at-descent-line t)
   (modus-themes-paren-match 'subtle-bold))
 
