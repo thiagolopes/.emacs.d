@@ -26,6 +26,10 @@
   lua-mode)
 (use-package
   resize-window)
+(use-package
+  restclient)
+(use-package
+  quelpa-use-package)
 
 (use-package
   minions
@@ -267,7 +271,6 @@
 
 (use-package
   page-break-lines
-
   :diminish
   :init (global-page-break-lines-mode))
 
