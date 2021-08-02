@@ -302,5 +302,12 @@
   :config
   (diredp-toggle-find-file-reuse-dir 1))
 
+
+(use-package dired-subtree
+  :config
+  (bind-keys :map dired-mode-map
+             ("f" . dired-subtree-toggle)))
+
+
 (provide 'init-packages)
 ;;; init-packages ends her
