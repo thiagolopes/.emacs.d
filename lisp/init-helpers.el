@@ -1,7 +1,6 @@
 ;;; init-helpers.el -*- lexical-binding: t; -*-
 
 ;;; Code:
-
 (defun refined/change-state-on-view-mode ()
   (let ((is-active? view-mode)
 	(bg-active (modus-themes-color 'red-refine-bg))
