@@ -205,5 +205,10 @@
   (good-scroll-mode 1))
 
 
+(use-package telephone-line
+  :config
+  (telephone-line-mode 1))
+
+
 (provide 'init-packages)
 ;;; init-packages ends her
