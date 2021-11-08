@@ -83,6 +83,7 @@
 (global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
 (add-hook 'before-save-hook 'delete-trailing-whitespace) ; Delete trailing whitespace on save
 (global-display-line-numbers-mode t)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
