@@ -201,9 +201,9 @@
   (setq minimap-window-location 'right))
 
 
-(use-package good-scroll
+(use-package smooth-scrolling
   :config
-  (good-scroll-mode 1))
+  (smooth-scrolling-mode 1))
 
 
 (use-package telephone-line
