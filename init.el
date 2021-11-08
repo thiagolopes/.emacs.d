@@ -16,6 +16,7 @@
 ;; URL:     https://github.com/thiagolopes/emacs-refined
 ;;; License: MIT
 
+
 ;;; Code:
 ;;; For performance
 (setq gc-cons-threshold 100000000)
@@ -61,21 +62,27 @@
 (setq use-package-always-ensure t)
 
 ;;; Useful Defaults
-(setq inhibit-startup-screen t)	; Disable startup screen
+
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name)) "%b"))))
+(setq inhibit-startup-screen t)	                         ; Disable startup screen
 (setq scroll-step 1 scroll-conservatively 10000)
 (setq initial-scratch-message ";;; Hi! emacs love you!")
-(setq-default frame-title-format '("%b")) ; Make window title the buffer name
-(setq ring-bell-function 'ignore)         ; Disable bell sound
+(setq ring-bell-function 'ignore)                        ; Disable bell sound
+(setq site-run-file nil)
+(setq display-line-numbers-offset 3)
+(setq c-default-style "linux")
+(setq c-tab-always-indent t)
+(setq comment-style 'extra-line)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-(fset 'yes-or-no-p 'y-or-n-p) ; y-or-n-p makes answering questions faster
-(setq linum-format "%5d ")    ; Line number format
-(visual-line-mode 1)	; enable visual line mode, "wrap lines in end"
-(delete-selection-mode 1) ; Selected text will be overwritten when you start typing
-(global-auto-revert-mode t) ; Auto-update buffer if file has changed on disk
-(setq site-run-file nil)
+(fset 'yes-or-no-p 'y-or-n-p)                            ; y-or-n-p makes answering questions faster
+(visual-line-mode t)	                                 ; enable visual line mode, "wrap lines in end"
+(delete-selection-mode t)                                ; Selected text will be overwritten when you start typing
+(global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
 (add-hook 'before-save-hook 'delete-trailing-whitespace) ; Delete trailing whitespace on save
-(global-linum-mode 1)
+(global-display-line-numbers-mode t)
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
@@ -109,9 +116,6 @@
 (when (display-graphic-p)
   (switch-font))
 
-;;; Keybindings
-(global-set-key (kbd "C->") 'indent-rigidly-right-to-tab-stop) ; Indent selection by one tab length
-(global-set-key (kbd "C-<") 'indent-rigidly-left-to-tab-stop) ; De-indent selection by one tab length
 ;;; Window navegation
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
@@ -146,13 +150,6 @@
 ;;; Lockfiles unfortunately cause more pain than benefit
 (setq-default create-lockfiles nil)
 
-;; Start server
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (require 'server)
-	    (unless (server-running-p)
-	      (server-start))))
-
 ;; better compilation
 (setq-default compilation-always-kill t) ; kill compilation process before starting another
 (setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
@@ -160,15 +157,6 @@
 
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
-
-;; Vertical Scroll
-(setq scroll-step 1)
-(setq scroll-margin 1)
-(setq scroll-conservatively 101)
-(setq scroll-up-aggressively 0.01)
-(setq scroll-down-aggressively 0.01)
-(setq auto-window-vscroll nil)
-(setq fast-but-imprecise-scrolling nil)
 
 ;; Horizontal Scroll
 (setq hscroll-step 1)
