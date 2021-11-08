@@ -131,7 +131,8 @@
   :config
   (custom-set-variables '(git-gutter:added-sign " ")
 			'(git-gutter:deleted-sign " ")
-			'(git-gutter:modified-sign " "))
+			'(git-gutter:modified-sign " ")
+			'(git-gutter:visual-line t))
   :init
   (global-git-gutter-mode +1))
 
