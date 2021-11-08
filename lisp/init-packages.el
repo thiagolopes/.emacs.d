@@ -202,7 +202,7 @@
 
 (use-package good-scroll
   :config
-  (global-good-scroll 1))
+  (good-scroll-mode 1))
 
 
 (provide 'init-packages)
