@@ -128,6 +128,10 @@
 
 (use-package git-gutter
   :defer t
+  :config
+  (custom-set-variables '(git-gutter:added-sign " ")
+			'(git-gutter:deleted-sign " ")
+			'(git-gutter:modified-sign " "))
   :init
   (global-git-gutter-mode +1))
 
@@ -198,7 +202,11 @@
 (use-package minimap
   :config
   (minimap-mode 1)
-  (setq minimap-window-location 'right))
+  (setq minimap-window-location 'right
+	minimap-width-fraction 0.0
+	minimap-minimum-width 20
+	minimap-dedicated-window t
+	minimap-enlarge-certain-faces nil))
 
 
 (use-package smooth-scrolling
