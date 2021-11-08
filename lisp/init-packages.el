@@ -13,11 +13,11 @@
 (use-package resize-window)
 (use-package restclient)
 
-(use-package aggressive-indent
-  :init (global-aggressive-indent-mode 1))
 
 (use-package sudo-edit
   :commands (sudo-edit))
+
+
 (use-package avy
   :defer t
   :bind ("C-;" . avy-goto-char-timer)
@@ -25,6 +25,7 @@
   (avy-style 'pre)
   :custom-face (avy-lead-face ((t (:background "#51afef"
 					       :foreground "#870000"
+
 					       :weight bold)))))
 (use-package go-mode
   :mode "\\.go\\'"
@@ -32,8 +33,10 @@
   (before-save-hook . lsp-format-buffer)
   (before-save-hook . lsp-organize-imports))
 
+
 (use-package magit
   :defer t)
+
 
 (use-package ivy
   :defer t
@@ -50,15 +53,18 @@
   (ivy-wrap t)
   :config (ivy-mode))
 
+
 (use-package amx
   :config (amx-mode))
+
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+
 (use-package flycheck
-  :defer t
-  :init (highlight-numbers-mode 1))
+  :defer t)
+
 
 (use-package company
   :diminish company-mode
@@ -74,8 +80,10 @@
   :config (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
+
 (use-package company-box
   :hook (company-mode . company-box-mode))
+
 
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
@@ -84,16 +92,20 @@
   :config (projectile-mode 1)
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
 
+
 (use-package exec-path-from-shell
   :init (setq exec-path-from-shell-arguments nil)
   :config (exec-path-from-shell-initialize))
+
 
 (use-package undo-tree
   :init (global-undo-tree-mode)
   (defalias 'undo! 'undo-tree-visualize))
 
+
 (use-package dap-mode
   :commands (dap-debug dap-debug-edit-template))
+
 
 (use-package modus-themes
   :custom
@@ -113,10 +125,12 @@
   :commands (lsp lsp-deferred)
   :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
 
+
 (use-package git-gutter
   :defer t
   :init
   (global-git-gutter-mode +1))
+
 
 (use-package counsel
   :defer t
@@ -124,16 +138,20 @@
   :bind ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf))
 
+
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
+
 (use-package goto-last-change
   :bind ("C-:" . goto-last-change))
+
 
 (use-package clojure-mode
   :ensure t
   :mode (("\\.clj\\'" . clojure-mode)
 	 ("\\.edn\\'" . clojure-mode)))
+
 
 (use-package cider
   :after clojure-mode
@@ -145,9 +163,11 @@
 	cider-overlays-use-font-lock t)
   (cider-repl-toggle-pretty-printing))
 
+
 (use-package page-break-lines
   :diminish
   :init (global-page-break-lines-mode))
+
 
 (use-package view
   :custom (view-read-only t)
@@ -158,13 +178,32 @@
 	 ("e" . move-end-of-line)
 	 ("a" . refined/back-to-indentation-or-beginning)))
 
+
 (use-package smartparens
   :hook (prog-mode . smartparens-mode))
+
 
 (use-package dired-subtree
   :config
   (bind-keys :map dired-mode-map
              ("f" . dired-subtree-toggle)))
+
+
+(use-package multiple-cursors
+  :bind (("C->" . mc/mark-next-like-this)
+	 ("C-<" . mc/mark-previous-like-this)
+	 ("C-c C-c" . mc/edit-lines)))
+
+
+(use-package minimap
+  :config
+  (setq minimap-window-location 'right))
+
+
+(use-package good-scroll
+  :config
+  (global-good-scroll 1))
+
 
 (provide 'init-packages)
 ;;; init-packages ends her
