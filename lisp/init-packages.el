@@ -197,6 +197,7 @@
 
 (use-package minimap
   :config
+  (minimap-mode 1)
   (setq minimap-window-location 'right))
 
 
