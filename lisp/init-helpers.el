@@ -144,6 +144,9 @@ Also returns nil if pid is nil."
 ;; Move up/down paragraph
 (global-set-key (kbd "M-n") #'forward-paragraph)
 (global-set-key (kbd "M-p") #'backward-paragraph)
+;; Use undo only
+(global-set-key (kbd "C-/") 'undo-only)
+(global-set-key (kbd "C-?") 'undo-redo)
 
 (if (and (window-system)
 	 (eq system-type 'gnu/linux))
