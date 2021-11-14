@@ -39,6 +39,7 @@
 	    (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
 	    (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)))
 
+
 ;;; Disable menu-bar, tool-bar, and scroll-bar.
 (if (fboundp 'menu-bar-mode)
     (menu-bar-mode -1))
@@ -47,11 +48,13 @@
 (if (fboundp 'scroll-bar-mode)
     (scroll-bar-mode -1))
 
+
 ;;; Setup package.el
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (unless package--initialized (package-initialize))
+
 
 ;;; Setup use-package
 (unless (package-installed-p 'use-package)
@@ -61,8 +64,8 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
-;;; Useful Defaults
 
+;;; Useful Defaults
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name)) "%b"))))
@@ -91,9 +94,11 @@
 (auto-composition-mode t)
 (auto-image-file-mode t)
 
+
 ;;; desktop-save-mode
 (desktop-save-mode 1)
 (setq desktop-restore-eager 4 desktop-save t)
+
 
 ;;; font config
 (defvar font-list '(("Hack" . 12)
@@ -119,9 +124,9 @@
       (setq font-setting (format "%s-%d" font-name font-size))
       (set-frame-font font-setting nil t)
       (add-to-list 'default-frame-alist (cons 'font font-setting)))))
-
 (when (display-graphic-p)
   (switch-font))
+
 
 ;;; Window navegation
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -129,9 +134,11 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
+
 ;;; Ace window
 (global-set-key (kbd "M-o") 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+
 
 ;;; Offload the custom-set-variables to a separate file
 ;;; This keeps your init.el neater and you have the option
@@ -142,8 +149,10 @@
 ;;; Load custom file. Don't hide errors. Hide success message
 (load custom-file nil t)
 
+
 ;;; Load .emacs.d/lisp
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
 
 ;;; Smoth scroll
 (setq redisplay-dont-pause t
@@ -151,6 +160,7 @@
   scroll-step 1
   scroll-conservatively 10000
   scroll-preserve-screen-position 1)
+
 
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
 (setq temporary-file-directory (expand-file-name user-emacs-directory))
@@ -161,28 +171,35 @@
 										 t)) ; Change autosave dir to tmp
       backup-directory-alist `((".*" . ,emacs-tmp-dir)))
 
+
 ;;; Lockfiles unfortunately cause more pain than benefit
 (setq-default create-lockfiles nil)
+
 
 ;; better compilation
 (setq-default compilation-always-kill t) ; kill compilation process before starting another
 (setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
 (setq-default compilation-scroll-output t)
 
+
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
+
 
 ;; Horizontal Scroll
 (setq hscroll-step 1)
 (setq hscroll-margin 1)
 
+
 ;; Load subword
 (require 'subword)
+
 
 ;;; Load tools configs
 (require 'init-helpers)
 (require 'init-packages)
 (require 'init-org)
+
 
 ;;; Theme
 (load-theme 'modus-vivendi t)
