@@ -12,6 +12,7 @@
 (use-package lua-mode)
 (use-package resize-window)
 (use-package restclient)
+(use-package dotenv-mode)
 
 
 (use-package sudo-edit
@@ -25,8 +26,9 @@
   (avy-style 'pre)
   :custom-face (avy-lead-face ((t (:background "#51afef"
 					       :foreground "#870000"
-
 					       :weight bold)))))
+
+
 (use-package go-mode
   :mode "\\.go\\'"
   :hook (before-save-hook . gofmt-before-save)
@@ -36,6 +38,11 @@
 
 (use-package magit
   :defer t)
+
+
+(use-package magit-delta
+  :after magit
+  :hook (magit-mode . magit-delta-mode))
 
 
 (use-package ivy
@@ -169,11 +176,6 @@
   (cider-repl-toggle-pretty-printing))
 
 
-(use-package page-break-lines
-  :diminish
-  :init (global-page-break-lines-mode))
-
-
 (use-package view
   :custom (view-read-only t)
   :bind (("<escape>" . view-mode) :map view-mode-map ("n" . forward-line)
@@ -203,16 +205,11 @@
 (use-package minimap
   :config
   (minimap-mode 1)
-  (setq minimap-window-location 'right
+  (setq minimap-window-location 'left
 	minimap-width-fraction 0.0
 	minimap-minimum-width 20
 	minimap-dedicated-window t
 	minimap-enlarge-certain-faces nil))
-
-
-(use-package smooth-scrolling
-  :config
-  (smooth-scrolling-mode 1))
 
 
 (use-package telephone-line

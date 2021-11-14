@@ -5,7 +5,7 @@
   (let ((is-active? view-mode)
 	(bg-active (modus-themes-color 'red-refine-bg))
 	(bg-inactive (modus-themes-color 'bg-active)))
-    (setq-local cursor-type (if is-active? 'box 'bar))
+    ;; (setq-local cursor-type (if is-active? 'box 'bar))
     (face-remap-add-relative 'mode-line :background (if is-active? bg-active bg-inactive))))
 
 ;;; Automatically overriding stale locks

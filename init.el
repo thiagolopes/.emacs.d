@@ -80,17 +80,22 @@
 (set-default-coding-systems 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)                            ; y-or-n-p makes answering questions faster
 (visual-line-mode t)	                                 ; enable visual line mode, "wrap lines in end"
+(setq display-line-numbers "%4d \u2502 ")
 (delete-selection-mode t)                                ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
 (add-hook 'before-save-hook 'delete-trailing-whitespace) ; Delete trailing whitespace on save
 (global-display-line-numbers-mode t)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+(follow-mode 1)
+(blink-cursor-mode 0)
+(auto-composition-mode t)
+(auto-image-file-mode t)
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
 (setq desktop-restore-eager 4 desktop-save t)
 
-;;; font confi
+;;; font config
 (defvar font-list '(("Hack" . 12)
 		    ("JetBrains Mono" . 10)
 		    ("Input" . 10)
