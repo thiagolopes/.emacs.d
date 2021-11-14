@@ -145,6 +145,13 @@
 ;;; Load .emacs.d/lisp
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+;;; Smoth scroll
+(setq redisplay-dont-pause t
+  scroll-margin 1
+  scroll-step 1
+  scroll-conservatively 10000
+  scroll-preserve-screen-position 1)
+
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
 (setq temporary-file-directory (expand-file-name user-emacs-directory))
 (defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) temporary-file-directory))
