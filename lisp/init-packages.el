@@ -13,6 +13,11 @@
 (use-package resize-window)
 (use-package restclient)
 (use-package dotenv-mode)
+(use-package realgud)
+
+
+(use-package realgud-ipdb
+  :after realgud)
 
 
 (use-package sudo-edit
