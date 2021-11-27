@@ -228,5 +228,11 @@
   :bind
   ("C-x d". ztree))
 
+
+(use-package counsel
+  :bind
+  ("M-?" . counsel-ag)
+  ("C-M-?" . counsel-fzf))
+
 (provide 'init-packages)
 ;;; init-packages ends her
