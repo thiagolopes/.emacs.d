@@ -49,21 +49,23 @@
     (scroll-bar-mode -1))
 
 
-;;; Setup package.el
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(unless package--initialized (package-initialize))
+;;; Setup straight
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(setq straight-use-package-by-default t)
 
-
-;;; Setup use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
-(setq use-package-always-ensure t)
-
+;;; Add use-package
+(straight-use-package 'use-package)
 
 ;;; Useful Defaults
 (setq frame-title-format
