@@ -82,25 +82,6 @@
   :defer t)
 
 
-(use-package company
-  :diminish company-mode
-  :init (global-company-mode)
-  :custom (company-selection-wrap-around t)
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.1)
-  (company-minimum-prefix-length 1)
-  (company-tooltip-align-annotations t)
-  (company-require-match 'never)
-  (company-show-numbers t)
-  (company-global-modes '(not shell-mode eaf-mode))
-  :config (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous))
-
-
-(use-package company-box
-  :hook (company-mode . company-box-mode))
-
-
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
   :bind ("C-c p" . projectile-command-map)
