@@ -16,6 +16,10 @@
 (use-package realgud)
 
 
+(use-package lsp-ui
+  :after lsp)
+
+
 (use-package realgud-ipdb
   :after realgud)
 
