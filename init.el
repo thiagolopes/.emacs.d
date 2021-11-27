@@ -81,6 +81,7 @@
 (setq c-tab-always-indent t)
 (setq comment-style 'extra-line)
 (setq display-fill-column-indicator-column 80)
+(setq column-number-mode t)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)                            ; y-or-n-p makes answering questions faster
