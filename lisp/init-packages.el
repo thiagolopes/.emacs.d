@@ -131,7 +131,8 @@
 	 ("f" . forward-char)
 	 ("b" . backward-char)
 	 ("e" . move-end-of-line)
-	 ("a" . refined/back-to-indentation-or-beginning)))
+	 ("a" . mwim-beginning)
+	 ("e" . mwim-end)))
 
 (use-package multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
