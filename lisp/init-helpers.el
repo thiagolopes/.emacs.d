@@ -81,15 +81,6 @@ Also returns nil if pid is nil."
   (move-end-of-line 1)
   (newline-and-indent))
 
-
-(defun refined/back-to-indentation-or-beginning ()
-  (interactive)
-  (if (= (point)
-	 (progn (back-to-indentation)
-		(point)))
-      (beginning-of-line)))
-
-
 (defun refined/kill-all-buffers ()
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer)
@@ -131,7 +122,6 @@ Also returns nil if pid is nil."
 (global-set-key [M-down] 'refined/move-line-down)
 (global-set-key [M-up] 'refined/move-line-up)
 (global-set-key (kbd "C-<return>") 'refined/newline-at-end-of-line)
-(global-set-key (kbd "C-a") 'refined/back-to-indentation-or-beginning)
 (global-set-key [?\M- ] 'delete-horizontal-space)
 (global-set-key (kbd "M-\\") 'just-one-space)
 
