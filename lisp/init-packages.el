@@ -180,32 +180,70 @@
   :hook (prog-mode . smartparens-mode))
 
 
-(use-package dired-subtree
-  :config
-  (bind-keys :map dired-mode-map
-             ("f" . dired-subtree-toggle)))
-
-
 (use-package multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
 	 ("C-<" . mc/mark-previous-like-this)
 	 ("C-c C-c" . mc/edit-lines)))
 
 
-(use-package minimap
+(use-package doom-modeline
   :config
-  (minimap-mode 1)
-  (setq minimap-window-location 'left
-	minimap-width-fraction 0.0
-	minimap-minimum-width 20
-	minimap-dedicated-window t
-	minimap-enlarge-certain-faces nil))
+  (doom-modeline-mode 1))
 
+ (use-package corfu
+    :after orderless
+    :custom
+    (corfu-quit-at-boundary nil)
+    (corfu-quit-no-match t)
+    (corfu-cycle t)
+    (corfu-auto t)
+    :init
+    (corfu-global-mode))
 
-(use-package telephone-line
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion)))))
   :config
-  (telephone-line-mode 1))
+  (setq completion-styles '(orderless)
+        completion-category-overrides '((file (styles basic partial-completion)))))
 
+(use-package kind-icon
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-background)
+  :config
+  (add-hook 'my-completion-ui-mode-hook
+   	    (lambda ()
+   	      (setq completion-in-region-function
+   		    (kind-icon-enhance-completion
+   		     completion-in-region-function)))))
+
+
+(use-package savehist
+  :init
+  (savehist-mode))
+
+
+(use-package awesome-tab
+  :custom
+  (awesome-tab-height 90)
+  :init
+  (awesome-tab-mode))
+
+(use-package eyebrowse
+  :init (eyebrowse-mode))
+
+(use-package helpful
+  :bind
+  ("C-h f" . helpful-function)
+  ("C-h v" . helpful-variable)
+  ("C-h k" . helpful-key))
+
+(use-package ztree
+  :bind
+  ("C-x". ztree))
 
 (provide 'init-packages)
 ;;; init-packages ends her
