@@ -226,7 +226,8 @@
 
 (use-package ztree
   :bind
-  ("C-x d". ztree))
+  ("C-x d". ztree-dir)
+  ("C-x C-d". ztree-dir))
 
 
 (use-package counsel
