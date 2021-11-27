@@ -186,6 +186,7 @@
   ("C-x C-d". ztree-dir))
 
 (use-package counsel
+  :commands (counsel-yank-pop counsel-ag counsel-fzf)
   :bind
   ("M-y" . counsel-yank-pop)
   ("M-?" . counsel-ag)
