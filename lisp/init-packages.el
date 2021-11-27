@@ -12,29 +12,29 @@
 (use-package restclient)
 (use-package dotenv-mode)
 (use-package realgud)
-
+(use-package solaire-mode)
+(use-package git-timemachine)
+(use-package browse-at-remote)
 
 (use-package lsp-ui
-  :after lsp)
-
+  :after lsp
+  :init
+  (lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-use-webkit t))
 
 (use-package realgud-ipdb
   :after realgud)
 
-
 (use-package sudo-edit
   :commands (sudo-edit))
 
-
 (use-package avy
-  :defer t
-  :bind ("C-;" . avy-goto-char-timer)
-  :custom (avy-timeout-seconds 0.3)
-  (avy-style 'pre)
-  :custom-face (avy-lead-face ((t (:background "#51afef"
-					       :foreground "#870000"
-					       :weight bold)))))
-
+  :bind
+  ("C-;" . avy-goto-word-0)
+  :custom
+  (avy-timeout-seconds 0.3))
 
 (use-package go-mode
   :mode "\\.go\\'"
@@ -42,24 +42,15 @@
   (before-save-hook . lsp-format-buffer)
   (before-save-hook . lsp-organize-imports))
 
-
 (use-package magit
   :defer t)
-
 
 (use-package magit-delta
   :after magit
   :hook (magit-mode . magit-delta-mode))
 
-
-(use-package selectrum
-  :init
-  (selectrum-mode +1))
-
-
 (use-package flycheck
   :defer t)
-
 
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
@@ -68,23 +59,13 @@
   :config (projectile-mode 1)
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
 
-
 (use-package exec-path-from-shell
   :init (setq exec-path-from-shell-arguments nil)
   :config (exec-path-from-shell-initialize))
 
-
 (use-package undo-tree
   :init (global-undo-tree-mode)
   (defalias 'undo! 'undo-tree-visualize))
-
-
-(use-package modus-themes
-  :custom
-  (modus-themes-color 'blue)
-  (modus-themes-syntax 'yellow-comments-green-strings)
-  (modus-themes-mode-line 'bordeless-3d))
-
 
 (use-package lsp-mode
   :custom (lsp-prefer-flymake nil)
@@ -97,7 +78,6 @@
   :commands (lsp lsp-deferred)
   :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
 
-
 (use-package git-gutter
   :defer t
   :config
@@ -108,13 +88,11 @@
   :init
   (global-git-gutter-mode +1))
 
-
 (use-package vertico
   :custom
   (vertico-cycle 1)
   :init
   (vertico-mode))
-
 
 (use-package marginalia
   :after vertico
@@ -123,20 +101,16 @@
   :init
   (marginalia-mode))
 
-
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
-
 (use-package goto-last-change
   :bind ("C-:" . goto-last-change))
-
 
 (use-package clojure-mode
   :ensure t
   :mode (("\\.clj\\'" . clojure-mode)
 	 ("\\.edn\\'" . clojure-mode)))
-
 
 (use-package cider
   :after clojure-mode
@@ -148,7 +122,6 @@
 	cider-overlays-use-font-lock t)
   (cider-repl-toggle-pretty-printing))
 
-
 (use-package view
   :custom (view-read-only t)
   :bind (("<escape>" . view-mode) :map view-mode-map ("n" . forward-line)
@@ -158,56 +131,37 @@
 	 ("e" . move-end-of-line)
 	 ("a" . refined/back-to-indentation-or-beginning)))
 
-
-(use-package smartparens
-  :hook (prog-mode . smartparens-mode))
-
-
 (use-package multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
 	 ("C-<" . mc/mark-previous-like-this)
 	 ("C-c C-c" . mc/edit-lines)))
 
-
 (use-package doom-modeline
   :config
   (doom-modeline-mode 1))
 
- (use-package corfu
-    :after orderless
-    :custom
-    (corfu-quit-at-boundary nil)
-    (corfu-quit-no-match t)
-    (corfu-cycle t)
-    (corfu-auto t)
-    :init
-    (corfu-global-mode))
+(use-package corfu
+  :after orderless
+  :custom
+  (corfu-quit-at-boundary nil)
+  (corfu-quit-no-match t)
+  (corfu-cycle t)
+  (corfu-auto t)
+  :init
+  (corfu-global-mode))
 
 (use-package orderless
   :init
   (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion)))))
+	completion-category-defaults nil
+	completion-category-overrides '((file (styles . (partial-completion)))))
   :config
   (setq completion-styles '(orderless)
-        completion-category-overrides '((file (styles basic partial-completion)))))
-
-(use-package kind-icon
-  :after corfu
-  :custom
-  (kind-icon-default-face 'corfu-background)
-  :config
-  (add-hook 'my-completion-ui-mode-hook
-   	    (lambda ()
-   	      (setq completion-in-region-function
-   		    (kind-icon-enhance-completion
-   		     completion-in-region-function)))))
-
+	completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package savehist
   :init
   (savehist-mode))
-
 
 (use-package awesome-tab
   :custom
@@ -229,11 +183,63 @@
   ("C-x d". ztree-dir)
   ("C-x C-d". ztree-dir))
 
-
 (use-package counsel
   :bind
+  ("M-y" . counsel-yank-pop)
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf))
+
+(use-package ctrlf
+  :init
+  (ctrlf-mode))
+
+(use-package mwim
+  :bind
+  ("C-a" . mwim-beginning)
+  ("C-e" . mwim-end))
+
+(use-package highlight-thing
+  :hook
+  (prog-mode-hook . highlight-thing-mode))
+
+(use-package goto-line-preview
+  :bind
+  ([remap  goto-line] . goto-line-preview))
+
+(use-package rainbow-delimiters
+  :hook
+  (prog-mode-hook . rainbow-delimiters-mode))
+
+(use-package hungry-delete
+  :hook
+  (prog-mode-hook . hungry-delete-mode))
+
+(use-package zzz-to-char
+  :bind
+  ("M-z" . zzz-to-char))
+
+(use-package indent-guide
+  :custom
+  (indent-guide-delay 0.2))
+
+(use-package whitespace-cleanup-mode
+  :init
+  (global-whitespace-cleanup-mode))
+
+(use-package guess-language
+  :init
+  (guess-language-mode)
+  :custom
+  (guess-language-languages '(en pt))
+  (guess-language-min-paragraph-length 35))
+
+(use-package git-messenger
+  :config
+  (defalias 'git-message 'git-messenger:popup-message))
+
+(use-package zenburn-theme
+  :config
+  (load-theme 'zenburn))
 
 (provide 'init-packages)
 ;;; init-packages ends her
