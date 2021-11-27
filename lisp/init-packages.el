@@ -52,28 +52,9 @@
   :hook (magit-mode . magit-delta-mode))
 
 
-(use-package ivy
-  :defer t
-  :delight
-  :bind ("C-s" . swiper)
-  ("M-y" . counsel-yank-pop)
-  ("C-x C-f" . counsel-find-file)
-  ("C-c C-r" . ivy-resume)
-  :custom (ivy-count-format "(%d/%d) ")
-  (ivy-use-virtual-buffers t)
-  (ivy-height 10)
-  (ivy-on-del-error-function nil)
-  (ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
-  (ivy-wrap t)
-  :config (ivy-mode))
-
-
-(use-package amx
-  :config (amx-mode))
-
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package selectrum
+  :init
+  (selectrum-mode +1))
 
 
 (use-package flycheck
@@ -96,10 +77,6 @@
 (use-package undo-tree
   :init (global-undo-tree-mode)
   (defalias 'undo! 'undo-tree-visualize))
-
-
-(use-package dap-mode
-  :commands (dap-debug dap-debug-edit-template))
 
 
 (use-package modus-themes
@@ -132,11 +109,19 @@
   (global-git-gutter-mode +1))
 
 
-(use-package counsel
-  :defer t
-  :after ivy
-  :bind ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf))
+(use-package vertico
+  :custom
+  (vertico-cycle 1)
+  :init
+  (vertico-mode))
+
+
+(use-package marginalia
+  :after vertico
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode))
 
 
 (use-package expand-region
