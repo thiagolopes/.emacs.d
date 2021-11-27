@@ -243,7 +243,7 @@
 
 (use-package ztree
   :bind
-  ("C-x". ztree))
+  ("C-x d". ztree))
 
 (provide 'init-packages)
 ;;; init-packages ends her
