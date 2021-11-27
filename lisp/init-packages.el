@@ -43,6 +43,8 @@
   (before-save-hook . lsp-organize-imports))
 
 (use-package magit
+  :config
+  (defalias 'git 'magit)
   :defer t)
 
 (use-package magit-delta
