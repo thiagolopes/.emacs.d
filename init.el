@@ -90,7 +90,7 @@
 (delete-selection-mode t)                                ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
 (add-hook 'before-save-hook 'delete-trailing-whitespace) ; Delete trailing whitespace on save
-(global-display-line-numbers-mode t)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (follow-mode 1)
 (blink-cursor-mode 0)
