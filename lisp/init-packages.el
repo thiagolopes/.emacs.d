@@ -87,15 +87,9 @@
   :commands (lsp lsp-deferred)
   :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
 
-(use-package git-gutter
-  :defer t
-  :config
-  (custom-set-variables '(git-gutter:added-sign " ")
-			'(git-gutter:deleted-sign " ")
-			'(git-gutter:modified-sign " ")
-			'(git-gutter:visual-line t))
+(use-package diff-hl
   :init
-  (global-git-gutter-mode +1))
+  (global-diff-hl-mode))
 
 (use-package vertico
   :custom
@@ -174,16 +168,16 @@
   (savehist-mode))
 
 (use-package centaur-tabs
-  :custom
-  (centaur-tabs-icon-scale-factor 0.7)
-  (centaur-tabs-plain-icons t)
-  (centaur-tabs-show-new-tab-button nil)
-  (centaur-tabs-set-icons t)
-  (centaur-tabs-set-close-button nil)
-  (centaur-tabs-set-modified-marker t)
-  (centaur-tabs-modified-marker "*")
-  (centaur-tabs-style "slant")
   :config
+  (setq centaur-tags-style "zigzag"
+	centaur-tabs-icon-scale-factor 0.7
+	centaur-tabs-plain-icons t
+	centaur-tabs-show-new-tab-button nil
+	centaur-tabs-set-icons t
+	centaur-tabs-set-close-button nil
+	centaur-tabs-set-modified-marker t
+	centaur-tabs-modified-marker "*"
+	centaur-tabs-set-bar 'over)
   (centaur-tabs-headline-match)
   (centaur-tabs-mode t))
 
