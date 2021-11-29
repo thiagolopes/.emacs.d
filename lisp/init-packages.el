@@ -167,20 +167,6 @@
   :init
   (savehist-mode))
 
-(use-package centaur-tabs
-  :config
-  (setq centaur-tags-style "zigzag"
-	centaur-tabs-icon-scale-factor 0.7
-	centaur-tabs-plain-icons t
-	centaur-tabs-show-new-tab-button nil
-	centaur-tabs-set-icons t
-	centaur-tabs-set-close-button nil
-	centaur-tabs-set-modified-marker t
-	centaur-tabs-modified-marker "*"
-	centaur-tabs-set-bar 'over)
-  (centaur-tabs-headline-match)
-  (centaur-tabs-mode t))
-
 (use-package eyebrowse
   :init (eyebrowse-mode))
 
@@ -262,6 +248,24 @@
   (global-yascroll-bar-mode 1)
   :custom
   (yascroll:delay-to-hide nil))
+
+(use-package centaur-tabs
+  :hook
+  (prog-mode-hook . centaur-tabs-local-mode)
+  :custom
+  (centaur-tabs-plain-icons t)
+  (centaur-tabs-show-new-tab-button nil)
+  (centaur-tabs-set-bar 'over)
+  (centaur-tabs-set-close-button nil)
+  (centaur-tabs-set-icons t)
+  (centaur-tabs-set-modified-marker t)
+  (centaur-tabs-modified-marker "*")
+  (centaur-tags-style "zigzag")
+  (centaur-tabs-icon-scale-factor 0.7)
+  :config
+  (centaur-tabs-headline-match)
+  :init
+  (centaur-tabs-mode t))
 
 (provide 'init-packages)
 ;;; init-packages ends her
