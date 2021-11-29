@@ -136,12 +136,6 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
-
-;;; Ace window
-(global-set-key (kbd "M-o") 'ace-window)
-(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-
-
 ;;; Offload the custom-set-variables to a separate file
 ;;; This keeps your init.el neater and you have the option
 ;;; to gitignore your custom.el if you see fit.
@@ -151,10 +145,8 @@
 ;;; Load custom file. Don't hide errors. Hide success message
 (load custom-file nil t)
 
-
 ;;; Load .emacs.d/lisp
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
 
 ;;; Smoth scroll
 (setq redisplay-dont-pause t
@@ -162,7 +154,6 @@
   scroll-step 1
   scroll-conservatively 10000
   scroll-preserve-screen-position 1)
-
 
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
 (setq temporary-file-directory (expand-file-name user-emacs-directory))
@@ -173,29 +164,19 @@
 										 t)) ; Change autosave dir to tmp
       backup-directory-alist `((".*" . ,emacs-tmp-dir)))
 
-
 ;;; Lockfiles unfortunately cause more pain than benefit
 (setq-default create-lockfiles nil)
-
 
 ;; better compilation
 (setq-default compilation-always-kill t) ; kill compilation process before starting another
 (setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
 (setq-default compilation-scroll-output t)
 
-
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
 
-
-;; Horizontal Scroll
-(setq hscroll-step 1)
-(setq hscroll-margin 1)
-
-
 ;; Load subword
 (require 'subword)
-
 
 ;;; Load tools configs
 (require 'init-helpers)
