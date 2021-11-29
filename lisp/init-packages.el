@@ -16,6 +16,10 @@
 (use-package git-timemachine)
 (use-package browse-at-remote)
 
+(use-package ace-window
+  :bind
+  ("M-o" . ace-window))
+
 (use-package lsp-ui
   :after lsp
   :init
@@ -166,11 +170,17 @@
   :init
   (savehist-mode))
 
-(use-package awesome-tab
+(use-package centaur-tabs
   :custom
-  (awesome-tab-height 90)
-  :init
-  (awesome-tab-mode))
+  (centaur-tabs-show-new-tab-button nil)
+  (centaur-tabs-set-icons t)
+  (centaur-tabs-set-close-button nil)
+  (centaur-tabs-set-modified-marker t)
+  (centaur-tabs-modified-marker "*")
+  (centaur-tabs-style "slant")
+  :config
+  (centaur-tabs-headline-match)
+  (centaur-tabs-mode t))
 
 (use-package eyebrowse
   :init (eyebrowse-mode))
@@ -244,6 +254,15 @@
 (use-package zenburn-theme
   :config
   (load-theme 'zenburn))
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package yascroll
+  :init
+  (global-yascroll-bar-mode 1)
+  :custom
+  (yascroll:delay-to-hide nil))
 
 (provide 'init-packages)
 ;;; init-packages ends her
