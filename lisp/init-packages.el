@@ -12,9 +12,12 @@
 (use-package restclient)
 (use-package dotenv-mode)
 (use-package realgud)
-(use-package solaire-mode)
 (use-package git-timemachine)
 (use-package browse-at-remote)
+
+(use-package solaire-mode
+  :init
+  (solaire-mode t))
 
 (use-package ace-window
   :bind
