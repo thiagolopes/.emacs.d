@@ -172,6 +172,8 @@
 
 (use-package centaur-tabs
   :custom
+  (centaur-tabs-icon-scale-factor 0.7)
+  (centaur-tabs-plain-icons t)
   (centaur-tabs-show-new-tab-button nil)
   (centaur-tabs-set-icons t)
   (centaur-tabs-set-close-button nil)
