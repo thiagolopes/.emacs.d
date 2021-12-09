@@ -14,6 +14,7 @@
 (use-package realgud)
 (use-package git-timemachine)
 (use-package browse-at-remote)
+(use-package pdf-tools)
 
 (use-package solaire-mode
   :init
@@ -41,6 +42,7 @@
   :bind
   ("C-;" . avy-goto-word-0)
   :custom
+  (avy-background t)
   (avy-timeout-seconds 0.3))
 
 (use-package go-mode
@@ -88,6 +90,9 @@
   :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
 
 (use-package diff-hl
+  :custom
+  (diff-hl-draw-borders nil)
+
   :init
   (global-diff-hl-mode))
 
