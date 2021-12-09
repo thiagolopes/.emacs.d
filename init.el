@@ -9,12 +9,12 @@
 ;; -- http://www.i3s.unice.fr/~malapert/emacs_orgmode.html ;;
 ;; -- https://github.com/manateelazycat/delete-block	   ;;
 ;; -- https://github.com/MatthewZMD/.emacs.d		   ;;
+;; -- https://github.com/emacs-tw/awesome-emacs            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Author:  Thiago Lopes <thiagolopes@pm.me>
 ;; URL:     https://github.com/thiagolopes/emacs-refined
 ;;; License: MIT
-
 
 ;;; Code:
 ;;; For performance
@@ -45,7 +45,6 @@
     (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode)
     (scroll-bar-mode -1))
-
 
 ;;; Setup straight
 (defvar bootstrap-version)
@@ -79,6 +78,7 @@
 (setq comment-style 'extra-line)
 (setq display-fill-column-indicator-column 80)
 (setq column-number-mode t)
+(setq display-line-numbers-width 5)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)                            ; y-or-n-p makes answering questions faster
@@ -91,7 +91,7 @@
 (blink-cursor-mode 0)
 (auto-composition-mode t)
 (auto-image-file-mode t)
-
+(fringe-mode '(4 . 0))
 ;;; desktop-save-mode
 (desktop-save-mode 1)
 (setq desktop-restore-eager 4 desktop-save t)
@@ -145,8 +145,9 @@
 (setq redisplay-dont-pause t
   scroll-margin 1
   scroll-step 1
-  scroll-conservatively 10000
+  scroll-conservatively 101
   scroll-preserve-screen-position 1)
+(setq mouse-wheel-progressive-speed nil)
 
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
 (setq temporary-file-directory (expand-file-name user-emacs-directory))
@@ -167,9 +168,6 @@
 
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
-
-;; Load subword
-(require 'subword)
 
 ;;; Load tools configs
 (require 'init-helpers)
