@@ -12,11 +12,9 @@
   (interactive)
   (set-frame-parameter nil 'fullscreen (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
 
-
 (defun refined/reload-config ()
   (interactive)
   (load-file (concat user-emacs-directory "init.el")))
-
 
 (defun refined/delete-this-file ()
   "Delete the current file, and kill the buffer."
@@ -27,7 +25,6 @@
   (when (yes-or-no-p (format "Really delete '%s'?" (file-name-nondirectory buffer-file-name)))
     (delete-file (buffer-file-name))
     (kill-this-buffer)))
-
 
 (defun refined/rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
@@ -43,13 +40,11 @@
 	   (set-visited-file-name new-name)
 	   (rename-buffer new-name))))
 
-
 (defun refined/move-line-up ()
   (interactive)
   (transpose-lines 1)
   (forward-line -2)
   (indent-according-to-mode))
-
 
 (defun refined/move-line-down ()
   (interactive)
@@ -57,7 +52,6 @@
   (transpose-lines 1)
   (forward-line -1)
   (indent-according-to-mode))
-
 
 (defun refined/newline-at-end-of-line ()
   (interactive)
@@ -68,7 +62,6 @@
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer)
 			   (buffer-list))))
-
 
 (defun refined/set-emacs-frames (variant)
   (dolist (frame (frame-list))

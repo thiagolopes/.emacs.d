@@ -1,5 +1,4 @@
 ;;; init.el -*- lexical-binding: t; -*-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs Refined.					   ;;
 ;; - Usigin Sanemacs version 0.3.0 as template		   ;;
@@ -38,7 +37,6 @@
 	      (setq gc-cons-threshold better-gc-cons-threshold))
 	    (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
 	    (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)))
-
 
 ;;; Disable menu-bar, tool-bar, and scroll-bar.
 (if (fboundp 'menu-bar-mode)
@@ -124,7 +122,6 @@
       (add-to-list 'default-frame-alist (cons 'font font-setting)))))
 (when (display-graphic-p)
   (switch-font))
-
 
 ;;; Window navegation
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
