@@ -16,6 +16,10 @@
 (use-package browse-at-remote)
 (use-package pdf-tools)
 
+(use-package highlight-parentheses
+  :hook
+  (prog-mode-hook . highlight-parentheses-mode))
+
 (use-package solaire-mode
   :init
   (solaire-global-mode +1))
