@@ -1,11 +1,8 @@
 ;;; init-helpers.el -*- lexical-binding: t; -*-
 
 ;;; Code:
-(defun refined/change-state-on-view-mode ()
-  (let ((is-active? view-mode)
-	(bg-active (zenburn-with-color-variables zenburn-red-6))
-	(bg-inactive (zenburn-with-color-variables zenburn-bg-1)))
-    (face-remap-add-relative 'mode-line :background (if is-active? bg-active bg-inactive))))
+(defun refined/change-state-on-view-mode (color-active color-inactive)
+  (face-remap-add-relative 'mode-line :background (if view-mode color-active color-inactive)))
 
 (defun refined/toggle-fullscreen ()
   "Toggle full screen"
@@ -122,7 +119,12 @@
 (defalias 'find-projects-in 'projectile-discover-projects-in-directory)
 
 ;; hooks
-(add-hook 'view-mode-hook 'refined/change-state-on-view-mode)
+(defun refined/change-state-on-view-mode-with-zenburn ()
+  (let ((color-active (zenburn-with-color-variables zenburn-red-6))
+	(color-inactive (zenburn-with-color-variables zenburn-bg-1)))
+    (refined/change-state-on-view-mode color-active color-inactive)))
+
+(add-hook 'view-mode-hook 'refined/change-state-on-view-mode-with-zenburn)
 
 (provide 'init-helpers)
 ;;; init-helpers ends here
