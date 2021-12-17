@@ -135,14 +135,21 @@
   (cider-repl-toggle-pretty-printing))
 
 (use-package view
-  :custom (view-read-only t)
-  :bind (("<escape>" . view-mode) :map view-mode-map ("n" . forward-line)
-	 ("p" . previous-line)
-	 ("f" . forward-char)
-	 ("b" . backward-char)
-	 ("e" . move-end-of-line)
-	 ("a" . mwim-beginning)
-	 ("e" . mwim-end)))
+  :custom
+  (view-read-only t)
+  :bind
+  (("<escape>" . view-mode)
+   :map view-mode-map
+   ("n" . forward-line)
+   ("p" . previous-line)
+   ("f" . forward-char)
+   ("b" . backward-char)
+   ("a" . mwim-beginning)
+   ("e" . mwim-end)
+   ("j" . backward-char)
+   ("k" . forward-line)
+   ("l" . previous-line)
+   ("ç" . forward-char))))
 
 (use-package multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
