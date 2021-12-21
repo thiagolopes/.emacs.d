@@ -79,6 +79,7 @@
 (setq display-fill-column-indicator-column 80)
 (setq column-number-mode t)
 (setq display-line-numbers-width 5)
+(setq byte-compile-warnings '(cl-functions))
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)                            ; y-or-n-p makes answering questions faster
