@@ -149,7 +149,7 @@
    ("j" . backward-char)
    ("k" . forward-line)
    ("l" . previous-line)
-   ("ç" . forward-char))))
+   ("ç" . forward-char)))
 
 (use-package multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)
