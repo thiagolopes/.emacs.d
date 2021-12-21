@@ -91,12 +91,47 @@
   (venv-workon)
   (lsp-restart-workspace))
 
+(defun hs-cycle (&optional level)
+  (interactive "p")
+  (let (message-log-max
+	(inhibit-message t))
+    (if (= level 1)
+	(pcase last-command
+	  ('hs-cycle
+	   (hs-hide-level 1)
+	   (setq this-command 'hs-cycle-children))
+	  ('hs-cycle-children
+	   ;; TODO: Fix this case. `hs-show-block' needs to be
+	   ;; called twice to open all folds of the parent
+	   ;; block.
+	   (save-excursion (hs-show-block))
+	   (hs-show-block)
+	   (setq this-command 'hs-cycle-subtree))
+	  ('hs-cycle-subtree
+	   (hs-hide-block))
+	  (_
+	   (if (not (hs-already-hidden-p))
+	       (hs-hide-block)
+	     (hs-hide-level 1)
+	     (setq this-command 'hs-cycle-children))))
+      (hs-hide-level level)
+      (setq this-command 'hs-hide-level))))
+
+(defun refined/hs-global-cycle ()
+    (interactive)
+    (pcase last-command
+      ('refined/hs-global-cycle
+       (save-excursion (hs-show-all))
+       (setq this-command 'hs-global-show))
+      (_ (hs-hide-all))))
+
 ;;; Binds to helpers
 (global-set-key [M-down] 'refined/move-line-down)
 (global-set-key [M-up] 'refined/move-line-up)
 (global-set-key (kbd "C-<return>") 'refined/newline-at-end-of-line)
 (global-set-key [?\M- ] 'delete-horizontal-space)
 (global-set-key (kbd "M-\\") 'just-one-space)
+(global-set-key (kbd "C-<tab>") 'refined/hs-global-cycle)
 
 ;; Truncate lines
 (global-set-key (kbd "C-x C-l") #'toggle-truncate-lines)
