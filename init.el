@@ -94,9 +94,8 @@
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
-(setq-default display-line-numbers-width-start 5)
-(setq-default display-line-numbers-width 5)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'display-line-numbers-hook #'(setq display-line-numbers-width 5))
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
