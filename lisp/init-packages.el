@@ -273,6 +273,7 @@
   :init
   (global-yascroll-bar-mode 1)
   :custom
+  (yascroll:scroll-bar '(right-fringe))
   (yascroll:delay-to-hide nil))
 
 (use-package centaur-tabs
