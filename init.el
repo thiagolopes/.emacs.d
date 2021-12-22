@@ -73,12 +73,11 @@
 (setq initial-scratch-message ";;; Hi! emacs love you!")
 (setq ring-bell-function 'ignore)                        ; Disable bell sound
 (setq site-run-file nil)
-(setq c-default-style "linux")
-(setq c-tab-always-indent t)
+(setq-default c-default-style "linux")
+(setq-default c-tab-always-indent t)
 (setq comment-style 'extra-line)
-(setq display-fill-column-indicator-column 80)
-(setq column-number-mode t)
-(setq display-line-numbers-width 5)
+(setq-default display-fill-column-indicator-column 80)
+(setq-default column-number-mode t)
 (setq byte-compile-warnings '(cl-functions))
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -86,13 +85,19 @@
 (visual-line-mode t)	                                 ; enable visual line mode, "wrap lines in end"
 (delete-selection-mode t)                                ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (follow-mode 1)
 (blink-cursor-mode 0)
 (auto-composition-mode t)
 (auto-image-file-mode t)
 (fringe-mode '(4 . 0))
+
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
+(setq-default display-line-numbers-width-start 5)
+(setq-default display-line-numbers-width 5)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
 ;;; desktop-save-mode
 (desktop-save-mode 1)
 (setq desktop-restore-eager 4 desktop-save t)
