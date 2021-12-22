@@ -16,6 +16,13 @@
 (use-package browse-at-remote)
 (use-package pdf-tools)
 (use-package docker)
+(use-package python-black)
+(use-package isortify)
+
+(use-package good-scroll
+  :bind
+  ("<next>" . 'good-scroll-up-full-screen)
+  ("<prior>" . 'good-scroll-down-full-screen))
 
 (use-package highlight-parentheses
   :hook
