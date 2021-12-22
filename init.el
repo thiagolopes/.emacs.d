@@ -89,7 +89,7 @@
 (blink-cursor-mode 0)
 (auto-composition-mode t)
 (auto-image-file-mode t)
-(fringe-mode '(4 . 0))
+(fringe-mode '(4 . 2))
 
 
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
