@@ -18,6 +18,7 @@
 (use-package docker)
 (use-package python-black)
 (use-package isortify)
+(use-package rmsbolt)
 
 (use-package good-scroll
   :bind
