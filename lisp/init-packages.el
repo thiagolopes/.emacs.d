@@ -20,10 +20,9 @@
 (use-package isortify)
 (use-package rmsbolt)
 
-(use-package good-scroll
-  :bind
-  ("<next>" . 'good-scroll-up-full-screen)
-  ("<prior>" . 'good-scroll-down-full-screen))
+(use-package centered-cursor-mode
+  :init
+  (global-centered-cursor-mode))
 
 (use-package highlight-parentheses
   :hook
