@@ -261,9 +261,11 @@
   :config
   (defalias 'git-message 'git-messenger:popup-message))
 
-(use-package zenburn-theme
+(use-package zenburn-theme)
+
+(use-package doom-themes
   :config
-  (load-theme 'zenburn))
+  (load-theme 'doom-monokai-classic))
 
 (use-package all-the-icons
   :if (display-graphic-p))
@@ -287,10 +289,14 @@
   (centaur-tabs-modified-marker "*")
   (centaur-tags-style "zigzag")
   (centaur-tabs-icon-scale-factor 0.7)
+  (centaur-tabs-cycle-scope 'tabs)
   :config
   (centaur-tabs-headline-match)
   :init
-  (centaur-tabs-mode t))
+  (centaur-tabs-mode t)
+  :bind
+  ("s-<tab>" . centaur-tabs-forward)
+  ("<s-iso-lefttab>" . centaur-tabs-backward))
 
 (provide 'init-packages)
 ;;; init-packages ends her
