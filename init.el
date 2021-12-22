@@ -73,11 +73,11 @@
 (setq initial-scratch-message ";;; Hi! emacs love you!")
 (setq ring-bell-function 'ignore)                        ; Disable bell sound
 (setq site-run-file nil)
-(setq-default c-default-style "linux")
-(setq-default c-tab-always-indent t)
+(setq c-default-style "linux")
+(setq c-tab-always-indent t)
 (setq comment-style 'extra-line)
-(setq-default display-fill-column-indicator-column 80)
-(setq-default column-number-mode t)
+(setq display-fill-column-indicator-column 80)
+(setq column-number-mode t)
 (setq byte-compile-warnings '(cl-functions))
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -91,11 +91,14 @@
 (auto-image-file-mode t)
 (fringe-mode '(4 . 0))
 
+
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 
+(add-hook 'prog-mode-hook
+	  (lambda ()
+	    (setq-local display-line-numbers-width 5)))
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(add-hook 'display-line-numbers-hook #'(setq display-line-numbers-width 5))
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
