@@ -15,6 +15,7 @@
 (use-package git-timemachine)
 (use-package browse-at-remote)
 (use-package pdf-tools)
+(use-package docker)
 
 (use-package highlight-parentheses
   :hook
