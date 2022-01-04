@@ -18,10 +18,8 @@
 
 ;;; Code:
 ;;; For performance
-(setq gc-cons-threshold 100000000)
+(setq gc-cons-threshold 20000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
-;;; (setq better-gc-cons-threshold 67108864) ; 64mb
-(setq better-gc-cons-threshold 800000)
 (add-hook 'emacs-startup-hook
 	  (lambda ()
 	    (if (boundp 'after-focus-change-function)
@@ -31,7 +29,7 @@
 				  (garbage-collect))))
 	      (add-hook 'after-focus-change-function 'garbage-collect))
 	    (defun gc-minibuffer-setup-hook ()
-	      (setq gc-cons-threshold (* better-gc-cons-threshold 2)))
+	      (setq gc-cons-threshold gc-cons-threshold))
 	    (defun gc-minibuffer-exit-hook ()
 	      (garbage-collect)
 	      (setq gc-cons-threshold better-gc-cons-threshold))
