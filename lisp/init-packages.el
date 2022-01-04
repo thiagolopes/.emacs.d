@@ -38,9 +38,15 @@
 
 (use-package lsp-ui
   :after lsp
+  :hook (python-mode . lsp-deferred)
+  :commands (lsp lsp-deferred)
+  :config
+  (lsp-register-custom-settings
+   '(("pyls.plugins.pyls_isort.enabled" t t)))
   :init
   (lsp-ui-mode)
   :custom
+  (lsp-pyls-plugins-flake8-enabled t)
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-use-webkit t))
 
