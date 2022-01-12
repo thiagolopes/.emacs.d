@@ -38,15 +38,9 @@
 
 (use-package lsp-ui
   :after lsp
-  :hook (python-mode . lsp-deferred)
-  :commands (lsp lsp-deferred)
-  :config
-  (lsp-register-custom-settings
-   '(("pyls.plugins.pyls_isort.enabled" t t)))
   :init
   (lsp-ui-mode)
   :custom
-  (lsp-pyls-plugins-flake8-enabled t)
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-use-webkit t))
 
@@ -97,13 +91,18 @@
   (defalias 'undo! 'undo-tree-visualize))
 
 (use-package lsp-mode
-  :custom (lsp-prefer-flymake nil)
+  :custom
+  (lsp-register-custom-settings
+   '(("pyls.plugins.pyls_isort.enabled" t t)))
+  (lsp-pyls-plugins-flake8-enabled t)
+  (lsp-prefer-flymake nil)
   (lsp-gopls-staticcheck t)
   (lsp-eldoc-render-all t)
   (lsp-gopls-complete-unimported t)
   (lsp-file-watch-threshold 2000)
   (read-process-output-max (* 1024 1024))
   (lsp-eldoc-hook nil)
+  (lsp-diagnostics-provider :none)
   :commands (lsp lsp-deferred)
   :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
 
