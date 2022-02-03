@@ -125,6 +125,18 @@
        (setq this-command 'hs-global-show))
       (_ (hs-hide-all))))
 
+(defun refined/toggle-transparency ()
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+		    ((numberp (cdr alpha)) (cdr alpha))
+		    ;; Also handle undocumented (<active> <inactive>) form.
+		    ((numberp (cadr alpha)) (cadr alpha)))
+	      100)
+	 '(98 . 95) '(100 . 100)))))
+
 ;;; Binds to helpers
 (global-set-key [M-down] 'refined/move-line-down)
 (global-set-key [M-up] 'refined/move-line-up)
