@@ -15,12 +15,12 @@
 (use-package git-timemachine)
 (use-package browse-at-remote)
 (use-package pdf-tools)
-(use-package docker)
 (use-package python-black)
 (use-package isortify)
 (use-package rmsbolt)
 (use-package mermaid-mode)
 (use-package smartparens)
+(use-package org-modern)
 
 (use-package centered-cursor-mode
   :init
