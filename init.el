@@ -91,7 +91,7 @@
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
 
-# TODO set only some fonts
+;; TODO set only some fonts
 (setq line-spacing 0.1)
 
 
