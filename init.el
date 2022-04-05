@@ -45,6 +45,13 @@
     (scroll-bar-mode -1))
 
 ;;; Setup straight
+ (if (and (executable-find "watchexec")
+          (executable-find "python3"))
+     (setq straight-check-for-modifications '(watch-files find-when-checking))
+   (setq straight-check-for-modifications
+         '(find-at-startup find-when-checking)))
+(setq straight-use-package-by-default t)
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -57,7 +64,7 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
-(setq straight-use-package-by-default t)
+
 
 ;;; Add use-package
 (straight-use-package 'use-package)
