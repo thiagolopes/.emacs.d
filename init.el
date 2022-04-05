@@ -91,6 +91,9 @@
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
 
+# TODO set only some fonts
+(setq line-spacing 0.1)
+
 
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook #'hs-minor-mode)
@@ -106,8 +109,8 @@
 
 ;;; font config
 (defvar font-list '(
-		    ("Iosevka" . 13)
 		    ("Inconsolata" . 13)
+		    ("Iosevka" . 13)
 		    ("Hack" . 12)
 		    ("JetBrains Mono" . 10)
 		    ("Input" . 10)
