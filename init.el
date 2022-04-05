@@ -103,8 +103,9 @@
 (setq desktop-restore-eager 4 desktop-save t)
 
 ;;; font config
-(defvar font-list '(("Inconsolata" . 13)
-		    ("Iosevka" . 11)
+(defvar font-list '(
+		    ("Iosevka" . 13)
+		    ("Inconsolata" . 13)
 		    ("Hack" . 12)
 		    ("JetBrains Mono" . 10)
 		    ("Input" . 10)

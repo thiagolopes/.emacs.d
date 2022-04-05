@@ -19,6 +19,8 @@
 (use-package python-black)
 (use-package isortify)
 (use-package rmsbolt)
+(use-package mermaid-mode)
+(use-package smartparens)
 
 (use-package centered-cursor-mode
   :init
@@ -67,10 +69,6 @@
   :config
   (defalias 'git 'magit)
   :defer t)
-
-(use-package magit-delta
-  :after magit
-  :hook (magit-mode . magit-delta-mode))
 
 (use-package flycheck
   :defer t)
@@ -269,7 +267,8 @@
 
 (use-package doom-themes
   :config
-  (load-theme 'doom-monokai-classic))
+  (load-theme 'doom-zenburn)
+  )
 
 (use-package all-the-icons
   :if (display-graphic-p))
