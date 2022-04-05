@@ -172,12 +172,10 @@
   (doom-modeline-mode 1))
 
 (use-package corfu
-  :after orderless
   :custom
-  (corfu-quit-at-boundary nil)
-  (corfu-quit-no-match t)
   (corfu-cycle t)
   (corfu-auto t)
+  (corfu-scroll-margin 5)
   :init
   (corfu-global-mode))
 
@@ -185,10 +183,7 @@
   :init
   (setq completion-styles '(orderless)
 	completion-category-defaults nil
-	completion-category-overrides '((file (styles . (partial-completion)))))
-  :config
-  (setq completion-styles '(orderless)
-	completion-category-overrides '((file (styles basic partial-completion)))))
+	completion-category-overrides '((file (styles . (partial-completion))))))
 
 (use-package savehist
   :init
