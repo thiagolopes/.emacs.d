@@ -19,18 +19,27 @@
 (use-package isortify)
 (use-package rmsbolt)
 (use-package mermaid-mode)
-(use-package smartparens)
 (use-package org-modern)
+
+(use-package rainbow-delimiters
+  :init
+  (add-hook 'foo-mode-hook #'rainbow-delimiters-mode))
+
+(use-package smartparens
+  :init
+  (smartparens-global-mode))
 
 (use-package centered-cursor-mode
   :init
   (global-centered-cursor-mode))
 
 (use-package highlight-parentheses
+  :disabled
   :hook
   (prog-mode-hook . highlight-parentheses-mode))
 
 (use-package solaire-mode
+  :disabled
   :init
   (solaire-global-mode +1))
 
