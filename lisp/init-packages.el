@@ -83,10 +83,9 @@
   :defer t)
 
 (use-package projectile
-  :delight '(:eval (concat " " (projectile-project-name)))
+  :config (projectile-mode 1)
   :bind ("C-c p" . projectile-command-map)
   :custom (projectile-completion-system 'ivy)
-  :config (projectile-mode 1)
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
 
 (use-package exec-path-from-shell
@@ -101,6 +100,7 @@
   :custom
   (lsp-register-custom-settings
    '(("pyls.plugins.pyls_isort.enabled" t t)))
+  (lsp-pyls-plugins-jedi-completion-enabled t)
   (lsp-pyls-plugins-flake8-enabled t)
   (lsp-prefer-flymake nil)
   (lsp-gopls-staticcheck t)
@@ -112,6 +112,12 @@
   (lsp-diagnostics-provider :none)
   :commands (lsp lsp-deferred)
   :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
+
+(use-package lsp-pyright
+  :after lsp-mode
+  :hook (python-mode . (lambda ()
+			  (require 'lsp-pyright)
+			  (lsp-deferred))))
 
 (use-package diff-hl
   :custom
@@ -177,6 +183,7 @@
 	 ("C-c C-c" . mc/edit-lines)))
 
 (use-package doom-modeline
+  :disabled
   :config
   (doom-modeline-mode 1))
 
@@ -261,7 +268,7 @@
   (guess-language-mode)
   :custom
   (guess-language-languages '(en pt))
-  (guess-language-min-paragraph-length 35))
+  (guess-language-min-paragraph-length 8))
 
 (use-package git-messenger
   :config
