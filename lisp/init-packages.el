@@ -84,6 +84,8 @@
   :defer t)
 
 (use-package flycheck
+  :init
+  (global-flycheck-mode)
   :defer t)
 
 (use-package projectile
