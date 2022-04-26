@@ -52,6 +52,10 @@
   :init
   (lsp-ui-mode)
   :custom
+  (lsp-ui-sideline-show-diagnostics t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-sideline-show-code-actions t)
+  (lsp-ui-sideline-update-mode 'line)
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-use-webkit t))
 
