@@ -97,6 +97,7 @@
 (auto-composition-mode t)
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
+(mouse-avoidance-mode)
 
 ;; TODO set only some fonts
 (setq line-spacing 0.1)
