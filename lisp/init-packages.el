@@ -114,7 +114,6 @@
   (lsp-gopls-complete-unimported t)
   (lsp-file-watch-threshold 2000)
   (read-process-output-max (* 1024 1024))
-  (lsp-eldoc-hook nil)
   (lsp-diagnostics-provider :none)
   :commands (lsp lsp-deferred)
   :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
