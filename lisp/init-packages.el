@@ -198,7 +198,7 @@
   (corfu-auto t)
   (corfu-scroll-margin 5)
   :init
-  (corfu-global-mode))
+  (global-corfu-mode))
 
 (use-package orderless
   :init
