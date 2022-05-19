@@ -200,6 +200,13 @@
   :init
   (global-corfu-mode))
 
+(use-package kind-icon
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
 (use-package orderless
   :init
   (setq completion-styles '(orderless)
@@ -317,6 +324,11 @@
   :bind
   ("s-<tab>" . centaur-tabs-forward)
   ("<s-iso-lefttab>" . centaur-tabs-backward))
+
+(use-package highlight-indent-guides
+  :init
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (setq highlight-indent-guides-method 'bitmap))
 
 (provide 'init-packages)
 ;;; init-packages ends her
