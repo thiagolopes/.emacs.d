@@ -61,3 +61,5 @@ amx-items
 places
 /straight*
 .dap*
+emacs-async*
+eln-cache/
