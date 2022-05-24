@@ -74,7 +74,6 @@
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name)) "%b"))))
 (setq inhibit-startup-screen t)	                         ; Disable startup screen
-(setq scroll-step 1 scroll-conservatively 10000)
 (setq initial-scratch-message ";;; Hi! emacs love you!")
 (setq ring-bell-function 'ignore)                        ; Disable bell sound
 (setq site-run-file nil)
@@ -165,10 +164,11 @@
 
 ;;; Smoth scroll
 (setq redisplay-dont-pause t
-  scroll-margin 1
-  scroll-step 1
-  scroll-conservatively 101
-  scroll-preserve-screen-position 1)
+      scroll-margin 9999 ;; change to 1 if dont want centered cursor
+      scroll-step 1
+      scroll-conservatively 101
+      maximum-scroll-margin 0.5
+      scroll-preserve-screen-position t)
 (setq mouse-wheel-progressive-speed nil)
 
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
@@ -196,4 +196,4 @@
 (require 'init-packages)
 (require 'init-org)
 
-;;; init ends here
+;;; init.el ends here
