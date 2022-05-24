@@ -163,12 +163,7 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;;; Smoth scroll
-(setq redisplay-dont-pause t
-      scroll-margin 9999 ;; change to 1 if dont want centered cursor
-      scroll-step 1
-      scroll-conservatively 101
-      maximum-scroll-margin 0.5
-      scroll-preserve-screen-position t)
+(setq scroll-margin 9999) ;; change to 1 if dont want centered cursor
 (setq mouse-wheel-progressive-speed nil)
 
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
@@ -187,6 +182,7 @@
 (setq-default compilation-always-kill t) ; kill compilation process before starting another
 (setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
 (setq-default compilation-scroll-output t)
+(setq native-comp-async-report-warnings-errors nil)
 
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
