@@ -63,3 +63,4 @@ places
 .dap*
 emacs-async*
 eln-cache/
+buffer-content*

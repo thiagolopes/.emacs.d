@@ -96,8 +96,13 @@
 
 (use-package undo-tree
   :diminish
-  :init (global-undo-tree-mode)
-  (defalias 'undo! 'undo-tree-visualize))
+  :init
+  (global-undo-tree-mode)
+  (defalias 'undo! 'undo-tree-visualize)
+  :custom
+  (undo-tree-visualizer-diff t)
+  (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+  (undo-tree-visualizer-timestamps t))
 
 (use-package lsp-mode
   :custom
@@ -282,12 +287,9 @@
   :config
   (defalias 'git-message 'git-messenger:popup-message))
 
-(use-package zenburn-theme)
-
 (use-package doom-themes
   :config
-  (load-theme 'doom-zenburn)
-  )
+  (load-theme 'doom-zenburn))
 
 (use-package all-the-icons
   :if (display-graphic-p))
