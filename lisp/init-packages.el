@@ -21,22 +21,17 @@
 (use-package mermaid-mode)
 (use-package org-modern)
 
+(use-package eldoc
+  :diminish)
+
 (use-package rainbow-delimiters
   :init
   (add-hook 'foo-mode-hook #'rainbow-delimiters-mode))
 
-(use-package smartparens
-  :init
-  (smartparens-global-mode))
-
 (use-package centered-cursor-mode
+  :diminish
   :init
   (global-centered-cursor-mode))
-
-(use-package highlight-parentheses
-  :disabled
-  :hook
-  (prog-mode-hook . highlight-parentheses-mode))
 
 (use-package solaire-mode
   :disabled
@@ -99,6 +94,7 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package undo-tree
+  :diminish
   :init (global-undo-tree-mode)
   (defalias 'undo! 'undo-tree-visualize))
 
@@ -166,6 +162,7 @@
   (cider-repl-toggle-pretty-printing))
 
 (use-package view
+  :diminish "Vim-Like-Modal"
   :custom
   (view-read-only t)
   :bind
@@ -186,11 +183,6 @@
   :bind (("C->" . mc/mark-next-like-this)
 	 ("C-<" . mc/mark-previous-like-this)
 	 ("C-c C-c" . mc/edit-lines)))
-
-(use-package doom-modeline
-  :disabled
-  :config
-  (doom-modeline-mode 1))
 
 (use-package corfu
   :custom
@@ -232,6 +224,7 @@
   ("C-x C-d". ztree-dir))
 
 (use-package counsel
+  :diminish
   :commands (counsel-yank-pop counsel-ag counsel-fzf)
   :bind
   ("M-y" . counsel-yank-pop)
@@ -272,10 +265,12 @@
   (indent-guide-delay 0.2))
 
 (use-package whitespace-cleanup-mode
+  :diminish
   :init
   (global-whitespace-cleanup-mode))
 
 (use-package guess-language
+  :diminish
   :init
   (guess-language-mode)
   :custom
@@ -326,9 +321,10 @@
   ("<s-iso-lefttab>" . centaur-tabs-backward))
 
 (use-package highlight-indent-guides
+  :diminish
   :init
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'bitmap))
 
 (provide 'init-packages)
-;;; init-packages ends her
+;;; init-packages.el ends here
