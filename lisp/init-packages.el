@@ -20,6 +20,11 @@
 (use-package rmsbolt)
 (use-package mermaid-mode)
 (use-package org-modern)
+(use-package diminish)
+
+(use-package good-scroll
+  :init
+  (good-scroll-mode 1))
 
 (use-package eldoc
   :diminish)
