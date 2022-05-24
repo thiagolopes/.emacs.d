@@ -1,4 +1,5 @@
 ;;; init-helpers.el -*- lexical-binding: t; -*-
+;;; Commentary: this file has helpers to be used in project
 
 ;;; Code:
 (defun refined/change-state-on-view-mode (color-active color-inactive)
@@ -174,4 +175,4 @@
 (add-hook 'view-mode-hook 'refined/change-state-on-view-mode-with-zenburn)
 
 (provide 'init-helpers)
-;;; init-helpers ends here
+;;; init-helpers.el ends here
