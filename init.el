@@ -97,6 +97,7 @@
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
 (mouse-avoidance-mode)
+(global-hl-line-mode 1)
 
 ;; TODO set only some fonts
 (setq line-spacing 0.1)
@@ -163,7 +164,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;;; Smoth scroll
-(setq scroll-margin 9999) ;; change to 1 if dont want centered cursor
 (setq mouse-wheel-progressive-speed nil)
 
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
