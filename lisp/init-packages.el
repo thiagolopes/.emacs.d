@@ -25,10 +25,6 @@
 (use-package eldoc
   :diminish)
 
-(use-package rainbow-delimiters
-  :init
-  (add-hook 'foo-mode-hook #'rainbow-delimiters-mode))
-
 (use-package centered-cursor-mode
   :diminish
   :init
@@ -85,8 +81,7 @@
   :defer t)
 
 (use-package projectile
-  :config (projectile-mode 1)
-  :bind ("C-c p" . projectile-command-map)
+  :init (projectile-mode 1)
   :custom (projectile-completion-system 'ivy)
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
 
