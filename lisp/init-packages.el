@@ -307,7 +307,7 @@
   (centaur-tabs-set-icons t)
   (centaur-tabs-set-modified-marker t)
   (centaur-tabs-modified-marker "*")
-  (centaur-tags-style "zigzag")
+  (centaur-tabs-style "zigzag")
   (centaur-tabs-icon-scale-factor 0.7)
   (centaur-tabs-cycle-scope 'tabs)
   :config
