@@ -25,6 +25,12 @@
 (use-package eldoc
   :diminish)
 
+(use-package eldoc-box
+  :diminish
+  :after eldoc
+  :init
+  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t))
+
 (use-package centered-cursor-mode
   :diminish
   :init
@@ -38,18 +44,6 @@
 (use-package ace-window
   :bind
   ("M-o" . ace-window))
-
-(use-package lsp-ui
-  :after lsp
-  :init
-  (lsp-ui-mode)
-  :custom
-  (lsp-ui-sideline-show-diagnostics t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-sideline-show-code-actions t)
-  (lsp-ui-sideline-update-mode 'line)
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-use-webkit t))
 
 (use-package realgud-ipdb
   :after realgud)
@@ -98,28 +92,6 @@
   (undo-tree-visualizer-diff t)
   (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   (undo-tree-visualizer-timestamps t))
-
-(use-package lsp-mode
-  :custom
-  (lsp-register-custom-settings
-   '(("pyls.plugins.pyls_isort.enabled" t t)))
-  (lsp-pyls-plugins-jedi-completion-enabled t)
-  (lsp-pyls-plugins-flake8-enabled t)
-  (lsp-prefer-flymake nil)
-  (lsp-gopls-staticcheck t)
-  (lsp-eldoc-render-all t)
-  (lsp-gopls-complete-unimported t)
-  (lsp-file-watch-threshold 2000)
-  (read-process-output-max (* 1024 1024))
-  (lsp-diagnostics-provider :none)
-  :commands (lsp lsp-deferred)
-  :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
-
-(use-package lsp-pyright
-  :after lsp-mode
-  :hook (python-mode . (lambda ()
-			  (require 'lsp-pyright)
-			  (lsp-deferred))))
 
 (use-package diff-hl
   :custom
@@ -323,6 +295,15 @@
   :init
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'bitmap))
+
+(use-package eglot)
+
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+	 ("\\.md\\'" . markdown-mode)
+	 ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
