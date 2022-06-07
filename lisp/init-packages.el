@@ -71,8 +71,7 @@
 
 (use-package flycheck
   :init
-  (global-flycheck-mode)
-  :defer t)
+  (global-flycheck-mode))
 
 (use-package projectile
   :init (projectile-mode 1)
@@ -196,14 +195,6 @@
   ("C-x d". ztree-dir)
   ("C-x C-d". ztree-dir))
 
-(use-package counsel
-  :diminish
-  :commands (counsel-yank-pop counsel-ag counsel-fzf)
-  :bind
-  ("M-y" . counsel-yank-pop)
-  ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf))
-
 (use-package ctrlf
   :init
   (ctrlf-mode))
@@ -304,6 +295,20 @@
 	 ("\\.md\\'" . markdown-mode)
 	 ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
+
+(use-package hl-todo
+  :custom-face
+  (hl-todo ((t (:inherit hl-todo :italic t))))
+  :hook ((prog-mode . hl-todo-mode)
+	 (yaml-mode . hl-todo-mode)))
+
+(use-package counsel
+  :diminish
+  :commands (counsel-yank-pop counsel-ag counsel-fzf)
+  :bind
+  ("M-y" . counsel-yank-pop)
+  ("M-?" . counsel-ag)
+  ("C-M-?" . counsel-fzf))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
