@@ -96,7 +96,7 @@
 (auto-composition-mode t)
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
-(mouse-avoidance-mode)
+(setq make-pointer-invisible t)
 (global-hl-line-mode 1)
 
 ;; TODO set only some fonts
@@ -117,9 +117,9 @@
 
 ;;; font config
 (defvar font-list '(
+		    ("Hack" . 11)
 		    ("Inconsolata" . 13)
 		    ("Iosevka" . 13)
-		    ("Hack" . 12)
 		    ("JetBrains Mono" . 10)
 		    ("Input" . 10)
 		    ("Consolas" . 10)))
