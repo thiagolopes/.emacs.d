@@ -1,8 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Emacs Refined.					   ;;
-;; - Usigin Sanemacs version 0.3.0 as template		   ;;
-;; - References:					   ;;
+;; Emacs            					   ;;
+;; -- Sanemacs version 0.3.0 as template		   ;;
 ;; -- spacemacs						   ;;
 ;; -- doomemacs						   ;;
 ;; -- purcell						   ;;
@@ -10,11 +10,10 @@
 ;; -- https://github.com/manateelazycat/delete-block	   ;;
 ;; -- https://github.com/MatthewZMD/.emacs.d		   ;;
 ;; -- https://github.com/emacs-tw/awesome-emacs            ;;
+;; Author:  Thiago Lopes <thiagolopes@pm.me>               ;;
+;; URL:     https://github.com/thiagolopes/.emacs.d        ;;
+;; License: MIT                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Author:  Thiago Lopes <thiagolopes@pm.me>
-;; URL:     https://github.com/thiagolopes/emacs-refined
-;;; License: MIT
 
 ;;; Code:
 ;;; For performance
