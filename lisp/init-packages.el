@@ -252,13 +252,6 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
-(use-package yascroll
-  :init
-  (global-yascroll-bar-mode 1)
-  :custom
-  (yascroll:scroll-bar '(right-fringe))
-  (yascroll:delay-to-hide nil))
-
 (use-package centaur-tabs
   :hook
   (prog-mode-hook . centaur-tabs-local-mode)
