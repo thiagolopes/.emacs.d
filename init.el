@@ -98,6 +98,7 @@
 (fringe-mode '(4 . 2))
 (setq make-pointer-invisible t)
 (global-hl-line-mode 1)
+(setq auto-window-vscroll nil)
 
 ;; TODO set only some fonts
 (setq line-spacing 0.1)
