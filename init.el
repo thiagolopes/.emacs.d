@@ -163,7 +163,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;;; Smoth scroll
-(setq mouse-wheel-progressive-speed nil)
 (setq auto-window-vscroll nil)
 (setq scroll-conservatively 101)
 (setq inhibit-compacting-font-caches t)
