@@ -75,7 +75,10 @@
 
 (use-package projectile
   :init (projectile-mode 1)
-  :custom (projectile-completion-system 'ivy)
+  :bind
+  ("<f3>" . projectile-dired)
+  :custom
+  (projectile-completion-system 'ivy)
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
 
 (use-package exec-path-from-shell
@@ -302,6 +305,10 @@
   ("M-y" . counsel-yank-pop)
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf))
+
+(use-package popup-switcher
+  :bind
+  ("<f2>" . psw-switch-buffer))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
