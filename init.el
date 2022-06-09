@@ -97,7 +97,6 @@
 (fringe-mode '(4 . 2))
 (setq make-pointer-invisible t)
 (global-hl-line-mode 1)
-(setq auto-window-vscroll nil)
 
 ;; TODO set only some fonts
 (setq line-spacing 0.1)
@@ -165,6 +164,9 @@
 
 ;;; Smoth scroll
 (setq mouse-wheel-progressive-speed nil)
+(setq auto-window-vscroll nil)
+(setq scroll-conservatively 101)
+(setq inhibit-compacting-font-caches t)
 
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
 (setq temporary-file-directory (expand-file-name user-emacs-directory))
