@@ -307,8 +307,14 @@
   ("C-M-?" . counsel-fzf))
 
 (use-package popup-switcher
+  :custom
+  (psw-mark-modified-buffers t)
   :bind
   ("<f2>" . psw-switch-buffer))
+
+(use-package minions
+  :init
+  (minions-mode))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
