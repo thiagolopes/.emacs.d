@@ -91,15 +91,18 @@
 (delete-selection-mode t)                                ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
 (follow-mode 1)
-(blink-cursor-mode 0)
+(blink-cursor-mode 1)
+(setq-default cursor-type '(bar . 2))
 (auto-composition-mode t)
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
 (setq make-pointer-invisible t)
 (global-hl-line-mode 1)
+(which-function-mode)
+(setq which-func-unknown "n/a")
 
 ;; TODO set only some fonts
-(setq line-spacing 0.1)
+(setq line-spacing 0.0)
 
 
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
@@ -116,7 +119,7 @@
 
 ;;; font config
 (defvar font-list '(
-		    ("Hack" . 11)
+		    ("Hack" . 10)
 		    ("Inconsolata" . 13)
 		    ("Iosevka" . 13)
 		    ("JetBrains Mono" . 10)
