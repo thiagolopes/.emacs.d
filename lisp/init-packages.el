@@ -21,6 +21,7 @@
 (use-package mermaid-mode)
 (use-package org-modern)
 (use-package diminish)
+(use-package eglot)
 
 (use-package eldoc
   :diminish)
@@ -250,40 +251,27 @@
 
 (use-package doom-themes
   :config
-  (load-theme 'doom-zenburn))
+  (load-theme 'doom-monokai-classic))
+
+(use-package doom-modeline
+  :init
+  (doom-modeline-mode 1))
 
 (use-package all-the-icons
   :if (display-graphic-p))
 
-(use-package centaur-tabs
-  :hook
-  (prog-mode-hook . centaur-tabs-local-mode)
-  :custom
-  (centaur-tabs-plain-icons t)
-  (centaur-tabs-show-new-tab-button nil)
-  (centaur-tabs-set-bar 'over)
-  (centaur-tabs-set-close-button nil)
-  (centaur-tabs-set-icons t)
-  (centaur-tabs-set-modified-marker t)
-  (centaur-tabs-modified-marker "*")
-  (centaur-tabs-style "zigzag")
-  (centaur-tabs-icon-scale-factor 0.7)
-  (centaur-tabs-cycle-scope 'tabs)
-  :config
-  (centaur-tabs-headline-match)
-  :init
-  (centaur-tabs-mode t)
-  :bind
-  ("s-<tab>" . centaur-tabs-forward)
-  ("<s-iso-lefttab>" . centaur-tabs-backward))
-
 (use-package highlight-indent-guides
   :diminish
+  :config
+  (defun my-highlighter (level responsive display)
+  (if (> 1 level)
+      nil
+    (highlight-indent-guides--highlighter-default level responsive display)))
+  (setq highlight-indent-guides-highlighter-function 'my-highlighter)
   :init
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (setq highlight-indent-guides-method 'bitmap))
+  (setq highlight-indent-guides-method 'character))
 
-(use-package eglot)
 
 (use-package markdown-mode
   :ensure t
