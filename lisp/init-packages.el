@@ -67,14 +67,14 @@
 
 (use-package magit
   :config
-  (defalias 'git 'magit)
-  :defer t)
+  (defalias 'git 'magit))
 
 (use-package flycheck
   :init
   (global-flycheck-mode))
 
 (use-package projectile
+  :diminish
   :init (projectile-mode 1)
   :bind
   ("<f3>" . projectile-dired)
@@ -99,7 +99,6 @@
 (use-package diff-hl
   :custom
   (diff-hl-draw-borders nil)
-
   :init
   (global-diff-hl-mode))
 
@@ -215,10 +214,6 @@
 (use-package goto-line-preview
   :bind
   ([remap  goto-line] . goto-line-preview))
-
-(use-package rainbow-delimiters
-  :hook
-  (prog-mode-hook . rainbow-delimiters-mode))
 
 (use-package hungry-delete
   :hook
