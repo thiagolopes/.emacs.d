@@ -167,6 +167,12 @@
   :init
   (global-corfu-mode))
 
+(use-package dabbrev
+  :bind (("M-/" . dabbrev-completion)
+	 ("C-M-/" . dabbrev-expand))
+  :custom
+  (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
+
 (use-package kind-icon
   :after corfu
   :custom
@@ -298,6 +304,10 @@
 (use-package minions
   :init
   (minions-mode))
+
+(use-package pulsar
+  :init
+  (pulsar-global-mode))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
