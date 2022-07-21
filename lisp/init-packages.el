@@ -309,5 +309,15 @@
   :init
   (pulsar-global-mode))
 
+(use-package good-scroll
+  :init
+  (good-scroll-mode 1))
+
+(use-package yascroll
+  :init
+  (global-yascroll-bar-mode 1)
+  :custom
+  (yascroll:delay-to-hide nil))
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
