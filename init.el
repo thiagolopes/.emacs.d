@@ -97,7 +97,6 @@
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
 (setq make-pointer-invisible t)
-(global-hl-line-mode 1)
 (which-function-mode)
 (setq which-func-unknown "n/a")
 
