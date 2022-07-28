@@ -9,6 +9,7 @@
 (use-package web-mode)
 (use-package yaml-mode)
 (use-package lua-mode)
+(use-package typescript-mode)
 (use-package restclient)
 (use-package dotenv-mode)
 (use-package realgud)
@@ -166,12 +167,6 @@
   (corfu-scroll-margin 5)
   :init
   (global-corfu-mode))
-
-(use-package dabbrev
-  :bind (("M-/" . dabbrev-completion)
-	 ("C-M-/" . dabbrev-expand))
-  :custom
-  (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 
 (use-package kind-icon
   :after corfu
