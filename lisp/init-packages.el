@@ -236,8 +236,13 @@
   (defalias 'git-message 'git-messenger:popup-message))
 
 (use-package doom-themes
+  :disabled
   :config
   (load-theme 'doom-monokai-classic))
+
+(use-package monokai-theme
+  :config
+  (load-theme 'monokai t))
 
 (use-package doom-modeline
   :init
