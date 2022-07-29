@@ -33,11 +33,6 @@
   :init
   (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t))
 
-(use-package centered-cursor-mode
-  :diminish
-  :init
-  (global-centered-cursor-mode))
-
 (use-package solaire-mode
   :disabled
   :init
