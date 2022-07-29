@@ -22,7 +22,6 @@
 (use-package mermaid-mode)
 (use-package org-modern)
 (use-package diminish)
-(use-package eglot)
 
 (use-package nyan-mode
   :config
@@ -30,12 +29,6 @@
 
 (use-package eldoc
   :diminish)
-
-(use-package eldoc-box
-  :diminish
-  :after eldoc
-  :init
-  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t))
 
 (use-package ace-window
   :bind
@@ -312,6 +305,17 @@
   (global-yascroll-bar-mode 1)
   :custom
   (yascroll:delay-to-hide nil))
+
+(use-package lsp-mode
+  :custom
+  (lsp-eldoc-render-all t)
+  (lsp-file-watch-threshold 2000)
+  (read-process-output-max (* 1024 1024))
+  (lsp-diagnostics-provider :none)
+  :commands (lsp lsp-deferred)
+  :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
+
+(use-package lsp-ui)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
