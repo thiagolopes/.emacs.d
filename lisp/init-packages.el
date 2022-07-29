@@ -24,6 +24,10 @@
 (use-package diminish)
 (use-package eglot)
 
+(use-package nyan-mode
+  :config
+  (nyan-mode))
+
 (use-package eldoc
   :diminish)
 
