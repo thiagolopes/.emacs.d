@@ -33,11 +33,6 @@
   :init
   (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t))
 
-(use-package solaire-mode
-  :disabled
-  :init
-  (solaire-global-mode +1))
-
 (use-package ace-window
   :bind
   ("M-o" . ace-window))
