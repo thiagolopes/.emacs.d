@@ -55,7 +55,9 @@
 
 (use-package magit
   :config
-  (defalias 'git 'magit))
+  (defalias 'git 'magit)
+  :custom
+  (magit-diff-paint-whitespace nil))
 
 (use-package flycheck
   :init
