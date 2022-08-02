@@ -145,7 +145,7 @@
 (global-set-key [?\M- ] 'delete-horizontal-space)
 (global-set-key (kbd "M-\\") 'just-one-space)
 (global-set-key (kbd "C-<tab>") 'refined/hs-global-cycle)
-
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 ;; Truncate lines
 (global-set-key (kbd "C-x C-l") #'toggle-truncate-lines)
 ;; Adjust font size like web browsers
@@ -159,20 +159,28 @@
 (global-set-key (kbd "C-/") 'undo-only)
 (global-set-key (kbd "C-?") 'undo-redo)
 
+;; Dark mode
 (if (and (window-system)
 	 (eq system-type 'gnu/linux))
     (refined/set-emacs-theme-dark))
 
+;; Alias
 (defalias 'switch-project 'projectile-switch-project)
 (defalias 'find-projects-in 'projectile-discover-projects-in-directory)
 
-;; hooks
+;; Hooks
 (defun refined/change-state-on-view-mode-with-zenburn ()
   (let ((color-active (zenburn-with-color-variables zenburn-red-6))
 	(color-inactive (zenburn-with-color-variables zenburn-bg-1)))
     (refined/change-state-on-view-mode color-active color-inactive)))
 
 (add-hook 'view-mode-hook 'refined/change-state-on-view-mode-with-zenburn)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook
+	  (lambda ()
+	    (setq-local display-line-numbers-width 5)))
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

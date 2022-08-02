@@ -69,6 +69,7 @@
 (straight-use-package 'use-package)
 
 ;;; Useful Defaults
+(require 'uniquify)
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name)) "%b"))))
@@ -82,6 +83,19 @@
 (setq display-fill-column-indicator-column 80)
 (setq column-number-mode t)
 (setq byte-compile-warnings '(cl-functions))
+(setq-default cursor-type '(bar . 2))
+(setq make-pointer-invisible t)
+(setq which-func-unknown "n/a")
+(setq uniquify-buffer-name-style 'forward)
+(setq line-spacing 0.0)
+(setq save-interprogram-paste-before-kill t)
+(setq apropos-do-all t)
+(setq mouse-yank-at-point t)
+(setq require-final-newline t)
+(setq load-prefer-newer t)
+(setq backup-by-copying t)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (fset 'yes-or-no-p 'y-or-n-p)                            ; y-or-n-p makes answering questions faster
@@ -90,25 +104,10 @@
 (global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
 (follow-mode 1)
 (blink-cursor-mode 1)
-(setq-default cursor-type '(bar . 2))
 (auto-composition-mode t)
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
-(setq make-pointer-invisible t)
 (which-function-mode)
-(setq which-func-unknown "n/a")
-
-;; TODO set only some fonts
-(setq line-spacing 0.0)
-
-
-(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
-(add-hook 'prog-mode-hook #'hs-minor-mode)
-
-(add-hook 'prog-mode-hook
-	  (lambda ()
-	    (setq-local display-line-numbers-width 5)))
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
