@@ -284,6 +284,7 @@
   (load-theme 'doom-monokai-classic))
 
 (use-package monokai-theme
+  :disabled
   :config
   (load-theme 'monokai t))
 
@@ -327,18 +328,11 @@
   :init
   (pulsar-global-mode))
 
-(use-package yascroll
-  :init
-  (global-yascroll-bar-mode 1)
-  :custom
-  (yascroll:delay-to-hide nil))
-
 (use-package eglot
   :custom
   (completion-category-overrides '((eglot (styles orderless)))))
 
 (use-package keycast
-  :bind ("C-c t k" . +toggle-keycast)
   :init
   (defun +toggle-keycast()
     (interactive)
@@ -358,6 +352,17 @@
   ("M-y" . counsel-yank-pop)
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf))
+
+(use-package modus-themes
+  :init
+  (setq modus-themes-italic-constructs t
+	modus-themes-mixed-fonts t
+	modus-themes-bold-constructs t
+	modus-themes-region '(bg-only no-extend))
+  (modus-themes-load-themes)
+  :config
+  (modus-themes-load-vivendi)
+  :bind ("<f5>" . modus-themes-toggle))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
