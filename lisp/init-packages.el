@@ -3,7 +3,6 @@
 ;;; Code:
 (use-package pkgbuild-mode)
 (use-package i3wm-config-mode)
-(use-package virtualenvwrapper)
 (use-package pytest)
 (use-package evil)
 (use-package web-mode)
@@ -22,13 +21,18 @@
 (use-package mermaid-mode)
 (use-package org-modern)
 (use-package diminish)
+(use-package virtualenvwrapper)
+(use-package eldoc)
+(use-package git-undo)
+
+(use-package aweshell
+  :straight (aweshell :type git :host github :repo "manateelazycat/aweshell")
+  :bind
+  ("<f2>" . aweshell-dedicated-toggle))
 
 (use-package nyan-mode
   :config
   (nyan-mode))
-
-(use-package eldoc
-  :diminish)
 
 (use-package ace-window
   :bind
@@ -41,6 +45,7 @@
   :commands (sudo-edit))
 
 (use-package avy
+  :disabled
   :bind
   ("C-;" . avy-goto-word-0)
   :custom
@@ -151,18 +156,53 @@
 
 (use-package corfu
   :custom
+  (tab-always-indent 'complete)
+  (completion-cycle-threshold nil)
+  (corfu-auto nil)
+  (corfu-min-width 30)
+  (corfu-max-width corfu-min-width)
+  (corfu-count 14)
+  (corfu-scroll-margin 4)
   (corfu-cycle t)
-  (corfu-auto t)
-  (corfu-scroll-margin 5)
+  (corfu-quit-at-boundary nil)
+  (corfu-quit-no-match 'separator)
+  (corfu-separator ?\s)
+  (corfu-preview-current 'insert)
+  (corfu-preselect-first t)
   :init
-  (global-corfu-mode))
+  (global-corfu-mode)
+  :config
+  (defun corfu-enable-always-in-minibuffer ()
+    "Enable Corfu in the minibuffer if Vertico/Mct are not active."
+    (unless (or (bound-and-true-p mct--active)
+		(bound-and-true-p vertico--input))
+      (setq-local corfu-auto nil)
+      (corfu-mode 1)))
+  (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer 1))
 
 (use-package kind-icon
   :after corfu
   :custom
+  (kind-icon-use-icons t)
   (kind-icon-default-face 'corfu-default)
+  (kind-icon-blend-background nil)
+  (kind-icon-blend-frac 0.08)
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package corfu-doc
+  :after corfu
+  :hook (corfu-mode . corfu-doc-mode)
+  :bind
+  (:map corfu-map
+	([remap corfu-show-documentation] . corfu-doc-toggle)
+	("M-n" . corfu-doc-scroll-up)
+	("M-p" . corfu-doc-scroll-down))
+  :custom
+  (corfu-doc-delay 0.2)
+  (corfu-doc-max-width 80)
+  (corfu-doc-max-height 20)
+  (corfu-echo-documentation nil))
 
 (use-package orderless
   :init
@@ -171,8 +211,11 @@
 	completion-category-overrides '((file (styles . (partial-completion))))))
 
 (use-package savehist
+  :custom
+  (undo-tree-auto-save-history t)
+  (undo-tree-enable-undo-in-region nil)
   :init
-  (savehist-mode))
+  (savehist-mode 1))
 
 (use-package eyebrowse
   :init (eyebrowse-mode))
@@ -211,7 +254,7 @@
 
 (use-package zzz-to-char
   :bind
-  ("M-z" . zzz-to-char))
+  ("C-;" . zzz-to-char))
 
 (use-package indent-guide
   :custom
@@ -232,7 +275,7 @@
 
 (use-package git-messenger
   :config
-  (defalias 'git-message 'git-messenger:popup-message))
+  (defalias 'git-logs 'git-messenger:popup-message))
 
 (use-package doom-themes
   :disabled
@@ -262,7 +305,6 @@
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'character))
 
-
 (use-package markdown-mode
   :ensure t
   :mode (("README\\.md\\'" . gfm-mode)
@@ -276,20 +318,6 @@
   :hook ((prog-mode . hl-todo-mode)
 	 (yaml-mode . hl-todo-mode)))
 
-(use-package counsel
-  :diminish
-  :commands (counsel-yank-pop counsel-ag counsel-fzf)
-  :bind
-  ("M-y" . counsel-yank-pop)
-  ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf))
-
-(use-package popup-switcher
-  :custom
-  (psw-mark-modified-buffers t)
-  :bind
-  ("<f2>" . psw-switch-buffer))
-
 (use-package minions
   :init
   (minions-mode))
@@ -298,26 +326,37 @@
   :init
   (pulsar-global-mode))
 
-(use-package good-scroll
-  :init
-  (good-scroll-mode 1))
-
 (use-package yascroll
   :init
   (global-yascroll-bar-mode 1)
   :custom
   (yascroll:delay-to-hide nil))
 
-(use-package lsp-mode
+(use-package eglot
   :custom
-  (lsp-eldoc-render-all t)
-  (lsp-file-watch-threshold 2000)
-  (read-process-output-max (* 1024 1024))
-  (lsp-diagnostics-provider :none)
-  :commands (lsp lsp-deferred)
-  :hook ((go-mode python-mode js-mode c-mode web-mode) . lsp-deferred))
+  (completion-category-overrides '((eglot (styles orderless)))))
 
-(use-package lsp-ui)
+(use-package counsel
+  :commands (counsel-yank-pop counsel-ag counsel-fzf)
+  :bind
+  ("M-y" . counsel-yank-pop)
+  ("M-?" . counsel-ag)
+  ("C-M-?" . counsel-fzf))
+
+(use-package keycast
+  :bind ("C-c t k" . +toggle-keycast)
+  :init
+  (defun +toggle-keycast()
+    (interactive)
+    (if (member '("" keycast-mode-line " ") global-mode-string)
+	(progn (setq global-mode-string (delete '("" keycast-mode-line " ") global-mode-string))
+	       (remove-hook 'pre-command-hook 'keycast--update)
+	       (message "Keycast OFF"))
+      (add-to-list 'global-mode-string '("" keycast-mode-line " "))
+      (add-hook 'pre-command-hook 'keycast--update t)
+      (message "Keycast ON")))
+  :config
+  (+toggle-keycast))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
