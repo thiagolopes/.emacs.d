@@ -190,7 +190,7 @@
 
 ;;; Load tools configs
 (require 'init-helpers)
-(require 'init-packages)
 (require 'init-org)
+(require 'init-packages)
 
 ;;; init.el ends here

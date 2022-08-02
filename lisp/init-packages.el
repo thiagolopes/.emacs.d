@@ -337,13 +337,6 @@
   :custom
   (completion-category-overrides '((eglot (styles orderless)))))
 
-(use-package counsel
-  :commands (counsel-yank-pop counsel-ag counsel-fzf)
-  :bind
-  ("M-y" . counsel-yank-pop)
-  ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf))
-
 (use-package keycast
   :bind ("C-c t k" . +toggle-keycast)
   :init
@@ -358,6 +351,13 @@
       (message "Keycast ON")))
   :config
   (+toggle-keycast))
+
+(use-package counsel
+  :commands (counsel-yank-pop counsel-ag counsel-fzf)
+  :bind
+  ("M-y" . counsel-yank-pop)
+  ("M-?" . counsel-ag)
+  ("C-M-?" . counsel-fzf))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
