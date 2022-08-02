@@ -122,9 +122,9 @@
     (interactive)
     (pcase last-command
       ('refined/hs-global-cycle
-       (save-excursion (hs-show-all))
+       (save-excursion (hs-show-block))
        (setq this-command 'hs-global-show))
-      (_ (hs-hide-all))))
+      (_ (hs-hide-block))))
 
 (defun refined/toggle-transparency ()
   (interactive)
