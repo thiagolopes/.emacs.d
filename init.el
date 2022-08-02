@@ -115,7 +115,7 @@
 
 ;;; font config
 (defvar font-list '(
-		    ("Hack" . 10)
+		    ("Hack" . 11)
 		    ("Inconsolata" . 13)
 		    ("Iosevka" . 13)
 		    ("JetBrains Mono" . 10)
