@@ -78,8 +78,6 @@
 (setq site-run-file nil)
 (setq c-default-style "linux")
 (setq c-tab-always-indent t)
-(setq tab-always-indent 'complete)
-(setq completion-cycle-threshold 3)
 (setq comment-style 'extra-line)
 (setq display-fill-column-indicator-column 80)
 (setq column-number-mode t)
