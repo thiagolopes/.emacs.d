@@ -6,6 +6,7 @@
 (use-package pytest)
 (use-package evil)
 (use-package web-mode)
+(use-package graphql-mode)
 (use-package yaml-mode)
 (use-package lua-mode)
 (use-package typescript-mode)
