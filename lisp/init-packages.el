@@ -364,5 +364,9 @@
   (modus-themes-load-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 
+(use-package super-save
+  :config
+  (super-save-mode +1))
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
