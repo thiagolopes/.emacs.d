@@ -175,6 +175,7 @@
 	  (lambda ()
 	    (setq-local display-line-numbers-width 5)))
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'flyspell-prog-mode)
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here
