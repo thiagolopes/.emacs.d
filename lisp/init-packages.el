@@ -66,7 +66,8 @@
 
 (use-package projectile
   :diminish
-  :init (projectile-mode 1)
+  :init
+  (projectile-mode t)
   :bind
   ("<f3>" . projectile-dired)
   :custom
@@ -80,7 +81,7 @@
 (use-package undo-tree
   :diminish
   :init
-  (global-undo-tree-mode)
+  (global-undo-tree-mode t)
   (defalias 'undo! 'undo-tree-visualize)
   :custom
   (undo-tree-visualizer-diff t)
@@ -91,20 +92,20 @@
   :custom
   (diff-hl-draw-borders nil)
   :init
-  (global-diff-hl-mode))
+  (global-diff-hl-mode t))
 
 (use-package vertico
   :custom
   (vertico-cycle 1)
   :init
-  (vertico-mode))
+  (vertico-mode t))
 
 (use-package marginalia
   :after vertico
   :custom
   (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   :init
-  (marginalia-mode))
+  (marginalia-mode t))
 
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
