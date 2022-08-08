@@ -95,6 +95,7 @@
 (setq load-prefer-newer t)
 (setq backup-by-copying t)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq scroll-margin 5)
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
