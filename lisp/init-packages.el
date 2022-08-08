@@ -47,7 +47,6 @@
   :commands (sudo-edit))
 
 (use-package avy
-  :disabled
   :bind
   ("C-;" . avy-goto-word-0)
   :custom
@@ -264,7 +263,7 @@
 
 (use-package zzz-to-char
   :bind
-  ("C-;" . zzz-to-char))
+  ("M-z" . zzz-to-char))
 
 (use-package indent-guide
   :custom
