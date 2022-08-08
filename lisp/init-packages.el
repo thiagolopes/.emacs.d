@@ -333,10 +333,6 @@
   :init
   (pulsar-global-mode))
 
-(use-package eglot
-  :custom
-  (completion-category-overrides '((eglot (styles orderless)))))
-
 (use-package keycast
   :init
   (defun +toggle-keycast()
@@ -401,6 +397,18 @@
    (shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell))))
   :bind
   ("<f2>" . shell-pop))
+
+(use-package lsp-mode
+  :custom
+  (lsp-file-watch-threshold 2000)
+  (read-process-output-max (* 1024 1024))
+  (lsp-headerline-breadcrumb-enable nil))
+
+(use-package lsp-ui
+  :custom
+  (lsp-ui-sideline-delay 5)
+  :after
+  (lsp-mode))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
