@@ -96,6 +96,7 @@
 (setq backup-by-copying t)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq scroll-margin 5)
+(setq confirm-kill-processes nil)
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
