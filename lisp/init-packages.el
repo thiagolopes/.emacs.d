@@ -26,11 +26,6 @@
 (use-package eldoc)
 (use-package git-undo)
 
-(use-package aweshell
-  :straight (aweshell :type git :host github :repo "manateelazycat/aweshell")
-  :bind
-  ("<f2>" . aweshell-dedicated-toggle))
-
 (use-package nyan-mode
   :disabled
   :config
@@ -399,6 +394,12 @@
   :after smart-mode-line
   :config
   (mini-modeline-mode t))
+
+(use-package shell-pop
+  :custom
+   (shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell))))
+  :bind
+  ("<f2>" . shell-pop))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
