@@ -80,7 +80,7 @@
 (setq c-default-style "linux")
 (setq c-tab-always-indent t)
 (setq comment-style 'extra-line)
-(setq display-fill-column-indicator-column 80)
+(setq display-fill-column-indicator-column 120)                                                                        
 (setq column-number-mode t)
 (setq byte-compile-warnings '(cl-functions))
 (setq cursor-type '(bar . 2))
