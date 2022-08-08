@@ -83,7 +83,7 @@
 (setq display-fill-column-indicator-column 80)
 (setq column-number-mode t)
 (setq byte-compile-warnings '(cl-functions))
-(setq-default cursor-type '(bar . 2))
+(setq cursor-type '(bar . 2))
 (setq make-pointer-invisible t)
 (setq which-func-unknown "n/a")
 (setq uniquify-buffer-name-style 'forward)
@@ -103,12 +103,12 @@
 (visual-line-mode t)	                                 ; enable visual line mode, "wrap lines in end"
 (delete-selection-mode t)                                ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
-(follow-mode 1)
-(blink-cursor-mode 1)
+(follow-mode t)
+(blink-cursor-mode t)
 (auto-composition-mode t)
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
-(which-function-mode)
+(which-function-mode t)
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
