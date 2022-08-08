@@ -405,8 +405,6 @@
   (lsp-headerline-breadcrumb-enable nil))
 
 (use-package lsp-ui
-  :custom
-  (lsp-ui-sideline-delay 5)
   :after
   (lsp-mode))
 
