@@ -32,6 +32,7 @@
   ("<f2>" . aweshell-dedicated-toggle))
 
 (use-package nyan-mode
+  :disabled
   :config
   (nyan-mode))
 
@@ -379,6 +380,7 @@
   ("<f5>" . modus-themes-toggle))
 
 (use-package super-save
+  :diminish
   :config
   (super-save-mode +1))
 
@@ -388,6 +390,16 @@
   (clean-kill-ring-prevent-duplicates 1)
   :config
   (clean-kill-ring-mode 1))
+
+(use-package smart-mode-line
+  :config
+  (smart-mode-line-enable 1))
+
+(use-package mini-modeline
+  :diminish
+  :after smart-mode-line
+  :config
+  (mini-modeline-mode t))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
