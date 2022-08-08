@@ -372,7 +372,7 @@
   (modus-themes-bold-constructs nil)
   (modus-themes-markup '(background italic))
   (modus-themes-region '(bg-only no-extend))
-  (modus-themes-mode-line '(accented 3d borderless (padding . 4) (height . 0.9)))
+  (modus-themes-mode-line '(accented 3d borderless (padding . 5) (height . 0.9)))
   (modus-themes-syntax '(yellow-comments))
   (modus-themes-paren-match '(bold intense underline))
   :bind
