@@ -339,11 +339,9 @@
     (interactive)
     (if (member '("" keycast-mode-line " ") global-mode-string)
 	(progn (setq global-mode-string (delete '("" keycast-mode-line " ") global-mode-string))
-	       (remove-hook 'pre-command-hook 'keycast--update)
-	       (message "Keycast OFF"))
+	       (remove-hook 'pre-command-hook 'keycast--update))
       (add-to-list 'global-mode-string '("" keycast-mode-line " "))
-      (add-hook 'pre-command-hook 'keycast--update t)
-      (message "Keycast ON")))
+      (add-hook 'pre-command-hook 'keycast--update t)))
   :config
   (+toggle-keycast))
 
