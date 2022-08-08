@@ -364,18 +364,30 @@
 
 (use-package modus-themes
   :init
-  (setq modus-themes-italic-constructs t
-	modus-themes-mixed-fonts t
-	modus-themes-bold-constructs t
-	modus-themes-region '(bg-only no-extend))
   (modus-themes-load-themes)
   :config
   (modus-themes-load-vivendi)
-  :bind ("<f5>" . modus-themes-toggle))
+  :custom
+  (modus-themes-italic-constructs t)
+  (modus-themes-bold-constructs nil)
+  (modus-themes-markup '(background italic))
+  (modus-themes-region '(bg-only no-extend))
+  (modus-themes-mode-line '(accented 3d borderless (padding . 4) (height . 0.9)))
+  (modus-themes-syntax '(yellow-comments))
+  (modus-themes-paren-match '(bold intense underline))
+  :bind
+  ("<f5>" . modus-themes-toggle))
 
 (use-package super-save
   :config
   (super-save-mode +1))
+
+(use-package clean-kill-ring
+  :straight (clean-kill-ring :type git :host github :repo "NicholasBHubbard/clean-kill-ring.el")
+  :custom
+  (clean-kill-ring-prevent-duplicates 1)
+  :config
+  (clean-kill-ring-mode 1))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
