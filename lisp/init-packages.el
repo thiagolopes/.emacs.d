@@ -297,6 +297,7 @@
   (load-theme 'monokai t))
 
 (use-package doom-modeline
+  :disabled
   :init
   (doom-modeline-mode 1))
 
