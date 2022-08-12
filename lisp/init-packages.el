@@ -61,6 +61,8 @@
   (magit-diff-paint-whitespace nil))
 
 (use-package flycheck
+  :config
+  (setq flycheck-flake8rc ".flake8")
   :init
   (global-flycheck-mode))
 
