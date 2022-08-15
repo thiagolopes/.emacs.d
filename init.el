@@ -109,6 +109,7 @@
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
 (which-function-mode t)
+(flyspell-mode nil)
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
