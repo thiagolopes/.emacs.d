@@ -158,6 +158,12 @@
 ;; Use undo only
 (global-set-key (kbd "C-/") 'undo-only)
 (global-set-key (kbd "C-?") 'undo-redo)
+;; Buffer resize
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
 
 ;; Dark mode
 (if (and (window-system)
