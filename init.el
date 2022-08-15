@@ -70,6 +70,7 @@
 
 ;;; Useful Defaults
 (require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name)) "%b"))))
@@ -77,26 +78,24 @@
 (setq initial-scratch-message ";;; Hi! emacs love you!")
 (setq ring-bell-function 'ignore)                        ; Disable bell sound
 (setq site-run-file nil)
-(setq c-default-style "linux")
-(setq c-tab-always-indent t)
+(setq-default c-default-style "linux")
+(setq-default c-tab-always-indent t)
 (setq comment-style 'extra-line)
-(setq display-fill-column-indicator-column 120)                                                                        
 (setq column-number-mode t)
 (setq byte-compile-warnings '(cl-functions))
-(setq cursor-type '(bar . 2))
 (setq make-pointer-invisible t)
-(setq which-func-unknown "n/a")
-(setq uniquify-buffer-name-style 'forward)
-(setq line-spacing 0.0)
+(setq-default which-func-unknown "n/a")
+(setq line-spacing 0.1)
 (setq save-interprogram-paste-before-kill t)
-(setq apropos-do-all t)
-(setq mouse-yank-at-point t)
+(setq-default apropos-do-all t)
 (setq require-final-newline t)
-(setq load-prefer-newer t)
 (setq backup-by-copying t)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq scroll-margin 5)
 (setq confirm-kill-processes nil)
+(setq-default display-fill-column-indicator-column 120)
+(setq-default cursor-type '(bar . 2))
+(setq-default load-prefer-newer t)
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -113,7 +112,7 @@
 
 ;;; desktop-save-mode
 (desktop-save-mode 1)
-(setq desktop-restore-eager 4 desktop-save t)
+(setq-default desktop-restore-eager 4 desktop-save t)
 
 ;;; font config
 (defvar font-list '(
@@ -145,28 +144,18 @@
 (when (display-graphic-p)
   (switch-font))
 
-;;; Window navegation
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
-
 ;;; Offload the custom-set-variables to a separate file
 ;;; This keeps your init.el neater and you have the option
 ;;; to gitignore your custom.el if you see fit.
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
+
 ;;; Load custom file. Don't hide errors. Hide success message
 (load custom-file nil t)
 
 ;;; Load .emacs.d/lisp
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
-;;; Smoth scroll
-(setq auto-window-vscroll nil)
-(setq scroll-conservatively 101)
-(setq inhibit-compacting-font-caches t)
 
 ;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
 (setq temporary-file-directory (expand-file-name user-emacs-directory))
@@ -184,7 +173,7 @@
 (setq-default compilation-always-kill t) ; kill compilation process before starting another
 (setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
 (setq-default compilation-scroll-output t)
-(setq native-comp-async-report-warnings-errors nil)
+(setq-default native-comp-async-report-warnings-errors nil)
 
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
