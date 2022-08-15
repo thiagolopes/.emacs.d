@@ -398,15 +398,19 @@
   :bind
   ("<f2>" . shell-pop))
 
-(use-package lsp-mode
-  :custom
-  (lsp-file-watch-threshold 2000)
-  (read-process-output-max (* 1024 1024))
-  (lsp-headerline-breadcrumb-enable nil))
+(use-package eglot)
 
-(use-package lsp-ui
-  :after
-  (lsp-mode))
+(use-package eldoc-box
+  :after eldoc eglot
+  :config
+  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t)
+  :init
+  (eldoc-box-hover-at-point-mode t))
+
+(use-package flycheck-popup-tip
+  :after flycheck
+  :config
+  (add-hook 'flycheck-mode-hook 'flycheck-popup-tip-mode))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
