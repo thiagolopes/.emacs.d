@@ -158,6 +158,9 @@
 
 (use-package company
   :config
+  (define-key company-active-map (kbd "M-/") #'company-complete)
+  (define-key company-active-map (kbd "M-.") #'company-show-location)
+  (define-key company-active-map (kbd "RET") nil)
   (global-company-mode))
 
 (use-package company-box
