@@ -87,11 +87,6 @@
       (desktop-save desktop-dirname)))
 (add-hook 'auto-save-hook 'my-desktop-save)
 
-(defun workon ()
-  (interactive)
-  (venv-workon)
-  (lsp-restart-workspace))
-
 (defun hs-cycle (&optional level)
   (interactive "p")
   (let (message-log-max
