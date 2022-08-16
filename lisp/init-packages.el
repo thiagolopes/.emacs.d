@@ -156,63 +156,16 @@
 	 ("C-<" . mc/mark-previous-like-this)
 	 ("C-c C-c" . mc/edit-lines)))
 
-(use-package corfu
-  :custom
-  (tab-always-indent 'complete)
-  (completion-cycle-threshold nil)
-  (corfu-auto nil)
-  (corfu-min-width 30)
-  (corfu-max-width corfu-min-width)
-  (corfu-count 14)
-  (corfu-scroll-margin 4)
-  (corfu-cycle t)
-  (corfu-quit-at-boundary nil)
-  (corfu-quit-no-match 'separator)
-  (corfu-separator ?\s)
-  (corfu-preview-current 'insert)
-  (corfu-preselect-first t)
-  :init
-  (global-corfu-mode)
+(use-package company
   :config
-  (defun corfu-enable-always-in-minibuffer ()
-    "Enable Corfu in the minibuffer if Vertico/Mct are not active."
-    (unless (or (bound-and-true-p mct--active)
-		(bound-and-true-p vertico--input))
-      (setq-local corfu-auto nil)
-      (corfu-mode 1)))
-  (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer 1))
+  (global-company-mode))
 
-(use-package dabbrev
-  ;; Swap M-/ and C-M-/
-  :bind (("M-/" . dabbrev-completion)
-	 ("C-M-/" . dabbrev-expand))
-  ;; Other useful Dabbrev configurations.
-  :custom
-  (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
-(use-package kind-icon
-  :after corfu
-  :custom
-  (kind-icon-use-icons t)
-  (kind-icon-default-face 'corfu-default)
-  (kind-icon-blend-background nil)
-  (kind-icon-blend-frac 0.08)
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-
-(use-package corfu-doc
-  :after corfu
-  :hook (corfu-mode . corfu-doc-mode)
-  :bind
-  (:map corfu-map
-	([remap corfu-show-documentation] . corfu-doc-toggle)
-	("M-n" . corfu-doc-scroll-up)
-	("M-p" . corfu-doc-scroll-down))
-  :custom
-  (corfu-doc-delay 0.2)
-  (corfu-doc-max-width 80)
-  (corfu-doc-max-height 20)
-  (corfu-echo-documentation nil))
+(use-package company-statistics
+  :hook
+  (company-mode . company-statistics-mode))
 
 (use-package orderless
   :init

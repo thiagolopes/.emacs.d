@@ -65,3 +65,4 @@ emacs-async*
 eln-cache/
 buffer-content*
 /elpy
+company-statistics-cache.el
