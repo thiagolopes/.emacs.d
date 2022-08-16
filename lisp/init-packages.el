@@ -368,6 +368,7 @@
   (setq python-shell-interpreter-args "-i --simple-prompt")
   (setq python-shell-prompt-detect-failure-warning nil)
   (add-hook 'elpy-mode-hook 'flycheck-mode)
+  (add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
   (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter")
   (advice-add 'python-mode :before 'elpy-enable))
 
