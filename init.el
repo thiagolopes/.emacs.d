@@ -88,6 +88,7 @@
 (setq backup-by-copying t)
 (setq scroll-margin 5)
 (setq confirm-kill-processes nil)
+(setq use-dialog-box nil)
 (setq-default which-func-unknown "n/a")
 (setq-default apropos-do-all t)
 (setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -117,7 +118,7 @@
 
 ;;; font config
 (defvar font-list '(
-		    ("Hack" . 11)
+		    ("Hack" . 10)
 		    ("Inconsolata" . 13)
 		    ("Iosevka" . 13)
 		    ("JetBrains Mono" . 10)
