@@ -22,9 +22,12 @@
 (use-package mermaid-mode)
 (use-package org-modern)
 (use-package diminish)
-(use-package virtualenvwrapper)
 (use-package eldoc)
 (use-package git-undo)
+
+(use-package pyenv
+  :config
+  (defalias 'workon 'pyvenv-workon))
 
 (use-package nyan-mode
   :disabled
@@ -347,13 +350,6 @@
   :config
   (+toggle-keycast))
 
-(use-package counsel
-  :commands (counsel-yank-pop counsel-ag counsel-fzf)
-  :bind
-  ("M-y" . counsel-yank-pop)
-  ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf))
-
 (use-package modus-themes
   :init
   (modus-themes-load-themes)
@@ -411,6 +407,23 @@
   :after flycheck
   :config
   (add-hook 'flycheck-mode-hook 'flycheck-popup-tip-mode))
+
+(use-package elpy
+  :config
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (setq python-shell-interpreter "ipython")
+  (setq python-shell-interpreter-args "-i --simple-prompt")
+  (setq python-shell-prompt-detect-failure-warning nil)
+  (add-hook 'elpy-mode-hook 'flycheck-mode)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter")
+  (advice-add 'python-mode :before 'elpy-enable))
+
+(use-package counsel
+  :commands (counsel-yank-pop counsel-ag counsel-fzf)
+  :bind
+  ("M-y" . counsel-yank-pop)
+  ("M-?" . counsel-ag)
+  ("C-M-?" . counsel-fzf))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
