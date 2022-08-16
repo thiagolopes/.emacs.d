@@ -64,3 +64,4 @@ places
 emacs-async*
 eln-cache/
 buffer-content*
+/elpy
