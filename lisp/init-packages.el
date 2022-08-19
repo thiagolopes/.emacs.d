@@ -24,6 +24,7 @@
 (use-package diminish)
 (use-package eldoc)
 (use-package git-undo)
+(use-package dockerfile-mode)
 
 (use-package pyenv
   :config
@@ -243,21 +244,6 @@
   :config
   (defalias 'git-logs 'git-messenger:popup-message))
 
-(use-package doom-themes
-  :disabled
-  :config
-  (load-theme 'doom-monokai-classic))
-
-(use-package monokai-theme
-  :disabled
-  :config
-  (load-theme 'monokai t))
-
-(use-package doom-modeline
-  :disabled
-  :init
-  (doom-modeline-mode 1))
-
 (use-package all-the-icons
   :if (display-graphic-p))
 
@@ -307,10 +293,6 @@
   (+toggle-keycast))
 
 (use-package modus-themes
-  :init
-  (modus-themes-load-themes)
-  :config
-  (modus-themes-load-vivendi)
   :custom
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs nil)
@@ -321,6 +303,10 @@
   (modus-themes-paren-match '(bold intense underline))
   :bind
   ("<f5>" . modus-themes-toggle))
+
+(use-package ef-themes
+  :config
+  (load-theme 'ef-dark))
 
 (use-package super-save
   :diminish
