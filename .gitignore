@@ -66,3 +66,4 @@ eln-cache/
 buffer-content*
 /elpy
 company-statistics-cache.el
+elpy-*
