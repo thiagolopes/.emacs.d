@@ -89,7 +89,6 @@
 (setq scroll-margin 5)
 (setq confirm-kill-processes nil)
 (setq use-dialog-box nil)
-(setq-default which-func-unknown "n/a")
 (setq-default apropos-do-all t)
 (setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq-default c-default-style "linux")
@@ -109,7 +108,6 @@
 (auto-composition-mode t)
 (auto-image-file-mode t)
 (fringe-mode '(4 . 2))
-(which-function-mode t)
 (flyspell-mode nil)
 
 ;;; desktop-save-mode
