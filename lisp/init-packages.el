@@ -1,17 +1,22 @@
 ;;; init-packages.el -*- lexical-binding: t; -*-
 
 ;;; Code:
+
+;; Extra modes
 (use-package pkgbuild-mode)
 (use-package i3wm-config-mode)
-(use-package pytest)
-(use-package evil)
 (use-package web-mode)
 (use-package graphql-mode)
 (use-package yaml-mode)
 (use-package lua-mode)
 (use-package typescript-mode)
-(use-package restclient)
 (use-package dotenv-mode)
+(use-package mermaid-mode)
+(use-package dockerfile-mode)
+
+(use-package pytest)
+(use-package evil)
+(use-package restclient)
 (use-package realgud)
 (use-package git-timemachine)
 (use-package browse-at-remote)
@@ -19,21 +24,14 @@
 (use-package python-black)
 (use-package isortify)
 (use-package rmsbolt)
-(use-package mermaid-mode)
 (use-package org-modern)
 (use-package diminish)
 (use-package eldoc)
 (use-package git-undo)
-(use-package dockerfile-mode)
 
 (use-package pyenv
   :config
   (defalias 'workon 'pyvenv-workon))
-
-(use-package nyan-mode
-  :disabled
-  :config
-  (nyan-mode))
 
 (use-package ace-window
   :bind
@@ -165,6 +163,7 @@
   (global-company-mode))
 
 (use-package company-box
+  :diminish
   :hook (company-mode . company-box-mode))
 
 (use-package company-statistics
