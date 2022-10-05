@@ -362,9 +362,24 @@
 (use-package counsel
   :commands (counsel-yank-pop counsel-ag counsel-fzf)
   :bind
-  ("M-y" . counsel-yank-pop)
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf))
+
+(use-package helm
+  :custom
+  (helm-autoresize-mode 1)
+  (helm-M-x-fuzzy-match t)
+  (helm-buffers-fuzzy-matching t)
+  (helm-recentf-fuzzy-match t)
+  :bind
+  (("M-x" . helm-M-x)
+   ("C-x b" . helm-mini)
+   ("M-y" . helm-show-kill-ring)
+   ("C-x C-f" . helm-find-files)
+   :map helm-map
+   ("<tab>" . helm-execute-persistent-action)
+   ("C-i" . helm-execute-persistent-action)
+   ("C-z" . helm-select-action)))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
