@@ -96,6 +96,7 @@
 (setq-default display-fill-column-indicator-column 120)
 (setq-default cursor-type '(bar . 2))
 (setq-default load-prefer-newer t)
+(global-unset-key (kbd "C-z")) ; avoid miss quit 
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -116,10 +117,10 @@
 
 ;;; font config
 (defvar font-list '(
-		    ("Hack" . 10)
+		    ("JetBrains Mono" . 13)
+		    ("Hack" . 11)
 		    ("Inconsolata" . 13)
 		    ("Iosevka" . 13)
-		    ("JetBrains Mono" . 10)
 		    ("Input" . 10)
 		    ("Consolas" . 10)))
 (defun switch-font ()
