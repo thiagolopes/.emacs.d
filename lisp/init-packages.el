@@ -133,6 +133,7 @@
   (cider-repl-toggle-pretty-printing))
 
 (use-package view
+  :disabled
   :diminish "Vim-Like-Modal"
   :custom
   (view-read-only t)
@@ -292,6 +293,7 @@
   (+toggle-keycast))
 
 (use-package modus-themes
+  :disabled
   :init
   (modus-themes-load-themes)
   :config
@@ -371,6 +373,7 @@
   (helm-M-x-fuzzy-match t)
   (helm-buffers-fuzzy-matching t)
   (helm-recentf-fuzzy-match t)
+  (history-delete-duplicates t)
   :bind
   (("M-x" . helm-M-x)
    ("C-x b" . helm-mini)
@@ -380,6 +383,11 @@
    ("<tab>" . helm-execute-persistent-action)
    ("C-i" . helm-execute-persistent-action)
    ("C-z" . helm-select-action)))
+
+(use-package vscode-dark-plus-theme
+  :ensure t
+  :config
+  (load-theme 'vscode-dark-plus t))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
