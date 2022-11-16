@@ -326,6 +326,8 @@
 
 (use-package mini-modeline
   :diminish
+  :custom
+  (mini-modeline-enhance-visual nil)
   :after smart-mode-line
   :config
   (mini-modeline-mode t))
