@@ -391,5 +391,24 @@
   :config
   (load-theme 'vscode-dark-plus t))
 
+(use-package key-chord
+  :init
+  (key-chord-mode t)
+  :config
+  (key-chord-define-global "1q" "!")
+  (key-chord-define-global "2w" "@")
+  (key-chord-define-global "3e" "#")
+  (key-chord-define-global "4r" "$")
+  (key-chord-define-global "5t" "%")
+  (key-chord-define-global "6y" "^")
+  (key-chord-define-global "6t" "^")
+  (key-chord-define-global "7y" "&")
+  (key-chord-define-global "8u" "*")
+  (key-chord-define-global "9i" "(")
+  (key-chord-define-global "0o" ")")
+  (key-chord-define-global "-p" "_"))
+
+(use-package god-mode)
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
