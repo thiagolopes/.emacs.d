@@ -325,6 +325,7 @@
   (smart-mode-line-enable 1))
 
 (use-package mini-modeline
+  :disabled
   :diminish
   :custom
   (mini-modeline-enhance-visual nil)
@@ -387,9 +388,18 @@
    ("C-z" . helm-select-action)))
 
 (use-package vscode-dark-plus-theme
+  :disabled
   :ensure t
   :config
   (load-theme 'vscode-dark-plus t))
+
+(use-package doom-themes
+  :config
+  (load-theme 'doom-dark+))
+
+(use-package doom-modeline
+  :config
+  (doom-modeline-mode t))
 
 (use-package key-chord
   :init
@@ -407,8 +417,6 @@
   (key-chord-define-global "9i" "(")
   (key-chord-define-global "0o" ")")
   (key-chord-define-global "-p" "_"))
-
-(use-package god-mode)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
