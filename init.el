@@ -18,7 +18,6 @@
 ;;; Code:
 ;;; For performance
 (setq gc-cons-threshold 20000000)
-(setq max-lisp-eval-depth 10000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 (add-hook 'emacs-startup-hook
 	  (lambda ()
