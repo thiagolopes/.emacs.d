@@ -154,11 +154,21 @@
 (global-set-key (kbd "C-/") 'undo-only)
 (global-set-key (kbd "C-?") 'undo-redo)
 ;; Buffer resize
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
-
+(global-set-key (kbd "M-<left>") (lambda ()
+				   (interactive)
+				   (shrink-window-horizontally 10)))
+(global-set-key (kbd "M-<right>") (lambda ()
+				    (interactive)
+				    (enlarge-window-horizontally 10)))
+(global-set-key (kbd "M-<down>") (lambda ()
+				   (interactive)
+				   (shrink-window 10)))
+(global-set-key (kbd "M-<up>") (lambda ()
+				 (interactive)
+				 (enlarge-window 10)))
+;; Buffer navegation
+(global-set-key (kbd "<left>") 'previous-buffer)
+(global-set-key (kbd "<right>") 'next-buffer)
 
 ;; Dark mode
 (if (and (window-system)
