@@ -134,8 +134,8 @@
 	 '(98 . 95) '(100 . 100)))))
 
 ;;; Binds to helpers
-(global-set-key [M-down] 'refined/move-line-down)
-(global-set-key [M-up] 'refined/move-line-up)
+(global-set-key [M-S-down] 'refined/move-line-down)
+(global-set-key [M-S-up] 'refined/move-line-up)
 (global-set-key (kbd "C-<return>") 'refined/newline-at-end-of-line)
 (global-set-key [?\M- ] 'delete-horizontal-space)
 (global-set-key (kbd "M-\\") 'just-one-space)
