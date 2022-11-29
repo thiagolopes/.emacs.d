@@ -400,6 +400,10 @@
   (load-theme 'doom-solarized-dark t))
 
 (use-package doom-modeline
+  :custom
+  (doom-modeline-enable-word-count t)
+  (doom-modeline-buffer-file-name-style 'relative-from-project)
+  (doom-modeline-minor-modes t)
   :config
   (doom-modeline-mode t))
 
