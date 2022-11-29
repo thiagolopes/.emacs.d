@@ -426,5 +426,18 @@
   (key-chord-define-global "0o" ")")
   (key-chord-define-global "-p" "_"))
 
+(use-package smart-mode-line
+  :config
+  (sml/setup)
+  (sml/apply-theme 'automatic))
+
+(use-package aggressive-indent
+  :hook
+  (emacs-lisp-mode-hook . aggressive-indent-mode))
+
+(use-package rainbow-delimiters
+  :hook
+  (prog-mode-hook . rainbow-delimiters-mode))
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
