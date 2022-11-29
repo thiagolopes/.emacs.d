@@ -394,8 +394,10 @@
   (load-theme 'vscode-dark-plus t))
 
 (use-package doom-themes
-  :config
-  (load-theme 'doom-dark+))
+  :custom
+  (doom-solarized-dark-brighter-comments t)
+  :init
+  (load-theme 'doom-solarized-dark t))
 
 (use-package doom-modeline
   :config
