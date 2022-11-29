@@ -179,6 +179,9 @@
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
 
+;; keep cursor at same position when scrolling
+(setq scroll-preserve-screen-position t)
+
 ;;; Load tools configs
 (require 'init-helpers)
 (require 'init-org)
