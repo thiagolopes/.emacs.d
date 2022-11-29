@@ -186,5 +186,6 @@
 (require 'init-helpers)
 (require 'init-org)
 (require 'init-packages)
+(require 'init-modeline)
 
 ;;; init.el ends here

@@ -396,10 +396,12 @@
 (use-package doom-themes
   :custom
   (doom-solarized-dark-brighter-comments t)
+  (doom-solarized-dark-brighter-modeline t)
   :init
   (load-theme 'doom-solarized-dark t))
 
 (use-package doom-modeline
+  :disabled
   :custom
   (doom-modeline-enable-word-count t)
   (doom-modeline-buffer-file-name-style 'relative-from-project)
