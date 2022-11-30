@@ -182,6 +182,10 @@
 ;; keep cursor at same position when scrolling
 (setq scroll-preserve-screen-position t)
 
+;; Scroll
+(setq mouse-wheel-scroll-amount '(0.1))
+(setq mouse-wheel-progressive-speed nil)
+
 ;;; Load tools configs
 (require 'init-helpers)
 (require 'init-org)
