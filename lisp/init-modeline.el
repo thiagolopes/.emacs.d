@@ -163,7 +163,6 @@ Use WIDTH and COLOR1 and COLOR2."
 (defun reserve-middle/right ()
   (+ RIGHT_PADDING (length (format-mode-line mode-line-align-right))))
 
-
 (setq mode-line-align-left
       (list
        '(:eval
@@ -174,16 +173,19 @@ Use WIDTH and COLOR1 and COLOR2."
        '(:eval
 	 (propertize " " 'face
 		     (list
-		      :height 0.3
+		      :height 0.6
 		      :background (face-attribute 'mode-line-inactive :background))))
-
-
+       ;; '(:eval
+       ;;	 (propertize " " 'face
+       ;;		     (list
+       ;;		      :height 0.3
+       ;;		      :background (face-attribute 'mode-line-inactive :background))))
+       '(:eval (propertize "%b" 'face (highlight-block)))
        '(:eval
 	 (propertize " " 'face
 		     (list
 		      :height 0.3
 		      :background (face-attribute 'mode-line-inactive :background))))
-       '(:eval (propertize "%b" 'face (highlight-block)))
        '(:eval
 	 (propertize " " 'face
 		     (list
