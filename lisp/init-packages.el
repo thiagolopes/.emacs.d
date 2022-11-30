@@ -439,5 +439,12 @@
   :hook
   (prog-mode-hook . rainbow-delimiters-mode))
 
+(use-package which-key
+  :config
+  (setq which-key-sort-order 'which-key-key-order-alpha)
+  (which-key-setup-side-window-right)
+  :init
+  (which-key-mode))
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
