@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
+(defconst RIGHT_PADDING 3)
+
 (defun buffer-state ()
   (if (buffer-modified-p) " <*MOD*>"
     " <SAVED>"))
@@ -130,49 +132,93 @@ Use WIDTH and COLOR1 and COLOR2."
 	(- (line-end-position)
 	   (line-beginning-position)))))
 
-(line-length (string-to-number (nth 1 (split-string (what-line)))))
+
+
+(defun mode-line-fill-right (face reserve)
+  "Return empty space using FACE and leaving RESERVE space on the right."
+  (unless reserve
+    (setq reserve 20))
+  (when (and window-system (eq 'right (get-scroll-bar-mode)))
+    (setq reserve (- reserve 3)))
+  (propertize " "
+	      'display `((space :align-to (- (+ right right-fringe right-margin) ,reserve)))
+	      'face face))
+
+(defun mode-line-fill-center (face reserve)
+  "Return empty space using FACE to the center of remaining space leaving RESERVE space on the right."
+  (unless reserve
+    (setq reserve 20))
+  (when (and window-system (eq 'right (get-scroll-bar-mode)))
+    (setq reserve (- reserve 3)))
+  (propertize " "
+	      'display `((space :align-to (- (+ center (.5 . right-margin)) ,reserve
+					     (.5 . left-margin))))
+	      'face face))
+
+
+
+(defun reserve-left/middle ()
+  (/ (length (format-mode-line mode-line-align-middle)) 2))
+
+(defun reserve-middle/right ()
+  (+ RIGHT_PADDING (length (format-mode-line mode-line-align-right))))
+
+
+(setq mode-line-align-left
+      (list
+       '(:eval
+	 (propertize " " 'face
+		     (list
+		      :height 0.3
+		      :background (face-attribute 'success :foreground))))
+       '(:eval
+	 (propertize " " 'face
+		     (list
+		      :height 0.3
+		      :background (face-attribute 'mode-line-inactive :background))))
+
+
+       '(:eval
+	 (propertize " " 'face
+		     (list
+		      :height 0.3
+		      :background (face-attribute 'mode-line-inactive :background))))
+       '(:eval (propertize "%b" 'face (highlight-block)))
+       '(:eval
+	 (propertize " " 'face
+		     (list
+		      :height 0.3)))
+       "%f"
+       'mode-line-modified
+       '(:eval
+	 (propertize " " 'face
+		     (list
+		      :height 0.3)))
+       '(:eval (propertize (projectile-name-or-none) 'face '(:foreground "white")))
+       '(vc-mode vc-mode)
+       ))
+
+(setq mode-line-align-right
+      (list
+       " %o "
+       '(line-number-mode "L%l")
+       ":"
+       '(:eval (total-lines))
+       " "
+       '(:eval (propertize " " 'display (powerline-hud)))
+       ))
+
+(setq mode-line-align-middle
+      '(""))
 
 (setq-default mode-line-format
 	      (list
+	       mode-line-align-left
+	       '(:eval (mode-line-fill-center 'mode-line
+					      (reserve-left/middle)))
+	       mode-line-align-middle
 	       '(:eval
-		 (propertize " " 'face
-			     (list
-			      :height 0.3
-			      :background (face-attribute 'success :foreground))))
-	       '(:eval
-		 (propertize " " 'face
-			     (list
-			      :height 0.3
-			      :background (face-attribute 'mode-line-inactive :background))))
-
-
-	       '(:eval
-		 (propertize " " 'face
-			     (list
-			      :height 0.3
-			      :background (face-attribute 'mode-line-inactive :background))))
-	       '(:eval (propertize "%b" 'face (highlight-block)))
-	       '(:eval
-		 (propertize " " 'face
-			     (list
-			      :height 0.3)))
-	       "%f"
-	       'mode-line-modified
-	       '(:eval
-		 (propertize " " 'face
-			     (list
-			      :height 0.3)))
-	       '(:eval (propertize (projectile-name-or-none) 'face '(:foreground "white")))
-	       '(vc-mode vc-mode)
-
-	       '(:eval (propertize " " 'display `(space :align-to (- (+ right right-fringe right-margin) 22))))
-
-	       " %o "
-	       '(line-number-mode "L%l")
-	       ":"
-	       '(:eval (total-lines))
-	       " "
-	       '(:eval (propertize " " 'display (powerline-hud)))
-	       ))
-
+		 (mode-line-fill-right 'mode-line
+				       (reserve-middle/right)))
+	       mode-line-align-right))
 (provide 'init-modeline)
