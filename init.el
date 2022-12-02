@@ -111,14 +111,17 @@
 (fringe-mode '(4 . 2))
 (flyspell-mode nil)
 
+;; save cursour position
+(save-place-mode t)
+
 ;;; desktop-save-mode
 (desktop-save-mode 1)
 (setq-default desktop-restore-eager 4 desktop-save t)
 
 ;;; font config
 (defvar font-list '(
-		    ("Inconsolata" . 14)
-		    ("JetBrains Mono" . 13)
+		    ("JetBrains Mono" . 14)
+		    ("Inconsolata" . 15)
 		    ("Hack" . 11)
 		    ("Iosevka" . 13)
 		    ("Input" . 10)
