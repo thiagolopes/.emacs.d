@@ -446,5 +446,14 @@
   :init
   (which-key-mode))
 
+(use-package paredit
+  :hook
+  (emacs-lisp-mode-hook . enable-paredit-mode)
+  (eval-expression-minibuffer-setup-hook . enable-paredit-mode)
+  (ielm-mode-hook . enable-paredit-mode)
+  (lisp-mode-hook . enable-paredit-mode)
+  (lisp-interaction-mode-hook . enable-paredit-mode)
+  (scheme-mode-hook . enable-paredit-mode))
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
