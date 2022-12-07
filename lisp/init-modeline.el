@@ -180,6 +180,7 @@ Use WIDTH and COLOR1 and COLOR2."
        ;;		     (list
        ;;		      :height 0.3
        ;;		      :background (face-attribute 'mode-line-inactive :background))))
+       '(:eval (propertize "%*" 'face (highlight-block)))
        '(:eval (propertize "%b" 'face (highlight-block)))
        '(:eval
 	 (propertize " " 'face
@@ -191,7 +192,6 @@ Use WIDTH and COLOR1 and COLOR2."
 		     (list
 		      :height 0.3)))
        "%f"
-       'mode-line-modified
        '(:eval
 	 (propertize " " 'face
 		     (list
