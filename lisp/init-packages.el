@@ -394,11 +394,18 @@
   (load-theme 'vscode-dark-plus t))
 
 (use-package doom-themes
+  :disabled
   :custom
+  (doom-molokai-brighter-comments t)
   (doom-solarized-dark-brighter-comments t)
+  (doom-solarized-dark-high-contrast-brighter-comments t)
   (doom-solarized-dark-brighter-modeline t)
   :init
-  (load-theme 'doom-solarized-dark t))
+  (load-theme 'doom-dark+ t))
+
+(use-package zenburn-theme
+  :init
+  (load-theme 'zenburn))
 
 (use-package doom-modeline
   :disabled
