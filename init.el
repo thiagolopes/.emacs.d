@@ -94,7 +94,7 @@
 (setq-default c-default-style "linux")
 (setq-default c-tab-always-indent t)
 (setq-default display-fill-column-indicator-column 120)
-(setq-default cursor-type '(bar . 2))
+(setq-default cursor-type '(hbar . 2))
 (setq-default load-prefer-newer t)
 (global-unset-key (kbd "C-z")) ; avoid miss quit 
 
