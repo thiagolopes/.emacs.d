@@ -191,7 +191,7 @@ Use WIDTH and COLOR1 and COLOR2."
 	 (propertize " " 'face
 		     (list
 		      :height 0.3)))
-       "%f"
+       ;; "%f"
        '(:eval
 	 (propertize " " 'face
 		     (list
