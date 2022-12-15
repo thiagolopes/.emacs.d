@@ -1,47 +1,27 @@
 ;;; init.el -*- lexical-binding: t; -*-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs            					   ;;
-;; -- Sanemacs version 0.3.0 as template		   ;;
-;; -- spacemacs						   ;;
-;; -- doomemacs						   ;;
-;; -- purcell						   ;;
-;; -- http://www.i3s.unice.fr/~malapert/emacs_orgmode.html ;;
-;; -- https://github.com/manateelazycat/delete-block	   ;;
-;; -- https://github.com/MatthewZMD/.emacs.d		   ;;
-;; -- https://github.com/emacs-tw/awesome-emacs            ;;
 ;; Author:  Thiago Lopes <thiagolopes@pm.me>               ;;
 ;; URL:     https://github.com/thiagolopes/.emacs.d        ;;
 ;; License: MIT                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Code:
-;;; For performance
-(setq gc-cons-threshold 20000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (if (boundp 'after-focus-change-function)
-		(add-function :after after-focus-change-function
-			      (lambda ()
-				(unless (frame-focus-state)
-				  (garbage-collect))))
-	      (add-hook 'after-focus-change-function 'garbage-collect))
-	    (defun gc-minibuffer-setup-hook ()
-	      (setq gc-cons-threshold gc-cons-threshold))
-	    (defun gc-minibuffer-exit-hook ()
-	      (garbage-collect)
-	      (setq gc-cons-threshold better-gc-cons-threshold))
-	    (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
-	    (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)))
+;;; Custom
+(setq custom-file "~/.emacs.d/custom.el")
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
+(load custom-file nil t)
 
-;;; Disable menu-bar, tool-bar, and scroll-bar.
-(if (fboundp 'menu-bar-mode)
-    (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode)
-    (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode)
-    (scroll-bar-mode -1))
+;;; GUI
+(custom-set-variables
+ '(inhibit-startup-screen t)
+ '(menu-bar-mode nil)
+ '(tool-bar-mode nil)
+ '(scroll-bar-mode nil)
+ '(use-dialog-box nil)
+ '(ring-bell-function #'ignore)
+ '(cursor-type 'bar)
+ '(tab-bar-show 1))
 
 ;;; Setup straight
  (if (and (executable-find "watchexec")
@@ -64,59 +44,58 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-
 ;;; Add use-package
 (straight-use-package 'use-package)
 
 ;;; Useful Defaults
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
-(setq frame-title-format
+
+(custom-set-variables
+ '(auto-revert-interval 2)
+ '(auto-revert-check-vc-info t)
+ '(global-auto-revert-non-file-buffers t)
+ '(auto-revert-verbose nil)
+ '(save-interprogram-paste-before-kill t)
+ '(apropos-do-all t)
+ '(load-prefer-newer t)
+ '(savehist-mode 1)
+ '(show-paren-mode 1)
+ '(save-place-mode 1)
+ '(uniquify-buffer-name-style 'forward)
+ '(scroll-step 1)
+ '(desktop-save-mode t)
+ '(set-mark-command-repeat-pop t)
+ '(tab-always-indent 'complete)
+ '(current-language-environment "UTF-8")
+ '(after-save-hook '(executable-make-buffer-file-executable-if-script-p))
+ '(column-number-indicator-zero-based nil)
+ '(scroll-preserve-screen-position t)
+ '(make-backup-files nil)
+ '(sentence-end-double-space nil)
+ '(words-include-escapes t)
+ '(indent-tabs-mode nil)
+ '(standard-indent 2)
+ '(view-read-only t)
+ '(kill-read-only-ok t)
+ '(kill-whole-line t)
+ '(history-delete-duplicates t)
+ '(kill-do-not-save-duplicates t)
+ '(password-cache-expiry 300)
+ '(debugger-stack-frame-as-list t)
+ '(split-width-threshold 140)
+ '(y-or-n-p-use-read-key t)
+ '(use-short-answers t)
+ '(async-shell-command-display-buffer nil)
+ '(revert-without-query '(""))
+ '(recenter-positions '(top middle bottom))
+ '(display-time-default-load-average nil)
+ '(dictionary-server "dict.org")
+ '(fringe-mode '(4 . 2))
+ '(frame-title-format
       '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name)) "%b"))))
-(setq inhibit-startup-screen t)	                         ; Disable startup screen
-(setq initial-scratch-message ";;; Hi! emacs love you!")
-(setq ring-bell-function 'ignore)                        ; Disable bell sound
-(setq site-run-file nil)
-(setq comment-style 'extra-line)
-(setq column-number-mode t)
-(setq byte-compile-warnings '(cl-functions))
-(setq make-pointer-invisible t)
-(setq line-spacing 0.1)
-(setq save-interprogram-paste-before-kill t)
-(setq require-final-newline t)
-(setq backup-by-copying t)
-(setq scroll-margin 5)
-(setq confirm-kill-processes nil)
-(setq use-dialog-box nil)
-(setq-default apropos-do-all t)
-(setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq-default c-default-style "linux")
-(setq-default c-tab-always-indent t)
-(setq-default display-fill-column-indicator-column 120)
-(setq-default cursor-type '(hbar . 2))
-(setq-default load-prefer-newer t)
-(global-unset-key (kbd "C-z")) ; avoid miss quit 
+                   (abbreviate-file-name (buffer-file-name)) "%b")))))
 
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-(fset 'yes-or-no-p 'y-or-n-p)                            ; y-or-n-p makes answering questions faster
-(visual-line-mode t)	                                 ; enable visual line mode, "wrap lines in end"
-(delete-selection-mode t)                                ; Selected text will be overwritten when you start typing
-(global-auto-revert-mode t)                              ; Auto-update buffer if file has changed on disk
-(follow-mode t)
-(blink-cursor-mode t)
-(auto-composition-mode t)
-(auto-image-file-mode t)
-(fringe-mode '(4 . 2))
-(flyspell-mode nil)
-
-;; save cursour position
-(save-place-mode t)
-
-;;; desktop-save-mode
-(desktop-save-mode 1)
-(setq-default desktop-restore-eager 4 desktop-save t)
+(global-unset-key (kbd "C-z")) ; avoid miss quit
 
 ;;; font config
 (defvar font-list '(
@@ -148,51 +127,11 @@
 (when (display-graphic-p)
   (switch-font))
 
-;;; Offload the custom-set-variables to a separate file
-;;; This keeps your init.el neater and you have the option
-;;; to gitignore your custom.el if you see fit.
-(setq custom-file "~/.emacs.d/custom.el")
-(unless (file-exists-p custom-file)
-  (write-region "" nil custom-file))
-
-;;; Load custom file. Don't hide errors. Hide success message
-(load custom-file nil t)
-
 ;;; Load .emacs.d/lisp
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
-;;; Put Emacs auto-save and backup files to .emacs.d/tmp/
-(setq temporary-file-directory (expand-file-name user-emacs-directory))
-(defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) temporary-file-directory))
-(setq backup-by-copying t		; Avoid symlinks
-      delete-old-versions t kept-new-versions 6 kept-old-versions 2 version-control t
-      auto-save-list-file-prefix emacs-tmp-dir auto-save-file-name-transforms `((".*" ,emacs-tmp-dir
-										 t)) ; Change autosave dir to tmp
-      backup-directory-alist `((".*" . ,emacs-tmp-dir)))
-
-;;; Lockfiles unfortunately cause more pain than benefit
-(setq-default create-lockfiles nil)
-
-;; better compilation
-(setq-default compilation-always-kill t) ; kill compilation process before starting another
-(setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
-(setq-default compilation-scroll-output t)
-(setq-default native-comp-async-report-warnings-errors nil)
-
-;; Add a newline automatically at the end of the file upon save.
-(setq require-final-newline t)
-
-;; keep cursor at same position when scrolling
-(setq scroll-preserve-screen-position t)
-
-;; Scroll
-(setq mouse-wheel-scroll-amount '(0.1))
-(setq mouse-wheel-progressive-speed nil)
-
 ;;; Load tools configs
 (require 'init-helpers)
 (require 'init-org)
 (require 'init-packages)
 (require 'init-modeline)
-
 ;;; init.el ends here
