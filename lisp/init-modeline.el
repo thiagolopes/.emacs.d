@@ -175,11 +175,6 @@ Use WIDTH and COLOR1 and COLOR2."
 		     (list
 		      :height 0.6
 		      :background (face-attribute 'mode-line-inactive :background))))
-       ;; '(:eval
-       ;;	 (propertize " " 'face
-       ;;		     (list
-       ;;		      :height 0.3
-       ;;		      :background (face-attribute 'mode-line-inactive :background))))
        '(:eval (propertize "%*" 'face (highlight-block)))
        '(:eval (propertize "%b" 'face (highlight-block)))
        '(:eval
@@ -191,7 +186,6 @@ Use WIDTH and COLOR1 and COLOR2."
 	 (propertize " " 'face
 		     (list
 		      :height 0.3)))
-       ;; "%f"
        '(:eval
 	 (propertize " " 'face
 		     (list
@@ -202,13 +196,14 @@ Use WIDTH and COLOR1 and COLOR2."
 
 (setq mode-line-align-right
       (list
+       '(:eval global-mode-string)
        " %o "
+       '(:eval (if (column-number-mode) "C%c " ""))
        '(line-number-mode "L%l")
        ":"
        '(:eval (total-lines))
        " "
-       '(:eval (propertize " " 'display (powerline-hud)))
-       ))
+       '(:eval (propertize " " 'display (powerline-hud)))))
 
 (setq mode-line-align-middle
       '(""))
@@ -223,4 +218,5 @@ Use WIDTH and COLOR1 and COLOR2."
 		 (mode-line-fill-right 'mode-line
 				       (reserve-middle/right)))
 	       mode-line-align-right))
+
 (provide 'init-modeline)
