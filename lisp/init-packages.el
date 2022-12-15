@@ -64,6 +64,7 @@
 (use-package flycheck
   :custom
   (flycheck-flake8rc ".flake8")
+  (flycheck-display-errors-delay 3)
   :config (global-flycheck-mode +1))
 
 (use-package projectile
@@ -244,10 +245,10 @@
   :init
   (defun +toggle-keycast()
     (interactive)
-    (if (member '("" keycast-mode-line " ") global-mode-string)
-	(progn (setq global-mode-string (delete '("" keycast-mode-line " ") global-mode-string))
+    (if (member '("" keycast-mode-line "") global-mode-string)
+	(progn (setq global-mode-string (delete '("" keycast-mode-line "") global-mode-string))
 	       (remove-hook 'pre-command-hook 'keycast--update))
-      (add-to-list 'global-mode-string '("" keycast-mode-line " "))
+      (add-to-list 'global-mode-string '("" keycast-mode-line ""))
       (add-hook 'pre-command-hook 'keycast--update t)))
   :config
   (+toggle-keycast))
