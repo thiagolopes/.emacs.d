@@ -1,8 +1,6 @@
 ;;; init-packages.el -*- lexical-binding: t; -*-
 
 ;;; Code:
-
-;; Extra modes
 (use-package pkgbuild-mode)
 (use-package i3wm-config-mode)
 (use-package web-mode)
@@ -13,32 +11,39 @@
 (use-package dotenv-mode)
 (use-package mermaid-mode)
 (use-package dockerfile-mode)
-
-(use-package pytest)
-(use-package evil)
+(use-package json-mode)
 (use-package restclient)
-(use-package realgud)
 (use-package git-timemachine)
 (use-package browse-at-remote)
 (use-package pdf-tools)
 (use-package python-black)
 (use-package isortify)
-(use-package rmsbolt)
-(use-package org-modern)
 (use-package diminish)
-(use-package eldoc)
-(use-package git-undo)
+(use-package pyenv)
 
-(use-package pyenv
-  :config
-  (defalias 'workon 'pyvenv-workon))
+(use-package highlight-numbers
+  :hook (prog-mode . highlight-numbers-mode))
+
+(use-package highlight-escape-sequences
+  :hook (prog-mode . hes-mode))
+
+(use-package delsel
+  :config (delete-selection-mode t))
+
+(use-package recentf
+  :custom
+  (recentf-max-saved-items 50)
+  :init
+  (recentf-mode))
+
+(use-package bookmark
+  :defer t
+  :custom
+  (bookmark-fontify nil))
 
 (use-package ace-window
   :bind
   ("M-o" . ace-window))
-
-(use-package realgud-ipdb
-  :after realgud)
 
 (use-package sudo-edit
   :commands (sudo-edit))
@@ -52,28 +57,19 @@
 
 (use-package go-mode
   :mode "\\.go\\'"
-  :hook (before-save-hook . gofmt-before-save)
-  (before-save-hook . lsp-format-buffer)
-  (before-save-hook . lsp-organize-imports))
+  :hook (before-save-hook . gofmt-before-save))
 
-(use-package magit
-  :config
-  (defalias 'git 'magit)
-  :custom
-  (magit-diff-paint-whitespace nil))
+(use-package magit)
 
 (use-package flycheck
-  :config
-  (setq flycheck-flake8rc ".flake8")
-  :init
-  (global-flycheck-mode))
+  :custom
+  (flycheck-flake8rc ".flake8")
+  :config (global-flycheck-mode +1))
 
 (use-package projectile
   :diminish
   :init
   (projectile-mode t)
-  :bind
-  ("<f3>" . projectile-dired)
   :custom
   (projectile-completion-system 'ivy)
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
@@ -89,7 +85,6 @@
   (defalias 'undo! 'undo-tree-visualize)
   :custom
   (undo-tree-visualizer-diff t)
-  (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   (undo-tree-visualizer-timestamps t))
 
 (use-package diff-hl
@@ -157,7 +152,15 @@
 	 ("C-c C-c" . mc/edit-lines)))
 
 (use-package company
+  :custom
+  (company-idle-delay 0.1)
+  (company-selection-wrap-around t)
+  (company-tooltip-align-annotations t)
+  (company-frontends '(company-pseudo-tooltip-frontend
+                       company-echo-metadata-frontend))
   :config
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
   (define-key company-active-map (kbd "M-/") #'company-complete)
   (define-key company-active-map (kbd "M-.") #'company-show-location)
   (define-key company-active-map (kbd "RET") nil)
@@ -167,25 +170,11 @@
   :diminish
   :hook (company-mode . company-box-mode))
 
-(use-package company-statistics
-  :hook
-  (company-mode . company-statistics-mode))
-
 (use-package orderless
   :init
   (setq completion-styles '(orderless)
 	completion-category-defaults nil
 	completion-category-overrides '((file (styles . (partial-completion))))))
-
-(use-package savehist
-  :custom
-  (undo-tree-auto-save-history t)
-  (undo-tree-enable-undo-in-region nil)
-  :init
-  (savehist-mode 1))
-
-(use-package eyebrowse
-  :init (eyebrowse-mode))
 
 (use-package helpful
   :bind
@@ -203,19 +192,21 @@
   (ctrlf-mode))
 
 (use-package mwim
+  :disabled
   :bind
   ("C-a" . mwim-beginning)
   ("C-e" . mwim-end))
 
 (use-package highlight-thing
-  :hook
-  (prog-mode-hook . highlight-thing-mode))
+  :init
+  (global-highlight-thing-mode t))
 
 (use-package goto-line-preview
   :bind
   ([remap  goto-line] . goto-line-preview))
 
 (use-package hungry-delete
+  :disabled
   :hook
   (prog-mode-hook . hungry-delete-mode))
 
@@ -223,41 +214,14 @@
   :bind
   ("M-z" . zzz-to-char))
 
-(use-package indent-guide
-  :custom
-  (indent-guide-delay 0.2))
-
 (use-package whitespace-cleanup-mode
   :diminish
   :init
   (global-whitespace-cleanup-mode))
 
-(use-package guess-language
-  :diminish
-  :init
-  (guess-language-mode)
-  :custom
-  (guess-language-languages '(en pt))
-  (guess-language-min-paragraph-length 8))
-
 (use-package git-messenger
   :config
   (defalias 'git-logs 'git-messenger:popup-message))
-
-(use-package all-the-icons
-  :if (display-graphic-p))
-
-(use-package highlight-indent-guides
-  :diminish
-  :config
-  (defun my-highlighter (level responsive display)
-  (if (> 1 level)
-      nil
-    (highlight-indent-guides--highlighter-default level responsive display)))
-  (setq highlight-indent-guides-highlighter-function 'my-highlighter)
-  :init
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (setq highlight-indent-guides-method 'character))
 
 (use-package markdown-mode
   :ensure t
@@ -271,10 +235,6 @@
   (hl-todo ((t (:inherit hl-todo :italic t))))
   :hook ((prog-mode . hl-todo-mode)
 	 (yaml-mode . hl-todo-mode)))
-
-(use-package minions
-  :init
-  (minions-mode))
 
 (use-package pulsar
   :init
@@ -320,19 +280,6 @@
   :config
   (clean-kill-ring-mode 1))
 
-(use-package smart-mode-line
-  :config
-  (smart-mode-line-enable 1))
-
-(use-package mini-modeline
-  :disabled
-  :diminish
-  :custom
-  (mini-modeline-enhance-visual nil)
-  :after smart-mode-line
-  :config
-  (mini-modeline-mode t))
-
 (use-package shell-pop
   :custom
    (shell-pop-shell-type '("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell))))
@@ -340,18 +287,6 @@
   ("<f2>" . shell-pop))
 
 (use-package eglot)
-
-(use-package eldoc-box
-  :after eldoc eglot
-  :config
-  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t)
-  :init
-  (eldoc-box-hover-at-point-mode t))
-
-(use-package flycheck-popup-tip
-  :after flycheck
-  :config
-  (add-hook 'flycheck-mode-hook 'flycheck-popup-tip-mode))
 
 (use-package elpy
   :config
@@ -372,14 +307,13 @@
 
 (use-package helm
   :custom
-  (helm-autoresize-mode 1)
+  (helm-autoresize-mode nil)
   (helm-M-x-fuzzy-match t)
   (helm-buffers-fuzzy-matching t)
   (helm-recentf-fuzzy-match t)
   (history-delete-duplicates t)
   :bind
   (("M-x" . helm-M-x)
-   ("C-x b" . helm-mini)
    ("M-y" . helm-show-kill-ring)
    ("C-x C-f" . helm-find-files)
    :map helm-map
@@ -387,34 +321,9 @@
    ("C-i" . helm-execute-persistent-action)
    ("C-z" . helm-select-action)))
 
-(use-package vscode-dark-plus-theme
-  :disabled
-  :ensure t
-  :config
-  (load-theme 'vscode-dark-plus t))
-
-(use-package doom-themes
-  :disabled
-  :custom
-  (doom-molokai-brighter-comments t)
-  (doom-solarized-dark-brighter-comments t)
-  (doom-solarized-dark-high-contrast-brighter-comments t)
-  (doom-solarized-dark-brighter-modeline t)
-  :init
-  (load-theme 'doom-dark+ t))
-
 (use-package zenburn-theme
   :init
   (load-theme 'zenburn))
-
-(use-package doom-modeline
-  :disabled
-  :custom
-  (doom-modeline-enable-word-count t)
-  (doom-modeline-buffer-file-name-style 'relative-from-project)
-  (doom-modeline-minor-modes t)
-  :config
-  (doom-modeline-mode t))
 
 (use-package key-chord
   :init
@@ -442,10 +351,6 @@
   :hook
   (emacs-lisp-mode-hook . aggressive-indent-mode))
 
-(use-package rainbow-delimiters
-  :hook
-  (prog-mode-hook . rainbow-delimiters-mode))
-
 (use-package which-key
   :config
   (setq which-key-sort-order 'which-key-key-order-alpha)
@@ -461,6 +366,15 @@
   (lisp-mode-hook . enable-paredit-mode)
   (lisp-interaction-mode-hook . enable-paredit-mode)
   (scheme-mode-hook . enable-paredit-mode))
+
+(use-package consult
+  :bind
+  (("C-x b" . consult-buffer)
+   ("C-s" . consult-line)
+   :map minibuffer-local-map
+   ("C-r" . consult-history))
+  :custom
+  (completion-in-region-function #'consult-completion-in-region))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
