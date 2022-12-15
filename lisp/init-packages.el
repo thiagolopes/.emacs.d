@@ -1,6 +1,7 @@
 ;;; init-packages.el -*- lexical-binding: t; -*-
 
 ;;; Code:
+(use-package diminish)
 (use-package pkgbuild-mode)
 (use-package i3wm-config-mode)
 (use-package web-mode)
@@ -18,7 +19,6 @@
 (use-package pdf-tools)
 (use-package python-black)
 (use-package isortify)
-(use-package diminish)
 (use-package pyenv)
 
 (use-package highlight-numbers
