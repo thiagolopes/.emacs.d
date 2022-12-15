@@ -190,6 +190,7 @@
 	  (lambda ()
 	    (setq-local display-line-numbers-width 5)))
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'after-save-hook #'delete-trailing-whitespace)
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here
