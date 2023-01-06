@@ -340,8 +340,15 @@
    ("C-z" . helm-select-action)))
 
 (use-package zenburn-theme
+  :disabled
   :init
   (load-theme 'zenburn))
+
+(use-package spacemacs-theme
+  :custom
+  (spacemacs-theme-comment-italic t)
+  :init
+  (load-theme 'spacemacs-dark))
 
 (use-package key-chord
   :init
@@ -393,6 +400,10 @@
    ("C-r" . consult-history))
   :custom
   (completion-in-region-function #'consult-completion-in-region))
+
+(use-package better-jumper
+  :init 
+  (better-jumper-mode +1))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
