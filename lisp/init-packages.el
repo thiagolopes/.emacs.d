@@ -80,13 +80,30 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package undo-tree
+  :disabled
   :diminish
   :init
   (global-undo-tree-mode t)
   (defalias 'undo! 'undo-tree-visualize)
   :custom
+  (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   (undo-tree-visualizer-diff t)
   (undo-tree-visualizer-timestamps t))
+
+(use-package undo-fu
+  :config
+  (global-unset-key (kbd "C-z"))
+  (global-set-key (kbd "C-z")   'undo-fu-only-undo)
+  (global-set-key (kbd "C-S-z") 'undo-fu-only-redo)
+  (global-set-key (kbd "C-/")   'undo-fu-only-undo)
+  (global-set-key (kbd "M-_") 'undo-fu-only-redo))
+
+(use-package undo-fu-session
+  :after undo-fu
+  :init
+  (global-undo-fu-session-mode t)
+  :config
+  (setq undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'")))
 
 (use-package diff-hl
   :custom
