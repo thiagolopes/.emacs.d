@@ -19,7 +19,7 @@
 (use-package pdf-tools)
 (use-package python-black)
 (use-package isortify)
-(use-package pyenv)
+(use-package pyenv-mode)
 
 (use-package highlight-numbers
   :hook (prog-mode . highlight-numbers-mode))
