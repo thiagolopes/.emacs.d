@@ -98,6 +98,8 @@
 
 ;;; font config
 (defvar font-list '(
+                    ("Victor Mono" . 13)
+                    ("Source Code Pro" . 13)
 		    ("JetBrains Mono" . 14)
 		    ("Inconsolata" . 15)
 		    ("Hack" . 11)
