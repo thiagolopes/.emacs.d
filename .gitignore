@@ -67,3 +67,4 @@ buffer-content*
 /elpy
 company-statistics-cache.el
 elpy-*
+/undo-fu-session
