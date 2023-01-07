@@ -405,5 +405,9 @@
   :init 
   (better-jumper-mode +1))
 
+(use-package scroll-on-jump
+  :config
+  (setq scroll-on-jump-duration 0.6))
+
 (provide 'init-packages)
 ;;; init-packages.el ends here

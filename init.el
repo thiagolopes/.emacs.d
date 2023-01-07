@@ -50,6 +50,8 @@
 (require 'uniquify)
 
 (custom-set-variables
+ '(cursor-type '(bar . 2))
+ '(line-spacing 0.22)
  '(auto-revert-interval 2)
  '(auto-revert-check-vc-info t)
  '(global-auto-revert-non-file-buffers t)
@@ -89,7 +91,7 @@
  '(recenter-positions '(top middle bottom))
  '(display-time-default-load-average nil)
  '(dictionary-server "dict.org")
- '(fringe-mode '(4 . 2))
+ '(set-window-margin nil 2)
  '(frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name)) "%b")))))
@@ -98,7 +100,7 @@
 
 ;;; font config
 (defvar font-list '(
-                    ("Victor Mono" . 13)
+                    ("Victor Mono" . 12)
                     ("Source Code Pro" . 13)
 		    ("JetBrains Mono" . 14)
 		    ("Inconsolata" . 15)
