@@ -80,7 +80,6 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package undo-tree
-  :disabled
   :diminish
   :init
   (global-undo-tree-mode t)

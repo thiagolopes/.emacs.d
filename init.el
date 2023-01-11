@@ -52,6 +52,7 @@
 (custom-set-variables
  '(cursor-type '(bar . 2))
  '(line-spacing 0.22)
+ '(global-auto-revert-mode t)
  '(auto-revert-interval 2)
  '(auto-revert-check-vc-info t)
  '(global-auto-revert-non-file-buffers t)
