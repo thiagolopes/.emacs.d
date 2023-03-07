@@ -68,3 +68,5 @@ buffer-content*
 company-statistics-cache.el
 elpy-*
 /undo-fu-session
+desktop/emacs.desktop
+desktop/lock

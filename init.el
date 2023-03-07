@@ -65,7 +65,6 @@
  '(save-place-mode 1)
  '(uniquify-buffer-name-style 'forward)
  '(scroll-step 1)
- '(desktop-save-mode t)
  '(set-mark-command-repeat-pop t)
  '(tab-always-indent 'complete)
  '(current-language-environment "UTF-8")
@@ -98,6 +97,17 @@
                    (abbreviate-file-name (buffer-file-name)) "%b")))))
 
 (global-unset-key (kbd "C-z")) ; avoid miss quit
+
+;; save deskto - save and restore session
+(setq desktop-dirname             "~/.emacs.d/desktop/"
+      desktop-base-file-name      "emacs.desktop"
+      desktop-base-lock-name      "lock"
+      desktop-path                (list desktop-dirname)
+      desktop-save                t
+      desktop-files-not-to-save   "^$" ;reload tramp paths
+      desktop-load-locked-desktop nil
+      desktop-auto-save-timeout   30)
+ (desktop-save-mode 1)
 
 ;;; font config
 (defvar font-list '(
