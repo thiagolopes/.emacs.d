@@ -272,9 +272,7 @@
 (use-package modus-themes
   :disabled
   :init
-  (modus-themes-load-themes)
-  :config
-  (modus-themes-load-vivendi)
+  (load-theme 'modus-vivendi)
   :custom
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs nil)
@@ -344,6 +342,7 @@
   (load-theme 'zenburn))
 
 (use-package spacemacs-theme
+  :disabled
   :custom
   (spacemacs-theme-comment-italic t)
   :init
@@ -409,9 +408,8 @@
   (setq scroll-on-jump-duration 0.6))
 
 (use-package doom-themes
-  :disabled
   :init
-  (load-theme 'doom-solarized-dark-high-contrast))
+  (load-theme 'doom-monokai-classic))
 
 (use-package treemacs
   :hook
@@ -425,6 +423,10 @@
 
 (use-package treemacs-magit
   :after (treemacs magit))
+
+(use-package treemacs-all-the-icons
+    :if treemacs-use-all-the-icons-theme
+    :hook ((treemacs-mode dired-mode) . (lambda () (treemacs-load-theme 'all-the-icons))))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
