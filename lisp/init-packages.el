@@ -408,5 +408,23 @@
   :config
   (setq scroll-on-jump-duration 0.6))
 
+(use-package doom-themes
+  :disabled
+  :init
+  (load-theme 'doom-solarized-dark-high-contrast))
+
+(use-package treemacs
+  :hook
+  (prog-mode . treemacs)
+  :bind
+  (:map global-map
+        ("M-0" . treemacs-select-window)))
+
+(use-package treemacs-projectile
+  :after (treemacs projectile))
+
+(use-package treemacs-magit
+  :after (treemacs magit))
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
