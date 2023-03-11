@@ -31,16 +31,6 @@
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
 
-;;; GUI
-(custom-set-variables
- '(inhibit-startup-screen t)
- '(menu-bar-mode nil)
- '(tool-bar-mode nil)
- '(scroll-bar-mode nil)
- '(use-dialog-box nil)
- '(ring-bell-function #'ignore)
- '(tab-bar-show 1))
-
 ;;; font config
 (defvar font-list '(
                     ("Hack" . 12)
@@ -86,6 +76,7 @@
 
 ;; load packages
 (require 'editor)
+(require 'packages)
 
 ;;; load-theme
 (use-package doom-themes
