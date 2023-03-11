@@ -6,11 +6,30 @@
 ;; License: MIT                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Custom
-(setq custom-file "~/.emacs.d/custom.el")
-(unless (file-exists-p custom-file)
-  (write-region "" nil custom-file))
-(load custom-file nil t)
+;; Define and initialise package repositories
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+;; use-package to simplify the config file
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure 't)
+
+;; Always load newest byte code
+(setq load-prefer-newer t)
+
+;; Always
+(setq require-final-newline t)
+
+;; reduce the frequency of garbage collection by making it happen on
+;; each 50MB of allocated data (the default is on every 0.76MB)
+(setq gc-cons-threshold 50000000)
+
+;; warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
 
 ;;; GUI
 (custom-set-variables
@@ -22,96 +41,12 @@
  '(ring-bell-function #'ignore)
  '(tab-bar-show 1))
 
-;;; Setup straight
- (if (and (executable-find "watchexec")
-          (executable-find "python3"))
-     (setq straight-check-for-modifications '(watch-files find-when-checking))
-   (setq straight-check-for-modifications
-         '(find-at-startup find-when-checking)))
-(setq straight-use-package-by-default t)
-
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-;;; Add use-package
-(straight-use-package 'use-package)
-
-;;; Useful Defaults
-(require 'uniquify)
-
-(custom-set-variables
- '(cursor-type '(bar . 2))
- '(line-spacing 0.22)
- '(global-auto-revert-mode t)
- '(auto-revert-interval 2)
- '(auto-revert-check-vc-info t)
- '(global-auto-revert-non-file-buffers t)
- '(auto-revert-verbose nil)
- '(save-interprogram-paste-before-kill t)
- '(apropos-do-all t)
- '(load-prefer-newer t)
- '(savehist-mode 1)
- '(show-paren-mode 1)
- '(save-place-mode 1)
- '(uniquify-buffer-name-style 'forward)
- '(scroll-step 1)
- '(set-mark-command-repeat-pop t)
- '(tab-always-indent 'complete)
- '(current-language-environment "UTF-8")
- '(after-save-hook '(executable-make-buffer-file-executable-if-script-p))
- '(column-number-indicator-zero-based nil)
- '(scroll-preserve-screen-position t)
- '(make-backup-files nil)
- '(sentence-end-double-space nil)
- '(words-include-escapes t)
- '(indent-tabs-mode nil)
- '(standard-indent 2)
- '(view-read-only t)
- '(kill-read-only-ok t)
- '(kill-whole-line t)
- '(history-delete-duplicates t)
- '(kill-do-not-save-duplicates t)
- '(password-cache-expiry 300)
- '(debugger-stack-frame-as-list t)
- '(split-width-threshold 140)
- '(y-or-n-p-use-read-key t)
- '(use-short-answers t)
- '(async-shell-command-display-buffer nil)
- '(revert-without-query '(""))
- '(recenter-positions '(top middle bottom))
- '(display-time-default-load-average nil)
- '(dictionary-server "dict.org")
- '(set-window-margin nil 2)
- '(frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name)) "%b")))))
-
-(global-unset-key (kbd "C-z")) ; avoid miss quit
-
-;; save deskto - save and restore session
-(setq desktop-dirname             "~/.emacs.d/desktop/"
-      desktop-base-file-name      "emacs.desktop"
-      desktop-base-lock-name      "lock"
-      desktop-save                t
-      desktop-auto-save-timeout   30)
- (desktop-save-mode 1)
-
 ;;; font config
 (defvar font-list '(
                     ("Hack" . 12)
                     ("Victor Mono" . 12)
                     ("Source Code Pro" . 13)
-		    ("JetBrains Mono" . 14)
+	 	    ("JetBrains Mono" . 14)
 		    ("Inconsolata" . 15)
 		    ("Iosevka" . 13)
 		    ("Input" . 10)
@@ -135,14 +70,29 @@
       (setq font-setting (format "%s-%d" font-name font-size))
       (set-frame-font font-setting nil t)
       (add-to-list 'default-frame-alist (cons 'font font-setting)))))
+
+
+;;
+(setq custom-file (concat user-emacs-directory "/custom.el"))
+(add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
+(defvar savefile-dir (expand-file-name "savefile" user-emacs-directory)
+  "This folder stores all the automatically generated save/history-files.")
+
+(unless (file-exists-p savefile-dir)
+  (make-directory savefile-dir))
+
+;; avoid miss quit
+(global-unset-key (kbd "C-z"))
+
+;; load packages
+(require 'editor)
+
+;;; load-theme
+(use-package doom-themes
+  :init
+  (load-theme 'doom-monokai-classic t))
+
 (when (display-graphic-p)
   (switch-font))
 
-;;; Load .emacs.d/lisp
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-;;; Load tools configs
-(require 'init-helpers)
-(require 'init-org)
-(require 'init-packages)
-(require 'init-modeline)
 ;;; init.el ends here
