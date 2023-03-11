@@ -70,3 +70,4 @@ elpy-*
 /undo-fu-session
 desktop/emacs.desktop
 desktop/lock
+savefile/
