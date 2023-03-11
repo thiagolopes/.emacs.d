@@ -96,6 +96,19 @@
   :init
   (global-highlight-thing-mode t))
 
+(use-package vertico
+  :custom
+  (vertico-cycle 1)
+  :init
+  (vertico-mode t))
+
+(use-package marginalia
+  :after vertico
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode t))
+
 (use-package counsel
   :commands (counsel-yank-pop counsel-ag counsel-fzf)
   :bind
@@ -118,7 +131,6 @@
    ("C-i" . helm-execute-persistent-action)
    ("C-z" . helm-select-action)))
 
-
 (use-package key-chord
   :init
   (key-chord-mode t)
@@ -140,17 +152,23 @@
   :bind
   (("C-x b" . consult-buffer)
    ("C-s" . consult-line)
-  :map
-   minibuffer-local-map
+   :map minibuffer-local-map
    ("C-r" . consult-history))
-  :hook (completion-list-mode . consult-preview-at-point-mode)
   :custom
   (completion-in-region-function #'consult-completion-in-region))
-
 
 (use-package diff-hl
   :init
   (global-diff-hl-mode))
+
+(use-package whitespace-cleanup-mode
+  :init
+  (global-whitespace-cleanup-mode))
+
+(use-package mwim
+  :bind
+  ("C-a" . mwim-beginning)
+  ("C-e" . mwim-end))
 
 
 (provide 'packages)
