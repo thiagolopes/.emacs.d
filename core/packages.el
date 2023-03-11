@@ -31,7 +31,6 @@
     whitespace-cleanup-mode
     zop-to-char))
 
-
 (defun packages-installed-p ()
   (cl-every #'package-installed-p packages-list-p))
 

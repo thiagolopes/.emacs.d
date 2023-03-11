@@ -33,6 +33,15 @@
 (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
+;; desktop
+(unless (file-exists-p (expand-file-name "desktop" savefile-dir))
+  (make-directory (expand-file-name "desktop" savefile-dir)))
+
+(desktop-change-dir (expand-file-name "desktop" savefile-dir))
+(setq desktop-load-locked-desktop -1)
+(desktop-save-mode t)
+
+
 ;; https://www.emacswiki.org/emacs/SavePlace
 ;; saveplace remembers your location in a file when saving files
 (setq save-place-file (expand-file-name "saveplace" savefile-dir))
@@ -96,5 +105,45 @@
                                             (abbreviate-file-name (buffer-file-name))
                                           "%b"))))
 
+;; dark theme gtk
+(defun set-emacs-frames-gtk (variant)
+  (dolist (frame (frame-list))
+    (let* ((window-id (frame-parameter frame 'outer-window-id))
+           (id (string-to-number window-id))
+           (cmd (format "xprop -id 0x%x -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"%s\"" id
+                        variant)))
+      (call-process-shell-command cmd))))
+(set-emacs-frames-gtk "dark")
+
+
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-=") #'text-scale-increase)
+(global-set-key (kbd "C-+") #'text-scale-increase)
+(global-set-key (kbd "C--") #'text-scale-decrease)
+(global-set-key (kbd "M-n") #'forward-paragraph)
+(global-set-key (kbd "M-p") #'backward-paragraph)
+;; Use undo only
+(global-set-key (kbd "C-/") 'undo-only)
+(global-set-key (kbd "C-?") 'undo-redo)
+
+;; Buffer resize
+(global-set-key (kbd "M-<left>") (lambda ()
+                                   (interactive)
+                                   (shrink-window-horizontally 10)))
+(global-set-key (kbd "M-<right>") (lambda ()
+                                    (interactive)
+                                    (enlarge-window-horizontally 10)))
+(global-set-key (kbd "M-<down>") (lambda ()
+                                   (interactive)
+                                   (shrink-window 10)))
+(global-set-key (kbd "M-<up>") (lambda ()
+                                 (interactive)
+                                 (enlarge-window 10)))
+;; Buffer navegation
+(global-set-key (kbd "<left>") 'previous-buffer)
+(global-set-key (kbd "<right>") 'next-buffer)
+;; Macro
+(global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
+(global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 
 (provide 'editor)
