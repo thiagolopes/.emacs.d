@@ -54,7 +54,18 @@
 (install-packages)
 ;; ----------------------------------
 
+;; todo add package to mode
 (use-package elpy)
+
+(use-package pulsar
+  :config
+  (pulsar-global-mode))
+
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion))))))
 
 (use-package bookmark
   :config
@@ -77,6 +88,7 @@
   :bind ("C-:" . goto-last-change))
 
 (use-package company
+  :diminish
   :custom
   (company-idle-delay 0.1)
   (company-selection-wrap-around t)
@@ -96,7 +108,7 @@
   (global-highlight-thing-mode t))
 
 (use-package vertico
-  :custom
+  nn:custom
   (vertico-cycle 1)
   :init
   (vertico-mode t))
@@ -110,10 +122,8 @@
 
 (use-package consult
   :bind
-  (("C-x b" . consult-buffer)
-   ("C-s" . consult-line)
-   :map minibuffer-local-map
-   ("C-r" . consult-history))
+  ("C-x b" . consult-buffer)
+  ("C-s" . swiper)
   :custom
   (completion-in-region-function #'consult-completion-in-region))
 
