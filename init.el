@@ -81,7 +81,7 @@
 ;;; load-theme
 (use-package doom-themes
   :init
-  (load-theme 'doom-monokai-classic t))
+  (load-theme 'doom-monokai-spectrum t))
 
 (when (display-graphic-p)
   (switch-font))

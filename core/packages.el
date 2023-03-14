@@ -3,6 +3,7 @@
 (defvar packages-list-p
   '(ace-window
     ag
+    all-the-icons
     browse-kill-ring
     diff-hl
     diminish
@@ -11,7 +12,6 @@
     easy-kill
     epl
     eglot
-    elpy
     exec-path-from-shell
     expand-region
     flycheck
@@ -54,6 +54,8 @@
 (install-packages)
 ;; ----------------------------------
 
+(use-package elpy)
+
 (use-package bookmark
   :config
   (setq bookmark-default-file (expand-file-name "bookmarks" savefile-dir)
@@ -74,7 +76,6 @@
 (use-package goto-last-change
   :bind ("C-:" . goto-last-change))
 
-
 (use-package company
   :custom
   (company-idle-delay 0.1)
@@ -89,7 +90,6 @@
   (define-key company-active-map (kbd "M-.") #'company-show-location)
   (define-key company-active-map (kbd "RET") nil)
   (global-company-mode))
-
 
 (use-package highlight-thing
   :init
@@ -123,7 +123,7 @@
   (history-delete-duplicates t)
   :bind
   (("M-x" . helm-M-x)
-   ("M-y" . helm-show-kill-ring)
+pp   ("M-y" . helm-show-kill-ring)
    ("C-x C-f" . helm-find-files)
    :map helm-map
    ("<tab>" . helm-execute-persistent-action)
@@ -149,12 +149,8 @@
 
 (use-package consult
   :bind
-  (("C-x b" . consult-buffer)
-   ("C-s" . consult-line)
-   :map minibuffer-local-map
-   ("C-r" . consult-history))
-  :custom
-  (completion-in-region-function #'consult-completion-in-region))
+  ("C-x b" . consult-buffer)
+  ("C-s" . consult-line))
 
 (use-package diff-hl
   :init
@@ -168,6 +164,13 @@
   :bind
   ("C-a" . mwim-beginning)
   ("C-e" . mwim-end))
+
+
+(use-package smart-mode-line
+  :config
+  (setq sml/no-confirm-load-theme t)
+  (setq sml/theme 'respectful)
+  (sml/setup))
 
 
 (provide 'packages)
