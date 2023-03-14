@@ -74,6 +74,7 @@
 
 ;; linue number
 (global-display-line-numbers-mode)
+(setq-default display-line-numbers-width 3)
 
 ;; already disabled anyway
 (tool-bar-mode -1)
