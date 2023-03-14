@@ -108,11 +108,14 @@
   :init
   (marginalia-mode t))
 
-(use-package counsel
-  :commands (counsel-yank-pop counsel-ag counsel-fzf)
+(use-package consult
   :bind
-  ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf))
+  (("C-x b" . consult-buffer)
+   ("C-s" . consult-line)
+   :map minibuffer-local-map
+   ("C-r" . consult-history))
+  :custom
+  (completion-in-region-function #'consult-completion-in-region))
 
 (use-package helm
   :custom
@@ -123,7 +126,7 @@
   (history-delete-duplicates t)
   :bind
   (("M-x" . helm-M-x)
-pp   ("M-y" . helm-show-kill-ring)
+   ("M-y" . helm-show-kill-ring)
    ("C-x C-f" . helm-find-files)
    :map helm-map
    ("<tab>" . helm-execute-persistent-action)
@@ -149,8 +152,7 @@ pp   ("M-y" . helm-show-kill-ring)
 
 (use-package consult
   :bind
-  ("C-x b" . consult-buffer)
-  ("C-s" . consult-line))
+  ("C-x b" . consult-buffer))
 
 (use-package diff-hl
   :init
