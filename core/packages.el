@@ -108,7 +108,7 @@
   (global-highlight-thing-mode t))
 
 (use-package vertico
-  nn:custom
+  :custom
   (vertico-cycle 1)
   :init
   (vertico-mode t))
