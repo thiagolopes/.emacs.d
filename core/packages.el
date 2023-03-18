@@ -50,8 +50,83 @@
     (message "%s" " done.")
     (require-packages packages-list-p)))
 
-;; run package installation
 (install-packages)
+;; ----------------------------------
+
+(defmacro auto-install (extension package mode)
+  `(add-to-list 'auto-mode-alist
+                `(,extension . (lambda ()
+                                 (unless (package-installed-p ',package)
+                                   (package-install ',package))
+                                 (,mode)))))
+
+
+(defvar auto-install-alist
+  '(("\\.adoc\\'" adoc-mode adoc-mode)
+    ("\\.clj\\'" clojure-mode clojure-mode)
+    ("\\.cljc\\'" clojure-mode clojurec-mode)
+    ("\\.cljs\\'" clojure-mode clojurescript-mode)
+    ("\\.edn\\'" clojure-mode clojure-mode)
+    ("\\.cmake\\'" cmake-mode cmake-mode)
+    ("CMakeLists\\.txt\\'" cmake-mode cmake-mode)
+    ("\\.coffee\\'" coffee-mode coffee-mode)
+    ("\\.css\\'" css-mode css-mode)
+    ("\\.csv\\'" csv-mode csv-mode)
+    ("Cask" cask-mode cask-mode)
+    ("\\.d\\'" d-mode d-mode)
+    ("\\.dart\\'" dart-mode dart-mode)
+    ("\\.elm\\'" elm-mode elm-mode)
+    ("\\.ex\\'" elixir-mode elixir-mode)
+    ("\\.exs\\'" elixir-mode elixir-mode)
+    ("\\.elixir\\'" elixir-mode elixir-mode)
+    ("\\.erl\\'" erlang erlang-mode)
+    ("\\.feature\\'" feature-mode feature-mode)
+    ("\\.go\\'" go-mode go-mode)
+    ("\\.graphql\\'" graphql-mode graphql-mode)
+    ("\\.groovy\\'" groovy-mode groovy-mode)
+    ("\\.haml\\'" haml-mode haml-mode)
+    ("\\.hs\\'" haskell-mode haskell-mode)
+    ("\\.jl\\'" julia-mode julia-mode)
+    ("\\.json\\'" json-mode json-mode)
+    ("\\.kt\\'" kotlin-mode kotlin-mode)
+    ("\\.kv\\'" kivy-mode kivy-mode)
+    ("\\.latex\\'" auctex LaTeX-mode)
+    ("\\.less\\'" less-css-mode less-css-mode)
+    ("\\.lua\\'" lua-mode lua-mode)
+    ("\\.markdown\\'" markdown-mode markdown-mode)
+    ("\\.md\\'" markdown-mode markdown-mode)
+    ("\\.ml\\'" tuareg tuareg-mode)
+    ("\\.pp\\'" puppet-mode puppet-mode)
+    ("\\.php\\'" php-mode php-mode)
+    ("\\.proto\\'" protobuf-mode protobuf-mode)
+    ("\\.pyd\\'" cython-mode cython-mode)
+    ("\\.pyi\\'" cython-mode cython-mode)
+    ("\\.pyx\\'" cython-mode cython-mode)
+    ("PKGBUILD\\'" pkgbuild-mode pkgbuild-mode)
+    ("\\.rkt\\'" racket-mode racket-mode)
+    ("\\.rs\\'" rust-mode rust-mode)
+    ("\\.sass\\'" sass-mode sass-mode)
+    ("\\.scala\\'" scala-mode scala-mode)
+    ("\\.scss\\'" scss-mode scss-mode)
+    ("\\.slim\\'" slim-mode slim-mode)
+    ("\\.styl\\'" stylus-mode stylus-mode)
+    ("\\.swift\\'" swift-mode swift-mode)
+    ("\\.textile\\'" textile-mode textile-mode)
+    ("\\.thrift\\'" thrift thrift-mode)
+    ("\\.yml\\'" yaml-mode yaml-mode)
+    ("\\.yaml\\'" yaml-mode yaml-mode)
+    ("Dockerfile\\'" dockerfile-mode dockerfile-mode)))
+
+;; build auto-install mappings
+(mapc
+ (lambda (entry)
+   (let ((extension (car entry))
+         (package (cadr entry))
+         (mode (cadr (cdr entry))))
+     (unless (package-installed-p package)
+       (auto-install extension package mode))))
+ auto-install-alist)
+
 ;; ----------------------------------
 
 ;; todo add package to mode
@@ -177,12 +252,16 @@
   ("C-a" . mwim-beginning)
   ("C-e" . mwim-end))
 
-
 (use-package smart-mode-line
   :config
   (setq sml/no-confirm-load-theme t)
   (setq sml/theme 'respectful)
   (sml/setup))
 
+(use-package counsel
+  :commands (counsel-yank-pop counsel-ag counsel-fzf)
+  :bind
+  ("M-?" . counsel-ag)
+  ("C-M-?" . counsel-fzf))
 
 (provide 'packages)
