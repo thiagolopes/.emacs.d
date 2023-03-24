@@ -26,7 +26,6 @@
     smartparens
     smartrep
     super-save
-    undo-tree
     which-key
     whitespace-cleanup-mode
     zop-to-char))
@@ -263,5 +262,9 @@
   :bind
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf))
+
+(use-package undo-tree
+  :init
+  (global-undo-tree-mode))
 
 (provide 'packages)
