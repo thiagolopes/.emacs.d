@@ -79,9 +79,9 @@
 (require 'packages)
 
 ;;; load-theme
-(use-package doom-themes
+(use-package gruber-darker-theme
   :init
-  (load-theme 'doom-monokai-spectrum t))
+  (load-theme 'gruber-darker t))
 
 (when (display-graphic-p)
   (switch-font))
