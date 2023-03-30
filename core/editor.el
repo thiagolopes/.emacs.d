@@ -26,6 +26,9 @@
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
 
+;; disable boxes
+(setq use-dialog-box nil)
+
 ;;; Useful Defaults
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
