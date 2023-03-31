@@ -25,7 +25,6 @@
     restclient
     smartparens
     smartrep
-    super-save
     which-key
     whitespace-cleanup-mode
     zop-to-char))
@@ -70,6 +69,7 @@
     ("CMakeLists\\.txt\\'" cmake-mode cmake-mode)
     ("\\.coffee\\'" coffee-mode coffee-mode)
     ("\\.css\\'" css-mode css-mode)
+    ("\\.css\\'" scss-mode scss-mode)
     ("\\.csv\\'" csv-mode csv-mode)
     ("Cask" cask-mode cask-mode)
     ("\\.d\\'" d-mode d-mode)
@@ -261,11 +261,16 @@
 
 (use-package undo-tree
   :init
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   (global-undo-tree-mode))
 
 (use-package git-gutter
   :hook (prog-mode . git-gutter-mode)
   :config
   (setq git-gutter:update-interval 0.02))
+
+(use-package super-save
+  :config
+  (super-save-mode t))
 
 (provide 'packages)
