@@ -14,7 +14,7 @@
     eglot
     exec-path-from-shell
     expand-region
-    flycheck
+    
     gist
     git-modes
     git-timemachine
@@ -23,11 +23,12 @@
     magit
     operate-on-number
     restclient
-    smartparens
+    
     smartrep
     which-key
     whitespace-cleanup-mode
     zop-to-char))
+
 
 (defun packages-installed-p ()
   (cl-every #'package-installed-p packages-list-p))
@@ -272,5 +273,12 @@
 (use-package super-save
   :config
   (super-save-mode t))
+
+(use-package smartparens
+  :hook (prog-mode . smartparent-mode))
+
+(use-package flycheck
+  :config
+  (global-flycheck-mode))
 
 (provide 'packages)
