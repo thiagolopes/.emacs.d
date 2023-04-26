@@ -279,6 +279,7 @@
 
 (use-package flycheck
   :config
+  (setq flycheck-check-syntax-automatically '(save mode-enable))
   (global-flycheck-mode))
 
 (use-package dumb-jump
