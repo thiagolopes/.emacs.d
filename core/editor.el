@@ -117,7 +117,9 @@
            (cmd (format "xprop -id 0x%x -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"%s\"" id
                         variant)))
       (call-process-shell-command cmd))))
-(set-emacs-frames-gtk "dark")
+
+(if (eq system-type 'gnu/linux)
+  (set-emacs-frames-gtk "dark"))
 
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -149,5 +151,14 @@
 ;; Macro
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
+
+;; sanitize macos keys
+(if (eq system-type 'darwin)
+    (progn
+      (setq mac-option-key-is-meta nil)
+      (setq mac-command-key-is-meta t)
+      (setq mac-command-modifier 'meta)
+      (setq mac-option-modifier nil)))
+(setq scroll-preserve-screen-position t)
 
 (provide 'editor)
