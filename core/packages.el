@@ -130,7 +130,9 @@
 ;; ----------------------------------
 
 ;; todo add package to mode
-(use-package elpy)
+(use-package elpy
+  :init
+  (elpy-enable))
 
 (use-package pulsar
   :config
