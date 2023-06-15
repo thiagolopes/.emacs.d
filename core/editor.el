@@ -79,6 +79,9 @@
 (global-display-line-numbers-mode)
 (setq-default display-line-numbers-width 3)
 
+;; line spaccing
+(setq line-spacing .15)
+
 ;; already disabled anyway
 (tool-bar-mode -1)
 (menu-bar-mode -1)
