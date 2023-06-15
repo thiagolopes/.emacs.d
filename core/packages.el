@@ -288,4 +288,11 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
+(use-package smartparens
+  :hook
+  (add-hook 'prog-mode #'smartparens-mode)
+  :bind
+  ("C-)" . sp-forward-slurp-sexp)
+  ("C-(" . sp-forward-barf-sexp))
+
 (provide 'packages)
