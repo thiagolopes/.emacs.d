@@ -276,9 +276,6 @@
   :config
   (super-save-mode t))
 
-(use-package smartparens
-  :hook (prog-mode . smartparent-mode))
-
 (use-package flycheck
   :config
   (setq flycheck-check-syntax-automatically '(save mode-enable))
@@ -314,5 +311,6 @@
                 (set-window-scroll-bars (neo-global--get-window) nil nil)))
   :bind
   ("C-x C-n" . neotree-project-dir))
+;; https://github.com/Alexander-Miller/treemacs
 
 (provide 'packages)
