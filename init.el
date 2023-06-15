@@ -33,6 +33,7 @@
 
 ;;; font config
 (defvar font-list '(
+                    ("Comic Mono" . 12)
                     ("DejaVu Sans Mono" . 12)
                     ("Hack" . 12)
                     ("Victor Mono" . 12)
