@@ -285,14 +285,34 @@
   (global-flycheck-mode))
 
 (use-package dumb-jump
-  :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+  :hook
+  (xref-backend-functions dumb-jump-xref-activate))
 
 (use-package smartparens
   :hook
-  (add-hook 'prog-mode #'smartparens-mode)
+  (prog-mode . smartparens-mode)
   :bind
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
+
+(use-package neotree
+  :init
+    (defun neotree-project-dir ()
+    "Open NeoTree using the git root."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))))
+    (add-hook 'neo-after-create-hook
+              (lambda (_)
+                (set-window-scroll-bars (neo-global--get-window) nil nil)))
+  :bind
+  ("C-x C-n" . neotree-project-dir))
 
 (provide 'packages)
