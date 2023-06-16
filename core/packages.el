@@ -6,29 +6,26 @@
     all-the-icons
     browse-kill-ring
     cl-libify
+    cider
     diminish
     discover-my-major
     dockerfile-mode
     easy-kill
     epl
-    eglot
-    exec-path-from-shell
     expand-region
-    
     gist
     git-modes
     git-timemachine
     imenu-anywhere
     json-mode
+    lsp-mode
     magit
     operate-on-number
     restclient
-    
     smartrep
     which-key
     whitespace-cleanup-mode
     zop-to-char))
-
 
 (defun packages-installed-p ()
   (cl-every #'package-installed-p packages-list-p))
@@ -312,5 +309,9 @@
   :bind
   ("C-x C-n" . neotree-project-dir))
 ;; https://github.com/Alexander-Miller/treemacs
+
+(use-package exec-path-from-shell
+  :init
+  (exec-path-from-shell-initialize))
 
 (provide 'packages)
