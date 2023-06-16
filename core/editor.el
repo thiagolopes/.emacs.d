@@ -136,10 +136,10 @@
 (global-set-key (kbd "C-?") 'undo-redo)
 
 ;; Buffer resize
-(global-set-key (kbd "M-<left>") (lambda ()
+(global-set-key (kbd "M-<right>") (lambda ()
                                    (interactive)
                                    (shrink-window-horizontally 10)))
-(global-set-key (kbd "M-<right>") (lambda ()
+(global-set-key (kbd "M-<left>") (lambda ()
                                     (interactive)
                                     (enlarge-window-horizontally 10)))
 (global-set-key (kbd "M-<down>") (lambda ()
