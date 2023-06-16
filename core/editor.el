@@ -148,9 +148,11 @@
 (global-set-key (kbd "M-<up>") (lambda ()
                                  (interactive)
                                  (enlarge-window 10)))
+
 ;; Buffer navegation
-(global-set-key (kbd "<left>") 'previous-buffer)
-(global-set-key (kbd "<right>") 'next-buffer)
+;; (global-set-key (kbd "<left>") 'previous-buffer)
+;; (global-set-key (kbd "<right>") 'next-buffer)
+
 ;; Macro
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
