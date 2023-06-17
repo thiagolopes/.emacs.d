@@ -6,13 +6,13 @@
 (delete-selection-mode t)
 
 ;; store all backup and autosave files in the tmp dir
-(setq backup-directory-alist `(("." . ,(expand-file-name "backup" savefile-dir))))
+(setq-default backup-directory-alist `(("." . ,(expand-file-name "backup" savefile-dir))))
 
 ;; revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
 
 ;; hippie expand is dabbrev expand on steroids
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+(setq-default hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
                                          try-expand-dabbrev-from-kill
                                          try-complete-file-name-partially
@@ -24,10 +24,10 @@
                                          try-complete-lisp-symbol))
 
 ;; smart tab behavior - indent or complete
-(setq tab-always-indent 'complete)
+(setq-default tab-always-indent 'complete)
 
 ;; disable boxes
-(setq use-dialog-box nil)
+(setq-default use-dialog-box nil)
 
 ;;; Useful Defaults
 (require 'uniquify)
@@ -41,13 +41,13 @@
   (make-directory (expand-file-name "desktop" savefile-dir)))
 
 (desktop-change-dir (expand-file-name "desktop" savefile-dir))
-(setq desktop-load-locked-desktop -1)
+(setq-default desktop-load-locked-desktop -1)
 (desktop-save-mode t)
 
 
 ;; https://www.emacswiki.org/emacs/SavePlace
 ;; saveplace remembers your location in a file when saving files
-(setq save-place-file (expand-file-name "saveplace" savefile-dir))
+(setq-default save-place-file (expand-file-name "saveplace" savefile-dir))
 ;; activate it for all buffers
 (save-place-mode 1)
 
@@ -80,20 +80,20 @@
 (setq-default display-line-numbers-width 3)
 
 ;; line spaccing
-(setq line-spacing .15)
+(setq-default line-spacing 0.3)
 
 ;; already disabled anyway
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
 ;; disable the annoying bell ring
-(setq ring-bell-function 'ignore)
+(setq-default ring-bell-function 'ignore)
 
 ;; disable startup screen
 (setq inhibit-startup-screen t)
 
 ;; nice scrolling
-(setq scroll-margin 0
+(setq-default scroll-margin 0
       scroll-conservatively 100000
       scroll-preserve-screen-position 1)
 
@@ -152,7 +152,6 @@
 ;; Buffer navegation
 ;; (global-set-key (kbd "<left>") 'previous-buffer)
 ;; (global-set-key (kbd "<right>") 'next-buffer)
-
 ;; Macro
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
