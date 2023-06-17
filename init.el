@@ -82,8 +82,13 @@
 
 ;;; load-theme
 (use-package gruber-darker-theme
+  :disabled
   :init
   (load-theme 'gruber-darker t))
+
+(use-package jetbrains-darcula-theme
+  :config
+  (load-theme 'jetbrains-darcula t))
 
 (when (display-graphic-p)
   (switch-font))
