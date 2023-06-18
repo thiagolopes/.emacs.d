@@ -17,8 +17,6 @@
     git-modes
     git-timemachine
     imenu-anywhere
-    json-mode
-    lsp-mode
     magit
     operate-on-number
     restclient
@@ -178,6 +176,7 @@
   (global-company-mode))
 
 (use-package highlight-thing
+  :diminish
   :init
   (global-highlight-thing-mode t))
 
@@ -239,6 +238,7 @@
   ("C-x b" . consult-buffer))
 
 (use-package whitespace-cleanup-mode
+  :diminish
   :init
   (global-whitespace-cleanup-mode))
 
@@ -260,16 +260,19 @@
   ("C-M-?" . counsel-fzf))
 
 (use-package undo-tree
+  :diminish
   :init
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   (global-undo-tree-mode))
 
 (use-package git-gutter
+  :diminish
   :hook (prog-mode . git-gutter-mode)
   :config
   (setq git-gutter:update-interval 0.02))
 
 (use-package super-save
+  :diminish
   :config
   (super-save-mode t))
 
@@ -310,6 +313,11 @@
   ("C-x C-n" . neotree-project-dir))
 ;; https://github.com/Alexander-Miller/treemacs
 
+
+(use-package lsp-mode
+  :custom
+  (lsp-headerline-breadcrumb-enable nil))
+
 (use-package exec-path-from-shell
   :init
   (exec-path-from-shell-initialize))
@@ -330,5 +338,11 @@
   (global-set-key (kbd "C-x 4 0") 'switch-window-then-kill-buffer)
   :init
   (setq switch-window-shortcut-appearance 'image))
+
+(use-package tree-sitter
+  :custom
+  (global-tree-sitter-mode))
+
+(use-package tree-sitter-langs)
 
 (provide 'packages)
