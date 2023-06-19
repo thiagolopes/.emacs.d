@@ -281,6 +281,8 @@
   (setq flycheck-check-syntax-automatically '(save mode-enable))
   (global-flycheck-mode))
 
+(use-package flycheck-clj-kondo)
+
 (use-package dumb-jump
   :hook
   (xref-backend-functions dumb-jump-xref-activate))
@@ -342,6 +344,10 @@
 (use-package tree-sitter
   :custom
   (global-tree-sitter-mode))
+
+(use-package indent-guide
+  :config
+  (indent-guide-global-mode))
 
 (use-package tree-sitter-langs)
 
