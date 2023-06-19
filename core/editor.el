@@ -156,6 +156,11 @@
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 
+;; lisp sanitize
+(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
+(global-set-key (kbd "M-9") '(lambda () (interactive) (insert "(")))
+(global-set-key (kbd "M-0") '(lambda () (interactive) (insert ")")))
+
 ;; sanitize macos keys
 (if (eq system-type 'darwin)
     (progn
