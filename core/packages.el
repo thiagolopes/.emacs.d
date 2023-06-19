@@ -312,7 +312,10 @@
               (lambda (_)
                 (set-window-scroll-bars (neo-global--get-window) nil nil)))
   :bind
-  ("C-x C-n" . neotree-project-dir))
+  ("C-x C-n" . neotree-project-dir)
+  :config
+  (setq neo-smart-open t)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 ;; https://github.com/Alexander-Miller/treemacs
 
 
