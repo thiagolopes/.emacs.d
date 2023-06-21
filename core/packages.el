@@ -5,8 +5,9 @@
     ag
     all-the-icons
     browse-kill-ring
-    cl-libify
     cider
+    cl-libify
+    clang-format
     diminish
     discover-my-major
     dockerfile-mode
