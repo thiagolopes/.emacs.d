@@ -88,7 +88,10 @@
 
 (use-package jetbrains-darcula-theme
   :config
+  :disabled
   (load-theme 'jetbrains-darcula t))
+
+(load-theme 'wheatgrass)
 
 (when (display-graphic-p)
   (switch-font))
