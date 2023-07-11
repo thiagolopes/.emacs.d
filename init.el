@@ -91,7 +91,10 @@
   :disabled
   (load-theme 'jetbrains-darcula t))
 
-(load-theme 'wheatgrass)
+(use-package ef-themes
+  :init
+  (load-theme 'ef-bio t))
+
 
 (when (display-graphic-p)
   (switch-font))
