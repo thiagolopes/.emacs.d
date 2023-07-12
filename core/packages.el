@@ -322,6 +322,7 @@
 
 (use-package lsp-mode
   :custom
+  (read-process-output-max (* 1024 1024))
   (lsp-headerline-breadcrumb-enable nil))
 
 (use-package exec-path-from-shell
