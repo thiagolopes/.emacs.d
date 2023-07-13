@@ -42,7 +42,7 @@
 
 (desktop-change-dir (expand-file-name "desktop" savefile-dir))
 (setq-default desktop-load-locked-desktop -1)
-(desktop-save-mode t)
+;; (desktop-save-mode t)
 
 
 ;; https://www.emacswiki.org/emacs/SavePlace
