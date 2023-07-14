@@ -12,7 +12,7 @@
 ;; revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
 
--;; hippie expand is dabbrev expand on steroids
+;; hippie expand is dabbrev expand on steroids
 ;; (setq-default hippie-expand-try-functions-list '(try-expand-dabbrev
 ;;                                          try-expand-dabbrev-all-buffers
 ;;                                          try-expand-dabbrev-from-kill
@@ -81,16 +81,19 @@
 ;; (setq-default line-spacing 0.3)
 
 ;; already disabled anyway
-(tool-bar-mode -1)
+;; clean look
+(blink-cursor-mode -1)
+(scroll-bar-mode -1)
+(fringe-mode -1)
 (menu-bar-mode -1)
+(tool-bar-mode -1)
+(setq-default cursor-type 'bar)
 
 ;; disable the annoying bell ring
 (setq-default ring-bell-function 'ignore)
 
 ;; disable startup screen
-(setq inhibit-startup-screen t
-      initial-major-mode 'emacs-lisp-mode
-      load-prefer-newer t)
+(setq inhibit-startup-screen t)
 
 ;; mode line settings
 (line-number-mode t)
@@ -160,6 +163,37 @@
       (setq mac-command-modifier 'meta)
       (setq mac-option-modifier nil)))
 
+
+;; modeline to top
+(setq-default header-line-format mode-line-format)
+(setq-default mode-line-format nil)
+
+;; better scratch https://www.reddit.com/r/emacs/comments/4cmfwp/scratch_buffer_hacks_to_increase_its_utility/
+(defun immortal-scratch ()
+  (if (eq (current-buffer) (get-buffer "*scratch*"))
+      (progn (bury-buffer)
+             nil)
+  t))
+(add-hook 'kill-buffer-query-functions 'immortal-scratch)
+
+(defun save-persistent-scratch ()
+  "Save the contents of *scratch*"
+  (with-current-buffer (get-buffer-create "*scratch*")
+    (write-region (point-min) (point-max)
+                  (concat user-emacs-directory "scratch"))))
+
+(defun load-persistent-scratch ()
+  "Reload the scratch buffer"
+  (let ((scratch-file (concat user-emacs-directory "scratch")))
+    (if (file-exists-p scratch-file)
+        (with-current-buffer (get-buffer "*scratch*")
+          (delete-region (point-min) (point-max))
+          (insert-file-contents scratch-file)))))
+
+(add-hook 'after-init-hook 'load-persistent-scratch)
+(add-hook 'kill-emacs-hook 'save-persistent-scratch)
+
+(run-with-idle-timer 300 t 'save-persistent-scratch)
 
 
 (provide 'editor)

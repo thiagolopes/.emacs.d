@@ -1,4 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs            					   ;;
 ;; Author:  Thiago Lopes <thiagolopes@pm.me>               ;;
@@ -94,24 +95,14 @@
 (global-unset-key (kbd "M-m"))
 
 ;; load packages
+(require 'better-defaults)
 (require 'editor)
 (require 'packages)
 
 ;;; load-theme
-(use-package gruber-darker-theme
-  :disabled
+(use-package monokai-theme
   :init
-  (load-theme 'gruber-darker t))
-
-(use-package jetbrains-darcula-theme
-  :config
-  :disabled
-  (load-theme 'jetbrains-darcula t))
-
-(use-package ef-themes
-  :init
-  (load-theme 'ef-bio t))
-
+  (load-theme 'monokai t))
 
 (when (display-graphic-p)
   (switch-font))
