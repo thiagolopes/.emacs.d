@@ -96,6 +96,7 @@
     ("PKGBUILD\\'" pkgbuild-mode pkgbuild-mode)
     ("\\.rkt\\'" racket-mode racket-mode)
     ("\\.rs\\'" rust-mode rust-mode)
+    ("\\.shader\\'" shader-mode shader-mode)
     ("\\.sass\\'" sass-mode sass-mode)
     ("\\.scala\\'" scala-mode scala-mode)
     ("\\.scss\\'" scss-mode scss-mode)
@@ -126,6 +127,8 @@
   (elpy-enable))
 
 (use-package projectile
+  :bind
+  ("<f9>" . projectile-compile-project)
   :config
   (setq projectile-cache-file (expand-file-name  "projectile.cache" savefile-dir))
   (projectile-mode t))
@@ -266,7 +269,9 @@
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
 
-(use-package lsp-mode)
+(use-package lsp-mode
+  :custom
+  (lsp-headerline-breadcrumb-enable nil))
 
 (use-package exec-path-from-shell
   :init
