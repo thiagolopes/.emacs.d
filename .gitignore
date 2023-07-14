@@ -71,3 +71,5 @@ elpy-*
 desktop/emacs.desktop
 desktop/lock
 savefile/
+
+scratch
