@@ -6,13 +6,9 @@
     all-the-icons
     browse-kill-ring
     cider
-    cl-libify
     clang-format
     diminish
     discover-my-major
-    dockerfile-mode
-    easy-kill
-    epl
     expand-region
     gist
     git-modes
@@ -130,16 +126,6 @@
   :init
   (elpy-enable))
 
-(use-package pulsar
-  :config
-  (pulsar-global-mode))
-
-(use-package orderless
-  :init
-  (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
-
 (use-package bookmark
   :config
   (setq bookmark-default-file (expand-file-name "bookmarks" savefile-dir)
@@ -162,12 +148,6 @@
 
 (use-package company
   :diminish
-  :custom
-  (company-idle-delay 0.1)
-  (company-selection-wrap-around t)
-  (company-tooltip-align-annotations t)
-  (company-frontends '(company-pseudo-tooltip-frontend
-                       company-echo-metadata-frontend))
   :config
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
@@ -279,7 +259,6 @@
 
 (use-package flycheck
   :config
-  (setq flycheck-check-syntax-automatically '(save mode-enable))
   (global-flycheck-mode))
 
 (use-package flycheck-clj-kondo)
@@ -347,15 +326,9 @@
   :init
   (setq switch-window-shortcut-appearance 'image))
 
-(use-package tree-sitter
-  :custom
-  (global-tree-sitter-mode))
-
 (use-package indent-guide
   :config
   (indent-guide-global-mode))
-
-(use-package tree-sitter-langs)
 
 (use-package multiple-cursors
   :config
