@@ -1,7 +1,8 @@
-;; don't use tabs to indent
+;;; editor.el
+
 ;; but maintain correct appearance
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 8)
+
 ;; delete the selection with a keypress
 (delete-selection-mode t)
 
@@ -11,17 +12,17 @@
 ;; revert buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
 
-;; hippie expand is dabbrev expand on steroids
-(setq-default hippie-expand-try-functions-list '(try-expand-dabbrev
-                                         try-expand-dabbrev-all-buffers
-                                         try-expand-dabbrev-from-kill
-                                         try-complete-file-name-partially
-                                         try-complete-file-name
-                                         try-expand-all-abbrevs
-                                         try-expand-list
-                                         try-expand-line
-                                         try-complete-lisp-symbol-partially
-                                         try-complete-lisp-symbol))
+-;; hippie expand is dabbrev expand on steroids
+;; (setq-default hippie-expand-try-functions-list '(try-expand-dabbrev
+;;                                          try-expand-dabbrev-all-buffers
+;;                                          try-expand-dabbrev-from-kill
+;;                                          try-complete-file-name-partially
+;;                                          try-complete-file-name
+;;                                          try-expand-all-abbrevs
+;;                                          try-expand-list
+;;                                          try-expand-line
+;;                                          try-complete-lisp-symbol-partially
+;;                                          try-complete-lisp-symbol))
 
 ;; smart tab behavior - indent or complete
 (setq-default tab-always-indent 'complete)
@@ -36,14 +37,11 @@
 (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
-;; desktop
-(unless (file-exists-p (expand-file-name "desktop" savefile-dir))
-  (make-directory (expand-file-name "desktop" savefile-dir)))
-
-(desktop-change-dir (expand-file-name "desktop" savefile-dir))
-(setq-default desktop-load-locked-desktop -1)
-;; (desktop-save-mode t)
-
+;;backup
+(setq backup-directory-alist
+       `((".*" . ,temporary-file-directory)))
+ (setq auto-save-file-name-transforms
+       `((".*" ,temporary-file-directory t)))
 
 ;; https://www.emacswiki.org/emacs/SavePlace
 ;; saveplace remembers your location in a file when saving files
@@ -76,11 +74,11 @@
 (global-hl-line-mode +1)
 
 ;; linue number
-(global-display-line-numbers-mode)
-(setq-default display-line-numbers-width 3)
+;; (global-display-line-numbers-mode)
+;; (setq-default display-line-numbers-width 3)
 
 ;; line spaccing
-(setq-default line-spacing 0.3)
+;; (setq-default line-spacing 0.3)
 
 ;; already disabled anyway
 (tool-bar-mode -1)
@@ -90,12 +88,9 @@
 (setq-default ring-bell-function 'ignore)
 
 ;; disable startup screen
-(setq inhibit-startup-screen t)
-
-;; nice scrolling
-(setq-default scroll-margin 0
-      scroll-conservatively 100000
-      scroll-preserve-screen-position 1)
+(setq inhibit-startup-screen t
+      initial-major-mode 'emacs-lisp-mode
+      load-prefer-newer t)
 
 ;; mode line settings
 (line-number-mode t)
@@ -124,7 +119,6 @@
 (if (eq system-type 'gnu/linux)
   (set-emacs-frames-gtk "dark"))
 
-
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-=") #'text-scale-increase)
 (global-set-key (kbd "C-+") #'text-scale-increase)
@@ -150,9 +144,6 @@
                                  (enlarge-window 10)))
 
 ;; Buffer navegation
-;; (global-set-key (kbd "<left>") 'previous-buffer)
-;; (global-set-key (kbd "<right>") 'next-buffer)
-;; Macro
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 
@@ -168,5 +159,7 @@
       (setq mac-command-key-is-meta t)
       (setq mac-command-modifier 'meta)
       (setq mac-option-modifier nil)))
+
+
 
 (provide 'editor)

@@ -13,7 +13,6 @@
     gist
     git-modes
     git-timemachine
-    imenu-anywhere
     magit
     operate-on-number
     restclient
@@ -126,17 +125,13 @@
   :init
   (elpy-enable))
 
-(use-package bookmark
-  :config
-  (setq bookmark-default-file (expand-file-name "bookmarks" savefile-dir)
-        bookmark-save-flag 1))
-
 (use-package projectile
   :config
   (setq projectile-cache-file (expand-file-name  "projectile.cache" savefile-dir))
   (projectile-mode t))
 
 (use-package avy
+  :disabled
   :custom
   (avy-background t))
 
@@ -147,6 +142,7 @@
   :bind ("C-:" . goto-last-change))
 
 (use-package company
+  :disabled
   :diminish
   :config
   (define-key company-active-map (kbd "C-n") #'company-select-next)
@@ -213,10 +209,6 @@
   (key-chord-define-global "9i" "(")
   (key-chord-define-global "0o" ")")
   (key-chord-define-global "-p" "_"))
-
-(use-package consult
-  :bind
-  ("C-x b" . consult-buffer))
 
 (use-package whitespace-cleanup-mode
   :diminish
@@ -299,7 +291,6 @@
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 ;; https://github.com/Alexander-Miller/treemacs
 
-
 (use-package lsp-mode
   :custom
   (read-process-output-max (* 1024 1024))
@@ -335,5 +326,19 @@
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+
+(use-package highlight-numbers
+  :config
+  (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+
+(use-package fancy-dabbrev
+  :config
+  (global-fancy-dabbrev-mode)
+  (global-set-key (kbd "TAB") 'fancy-dabbrev-expand-or-indent)
+  (global-set-key (kbd "<backtab>") 'fancy-dabbrev-backward)
+  (setq dabbrev-case-distinction nil)
+  (setq dabbrev-case-fold-search t)
+  (setq dabbrev-case-replace nil))
+
 
 (provide 'packages)

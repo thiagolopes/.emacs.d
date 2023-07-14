@@ -26,7 +26,22 @@
 
 ;; reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 50000000)
+;; https://emacs-lsp.github.io/lsp-mode/page/performance/
+(setq gc-cons-threshold 100000000
+      read-process-output-max (* 1024 1024))
+
+;; https://www.masteringemacs.org/article/speed-up-emacs-libjansson-native-elisp-compilation
+(if (and (fboundp 'native-comp-available-p)
+         (native-comp-available-p))
+    (setq comp-deferred-compilation t
+          package-native-compile t)
+  (message "Native complation is *not* available, lsp performance will suffer..."))
+
+(unless (functionp 'json-serialize)
+  (message "Native JSON is *not* available, lsp performance will suffer..."))
+
+;; do not steal focus while doing async compilations
+(setq warning-suppress-types '((comp)))
 
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
@@ -75,6 +90,8 @@
 
 ;; avoid miss quit
 (global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-x C-z"))
+(global-unset-key (kbd "M-m"))
 
 ;; load packages
 (require 'editor)
