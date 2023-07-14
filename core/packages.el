@@ -266,35 +266,7 @@
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
 
-(use-package neotree
-  :init
-    (defun neotree-project-dir ()
-    "Open NeoTree using the git root."
-    (interactive)
-    (let ((project-dir (projectile-project-root))
-          (file-name (buffer-file-name)))
-      (neotree-toggle)
-      (if project-dir
-          (if (neo-global--window-exists-p)
-              (progn
-                (neotree-dir project-dir)
-                (neotree-find file-name)))
-        (message "Could not find git project root."))))
-    (add-hook 'neo-after-create-hook
-              (lambda (_)
-                (set-window-scroll-bars (neo-global--get-window) nil nil)))
-  :bind
-  ("C-x C-n" . neotree-project-dir)
-  ("<f9>" . projectile-compile-project)
-  :config
-  (setq neo-smart-open t)
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
-;; https://github.com/Alexander-Miller/treemacs
-
-(use-package lsp-mode
-  :custom
-  (read-process-output-max (* 1024 1024))
-  (lsp-headerline-breadcrumb-enable nil))
+(use-package lsp-mode)
 
 (use-package exec-path-from-shell
   :init
@@ -339,6 +311,12 @@
   (setq dabbrev-case-distinction nil)
   (setq dabbrev-case-fold-search t)
   (setq dabbrev-case-replace nil))
+
+(use-package better-scroll)
+
+(use-package dired-k
+  :config
+  (add-hook 'dired-initial-position-hook 'dired-k))
 
 
 (provide 'packages)
