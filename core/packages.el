@@ -160,6 +160,19 @@
   :init
   (global-highlight-thing-mode t))
 
+(use-package vertico
+  :custom
+  (vertico-cycle 1)
+  :init
+  (vertico-mode t))
+
+(use-package marginalia
+  :after vertico
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode t))
+
 (use-package consult
   :bind
   ("C-x b" . consult-buffer)
