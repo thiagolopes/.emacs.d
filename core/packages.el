@@ -133,11 +133,6 @@
   (setq projectile-cache-file (expand-file-name  "projectile.cache" savefile-dir))
   (projectile-mode t))
 
-(use-package avy
-  :disabled
-  :custom
-  (avy-background t))
-
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
@@ -146,7 +141,6 @@
 
 (use-package company
   :disabled
-  :diminish
   :config
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
@@ -158,6 +152,12 @@
 (use-package highlight-thing
   :diminish
   :init
+  (setq highlight-thing-case-sensitive-p t)
+  (setq highlight-thing-exclude-thing-under-point t)
+  (setq highlight-thing-delay-seconds 2)
+  (setq highlight-thing-limit-to-region-in-large-buffers-p nil
+        highlight-thing-narrow-region-lines 15
+        highlight-thing-large-buffer-limit 5000)
   (global-highlight-thing-mode t))
 
 (use-package vertico
@@ -180,12 +180,9 @@
   :custom
   (completion-in-region-function #'consult-completion-in-region))
 
-(use-package smex
+(use-package amx
   :config
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-  (smex-initialize))
+  (amx-mode))
 
 (use-package popup-kill-ring)
 
@@ -262,9 +259,20 @@
 
 (use-package lsp-mode
   :custom
+  (setq lsp-enable-snippet nil)
+  (add-hook 'prog-mode-hook #'lsp-deferred)
   (lsp-headerline-breadcrumb-enable nil))
 
-(use-package eglot)
+(use-package lsp-ui
+  :config
+  (setq lsp-ui-sideline-enable t)
+  (setq lsp-ui-sideline-show-hover nil)
+  (setq lsp-ui-doc-position 'bottom)
+  (add-hook 'lsp-after-initialize-hook #'lsp-ui-mode)
+  (add-hook 'lsp-after-initialize-hook #'lsp-ui-doc-frame-mode)
+  (add-hook 'lsp-after-initialize-hook #'lsp-ui-peek-mode)
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
 (use-package exec-path-from-shell
   :init
@@ -317,5 +325,9 @@
   (add-hook 'dired-initial-position-hook 'dired-k))
 
 (use-package smart-compile)
+
+(use-package right-click-context
+  :config
+  (right-click-context-mode 1))
 
 (provide 'packages)
