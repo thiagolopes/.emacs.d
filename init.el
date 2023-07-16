@@ -107,4 +107,7 @@
 (when (display-graphic-p)
   (switch-font))
 
+;; fix resize sluggish in xorg
+(setq frame-resize-pixelwise t)
+
 ;;; init.el ends here
