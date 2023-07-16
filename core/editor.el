@@ -1,5 +1,9 @@
 ;;; editor.el
 
+;;
+(require 'misc)
+(forward-to-word 1)
+
 ;; but maintain correct appearance
 (setq-default indent-tabs-mode nil)
 
@@ -39,9 +43,9 @@
 
 ;;backup
 (setq backup-directory-alist
-       `((".*" . ,temporary-file-directory)))
- (setq auto-save-file-name-transforms
-       `((".*" ,temporary-file-directory t)))
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; https://www.emacswiki.org/emacs/SavePlace
 ;; saveplace remembers your location in a file when saving files
@@ -71,7 +75,7 @@
 (recentf-mode +1)
 
 ;; highlight the current line
-(global-hl-line-mode +1)
+;; (global-hl-line-mode +1)
 
 ;; linue number
 ;; (global-display-line-numbers-mode)
@@ -107,8 +111,8 @@
 ;; buffer name (if the buffer isn't visiting a file)
 (setq frame-title-format
       '(""(:eval (if (buffer-file-name)
-                                            (abbreviate-file-name (buffer-file-name))
-                                          "%b"))))
+                     (abbreviate-file-name (buffer-file-name))
+                   "%b"))))
 
 ;; dark theme gtk
 (defun set-emacs-frames-gtk (variant)
@@ -120,7 +124,9 @@
       (call-process-shell-command cmd))))
 
 (if (eq system-type 'gnu/linux)
-  (set-emacs-frames-gtk "dark"))
+    (set-emacs-frames-gtk "dark"))
+
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-=") #'text-scale-increase)
@@ -134,11 +140,11 @@
 
 ;; Buffer resize
 (global-set-key (kbd "M-<right>") (lambda ()
-                                   (interactive)
-                                   (shrink-window-horizontally 10)))
-(global-set-key (kbd "M-<left>") (lambda ()
                                     (interactive)
-                                    (enlarge-window-horizontally 10)))
+                                    (shrink-window-horizontally 10)))
+(global-set-key (kbd "M-<left>") (lambda ()
+                                   (interactive)
+                                   (enlarge-window-horizontally 10)))
 (global-set-key (kbd "M-<down>") (lambda ()
                                    (interactive)
                                    (shrink-window 10)))
@@ -173,7 +179,7 @@
   (if (eq (current-buffer) (get-buffer "*scratch*"))
       (progn (bury-buffer)
              nil)
-  t))
+    t))
 (add-hook 'kill-buffer-query-functions 'immortal-scratch)
 
 (defun save-persistent-scratch ()
@@ -194,6 +200,26 @@
 (add-hook 'kill-emacs-hook 'save-persistent-scratch)
 
 (run-with-idle-timer 300 t 'save-persistent-scratch)
+
+;; initial window size
+(defun set-frame-size-according-to-resolution ()
+  (interactive)
+  (if window-system
+      (progn
+        ;; use 120 char wide window for largeish displays
+        ;; and smaller 80 column windows for smaller displays
+        ;; pick whatever numbers make sense for you
+        (if (> (x-display-pixel-width) 1280)
+            (add-to-list 'default-frame-alist (cons 'width 120))
+          (add-to-list 'default-frame-alist (cons 'width 80)))
+        ;; for the height, subtract a couple hundred pixels
+        ;; from the screen height (for panels, menubars and
+        ;; whatnot), then divide by the height of a char to
+        ;; get the height we want
+        (add-to-list 'default-frame-alist
+                     (cons 'height (x-display-pixel-height))))))
+
+(set-frame-size-according-to-resolution)
 
 
 (provide 'editor)

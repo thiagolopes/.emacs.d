@@ -160,19 +160,6 @@
   :init
   (global-highlight-thing-mode t))
 
-(use-package vertico
-  :custom
-  (vertico-cycle 1)
-  :init
-  (vertico-mode t))
-
-(use-package marginalia
-  :after vertico
-  :custom
-  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-  :init
-  (marginalia-mode t))
-
 (use-package consult
   :bind
   ("C-x b" . consult-buffer)
@@ -180,21 +167,14 @@
   :custom
   (completion-in-region-function #'consult-completion-in-region))
 
-(use-package helm
-  :custom
-  (helm-autoresize-mode nil)
-  (helm-M-x-fuzzy-match t)
-  (helm-buffers-fuzzy-matching t)
-  (helm-recentf-fuzzy-match t)
-  (history-delete-duplicates t)
-  :bind
-  (("M-x" . helm-M-x)
-   ("M-y" . helm-show-kill-ring)
-   ("C-x C-f" . helm-find-files)
-   :map helm-map
-   ("<tab>" . helm-execute-persistent-action)
-   ("C-i" . helm-execute-persistent-action)
-   ("C-z" . helm-select-action)))
+(use-package smex
+  :config
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+  (smex-initialize))
+
+(use-package popup-kill-ring)
 
 (use-package key-chord
   :init
@@ -256,8 +236,6 @@
   :config
   (global-flycheck-mode))
 
-(use-package flycheck-clj-kondo)
-
 (use-package dumb-jump
   :hook
   (xref-backend-functions dumb-jump-xref-activate))
@@ -272,6 +250,8 @@
 (use-package lsp-mode
   :custom
   (lsp-headerline-breadcrumb-enable nil))
+
+(use-package eglot)
 
 (use-package exec-path-from-shell
   :init
@@ -323,5 +303,6 @@
   :config
   (add-hook 'dired-initial-position-hook 'dired-k))
 
+(use-package smart-compile)
 
 (provide 'packages)
