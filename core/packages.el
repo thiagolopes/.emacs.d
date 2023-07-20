@@ -264,7 +264,11 @@
   (lsp-headerline-breadcrumb-enable nil))
 
 (use-package lsp-ui
+  :bind
+  ("C-M-." . lsp-ui-peek-find-definitions)
+  ("C-M-," . lsp-ui-peek-find-references)
   :config
+  (lsp-ui-peek-enable 1)
   (setq lsp-ui-sideline-enable t)
   (setq lsp-ui-sideline-show-hover nil)
   (setq lsp-ui-doc-position 'bottom)
