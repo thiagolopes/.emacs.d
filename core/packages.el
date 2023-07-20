@@ -334,4 +334,8 @@
   :config
   (right-click-context-mode 1))
 
+(use-package prescient)
+(use-package company-prescient)
+(use-package vertico-prescient)
+
 (provide 'packages)
