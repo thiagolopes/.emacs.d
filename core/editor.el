@@ -123,7 +123,7 @@
                         variant)))
       (call-process-shell-command cmd))))
 
-(if (eq system-type 'gnu/linux)
+(if (and (eq system-type 'gnu/linux) (display-graphic-p))
     (set-emacs-frames-gtk "dark"))
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
