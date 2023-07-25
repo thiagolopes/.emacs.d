@@ -299,10 +299,6 @@
   :init
   (setq switch-window-shortcut-appearance 'image))
 
-(use-package indent-guide
-  :config
-  (indent-guide-global-mode))
-
 (use-package multiple-cursors
   :config
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
