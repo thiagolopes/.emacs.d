@@ -318,20 +318,24 @@
   (setq dabbrev-case-fold-search t)
   (setq dabbrev-case-replace nil))
 
-(use-package better-scroll)
-
 (use-package dired-k
   :config
   (add-hook 'dired-initial-position-hook 'dired-k))
 
 (use-package smart-compile)
 
-(use-package right-click-context
-  :config
-  (right-click-context-mode 1))
-
 (use-package prescient)
 (use-package company-prescient)
 (use-package vertico-prescient)
+
+(use-package good-scroll
+  :config
+  (good-scroll-mode 1))
+
+(use-package tree-sitter)
+(use-package tree-sitter-langs
+  :config
+  (global-tree-sitter-mode))
+
 
 (provide 'packages)
