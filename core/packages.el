@@ -140,7 +140,6 @@
   :bind ("C-:" . goto-last-change))
 
 (use-package company
-  :disabled
   :config
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
@@ -150,6 +149,7 @@
   (global-company-mode))
 
 (use-package highlight-thing
+  :disabled
   :diminish
   :init
   (setq highlight-thing-case-sensitive-p t)
