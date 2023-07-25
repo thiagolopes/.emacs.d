@@ -100,9 +100,14 @@
 (require 'packages)
 
 ;;; load-theme
-(use-package monokai-theme
+(use-package modus-themes
+  :config
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-variable-pitch-ui t
+        modus-themes-mixed-fonts t)
   :init
-  (load-theme 'monokai t))
+  (load-theme 'modus-vivendi t))
 
 (when (display-graphic-p)
   (switch-font))
