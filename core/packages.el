@@ -258,10 +258,10 @@
   ("C-(" . sp-forward-barf-sexp))
 
 (use-package lsp-mode
-  :custom
+  :config
   (setq lsp-enable-snippet nil)
-  (add-hook 'prog-mode-hook #'lsp-deferred)
-  (lsp-headerline-breadcrumb-enable nil))
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (add-hook 'prog-mode-hook #'lsp-deferred))
 
 (use-package lsp-ui
   :bind
