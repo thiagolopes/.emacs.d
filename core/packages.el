@@ -327,10 +327,8 @@
   :config
   (good-scroll-mode 1))
 
-(use-package tree-sitter)
-(use-package tree-sitter-langs
+(use-package fussy
   :config
-  (global-tree-sitter-mode))
-
+  (push 'fussy completion-styles))
 
 (provide 'packages)
