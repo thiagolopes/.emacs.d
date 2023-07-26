@@ -256,7 +256,7 @@
   :config
   (setq lsp-enable-snippet nil)
   (setq lsp-headerline-breadcrumb-enable nil)
-  (add-hook 'prog-mode-hook #'lsp-deferred))
+  (setq lsp-completion-provider :none))
 
 (use-package lsp-ui
   :bind
