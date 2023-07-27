@@ -141,6 +141,7 @@
 
 (use-package company
   :config
+  (setq company-idle-delay 0)
   (global-company-mode))
 
 (use-package highlight-thing
@@ -182,6 +183,7 @@
 (use-package popup-kill-ring)
 
 (use-package key-chord
+  :disabled
   :init
   (key-chord-mode t)
   :config
@@ -209,6 +211,7 @@
   ("C-e" . mwim-end))
 
 (use-package smart-mode-line
+  :disabled
   :config
   (setq sml/no-confirm-load-theme t)
   (setq sml/theme 'respectful)
@@ -239,6 +242,7 @@
 
 (use-package flycheck
   :config
+  (setq flycheck-check-syntax-automatically '(save mode-enable))
   (global-flycheck-mode))
 
 (use-package dumb-jump
@@ -264,7 +268,9 @@
   ("C-M-," . lsp-ui-peek-find-references)
   :config
   (lsp-ui-peek-enable 1)
-  (setq lsp-ui-sideline-enable t)
+  (setq lsp-ui-sideline-show-code-actions nil)
+  (setq lsp-ui-sideline-show-diagnostics nil)
+  (setq lsp-ui-sideline-enable nil)
   (setq lsp-ui-sideline-show-hover nil)
   (setq lsp-ui-doc-position 'bottom)
   (add-hook 'lsp-after-initialize-hook #'lsp-ui-mode)
