@@ -215,4 +215,14 @@
 ;; avoid redraw until input process - test performance
 (setq redisplay-dont-pause t)
 
+;; focus at compilation buffer
+(defadvice compile (after jump-back activate)
+  (other-window 1))
+;; Fix compilation buffer asci caracheters
+(require 'ansi-color)
+(defun ansi-colorize-buffer ()
+  (let ((buffer-read-only nil))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+(add-hook 'compilation-filter-hook 'ansi-colorize-buffer)
+
 (provide 'editor)
