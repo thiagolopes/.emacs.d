@@ -141,8 +141,7 @@
 
 (use-package company
   :config
-  (setq company-idle-delay 0)
-  (global-company-mode))
+  (setq company-idle-delay 0))
 
 (use-package highlight-thing
   :disabled
@@ -259,8 +258,7 @@
 (use-package lsp-mode
   :config
   (setq lsp-enable-snippet nil)
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-completion-provider :none))
+  (setq lsp-headerline-breadcrumb-enable nil))
 
 (use-package lsp-ui
   :bind
