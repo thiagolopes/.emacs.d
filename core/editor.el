@@ -212,4 +212,7 @@
                      (cons 'height (x-display-pixel-height))))))
 (set-frame-size-according-to-resolution)
 
+;; avoid redraw until input process - test performance
+(setq redisplay-dont-pause t)
+
 (provide 'editor)
