@@ -49,13 +49,14 @@
 
 ;;; font config
 (defvar font-list '(
+                    ("Fira Code" . 10)
                     ("Source Code Pro" . 12)
                     ("DejaVu Sans Mono" . 12)
                     ("Comic Mono" . 12)
                     ("Hack" . 12)
                     ("Victor Mono" . 12)
 	 	    ("JetBrains Mono" . 14)
-		    ("Inconsolata" . 15)
+		    ("Inconsolata" . 14)
 		    ("Iosevka" . 13)
 		    ("Input" . 10)
 		    ("Consolas" . 10)))
@@ -101,6 +102,7 @@
 
 ;;; load-theme
 (use-package modus-themes
+  :disabled
   :config
   (setq modus-themes-italic-constructs t
         modus-themes-bold-constructs t
@@ -108,6 +110,10 @@
         modus-themes-mixed-fonts t)
   :init
   (load-theme 'modus-vivendi t))
+
+(use-package zenburn-theme
+  :config
+  (load-theme 'zenburn t))
 
 (when (display-graphic-p)
   (switch-font))
