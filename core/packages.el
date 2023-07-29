@@ -17,6 +17,7 @@
     operate-on-number
     restclient
     smartrep
+    use-package-ensure-system-package
     which-key
     whitespace-cleanup-mode
     zop-to-char))
@@ -343,5 +344,9 @@
 (use-package gcmh
   :config
   (gcmh-mode 1))
+
+(use-package magit-delta
+  :ensure-system-package (delta . "please, install delta")
+  :hook (magit-mode . magit-delta-mode))
 
 (provide 'packages)
