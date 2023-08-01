@@ -99,21 +99,7 @@
 (require 'better-defaults)
 (require 'editor)
 (require 'packages)
-
-;;; load-theme
-(use-package modus-themes
-  :disabled
-  :config
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs t
-        modus-themes-variable-pitch-ui t
-        modus-themes-mixed-fonts t)
-  :init
-  (load-theme 'modus-vivendi t))
-
-(use-package zenburn-theme
-  :config
-  (load-theme 'zenburn t))
+(require 'themes)
 
 (when (display-graphic-p)
   (switch-font))
