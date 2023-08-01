@@ -1,5 +1,9 @@
 ;;; editor.el
 
+
+;; 29.x feature
+(pixel-scroll-precision-mode t)
+
 ;;
 (require 'misc)
 (forward-to-word 1)
