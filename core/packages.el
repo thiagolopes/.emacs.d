@@ -141,6 +141,7 @@
   :bind ("C-:" . goto-last-change))
 
 (use-package company
+  :disabled
   :config
   (setq company-idle-delay 0))
 
@@ -221,7 +222,8 @@
   :commands (counsel-yank-pop counsel-ag counsel-fzf)
   :bind
   ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf))
+  ("C-M-?" . counsel-fzf)
+  ("C-M-.". xref-find-references))
 
 (use-package undo-tree
   :diminish
@@ -255,28 +257,6 @@
   :bind
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
-
-(use-package lsp-mode
-  :config
-  (setq lsp-enable-snippet nil)
-  (setq lsp-headerline-breadcrumb-enable nil))
-
-(use-package lsp-ui
-  :bind
-  ("C-M-." . lsp-ui-peek-find-definitions)
-  ("C-M-," . lsp-ui-peek-find-references)
-  :config
-  (lsp-ui-peek-enable 1)
-  (setq lsp-ui-sideline-show-code-actions nil)
-  (setq lsp-ui-sideline-show-diagnostics nil)
-  (setq lsp-ui-sideline-enable nil)
-  (setq lsp-ui-sideline-show-hover nil)
-  (setq lsp-ui-doc-position 'bottom)
-  (add-hook 'lsp-after-initialize-hook #'lsp-ui-mode)
-  (add-hook 'lsp-after-initialize-hook #'lsp-ui-doc-frame-mode)
-  (add-hook 'lsp-after-initialize-hook #'lsp-ui-peek-mode)
-  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
 (use-package exec-path-from-shell
   :init
@@ -325,7 +305,6 @@
 (use-package smart-compile)
 
 (use-package prescient)
-(use-package company-prescient)
 (use-package vertico-prescient)
 
 (use-package good-scroll
@@ -343,5 +322,13 @@
 (use-package magit-delta
   :ensure-system-package (delta . "please, install delta")
   :hook (magit-mode . magit-delta-mode))
+
+(use-package rainbow-delimiters
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
+
+(use-package eldoc-box
+  :hook
+  (prog-mode . eldoc-box-hover-at-point-mode))
 
 (provide 'packages)
