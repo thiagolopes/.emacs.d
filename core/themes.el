@@ -9,6 +9,7 @@
 (use-package zenburn-theme)
 (use-package minimal-theme)
 (use-package gruvbox-theme)
+(use-package gruber-darker-theme)
 
 (load-theme 'zenburn t)
 
