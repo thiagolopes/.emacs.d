@@ -13,6 +13,7 @@
     gist
     git-modes
     git-timemachine
+    iedit
     magit
     operate-on-number
     restclient
@@ -141,7 +142,6 @@
   :bind ("C-:" . goto-last-change))
 
 (use-package company
-  :disabled
   :config
   (setq company-idle-delay 0))
 
@@ -244,7 +244,7 @@
 
 (use-package flycheck
   :config
-  (setq flycheck-check-syntax-automatically '(save mode-enable))
+  ;; (setq flycheck-check-syntax-automatically '(save mode-enable))
   (global-flycheck-mode))
 
 (use-package dumb-jump
