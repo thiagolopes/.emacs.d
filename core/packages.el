@@ -142,6 +142,8 @@
   :bind ("C-:" . goto-last-change))
 
 (use-package company
+  :hook
+  (prog-mode . company-mode)
   :config
   (setq company-idle-delay 0))
 
