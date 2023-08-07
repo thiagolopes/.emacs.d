@@ -229,4 +229,10 @@
     (ansi-color-apply-on-region (point-min) (point-max))))
 (add-hook 'compilation-filter-hook 'ansi-colorize-buffer)
 
+;; push font in minibuffer to high
+(defun my-minibuffer-setup ()
+       (set (make-local-variable 'face-remapping-alist)
+            '((default :height 1.2))))
+(add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
+
 (provide 'editor)
