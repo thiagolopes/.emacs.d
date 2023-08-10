@@ -143,9 +143,7 @@
 
 (use-package company
   :hook
-  (prog-mode . company-mode)
-  :config
-  (setq company-idle-delay 0))
+  (prog-mode . company-mode))
 
 (use-package highlight-thing
   :disabled
@@ -332,5 +330,8 @@
 (use-package eldoc-box
   :hook
   (prog-mode . eldoc-box-hover-at-point-mode))
+
+(use-package eglot
+  :hook (prog-mode . eglot-ensure))
 
 (provide 'packages)
