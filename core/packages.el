@@ -142,8 +142,10 @@
   :bind ("C-:" . goto-last-change))
 
 (use-package company
-  :hook
-  (prog-mode . company-mode))
+  :bind
+  (:map  company-active-map ("<tab>" . company-complete-selection))
+  :config
+  (global-company-mode t))
 
 (use-package highlight-thing
   :disabled
@@ -333,5 +335,8 @@
 
 (use-package eglot
   :hook (prog-mode . eglot-ensure))
+
+(use-package iedit
+  :hook (prog-mode . iedit-mode))
 
 (provide 'packages)
