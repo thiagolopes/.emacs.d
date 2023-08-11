@@ -337,6 +337,7 @@
   :hook (prog-mode . eglot-ensure))
 
 (use-package iedit
-  :hook (prog-mode . iedit-mode))
+  :config
+  (require 'iedit))
 
 (provide 'packages)
