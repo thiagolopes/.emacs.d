@@ -224,8 +224,12 @@
   :commands (counsel-yank-pop counsel-ag counsel-fzf)
   :bind
   ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf)
-  ("C-M-.". xref-find-references))
+  ("C-M-?" . counsel-fzf))
+
+(use-package counsel-projectile
+  :bind
+  ("M-?" . counsel-projectile-ag)
+  ("C-M-?" . counsel-projectile-find-file))
 
 (use-package undo-tree
   :diminish
