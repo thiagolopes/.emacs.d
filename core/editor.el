@@ -235,4 +235,14 @@
             '((default :height 1.2))))
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
 
+(setq mouse-wheel-scroll-amount
+      '(1
+        ((shift) . 5)
+        ((meta) . 0.5)
+        ((control) . text-scale))
+      mouse-drag-copy-region nil
+      make-pointer-invisible t
+      mouse-wheel-progressive-speed t
+      mouse-wheel-follow-mouse t)
+
 (provide 'editor)
