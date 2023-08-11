@@ -36,7 +36,7 @@
 (setq-default tab-always-indent 'complete)
 
 ;; disable boxes
-(setq-default use-dialog-box nil)
+;; (setq-default use-dialog-box nil)
 
 ;;; Useful Defaults
 (require 'uniquify)
@@ -87,15 +87,6 @@
 
 ;; line spaccing
 ;; (setq-default line-spacing 0.3)
-
-;; already disabled anyway
-;; clean look
-(blink-cursor-mode -1)
-(scroll-bar-mode t)
-(fringe-mode -1)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(setq-default cursor-type 'bar)
 
 ;; disable the annoying bell ring
 (setq-default ring-bell-function 'ignore)
@@ -214,7 +205,7 @@
           (add-to-list 'default-frame-alist (cons 'width 80)))
         (add-to-list 'default-frame-alist
                      (cons 'height (x-display-pixel-height))))))
-(set-frame-size-according-to-resolution)
+;; (set-frame-size-according-to-resolution) disable for now
 
 ;; avoid redraw until input process - test performance
 (setq redisplay-dont-pause t)
@@ -232,7 +223,7 @@
 ;; push font in minibuffer to high
 (defun my-minibuffer-setup ()
        (set (make-local-variable 'face-remapping-alist)
-            '((default :height 1.2))))
+            '((default :height 1.1))))
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
 
 (setq mouse-wheel-scroll-amount
