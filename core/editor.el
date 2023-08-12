@@ -236,4 +236,16 @@
       mouse-wheel-progressive-speed t
       mouse-wheel-follow-mouse t)
 
+;; https://emacs.stackexchange.com/questions/55912/temporarily-show-the-documentation-for-a-emacs-lisp-function
+(define-advice elisp-get-fnsym-args-string (:around (orig-fun sym &rest r) docstring)
+  "If SYM is a function, append its docstring."
+  (concat
+   (apply orig-fun sym r)
+   (let* ((doc (and (fboundp sym) (documentation sym 'raw)))
+          (oneline (and doc (substring doc 0 (string-match "\n" doc)))))
+     (and oneline
+          (stringp oneline)
+          (not (string= "" oneline))
+          (concat "  |  " (propertize oneline 'face 'italic))))))
+
 (provide 'editor)
