@@ -370,4 +370,8 @@
          :blink-cursor-delay 0.2)))
   (cursory-set-preset 'bar))
 
+(use-package beacon
+  :config
+  (beacon-mode 1))
+
 (provide 'packages)
