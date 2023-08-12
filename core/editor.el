@@ -166,9 +166,6 @@
       (setq mac-option-modifier nil)))
 
 
-;; modeline to top
-(setq-default header-line-format mode-line-format)
-(setq-default mode-line-format nil)
 
 ;; better scratch https://www.reddit.com/r/emacs/comments/4cmfwp/scratch_buffer_hacks_to_increase_its_utility/
 (defun immortal-scratch ()
