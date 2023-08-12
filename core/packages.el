@@ -374,11 +374,27 @@
          :blink-cursor-delay 0.2)))
   (cursory-set-preset 'bar))
 
-(use-package beacon
+(use-package pulsar
+  :hook
+  (minibuffer-setup-hook . pulsar-pulse-line)
+  (consult-after-jump-hook . pulsar-recenter-top)
+  (consult-after-jump-hook . pulsar-reveal-entry)
+  (imenu-after-jump-hook . pulsar-recenter-top)
+  (imenu-after-jump-hook . pulsar-reveal-entry)
+  :custom
+  (pulsar-pulse t)
   :config
-  (beacon-mode 1))
+  (pulsar-global-mode 1))
 
 (use-package lin
   :disabled)
+
+(use-package simple-modeline
+  :config
+  (simple-modeline-mode t)
+  :custom
+  ;; modeline to top
+  (header-line-format mode-line-format)
+  (mode-line-format nil))
 
 (provide 'packages)
