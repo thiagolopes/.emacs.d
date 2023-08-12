@@ -378,4 +378,7 @@
   :config
   (beacon-mode 1))
 
+(use-package lin
+  :disabled)
+
 (provide 'packages)
