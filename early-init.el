@@ -23,9 +23,8 @@ Simplified version of `add-to-list'."
 (p-emacs-with-desktop-session
   (mapc
    (lambda (var)
-     (p-emacs-add-to-list var '(width . (text-pixels . 1200)))
-     (p-emacs-add-to-list var '(height . (text-pixels . 900)))
-     (p-emacs-add-to-list var '(scroll-bar-width  . 12)))
+     (p-emacs-add-to-list var '(width . (text-pixels . 1400)))
+     (p-emacs-add-to-list var '(height . (text-pixels . 900))))
    '(default-frame-alist initial-frame-alist)))
 
 (setq frame-resize-pixelwise t
