@@ -18,6 +18,7 @@
     operate-on-number
     restclient
     smartrep
+    simple-modeline
     use-package-ensure-system-package
     which-key
     whitespace-cleanup-mode
@@ -388,13 +389,5 @@
 
 (use-package lin
   :disabled)
-
-(use-package simple-modeline
-  :config
-  (simple-modeline-mode t)
-  :custom
-  ;; modeline to top
-  (header-line-format mode-line-format)
-  (mode-line-format nil))
 
 (provide 'packages)

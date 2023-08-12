@@ -87,6 +87,9 @@
 
 ;; line spaccing
 ;; (setq-default line-spacing 0.3)
+(if (featurep 'simple-modeline) (simple-modeline-mode t))
+(setq-default header-line-format mode-line-format)
+(setq-default mode-line-format nil)
 
 ;; disable the annoying bell ring
 (setq-default ring-bell-function 'ignore)
