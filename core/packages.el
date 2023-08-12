@@ -143,7 +143,11 @@
 
 (use-package company
   :bind
-  (:map  company-active-map ("<tab>" . company-complete-selection))
+  (:map
+   company-active-map
+   ("<tab>" . company-complete-selection)
+   ("<return>" . nil)
+   ("RET" . nil))
   :config
   (global-company-mode t))
 
