@@ -1,8 +1,7 @@
 ;;; editor.el
 
-
-;; 29.x feature
-(pixel-scroll-precision-mode t)
+(if (>= emacs-major-version 29)
+    (pixel-scroll-precision-mode t))
 
 ;;
 (require 'misc)
