@@ -1,31 +1,16 @@
 ;;; early-init.el --- Early Init File -*- lexical-binding: t -*-
 ;;; Code:
 
-(defvar p-emacs-tiling-window-manager-regexp
-  "\\(?:\\(?:bsp\\|herbstluft\\)wm\\)"
-  "Regular expression to match desired tiling window managers.
-See definition of `p-emacs-with-desktop-session'.")
-
-(defmacro p-emacs-with-desktop-session (&rest body)
-  "Expand BODY if desktop session is not a tiling window manager.
-See `p-emacs-tiling-window-manager-regexp' for what
-constitutes a matching tiling window manager."
-  (declare (indent 0))
-  `(when-let* ((session (getenv "DESKTOP_SESSION"))
-               ((not (string-match-p session p-emacs-tiling-window-manager-regexp))))
-     ,@body))
-
 (defun p-emacs-add-to-list (list element)
   "Add to symbol of LIST the given ELEMENT.
 Simplified version of `add-to-list'."
   (set list (cons element (symbol-value list))))
 
-(p-emacs-with-desktop-session
-  (mapc
-   (lambda (var)
-     (p-emacs-add-to-list var '(width . (text-pixels . 1400)))
-     (p-emacs-add-to-list var '(height . (text-pixels . 900))))
-   '(default-frame-alist initial-frame-alist)))
+(mapc
+ (lambda (var)
+   (p-emacs-add-to-list var '(width . (text-pixels . 1400)))
+   (p-emacs-add-to-list var '(height . (text-pixels . 900))))
+ '(default-frame-alist initial-frame-alist))
 
 (setq frame-resize-pixelwise t
       frame-inhibit-implied-resize t
