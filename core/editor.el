@@ -247,4 +247,8 @@
           (not (string= "" oneline))
           (concat "  |  " (propertize oneline 'face 'italic))))))
 
+;; dired with larger font
+(add-hook 'dired-initial-position-hook (lambda () (text-scale-increase 3)))
+(global-set-key (kbd "C-x C-d") 'dired)
+
 (provide 'editor)
