@@ -381,6 +381,12 @@
   :config
   (pulsar-global-mode 1))
 
+(if (>= emacs-major-version 29)
+    (pixel-scroll-precision-mode t)
+  (use-package good-scroll
+    :config
+    (good-scroll-mode 1)))
+
 (use-package lin
   :disabled)
 

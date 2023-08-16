@@ -1,8 +1,5 @@
 ;;; editor.el
 
-(if (>= emacs-major-version 29)
-    (pixel-scroll-precision-mode t))
-
 ;;
 (require 'misc)
 (forward-to-word 1)
