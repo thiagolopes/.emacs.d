@@ -13,6 +13,7 @@
     gist
     git-modes
     git-timemachine
+    git-link
     iedit
     magit
     operate-on-number
