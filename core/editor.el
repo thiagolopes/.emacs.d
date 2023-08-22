@@ -82,7 +82,7 @@
 ;; (setq-default display-line-numbers-width 3)
 
 ;; line spaccing
-;; (setq-default line-spacing 0.3)
+(setq-default line-spacing 0.1)
 (if (featurep 'simple-modeline) (simple-modeline-mode t))
 (setq-default header-line-format mode-line-format)
 (setq-default mode-line-format nil)
