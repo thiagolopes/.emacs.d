@@ -1,6 +1,39 @@
 ;;; load-theme
 (require 'configs)
 
+;;; font config
+(defvar font-list '(
+                    ("Fira Code" . 10)
+                    ("Source Code Pro" . 12)
+                    ("DejaVu Sans Mono" . 12)
+                    ("Comic Mono" . 12)
+                    ("Hack" . 12)
+                    ("Victor Mono" . 12)
+                    ("JetBrains Mono" . 14)
+                    ("Inconsolata" . 14)
+                    ("Iosevka" . 13)
+                    ("Input" . 10)
+                    ("Consolas" . 10)))
+(defun switch-font ()
+  "Documentation."
+  (interactive)
+  (let* (available-fonts font-name font-size font-setting)
+    (dolist (font font-list
+                  (setq available-fonts (nreverse available-fonts)))
+      (when (member (car font)
+                    (font-family-list))
+        (push font available-fonts)))
+    (if (not available-fonts)
+        (message "No fonts from the chosen set are available")
+      (if (called-interactively-p 'interactive)
+          (let* ((chosen (assoc-string (completing-read "What font to use? " available-fonts nil t)
+                                       available-fonts)))
+            (setq font-name (car chosen) font-size (read-number "Font size: " (cdr chosen))))
+        (setq font-name (caar available-fonts) font-size (cdar available-fonts)))
+      (setq font-setting (format "%s-%d" font-name font-size))
+      (set-frame-font font-setting nil t)
+      (add-to-list 'default-frame-alist (cons 'font font-setting)))))
+
 ;; Minibuffer font increase
 (defun my-minibuffer-setup ()
        (set (make-local-variable 'face-remapping-alist)
