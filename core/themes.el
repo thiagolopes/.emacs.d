@@ -1,6 +1,9 @@
 ;;; load-theme
 (require 'configs)
 
+;; cursor
+(setq-default cursor-type 'bar)
+
 ;;; font config
 (defvar font-list '(
                     ("Fira Code" . 10)

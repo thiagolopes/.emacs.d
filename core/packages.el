@@ -265,29 +265,6 @@
   :bind
   ("M-y" . browse-kill-ring))
 
-(use-package cursory
-  :config
-  (setq cursory-presets
-      '((bar
-         :cursor-type (bar . 2)
-         :cursor-in-non-selected-windows hollow
-         :blink-cursor-blinks 10
-         :blink-cursor-interval 0.4
-         :blink-cursor-delay 0.2)
-        (box
-         :cursor-type box
-         :cursor-in-non-selected-windows hollow
-         :blink-cursor-blinks 10
-         :blink-cursor-interval 0.5
-         :blink-cursor-delay 0.2)
-        (underscore
-         :cursor-type (hbar . 3)
-         :cursor-in-non-selected-windows hollow
-         :blink-cursor-blinks 50
-         :blink-cursor-interval 0.2
-         :blink-cursor-delay 0.2)))
-  (cursory-set-preset 'bar))
-
 (use-package pulsar
   :hook
   (minibuffer-setup-hook . pulsar-pulse-line)
