@@ -14,6 +14,7 @@
     git-link
     magit
     restclient
+    sudo-edit
     use-package-ensure-system-package
     ;; which-key
     zop-to-char))
