@@ -3,25 +3,19 @@
 (defvar packages-list-p
   '(ace-window
     ag
-    all-the-icons
-    browse-kill-ring
+    ;; all-the-icons
     cider
     clang-format
     diminish
-    discover-my-major
     expand-region
-    gist
+    elpy
     git-modes
     git-timemachine
     git-link
-    iedit
     magit
-    operate-on-number
     restclient
-    smartrep
-    simple-modeline
     use-package-ensure-system-package
-    which-key
+    ;; which-key
     whitespace-cleanup-mode
     zop-to-char))
 
@@ -126,8 +120,6 @@
 ;; ----------------------------------
 
 ;; todo add package to mode
-(use-package elpy)
-
 (use-package projectile
   :bind
   ("<f9>" . projectile-compile-project)
@@ -138,24 +130,9 @@
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
-(use-package goto-last-change
-  :bind ("C-:" . goto-last-change))
-
 (use-package company
   :config
   (global-company-mode t))
-
-(use-package highlight-thing
-  :disabled
-  :diminish
-  :init
-  (setq highlight-thing-case-sensitive-p t)
-  (setq highlight-thing-exclude-thing-under-point t)
-  (setq highlight-thing-delay-seconds 2)
-  (setq highlight-thing-limit-to-region-in-large-buffers-p nil
-        highlight-thing-narrow-region-lines 15
-        highlight-thing-large-buffer-limit 5000)
-  (global-highlight-thing-mode t))
 
 (use-package vertico
   :custom
@@ -181,42 +158,10 @@
   :config
   (amx-mode))
 
-(use-package popup-kill-ring)
-
-(use-package key-chord
-  :disabled
-  :init
-  (key-chord-mode t)
-  :config
-  (key-chord-define-global "1q" "!")
-  (key-chord-define-global "2w" "@")
-  (key-chord-define-global "3e" "#")
-  (key-chord-define-global "4r" "$")
-  (key-chord-define-global "5t" "%")
-  (key-chord-define-global "6y" "^")
-  (key-chord-define-global "6t" "^")
-  (key-chord-define-global "7y" "&")
-  (key-chord-define-global "8u" "*")
-  (key-chord-define-global "9i" "(")
-  (key-chord-define-global "0o" ")")
-  (key-chord-define-global "-p" "_"))
-
-(use-package whitespace-cleanup-mode
-  :diminish
-  :init
-  (global-whitespace-cleanup-mode))
-
 (use-package mwim
   :bind
   ("C-a" . mwim-beginning)
   ("C-e" . mwim-end))
-
-(use-package smart-mode-line
-  :disabled
-  :config
-  (setq sml/no-confirm-load-theme t)
-  (setq sml/theme 'respectful)
-  (sml/setup))
 
 (use-package counsel
   :commands (counsel-yank-pop counsel-ag counsel-fzf)
@@ -259,8 +204,6 @@
   (xref-backend-functions dumb-jump-xref-activate))
 
 (use-package smartparens
-  :hook
-  (prog-mode . smartparens-mode)
   :bind
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
@@ -268,23 +211,6 @@
 (use-package exec-path-from-shell
   :init
   (exec-path-from-shell-initialize))
-
-(use-package switch-window
-  :config
-  (global-set-key (kbd "C-x o") 'switch-window)
-  (global-set-key (kbd "C-x 1") 'switch-window-then-maximize)
-  (global-set-key (kbd "C-x 2") 'switch-window-then-split-below)
-  (global-set-key (kbd "C-x 3") 'switch-window-then-split-right)
-  (global-set-key (kbd "C-x 0") 'switch-window-then-delete)
-  (global-set-key (kbd "C-x 4 d") 'switch-window-then-dired)
-  (global-set-key (kbd "C-x 4 f") 'switch-window-then-find-file)
-  (global-set-key (kbd "C-x 4 m") 'switch-window-then-compose-mail)
-  (global-set-key (kbd "C-x 4 r") 'switch-window-then-find-file-read-only)
-  (global-set-key (kbd "C-x 4 C-f") 'switch-window-then-find-file)
-  (global-set-key (kbd "C-x 4 C-o") 'switch-window-then-display-buffer)
-  (global-set-key (kbd "C-x 4 0") 'switch-window-then-kill-buffer)
-  :init
-  (setq switch-window-shortcut-appearance 'image))
 
 (use-package multiple-cursors
   :config
@@ -326,18 +252,6 @@
   :config
   (gcmh-mode 1))
 
-(use-package magit-delta
-  :ensure-system-package (delta . "please, install delta")
-  :hook (magit-mode . magit-delta-mode))
-
-(use-package rainbow-delimiters
-  :hook
-  (prog-mode . rainbow-delimiters-mode))
-
-(use-package eldoc-box
-  :hook
-  (prog-mode . eldoc-box-hover-at-point-mode))
-
 (use-package eglot
   :hook
   (eglot-managed-mode-hook . eglot-inlay-hints-mode)
@@ -346,6 +260,10 @@
 (use-package iedit
   :config
   (require 'iedit))
+
+(use-package browse-kill-ring
+  :bind
+  ("M-y" . browse-kill-ring))
 
 (use-package cursory
   :config
@@ -389,6 +307,7 @@
     (good-scroll-mode 1)))
 
 (use-package lin
-  :disabled)
+  :config
+  (lin-global-mode t))
 
 (provide 'packages)
