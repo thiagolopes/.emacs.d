@@ -306,8 +306,8 @@
     :config
     (good-scroll-mode 1)))
 
-(use-package lin
+(use-package mode-line-bell
   :config
-  (lin-global-mode t))
+  (mode-line-bell-mode))
 
 (provide 'packages)

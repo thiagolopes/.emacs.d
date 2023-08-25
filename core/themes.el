@@ -1,4 +1,31 @@
 ;;; load-theme
+(require 'configs)
+
+;; Minibuffer font increase
+(defun my-minibuffer-setup ()
+       (set (make-local-variable 'face-remapping-alist)
+            '((default :height 1.1))))
+(add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
+
+(if (and (eq system-type 'gnu/linux) (display-graphic-p))
+    (config/set-emacs-frames-gtk "dark"))
+
+(setq-default indent-tabs-mode nil)
+(setq-default line-spacing 0.15)
+
+(global-set-key (kbd "M-<right>") (lambda ()
+                                    (interactive)
+                                    (shrink-window-horizontally 10)))
+(global-set-key (kbd "M-<left>") (lambda ()
+                                   (interactive)
+                                   (enlarge-window-horizontally 10)))
+(global-set-key (kbd "M-<down>") (lambda ()
+                                   (interactive)
+                                   (shrink-window 10)))
+(global-set-key (kbd "M-<up>") (lambda ()
+                                 (interactive)
+                                 (enlarge-window 10)))
+
 (use-package modus-themes
   :disabled
   :config
@@ -16,8 +43,9 @@
 (use-package alect-themes)
 (use-package dracula-theme)
 (use-package blackboard-theme)
+(use-package doom-themes)
 
-(load-theme 'blackboard t)
+(load-theme 'doom-gruvbox t)
 
 (defalias 'change-theme 'consult-theme)
 
