@@ -62,6 +62,7 @@
   (require 'uniquify)
   (setq uniquify-buffer-name-style 'forward)
 
+  (defalias 'yes-or-no-p 'y-or-n-p)
   ;; https://www.emacswiki.org/emacs/SavePlace
   (save-place-mode 1)
 
