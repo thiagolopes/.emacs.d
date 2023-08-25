@@ -112,18 +112,6 @@
     (ansi-color-apply-on-region (point-min) (point-max))))
 (add-hook 'compilation-filter-hook 'ansi-colorize-buffer)
 
-;; https://emacs.stackexchange.com/questions/55912/temporarily-show-the-documentation-for-a-emacs-lisp-function
-(define-advice elisp-get-fnsym-args-string (:around (orig-fun sym &rest r) docstring)
-  "If SYM is a function, append its docstring."
-  (concat
-   (apply orig-fun sym r)
-   (let* ((doc (and (fboundp sym) (documentation sym 'raw)))
-          (oneline (and doc (substring doc 0 (string-match "\n" doc)))))
-     (and oneline
-          (stringp oneline)
-          (not (string= "" oneline))
-          (concat "  |  " (propertize oneline 'face 'italic))))))
-
 ;; dired with larger font
 (global-set-key (kbd "C-x C-d") 'dired)
 

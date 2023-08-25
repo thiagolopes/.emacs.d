@@ -3,7 +3,7 @@
 (defvar packages-list-p
   '(ace-window
     ag
-    ;; all-the-icons
+    all-the-icons
     cider
     clang-format
     diminish
@@ -314,5 +314,12 @@
   :config
   (global-whitespace-cleanup-mode))
 
+(use-package eldoc-box
+  :config
+  (setq eldoc-box-offset '(16 32 16))
+  (setq eldoc-box-max-pixel-width 400)
+  (setq eldoc-box-max-pixel-height 500)
+  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t)
+  (eldoc-box-hover-mode t))
 
 (provide 'packages)
