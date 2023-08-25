@@ -126,9 +126,7 @@
 ;; ----------------------------------
 
 ;; todo add package to mode
-(use-package elpy
-  :init
-  (elpy-enable))
+(use-package elpy)
 
 (use-package projectile
   :bind
@@ -341,7 +339,9 @@
   (prog-mode . eldoc-box-hover-at-point-mode))
 
 (use-package eglot
-  :hook (prog-mode . eglot-ensure))
+  :hook
+  (eglot-managed-mode-hook . eglot-inlay-hints-mode)
+  (prog-mode . eglot-ensure))
 
 (use-package iedit
   :config
