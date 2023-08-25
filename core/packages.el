@@ -16,7 +16,6 @@
     restclient
     use-package-ensure-system-package
     ;; which-key
-    whitespace-cleanup-mode
     zop-to-char))
 
 (defun packages-installed-p ()
@@ -309,5 +308,10 @@
 (use-package mode-line-bell
   :config
   (mode-line-bell-mode))
+
+(use-package whitespace-cleanup-mode
+  :config
+  (global-whitespace-cleanup-mode))
+
 
 (provide 'packages)
