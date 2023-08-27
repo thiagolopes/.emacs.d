@@ -44,10 +44,10 @@
 
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
-;; (setq frame-title-format
-;;       '(""(:eval (if (buffer-file-name)
-;;                      (abbreviate-file-name (buffer-file-name))
-;;                    "%b"))))
+(setq frame-title-format
+      '(""(:eval (if (buffer-file-name)
+                     (abbreviate-file-name (buffer-file-name))
+                   "%b"))))
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
