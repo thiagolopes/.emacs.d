@@ -40,7 +40,7 @@
 ;; Minibuffer font increase
 (defun my-minibuffer-setup ()
        (set (make-local-variable 'face-remapping-alist)
-            '((default :height 1.1))))
+            '((default :height 1.2))))
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup)
 
 (if (and (eq system-type 'gnu/linux) (display-graphic-p))
