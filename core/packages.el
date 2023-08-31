@@ -328,8 +328,4 @@
      ("wdired"      "↯δ")))
   (cyphejor-mode t))
 
-(use-package mlscroll
-  :config
-  (mlscroll-mode t))
-
 (provide 'packages)

@@ -1,6 +1,11 @@
 ;;; load-theme
 (require 'configs)
 
+;; modeline
+(use-package spaceline
+  :config
+  (setq-default powerline-height 30)
+  (spaceline-spacemacs-theme))
 ;; cursor
 (setq-default cursor-type 'bar)
 
