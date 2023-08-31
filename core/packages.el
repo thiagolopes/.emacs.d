@@ -137,7 +137,7 @@
 
 (use-package vertico
   :custom
-  (vertico-cycle 1)
+  (vertico-cycle t)
   :init
   (vertico-mode t))
 
@@ -253,7 +253,7 @@
 (use-package gcmh
   :diminish
   :config
-  (gcmh-mode 1))
+  (gcmh-mode t))
 
 (use-package eglot
   :hook
@@ -278,13 +278,13 @@
   :custom
   (pulsar-pulse t)
   :config
-  (pulsar-global-mode 1))
+  (pulsar-global-mode t))
 
 (if (>= emacs-major-version 29)
     (pixel-scroll-precision-mode t)
   (use-package good-scroll
     :config
-    (good-scroll-mode 1)))
+    (good-scroll-mode t)))
 
 (use-package mode-line-bell
   :config
@@ -321,10 +321,10 @@
      ("shell"       "sh" :postfix)
      ("text"        "ξ")
      ("wdired"      "↯δ")))
-  (cyphejor-mode 1))
+  (cyphejor-mode t))
 
-(use-package nyan-mode
+(use-package mlscroll
   :config
-  (nyan-mode t))
+  (mlscroll-mode t))
 
 (provide 'packages)

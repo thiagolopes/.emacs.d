@@ -64,8 +64,8 @@
 ;; load packages
 (require 'better-defaults)
 (require 'editor)
-(require 'packages)
 (require 'themes)
+(require 'packages)
 
 (when (display-graphic-p)
   (switch-font))
