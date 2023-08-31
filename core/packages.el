@@ -120,6 +120,11 @@
 ;; ----------------------------------
 
 ;; todo add package to mode
+(use-package auto-compile
+  :config
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode))
+
 (use-package projectile
   :bind
   ("<f9>" . projectile-compile-project)
