@@ -308,24 +308,4 @@
   (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t)
   (eldoc-box-hover-mode t))
 
-(use-package cyphejor
-  :config
-  (setq
-   cyphejor-rules
-   '(:upcase
-     ("bookmark"    "→")
-     ("buffer"      "β")
-     ("diff"        "Δ")
-     ("dired"       "δ")
-     ("emacs"       "ε")
-     ("lisp"        "λ" :postfix)
-     ("menu"        "▤" :postfix)
-     ("mode"        "")
-     ("package"     "↓")
-     ("python"      "π")
-     ("shell"       "sh" :postfix)
-     ("text"        "ξ")
-     ("wdired"      "↯δ")))
-  (cyphejor-mode t))
-
 (provide 'packages)
