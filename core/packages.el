@@ -131,6 +131,7 @@
   :bind ("M-@" . er/expand-region))
 
 (use-package company
+  :diminish
   :config
   (global-company-mode t))
 
@@ -223,6 +224,7 @@
   (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
 (use-package fancy-dabbrev
+  :diminish
   :config
   (global-fancy-dabbrev-mode)
   (global-set-key (kbd "TAB") 'fancy-dabbrev-expand-or-indent)
@@ -249,6 +251,7 @@
   (push 'fussy completion-styles))
 
 (use-package gcmh
+  :diminish
   :config
   (gcmh-mode 1))
 
@@ -288,6 +291,7 @@
   (mode-line-bell-mode))
 
 (use-package whitespace-cleanup-mode
+  :diminish
   :config
   (global-whitespace-cleanup-mode))
 
@@ -298,5 +302,29 @@
   (setq eldoc-box-max-pixel-height 500)
   (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t)
   (eldoc-box-hover-mode t))
+
+(use-package cyphejor
+  :config
+  (setq
+   cyphejor-rules
+   '(:upcase
+     ("bookmark"    "→")
+     ("buffer"      "β")
+     ("diff"        "Δ")
+     ("dired"       "δ")
+     ("emacs"       "ε")
+     ("lisp"        "λ" :postfix)
+     ("menu"        "▤" :postfix)
+     ("mode"        "")
+     ("package"     "↓")
+     ("python"      "π")
+     ("shell"       "sh" :postfix)
+     ("text"        "ξ")
+     ("wdired"      "↯δ")))
+  (cyphejor-mode 1))
+
+(use-package nyan-mode
+  :config
+  (nyan-mode t))
 
 (provide 'packages)

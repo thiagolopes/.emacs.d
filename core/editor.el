@@ -51,6 +51,7 @@
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(setq column-number-mode t)
 
 (global-set-key (kbd "C-=") #'text-scale-increase)
 (global-set-key (kbd "C-+") #'text-scale-increase)

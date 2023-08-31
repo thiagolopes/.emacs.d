@@ -25,7 +25,7 @@ Simplified version of `add-to-list'."
 ;; I do not use those graphical elements by default, but I do enable
 ;; them from time-to-time for testing purposes or to demonstrate
 ;; something.
-(scroll-bar-mode t)
+(scroll-bar-mode -1)
 (fringe-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)

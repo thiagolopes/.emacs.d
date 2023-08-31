@@ -52,7 +52,7 @@
   (when (fboundp 'tool-bar-mode)
     (tool-bar-mode -1))
   (when (fboundp 'scroll-bar-mode)
-    (scroll-bar-mode t))
+    (scroll-bar-mode -1))
   (when (fboundp 'horizontal-scroll-bar-mode)
     (horizontal-scroll-bar-mode -1))
 
