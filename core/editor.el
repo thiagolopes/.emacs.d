@@ -132,22 +132,10 @@
 (global-set-key (kbd "C-x C-d") 'dired)
 
 ;;
-(setq enable-recursive-minibuffers t                ; Use the minibuffer whilst in the minibuffer
-      x-underline-at-descent-line nil               ; Prettier underlines
+(setq x-underline-at-descent-line nil               ; Prettier underlines
       switch-to-buffer-obey-display-actions t)       ; Make switching buffers more consistent
 (setq-default show-trailing-whitespace nil          ; By default, don't underline trailing spaces
               indicate-buffer-boundaries 'left)      ; Show buffer top and bottom in the margin
-(setq enable-recursive-minibuffers t                ; Use the minibuffer whilst in the minibuffer
-      completion-cycle-threshold 1                  ; TAB cycles candidates
-      completions-detailed t                        ; Show annotations
-      tab-always-indent 'complete                   ; When I hit TAB, try to complete, otherwise, indent
-      completion-styles '(basic initials substring) ; Different styles to match input to candidates
-      completion-auto-help 'always                  ; Open completion always; `lazy' another option
-      completions-max-height 20                     ; This is arbitrary
-      completions-detailed t
-      completions-format 'one-column
-      completions-group t
-      completion-auto-select 'second-tab)            ; Much more eager
 
 (keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete) ; TAB acts more like how it does in the shell
 (add-hook 'text-mode-hook 'visual-line-mode)

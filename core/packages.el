@@ -122,6 +122,11 @@
 
 ;; ----------------------------------
 ;; todo add package to mode
+(use-package auto-compile
+  :config
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode))
+
 (use-package projectile
   :bind
   ("<f9>" . projectile-compile-project)
@@ -133,10 +138,23 @@
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
-(use-package auto-compile
+(use-package company
+  :custom
+  (company-idle-delay nil)
+  (company-minimum-prefix-length 1)
+  (company-show-quick-access nil)
+  (company-tooltip-align-annotations t)
+  (company-tooltip-flip-when-above t)
   :config
-  (auto-compile-on-load-mode)
-  (auto-compile-on-save-mode))
+  (advice-add 'company-capf--candidates :around #'(lambda (fn &rest args)
+                                                    (let ((orderless-match-faces [completions-common-part]))
+                                                      (apply fn args))))
+  (global-company-mode)
+  :bind
+  ("M-." . company-indent-or-complete-common))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 (use-package vertico
   :custom
@@ -300,19 +318,5 @@
   (orderless-component-separator "[ &]")
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
-
-(use-package company
-  :custom
-  (company-idle-delay nil)
-  (company-minimum-prefix-length 1)
-  (company-show-quick-access nil)
-  (company-tooltip-align-annotations t)
-  :config
-  (advice-add 'company-capf--candidates :around #'(lambda (fn &rest args)
-                                                    (let ((orderless-match-faces [completions-common-part]))
-                                                      (apply fn args))))
-  (global-company-mode)
-  :bind
-  ("<tab>" . company-indent-or-complete-common))
 
 (provide 'packages)
