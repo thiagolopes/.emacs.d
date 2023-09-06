@@ -63,7 +63,6 @@
         require-final-newline t
         backup-by-copying t
         frame-inhibit-implied-resize t
-        ediff-window-setup-function 'ediff-setup-windows-plain)
-
+        ediff-window-setup-function 'ediff-setup-windows-plain))
 (provide 'better-defaults)
 ;;; better-defaults.el ends here
