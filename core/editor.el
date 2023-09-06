@@ -7,7 +7,16 @@
 (setq-default backup-directory-alist `(("." . ,(expand-file-name "backup" savefile-dir))))
 
 ;; Revert buffers automatically when underlying files are changed externally
-(global-auto-revert-mode t)
+(setq auto-revert-interval 1)
+(setq auto-revert-check-vc-info t)
+(global-auto-revert-mode)
+
+;; Move through windows with Ctrl-<arrow keys>
+(windmove-default-keybindings 'control) ; You can use other modifiers here
+
+;; Make right-click do something sensible
+(when (display-graphic-p)
+  (context-menu-mode))
 
 ;;; Make names uniques
 (require 'uniquify)
@@ -51,6 +60,7 @@
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(setq-default display-line-numbers-width 3)
 (setq column-number-mode t)
 
 (global-set-key (kbd "C-=") #'text-scale-increase)
@@ -64,11 +74,16 @@
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 
 ;; lisp sanitize
-(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
-(global-set-key (kbd "M-9") '(lambda () (interactive) (insert "(")))
-(global-set-key (kbd "M-0") '(lambda () (interactive) (insert ")")))
-(global-set-key (kbd "M-[") '(lambda () (interactive) (insert "{")))
-(global-set-key (kbd "M-]") '(lambda () (interactive) (insert "}")))
+(global-set-key (kbd "M-3") #'(lambda () (interactive) (insert "#")))
+(global-set-key (kbd "M-9") #'(lambda () (interactive) (insert "(")))
+(global-set-key (kbd "M-0") #'(lambda () (interactive) (insert ")")))
+(global-set-key (kbd "M-[") #'(lambda () (interactive) (insert "{")))
+(global-set-key (kbd "M-]") #'(lambda () (interactive) (insert "}")))
+
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;; sanitize macos keys
 (if (eq system-type 'darwin)
@@ -117,9 +132,16 @@
 (global-set-key (kbd "C-x C-d") 'dired)
 
 ;;
-(global-set-key "\M- " 'hippie-expand)
-(setq-default try-expand-dabbrev-visible t)
-(setq-default try-expand-dabbrev t)
-(setq-default try-expand-dabbrev-all-buffers t)
+(setq enable-recursive-minibuffers t)                ; Use the minibuffer whilst in the minibuffer
+(setq x-underline-at-descent-line nil)               ; Prettier underlines
+(setq switch-to-buffer-obey-display-actions t)       ; Make switching buffers more consistent
+(setq-default show-trailing-whitespace nil)          ; By default, don't underline trailing spaces
+(setq-default indicate-buffer-boundaries 'left)      ; Show buffer top and bottom in the margin
+
+(keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete) ; TAB acts more like how it does in the shell
+(add-hook 'text-mode-hook 'visual-line-mode)
+
+;; display time
+(display-time-mode)
 
 (provide 'editor)
