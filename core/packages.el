@@ -135,10 +135,33 @@
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
-(use-package company
-  :diminish
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  :custom
+  (corfu-popupinfo-delay '(0.25 . 0.1))
+  (corfu-popupinfo-hide nil)
+  (completions-detailed t)                        ; Show annotations
+  (completion-styles '(basic initials substring)) ; Different styles to match input to candidates
+  (completion-auto-help 'always)                  ; Open completion always; `lazy' another option
+  (completions-detailed t)
+  (completions-format 'one-column)
+  (completions-group t)
+  (completion-auto-select 'second-tab)            ; Much more eager
+  (tab-always-indent 'complete)
+  (completion-cycle-threshold nil)
   :config
-  (global-company-mode t))
+  (corfu-popupinfo-mode)
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :bind
+  (:map corfu-map
+        ("SPC" . corfu-insert-separator)
+        ("C-n" . corfu-next)
+        ("C-p" . corfu-previous)))
+
+(use-package kind-icon
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package vertico
   :custom
@@ -156,7 +179,9 @@
 (use-package consult
   :bind
   ("C-x b" . consult-buffer)
-  ("C-s" . swiper)
+  ("M-y" . consult-yank-pop) ; orig. yank-pop
+  ("C-s" . consult-line)
+  ;; ("C-s" . swiper)
   :custom
   (completion-in-region-function #'consult-completion-in-region))
 
@@ -190,10 +215,13 @@
   :diminish
   :hook (prog-mode . git-gutter-mode)
   :custom
-  (git-gutter:modified-sign ">")
-  (git-gutter:added-sign "+")
-  (git-gutter:deleted-sign "-")
   (git-gutter:update-interval 0.02))
+
+(use-package git-gutter-fringe
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 
 (use-package super-save
   :diminish
@@ -228,16 +256,6 @@
   :config
   (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
-(use-package fancy-dabbrev
-  :diminish
-  :config
-  (global-fancy-dabbrev-mode)
-  (global-set-key (kbd "TAB") 'fancy-dabbrev-expand-or-indent)
-  (global-set-key (kbd "<backtab>") 'fancy-dabbrev-backward)
-  (setq dabbrev-case-distinction nil)
-  (setq dabbrev-case-fold-search t)
-  (setq dabbrev-case-replace nil))
-
 (use-package dired-k
   :config
   (add-hook 'dired-initial-position-hook 'dired-k))
@@ -246,10 +264,6 @@
 
 (use-package prescient)
 (use-package vertico-prescient)
-
-(use-package good-scroll
-  :config
-  (good-scroll-mode 1))
 
 (use-package fussy
   :config
@@ -261,6 +275,10 @@
   (gcmh-mode t))
 
 (use-package eglot
+  :custom
+  (eglot-send-changes-idle-time 0.1)
+  :config
+  (fset #'jsonrpc--log-event #'ignore)
   :hook
   (eglot-managed-mode-hook . eglot-inlay-hints-mode)
   (prog-mode . eglot-ensure))
@@ -268,10 +286,6 @@
 (use-package iedit
   :config
   (require 'iedit))
-
-(use-package browse-kill-ring
-  :bind
-  ("M-y" . browse-kill-ring))
 
 (use-package pulsar
   :hook
@@ -300,12 +314,20 @@
   :config
   (global-whitespace-cleanup-mode))
 
-(use-package eldoc-box
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package fancy-dabbrev
   :config
-  (setq eldoc-box-offset '(16 32 16))
-  (setq eldoc-box-max-pixel-width 400)
-  (setq eldoc-box-max-pixel-height 500)
-  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t)
-  (eldoc-box-hover-mode t))
+  (setq dabbrev-case-distinction nil)
+  (setq dabbrev-case-fold-search t)
+  (setq dabbrev-case-replace nil)
+  (setq-default try-expand-dabbrev-visible t)
+  (setq-default try-expand-dabbrev t)
+  (setq-default try-expand-dabbrev-all-buffers t)
+  :init
+  (global-fancy-dabbrev-mode))
 
 (provide 'packages)
