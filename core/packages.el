@@ -138,24 +138,6 @@
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
-(use-package company
-  :custom
-  (company-idle-delay nil)
-  (company-minimum-prefix-length 1)
-  (company-show-quick-access nil)
-  (company-tooltip-align-annotations t)
-  (company-tooltip-flip-when-above t)
-  :config
-  (advice-add 'company-capf--candidates :around #'(lambda (fn &rest args)
-                                                    (let ((orderless-match-faces [completions-common-part]))
-                                                      (apply fn args))))
-  (global-company-mode)
-  :bind
-  ("M-." . company-indent-or-complete-common))
-
-(use-package company-box
-  :hook (company-mode . company-box-mode))
-
 (use-package vertico
   :custom
   (vertico-cycle t)
@@ -216,14 +198,8 @@
   (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 
-(use-package super-save
-  :diminish
-  :config
-  (super-save-mode t))
-
 (use-package flycheck
   :config
-  ;; (setq flycheck-check-syntax-automatically '(save mode-enable))
   (global-flycheck-mode))
 
 (use-package dumb-jump
@@ -268,7 +244,6 @@
   :config
   (fset #'jsonrpc--log-event #'ignore)
   :hook
-  (eglot-managed-mode-hook . eglot-inlay-hints-mode)
   (prog-mode . eglot-ensure))
 
 (use-package iedit
@@ -313,10 +288,32 @@
   :init
   (global-fancy-dabbrev-mode))
 
-(use-package orderless
+(use-package corfu
+  :init
+  (global-corfu-mode)
   :custom
-  (orderless-component-separator "[ &]")
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (corfu-cycle t)
+  (corfu-prescient-mode t)
+  (corfu-popupinfo-delay '(0.25 . 0.1))
+  (corfu-popupinfo-hide nil)
+  (tab-indent-always 'complete)
+  :config
+  (corfu-popupinfo-mode)
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :bind
+  (:map corfu-map
+        ("SPC" . corfu-insert-separator)
+        ("C-n" . corfu-next)
+        ("C-p" . corfu-previous)))
+
+(use-package kind-icon
+  :if (display-graphic-p)
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package orderless
+  :config
+  (setq completion-styles '(orderless)))
 
 (provide 'packages)
