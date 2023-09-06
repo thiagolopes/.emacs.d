@@ -316,4 +316,9 @@
   :config
   (setq completion-styles '(orderless)))
 
+(use-package super-save
+  :diminish
+  :config
+  (super-save-mode t))
+
 (provide 'packages)
