@@ -8,6 +8,9 @@
     clang-format
     diminish
     expand-region
+    smart-compile
+    prescient
+    vertico-prescient
     elpy
     git-modes
     git-timemachine
@@ -118,50 +121,22 @@
  auto-install-alist)
 
 ;; ----------------------------------
-
 ;; todo add package to mode
-(use-package auto-compile
-  :config
-  (auto-compile-on-load-mode)
-  (auto-compile-on-save-mode))
-
 (use-package projectile
   :bind
   ("<f9>" . projectile-compile-project)
-  :config
+  :custom
   (setq projectile-cache-file (expand-file-name  "projectile.cache" savefile-dir))
+  :config
   (projectile-mode t))
 
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
-(use-package corfu
-  :init
-  (global-corfu-mode)
-  :custom
-  (corfu-popupinfo-delay '(0.25 . 0.1))
-  (corfu-popupinfo-hide nil)
-  (completions-detailed t)                        ; Show annotations
-  (completion-styles '(basic initials substring)) ; Different styles to match input to candidates
-  (completion-auto-help 'always)                  ; Open completion always; `lazy' another option
-  (completions-detailed t)
-  (completions-format 'one-column)
-  (completions-group t)
-  (completion-auto-select 'second-tab)            ; Much more eager
-  (tab-always-indent 'complete)
-  (completion-cycle-threshold nil)
+(use-package auto-compile
   :config
-  (corfu-popupinfo-mode)
-  :hook (corfu-mode . corfu-popupinfo-mode)
-  :bind
-  (:map corfu-map
-        ("SPC" . corfu-insert-separator)
-        ("C-n" . corfu-next)
-        ("C-p" . corfu-previous)))
-
-(use-package kind-icon
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode))
 
 (use-package vertico
   :custom
@@ -260,11 +235,6 @@
   :config
   (add-hook 'dired-initial-position-hook 'dired-k))
 
-(use-package smart-compile)
-
-(use-package prescient)
-(use-package vertico-prescient)
-
 (use-package fussy
   :config
   (push 'fussy completion-styles))
@@ -314,20 +284,35 @@
   :config
   (global-whitespace-cleanup-mode))
 
+(use-package fancy-dabbrev
+  :custom
+  (dabbrev-case-distinction nil)
+  (dabbrev-case-fold-search t)
+  (dabbrev-case-replace nil)
+  (try-expand-dabbrev-visible t)
+  (try-expand-dabbrev t)
+  (try-expand-dabbrev-all-buffers t)
+  :init
+  (global-fancy-dabbrev-mode))
+
 (use-package orderless
   :custom
+  (orderless-component-separator "[ &]")
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(use-package fancy-dabbrev
+(use-package company
+  :custom
+  (company-idle-delay nil)
+  (company-minimum-prefix-length 1)
+  (company-show-quick-access nil)
+  (company-tooltip-align-annotations t)
   :config
-  (setq dabbrev-case-distinction nil)
-  (setq dabbrev-case-fold-search t)
-  (setq dabbrev-case-replace nil)
-  (setq-default try-expand-dabbrev-visible t)
-  (setq-default try-expand-dabbrev t)
-  (setq-default try-expand-dabbrev-all-buffers t)
-  :init
-  (global-fancy-dabbrev-mode))
+  (advice-add 'company-capf--candidates :around #'(lambda (fn &rest args)
+                                                    (let ((orderless-match-faces [completions-common-part]))
+                                                      (apply fn args))))
+  (global-company-mode)
+  :bind
+  ("<tab>" . company-indent-or-complete-common))
 
 (provide 'packages)
