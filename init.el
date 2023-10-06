@@ -180,8 +180,8 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (amx-mode 1))
 
 (use-package solaire-mode
-  :hook (prog-mode-hook . solaire-global-mode)
-  :hook (+popup-buffer-mode . turn-on-solaire-mode))
+  :hook (minibuffer-setup-hook . solaire-global-mode)
+  :hook (popup-buffer-mode . turn-on-solaire-mode))
 
 (use-package hl-line
   ;; Highlights the current line
@@ -242,9 +242,8 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :config (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
 
 (use-package rainbow-delimiters
-  :init
-  (rainbow-delimiters-mode t)
   :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   (setq rainbow-delimiters-max-face-count 4))
 
 (use-package undo-fu
@@ -269,23 +268,22 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (undo-fu-mode))
 
 (use-package undo-fu-session
-  :hook (undo-fu-mode . global-undo-fu-session-mode)
-  :custom (undo-fu-session-directory (concat user-emacs-directory "undo-fu-session/"))
+  :after undo-fu
+  :custom
+  (global-undo-fu-session-mode)
+  (undo-fu-session-directory (concat user-emacs-directory "undo-fu-session/"))
   :config
   (setq undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
   (when (executable-find "zstd")
     ;; There are other algorithms available, but zstd is the fastest, and speed
     ;; is our priority within Emacs
-    (setq undo-fu-session-compression 'zst))
-  (defadvice! +undo-fu-make-hashed-session-file-name-a (file)
-              :override #'undo-fu-session--make-file-name
-              (concat (let ((backup-directory-alist `(("." . ,undo-fu-session-directory))))
-                        (make-backup-file-name-1 file))
-                      (undo-fu-session--file-name-ext))))
+    (setq undo-fu-session-compression 'zst)))
 
 (use-package undo-tree
-  :hook (undo-fu-mode . global-undo-tree-mode)
-  :custom (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "undo-tree-hist/"))))
+  :after undo-fu
+  :custom
+  (global-undo-tree-mode 1)
+  (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "undo-tree-hist/"))))
   :config
   (setq undo-tree-visualizer-diff t
         undo-tree-auto-save-history t
