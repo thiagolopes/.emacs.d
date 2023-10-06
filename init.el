@@ -328,7 +328,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 (use-package drag-stuff
   :init
-  (map! "<M-up>"    #'drag-stuff-up
+  (general-define-key "<M-up>"    #'drag-stuff-up
         "<M-down>"  #'drag-stuff-down
         "<M-left>"  #'drag-stuff-left
         "<M-right>" #'drag-stuff-right))
