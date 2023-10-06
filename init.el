@@ -330,5 +330,12 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
         magit-revision-insert-related-refs nil)
   (add-hook 'magit-process-mode-hook #'goto-address-mode))
 
+(use-package drag-stuff
+  :init
+  (map! "<M-up>"    #'drag-stuff-up
+        "<M-down>"  #'drag-stuff-down
+        "<M-left>"  #'drag-stuff-left
+        "<M-right>" #'drag-stuff-right))
+
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
