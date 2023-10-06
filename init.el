@@ -17,12 +17,31 @@
   :config
   (dashboard-setup-startup-hook))
 
-(use-package cider)
+(use-package cider
+  :config
+  (setq nrepl-hide-special-buffers t
+        nrepl-log-messages nil
+        cider-font-lock-dynamically '(macro core function var deprecated)
+        cider-overlays-use-font-lock t
+        cider-prompt-for-symbol nil
+        cider-repl-history-display-duplicates nil
+        cider-repl-history-display-style 'one-line
+        cider-repl-history-file (concat user-emacs-directory "cache/cider-repl-history")
+        cider-repl-history-highlight-current-entry t
+        cider-repl-history-quit-action 'delete-and-restore
+        cider-repl-history-highlight-inserted-item t
+        cider-repl-history-size 1000
+        cider-repl-result-prefix ";; => "
+        cider-repl-print-length 100
+        cider-repl-use-clojure-font-lock t
+        cider-repl-use-pretty-printing t
+        cider-repl-wrap-history nil
+        cider-stacktrace-default-filters '(tooling dup)))
 
 (use-package company
   :diminish
   :hook
-  (prog-mode . global-company-mode))
+  (prog-mode-hook . global-company-mode))
 
 (use-package ligature
   :config
@@ -42,6 +61,7 @@
   (global-ligature-mode t))
 
 (use-package hl-todo
+  :hook (prog-mode-hook . hl-todo-mode)
   :hook (prog-mode . hl-todo-mode)
   :hook (yaml-mode . hl-todo-mode)
   :config
@@ -56,29 +76,7 @@
           ("BUG" error bold)
           ("XXX" font-lock-constant-face bold))))
 
-(use-package ido
-  :hook (ido-mode . ido-ubiquitous-mode)
-  :init
-  (setq ido-save-directory-list-file (concat cache-dir "ido.last"))
-  (ido-mode 1)
-  :config
-  (setq ido-ignore-buffers
-        '("\\` " "^\\*ESS\\*" "^\\*Messages\\*" "^\\*[Hh]elp" "^\\*Buffer"
-          "^\\*.*Completions\\*$" "^\\*Ediff" "^\\*tramp" "^\\*cvs-" "_region_"
-          " output\\*$" "^TAGS$" "^\*Ido")
-        ido-auto-merge-work-directories-length -1
-        ido-confirm-unique-completion t
-        ido-case-fold t
-        ido-create-new-buffer 'always
-        ido-enable-flex-matching t
-        ido-everywhere t))
 
-(use-package ido-vertical-mode
-  :hook (ido-mode . ido-vertical-mode)
-  :config (setq ido-vertical-show-count t))
-
-(use-package ido-sort-mtime
-  :hook (ido-mode . ido-sort-mtime-mode))
 
 (use-package git-gutter
   :diminish
@@ -177,7 +175,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 (use-package amx
   :init
-  (amx-mode 1))
+  (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
 
 (use-package solaire-mode
   :hook (minibuffer-setup-hook . solaire-global-mode)
@@ -265,13 +263,12 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
               map)
     :init-value nil
     :global t)
-  (undo-fu-mode))
+    (undo-fu-mode))
 
 (use-package undo-fu-session
-  :after undo-fu
   :custom
-  (global-undo-fu-session-mode)
-  (undo-fu-session-directory (concat user-emacs-directory "undo-fu-session/"))
+  (undo-fu-session-global-mode)
+  (undo-fu-session-directory (concat user-emacs-directory "fu/undo-fu-session/"))
   :config
   (setq undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
   (when (executable-find "zstd")
@@ -280,10 +277,9 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
     (setq undo-fu-session-compression 'zst)))
 
 (use-package undo-tree
-  :after undo-fu
   :custom
-  (global-undo-tree-mode 1)
-  (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "undo-tree-hist/"))))
+  (global-undo-tree-mode)
+  (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "fu/undo-tree-hist/"))))
   :config
   (setq undo-tree-visualizer-diff t
         undo-tree-auto-save-history t
@@ -337,5 +333,155 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
         "<M-left>"  #'drag-stuff-left
         "<M-right>" #'drag-stuff-right))
 
+
+(use-package ivy
+  :init
+  (ivy-mode)
+  ;; Fix #4886: otherwise our remaps are overwritten
+  (setq ivy-mode-map (make-sparse-keymap))
+  :config
+  ;; The default sorter is much to slow and the default for `ivy-sort-max-size'
+  ;; is way too big (30,000). Turn it down so big repos affect project
+  ;; navigation less.
+  (setq ivy-sort-max-size 7500)
+
+  ;; Counsel changes a lot of ivy's state at startup; to control for that, we
+  ;; need to load it as early as possible. Some packages (like `ivy-prescient')
+  ;; require this.
+  (require 'counsel nil t)
+
+  (setq ivy-height 17
+        ivy-wrap t
+        ivy-fixed-height-minibuffer t
+        ivy-read-action-function #'ivy-hydra-read-action
+        ivy-read-action-format-function #'ivy-read-action-format-columns
+        ;; don't show recent files in switch-buffer
+        ivy-use-virtual-buffers nil
+        ;; ...but if that ever changes, show their full path
+        ivy-virtual-abbreviate 'full
+        ;; don't quit minibuffer on delete-error
+        ivy-on-del-error-function #'ignore
+        ;; enable ability to select prompt (alternative to `ivy-immediate-done')
+        ivy-use-selectable-prompt t))
+
+(use-package counsel
+  :init
+  (general-define-key
+   [remap apropos]                  #'counsel-apropos
+   [remap bookmark-jump]            #'counsel-bookmark
+   [remap compile]                  #'+ivy/compile
+   [remap describe-bindings]        #'counsel-descbinds
+   [remap describe-face]            #'counsel-faces
+   [remap describe-function]        #'counsel-describe-function
+   [remap describe-variable]        #'counsel-describe-variable
+   [remap describe-symbol]          #'counsel-describe-symbol
+   [remap evil-show-registers]      #'counsel-evil-registers
+   [remap evil-show-marks]          #'counsel-mark-ring
+   [remap execute-extended-command] #'counsel-M-x
+   [remap find-file]                #'counsel-find-file
+   [remap find-library]             #'counsel-find-library
+   [remap imenu]                    #'counsel-imenu
+   [remap info-lookup-symbol]       #'counsel-info-lookup-symbol
+   [remap load-theme]               #'counsel-load-theme
+   [remap locate]                   #'counsel-locate
+   [remap org-goto]                 #'counsel-org-goto
+   [remap org-set-tags-command]     #'counsel-org-tag
+   [remap projectile-compile-project] #'+ivy/project-compile
+   [remap recentf-open-files]       #'counsel-recentf
+   [remap set-variable]             #'counsel-set-variable
+   [remap swiper]                   #'counsel-grep-or-swiper
+   [remap insert-char]              #'counsel-unicode-char
+   [remap yank-pop]                 #'counsel-yank-pop)
+  :config
+  ;; Don't use ^ as initial input. Set this here because `counsel' defines more
+  ;; of its own, on top of the defaults.
+  (setq ivy-initial-inputs-alist nil)
+  ;; Integrate with `helpful'
+  (setq counsel-describe-function-function #'helpful-callable
+        counsel-describe-variable-function #'helpful-variable
+        counsel-descbinds-function #'helpful-callable)
+
+  ;; Record in jumplist when opening files via counsel-{ag,rg,pt,git-grep}
+  (add-hook 'counsel-grep-post-action-hook #'better-jumper-set-jump)
+  
+  (add-to-list 'counsel-compile-root-functions #'projectile-project-root)
+  (add-to-list 'ivy-sort-functions-alist '(counsel-imenu))
+
+  ;; `counsel-find-file'
+  (setq counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)")
+  (dolist (fn '(counsel-rg counsel-find-file))
+    (ivy-add-actions
+     fn '(("p" (lambda (path) (with-ivy-window (insert (file-relative-name path default-directory))))
+           "insert relative path")
+          ("P" (lambda (path) (with-ivy-window (insert path)))
+           "insert absolute path")
+          ("l" (lambda (path) (with-ivy-window (insert (format "[[./%s]]" (file-relative-name path default-directory)))))
+           "insert relative org-link")
+          ("L" (lambda (path) (with-ivy-window (insert (format "[[%s]]" path))))
+           "Insert absolute org-link"))))
+  (setq swiper-action-recenter t)
+  (ivy-add-actions 'counsel-file-jump (plist-get ivy--actions-list 'counsel-find-file)))
+
+(use-package ivy-prescient
+  :hook (ivy-mode . ivy-prescient-mode)
+  :hook (ivy-prescient-mode . prescient-persist-mode)
+  :config
+  ;; REVIEW Remove when radian-software/prescient.el#102 is resolved
+  (add-to-list 'ivy-sort-functions-alist '(ivy-resume))
+  (setq ivy-prescient-sort-commands
+        '(:not swiper swiper-isearch ivy-switch-buffer lsp-ivy-workspace-symbol
+               ivy-resume ivy--restore-session counsel-grep counsel-git-grep
+               counsel-rg counsel-ag counsel-ack counsel-fzf counsel-pt counsel-imenu
+               counsel-yank-pop counsel-recentf counsel-buffer-or-recentf
+               counsel-outline counsel-org-goto counsel-jq)
+        ivy-prescient-retain-classic-highlighting t)
+  (defun +ivy-prescient-non-fuzzy (str)
+    (let ((prescient-filter-method '(literal regexp)))
+      (ivy-prescient-re-builder str)))
+
+  ;; NOTE prescient config duplicated with `company'
+  (setq prescient-save-file (concat user-emacs-directory "cache/prescient-save.el")))
+
+(use-package lsp-mode
+  :commands lsp-install-server
+  :init
+  ;; Don't touch ~/.emacs.d, which could be purged without warning
+  (setq lsp-session-file (concat user-emacs-directory "cache/lsp-session")
+        lsp-server-install-dir (concat user-emacs-directory "cache/lsp"))
+  ;; Don't auto-kill LSP server after last workspace buffer is killed, because I
+  ;; will do it for you, after `+lsp-defer-shutdown' seconds.
+  (setq lsp-keep-workspace-alive nil)
+
+  ;; Disable features that have great potential to be slow.
+  (setq lsp-enable-folding nil
+        lsp-enable-text-document-color nil)
+  ;; Reduce unexpected modifications to code
+  (setq lsp-enable-on-type-formatting nil)
+  ;; Make breadcrumbs opt-in; they're redundant with the modeline and imenu
+  (setq lsp-headerline-breadcrumb-enable nil))
+  
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol lsp-ivy-global-workspace-symbol)
+
+(use-package consult-lsp
+  :init
+  (general-define-key :map lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
+
+(use-package dumb-jump
+  :commands dumb-jump-result-follow
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  (setq dumb-jump-default-project (concat user-emacs-directory "jump/")
+        dumb-jump-prefer-searcher 'ag
+        dumb-jump-aggressive nil
+        dumb-jump-selector 'ivy)
+  (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
+
+(use-package whitespace-cleanup
+  :config
+  (add-hook 'prog-mode-hook 'whitespace-cleanup-mode))
+
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
+
+

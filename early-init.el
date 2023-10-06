@@ -168,32 +168,27 @@
       require-final-newline t
       load-prefer-newer t)
 
-(defun map! (&rest key-func-pairs)
-  (while key-func-pairs
-    (let ((key (pop key-func-pairs))
-          (func (pop key-func-pairs)))
-      (global-set-key (kbd key) func))))
+(use-package general)
+(general-define-key "C-=" #'text-scale-increase
+                    "C-+" #'text-scale-increase
+                    "C--" #'text-scale-decrease
+                    "M-n" #'forward-paragraph
+                    "M-p" #'backward-paragraph)
 
-(map! "C-=" #'text-scale-increase
-      "C-+" #'text-scale-increase
-      "C--" #'text-scale-decrease
-      "M-n" #'forward-paragraph
-      "M-p" #'backward-paragraph)
+(general-define-key "<f3>" #'kmacro-start-macro-or-insert-counter
+                    "<f4>" #'kmacro-end-or-call-macro)
 
-(map! "<f3>" #'kmacro-start-macro-or-insert-counter
-      "<f4>" #'kmacro-end-or-call-macro)
+(general-define-key "M-3" #'(lambda () (interactive) (insert "#"))
+                    "M-9" #'(lambda () (interactive) (insert "("))
+                    "M-0" #'(lambda () (interactive) (insert ")"))
+                    "M-[" #'(lambda () (interactive) (insert "{"))
+                    "M-]" #'(lambda () (interactive) (insert "}")))
 
-(map! "M-3" #'(lambda () (interactive) (insert "#"))
-      "M-9" #'(lambda () (interactive) (insert "("))
-      "M-0" #'(lambda () (interactive) (insert ")"))
-      "M-[" #'(lambda () (interactive) (insert "{"))
-      "M-]" #'(lambda () (interactive) (insert "}")))
+(general-define-key "C-x C-b" #'ibuffer
+                    "C-r" #'isearch-backward-regexp
+                    "C-M-s" #'isearch-forward
+                    "C-M-r" #'isearch-backward)
 
-(map! "C-x C-b" #'ibuffer
-      "C-r" #'isearch-backward-regexp
-      "C-M-s" #'isearch-forward
-      "C-M-r" #'isearch-backward)
-
-(map! "C-s" #'swiper-isearch-thing-at-point
-      "C-S" #'swiper-isearch)
+(general-define-key "C-s" #'swiper-isearch-thing-at-point
+                    "C-S" #'swiper-isearch)
 
