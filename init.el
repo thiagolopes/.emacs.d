@@ -40,6 +40,9 @@
 
 (use-package company
   :diminish
+  :config
+  (setq company-idle-delay 0.0
+        company-minimum-prefix-length 1)
   :hook
   (prog-mode-hook . global-company-mode))
 
@@ -263,7 +266,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
               map)
     :init-value nil
     :global t)
-    (undo-fu-mode))
+  (undo-fu-mode))
 
 (use-package undo-fu-session
   :custom
@@ -329,9 +332,9 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package drag-stuff
   :init
   (general-define-key "<M-up>"    #'drag-stuff-up
-        "<M-down>"  #'drag-stuff-down
-        "<M-left>"  #'drag-stuff-left
-        "<M-right>" #'drag-stuff-right))
+                      "<M-down>"  #'drag-stuff-down
+                      "<M-left>"  #'drag-stuff-left
+                      "<M-right>" #'drag-stuff-right))
 
 
 (use-package ivy
@@ -446,6 +449,9 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :commands lsp-install-server
   :init
   ;; Don't touch ~/.emacs.d, which could be purged without warning
+  (setq lsp-warn-no-matched-clients nil)
+  (add-hook 'prog-mode-hook #'lsp)
+  (setq lsp-auto-guess-root t)
   (setq lsp-session-file (concat user-emacs-directory "cache/lsp-session")
         lsp-server-install-dir (concat user-emacs-directory "cache/lsp"))
   ;; Don't auto-kill LSP server after last workspace buffer is killed, because I
@@ -459,7 +465,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (setq lsp-enable-on-type-formatting nil)
   ;; Make breadcrumbs opt-in; they're redundant with the modeline and imenu
   (setq lsp-headerline-breadcrumb-enable nil))
-  
+
 (use-package lsp-ivy
   :commands lsp-ivy-workspace-symbol lsp-ivy-global-workspace-symbol)
 
@@ -480,6 +486,12 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package whitespace-cleanup
   :config
   (add-hook 'prog-mode-hook 'whitespace-cleanup-mode))
+
+(use-package git-timemachine)
+
+(use-package which-key
+  :config
+  (which-key-mode))
 
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)

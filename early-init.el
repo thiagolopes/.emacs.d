@@ -162,6 +162,9 @@
 (electric-pair-mode t)
 (global-auto-revert-mode t)
 
+(require 'saveplace)
+(setq-default save-place t)
+
 (setq display-line-numbers-type t
       org-directory "~/org/"
       cache-dir (concat user-emacs-directory "/cache")
