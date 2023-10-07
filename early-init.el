@@ -160,6 +160,7 @@
 (add-hook 'conf-mode-hook #'display-line-numbers-mode)
 
 (electric-pair-mode t)
+(global-auto-revert-mode t)
 
 (setq display-line-numbers-type t
       org-directory "~/org/"
