@@ -372,7 +372,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (general-define-key
    [remap apropos]                  #'counsel-apropos
    [remap bookmark-jump]            #'counsel-bookmark
-   [remap compile]                  #'+ivy/compile
+   [remap compile]                  #'counsel-compile
    [remap describe-bindings]        #'counsel-descbinds
    [remap describe-face]            #'counsel-faces
    [remap describe-function]        #'counsel-describe-function
@@ -389,7 +389,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
    [remap locate]                   #'counsel-locate
    [remap org-goto]                 #'counsel-org-goto
    [remap org-set-tags-command]     #'counsel-org-tag
-   [remap projectile-compile-project] #'+ivy/project-compile
+   [remap projectile-compile-project] #'projectile-compile
    [remap recentf-open-files]       #'counsel-recentf
    [remap set-variable]             #'counsel-set-variable
    [remap swiper]                   #'counsel-grep-or-swiper
@@ -477,13 +477,13 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :commands dumb-jump-result-follow
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-  (setq dumb-jump-default-project (concat user-emacs-directory "jump/")
+  (setq dumb-jump-default-project (concat user-emacs-directory "cache/jump")
         dumb-jump-prefer-searcher 'ag
         dumb-jump-aggressive nil
         dumb-jump-selector 'ivy)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
-(use-package whitespace-cleanup
+(use-package whitespace-cleanup-mode
   :config
   (add-hook 'prog-mode-hook 'whitespace-cleanup-mode))
 
