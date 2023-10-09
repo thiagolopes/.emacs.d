@@ -15,6 +15,15 @@
 
 (use-package dashboard
   :config
+  (setq dashboard-set-navigator t
+        dashboard-icon-type 'all-the-icons
+        dashboard-show-shortcuts t
+        dashboard-items '((recents  . 8)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 2)
+                          (registers . 2))
+        dashboard-center-content t)
   (dashboard-setup-startup-hook))
 
 (use-package cider
@@ -41,10 +50,10 @@
 (use-package company
   :diminish
   :config
+  (global-company-mode t)
+  :config
   (setq company-idle-delay 0.0
-        company-minimum-prefix-length 1)
-  :hook
-  (prog-mode-hook . global-company-mode))
+        company-minimum-prefix-length 1))
 
 (use-package ligature
   :config
@@ -162,7 +171,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
              projectile-locate-dominating-file
              projectile-relevant-known-projects)
   :init
-  (setq projectile-cache-file (concat cache-dir "projectile.cache")
+  (setq projectile-cache-file (concat cache-dir "cache/")
         ;; Auto-discovery is slow to do by default. Better to update the list
         ;; when you need to (`projectile-discover-projects-in-search-path').
         projectile-auto-discover nil
