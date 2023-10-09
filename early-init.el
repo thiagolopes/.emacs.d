@@ -9,6 +9,7 @@
 (eval-and-compile
   (setq use-package-always-ensure t
         use-package-expand-minimally t))
+(require 'use-package)
 
 (setq user-full-name "Thiago Lopes"
       user-mail-address "thiagolopes@protonmail.com")
@@ -167,6 +168,8 @@
 
 (require 'saveplace)
 (setq-default save-place t)
+(save-place-mode t)
+(setq save-place-file (concat user-emacs-directory "cache/places"))
 
 (setq display-line-numbers-type t
       org-directory "~/org/"

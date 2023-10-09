@@ -271,7 +271,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package undo-fu-session
   :custom
   (undo-fu-session-global-mode)
-  (undo-fu-session-directory (concat user-emacs-directory "fu/undo-fu-session/"))
+  (undo-fu-session-directory (concat user-emacs-directory "cache/fu/undo-fu-session/"))
   :config
   (setq undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
   (when (executable-find "zstd")
@@ -282,7 +282,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package undo-tree
   :custom
   (global-undo-tree-mode)
-  (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "fu/undo-tree-hist/"))))
+  (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/"))))
   :config
   (setq undo-tree-visualizer-diff t
         undo-tree-auto-save-history t
