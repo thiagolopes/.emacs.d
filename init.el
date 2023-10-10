@@ -171,7 +171,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
              projectile-locate-dominating-file
              projectile-relevant-known-projects)
   :init
-  (setq projectile-cache-file (concat cache-dir "cache/")
+  (setq projectile-cache-file (concat cache-dir "cache/projectile/")
         ;; Auto-discovery is slow to do by default. Better to update the list
         ;; when you need to (`projectile-discover-projects-in-search-path').
         projectile-auto-discover nil
@@ -179,7 +179,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
         projectile-globally-ignored-files '(".DS_Store" "TAGS")
         projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
         projectile-kill-buffers-filter 'kill-only-files
-        projectile-known-projects-file (concat cache-dir "projectile.projects")
+        projectile-known-projects-file (concat projectile-cache-file "projectile.projects")
         projectile-ignored-projects '("~/"))
 
   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
