@@ -28,7 +28,8 @@
       '((tab-mark ?\t [?› ?\t])
         (newline-mark ?\n [?¬ ?\n])
         (space-mark ?\  [?·] [?.])))
-
+(context-menu-mode t)
+(column-number-mode t)
 (setq dired-dwim-target t  ; suggest a target for moving/copying intelligently
       dired-hide-details-hide-symlink-targets nil
       ;; don't prompt to revert, just do it
