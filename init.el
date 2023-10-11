@@ -16,6 +16,7 @@
 (use-package dashboard
   :config
   (setq dashboard-set-navigator t
+        dashboard-projects-backend 'projectile
         dashboard-icon-type 'all-the-icons
         dashboard-show-shortcuts t
         dashboard-items '((recents  . 8)
@@ -171,6 +172,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
              projectile-locate-dominating-file
              projectile-relevant-known-projects)
   :init
+  (setq projectile-project-search-path '("~/dev/" "~/work/" "~/.emacs.d/" ("~/github" . 1)))
   (setq projectile-cache-file (concat cache-dir "cache/projectile/")
         ;; Auto-discovery is slow to do by default. Better to update the list
         ;; when you need to (`projectile-discover-projects-in-search-path').
@@ -501,6 +503,15 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package which-key
   :config
   (which-key-mode))
+
+(use-package smart-compile
+  :config
+  (general-define-key "<f8>" #'smart-compile))
+
+(use-package marginalia
+  :init
+  (marginalia-mode))
+
 
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
