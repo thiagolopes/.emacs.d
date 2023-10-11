@@ -512,6 +512,13 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :init
   (marginalia-mode))
 
+(use-package mode-line-bell
+  :init
+  (mode-line-bell-mode))
+
+(use-package goto-last-change
+  :config
+  (general-define-key "C-;" #'goto-last-change))
 
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
