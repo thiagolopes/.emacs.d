@@ -470,7 +470,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 (use-package consult-lsp
   :init
-  (general-define-key :map lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
+  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
 
 (use-package dumb-jump
   :commands dumb-jump-result-follow
@@ -489,20 +489,20 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package git-timemachine)
 
 (use-package which-key
-  :config
-  (which-key-mode))
+  :init
+  (which-key-mode t))
 
 (use-package smart-compile
-  :config
+  :init
   (general-define-key "<f8>" #'smart-compile))
 
 (use-package marginalia
   :init
-  (marginalia-mode))
-
+  (marginalia-mode t))
+ 
 (use-package mode-line-bell
   :init
-  (mode-line-bell-mode))
+  (mode-line-bell-mode t))
 
 (use-package goto-last-change
   :config
