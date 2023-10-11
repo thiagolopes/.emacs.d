@@ -48,6 +48,7 @@
       ;; Screens are larger nowadays, we can afford slightly larger thumbnails
       image-dired-thumb-size 150)
 
+(global-prettify-symbols-mode t)
 (setq enable-recursive-minibuffers t)
 ;; Show current key-sequence in minibuffer ala 'set showcmd' in vim. Any
 ;; feedback after typing is better UX than no feedback at all.
