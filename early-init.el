@@ -66,7 +66,7 @@
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
 (setq x-select-enable-clipboard-manager nil)
-(setq warning-minimum-level :emergency)
+(setq warning-minimum-level :error)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
