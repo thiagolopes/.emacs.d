@@ -485,7 +485,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 (use-package whitespace-cleanup-mode
   :config
-  (add-hook 'before-save-hook 'whitespace-cleanup)
   (add-hook 'prog-mode-hook 'whitespace-cleanup-mode))
 
 (use-package git-timemachine)
