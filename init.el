@@ -405,7 +405,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
   ;; Record in jumplist when opening files via counsel-{ag,rg,pt,git-grep}
   (add-hook 'counsel-grep-post-action-hook #'better-jumper-set-jump)
-  
+
   (add-to-list 'counsel-compile-root-functions #'projectile-project-root)
   (add-to-list 'ivy-sort-functions-alist '(counsel-imenu))
 
@@ -485,6 +485,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 (use-package whitespace-cleanup-mode
   :config
+  (add-hook 'before-save-hook 'whitespace-cleanup)
   (add-hook 'prog-mode-hook 'whitespace-cleanup-mode))
 
 (use-package git-timemachine)
@@ -500,7 +501,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package marginalia
   :init
   (marginalia-mode t))
- 
+
 (use-package mode-line-bell
   :init
   (mode-line-bell-mode t))
@@ -514,4 +515,3 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (setq persistent-scratch-save-file (concat user-emacs-directory "cache/persistent-scratch"))
   (persistent-scratch-setup-default)
   (persistent-scratch-autosave-mode t))
-
