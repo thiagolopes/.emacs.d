@@ -219,3 +219,5 @@
 (general-define-key "C-s" #'swiper-isearch-thing-at-point
                     "C-S" #'swiper-isearch)
 
+;; Yes, I really want to quit.
+(setq confirm-kill-emacs nil)

@@ -515,7 +515,3 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (persistent-scratch-setup-default)
   (persistent-scratch-autosave-mode t))
 
-;; Yes, I really want to quit.
-(setq confirm-kill-emacs nil)
-
-
