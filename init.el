@@ -511,8 +511,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :config
   (general-define-key "C-;" #'goto-last-change))
 
-(use-package persistent-scratch
+(use-package popwin
   :config
-  (setq persistent-scratch-save-file (concat user-emacs-directory "cache/persistent-scratch"))
-  (persistent-scratch-setup-default)
-  (persistent-scratch-autosave-mode t))
+  (popwin-mode t))
