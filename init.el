@@ -469,7 +469,8 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :commands lsp-ivy-workspace-symbol lsp-ivy-global-workspace-symbol)
 
 (use-package consult-lsp
-  :init
+  :after (lsp)
+  :config
   (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
 
 (use-package dumb-jump
@@ -507,6 +508,11 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package goto-last-change
   :config
   (general-define-key "C-;" #'goto-last-change))
+
+(use-package persistent-scratch
+  :config
+  (persistent-scratch-setup-default)
+  (persistent-scratch-autosave-mode t))
 
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
