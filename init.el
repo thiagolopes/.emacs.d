@@ -511,6 +511,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 (use-package persistent-scratch
   :config
+  (setq persistent-scratch-save-file (concat user-emacs-directory "cache/persistent-scratch"))
   (persistent-scratch-setup-default)
   (persistent-scratch-autosave-mode t))
 
