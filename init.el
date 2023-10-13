@@ -46,7 +46,9 @@
         cider-repl-use-clojure-font-lock t
         cider-repl-use-pretty-printing t
         cider-repl-wrap-history nil
-        cider-stacktrace-default-filters '(tooling dup)))
+        cider-stacktrace-default-filters '(tooling dup)
+        cider-repl-display-help-banner nil
+        cider-repl-pop-to-buffer-on-connect 'display-only))
 
 (use-package company
   :diminish
