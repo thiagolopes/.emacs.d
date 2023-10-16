@@ -491,12 +491,14 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
 (use-package whitespace-cleanup-mode
+  :diminish
   :config
   (add-hook 'prog-mode-hook 'whitespace-cleanup-mode))
 
 (use-package git-timemachine)
 
 (use-package which-key
+  :diminish
   :init
   (which-key-mode t))
 
