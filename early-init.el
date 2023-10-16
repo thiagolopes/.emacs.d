@@ -116,6 +116,7 @@
 ;; Don't prompt for confirmation when we create a new file or buffer (assume the
 ;; user knows what they're doing).
 (setq confirm-nonexistent-file-or-buffer nil)
+(require 'uniquify)
 (setq uniquify-buffer-name-style 'forward
       ;; no beeping or blinking please
       ring-bell-function #'ignore
