@@ -182,8 +182,14 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
 
 (use-package solaire-mode
-  :hook (minibuffer-setup-hook . solaire-global-mode)
+  :config
+  (solaire-global-mode t)
+  :hook (minibuffer-setup-hook . turn-on-solaire-mode)
   :hook (popup-buffer-mode . turn-on-solaire-mode))
+
+(use-package smart-mode-line
+  :config
+  (sml/setup))
 
 (use-package hl-line
   ;; Highlights the current line
@@ -339,6 +345,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 
 (use-package ivy
+  :diminish
   :init
   (ivy-mode)
   ;; Fix #4886: otherwise our remaps are overwritten
@@ -348,12 +355,10 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   ;; is way too big (30,000). Turn it down so big repos affect project
   ;; navigation less.
   (setq ivy-sort-max-size 7500)
-
   ;; Counsel changes a lot of ivy's state at startup; to control for that, we
   ;; need to load it as early as possible. Some packages (like `ivy-prescient')
   ;; require this.
   (require 'counsel nil t)
-
   (setq ivy-height 17
         ivy-wrap t
         ivy-fixed-height-minibuffer t
