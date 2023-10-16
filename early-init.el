@@ -83,7 +83,7 @@
       ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; A simple frame title
-(setq frame-title-format '("%b – Doom Emacs")
+(setq frame-title-format '("%b – Emacs")
       icon-title-format frame-title-format)
 
 ;; Don't resize the frames in steps; it looks weird, especially in tiling window
@@ -151,7 +151,9 @@
 (setq indicate-buffer-boundaries nil
       indicate-empty-lines nil)
 
-(use-package doom-themes)
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold nil))
 (load-theme 'doom-solarized-dark-high-contrast t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
