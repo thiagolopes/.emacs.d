@@ -150,7 +150,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (use-package exec-path-from-shell
-  :init
+  :config
   (exec-path-from-shell-initialize))
 
 (use-package dumb-jump)
@@ -536,3 +536,13 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package popwin
   :config
   (popwin-mode t))
+
+(use-package no-littering
+  :config
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+
+(use-package nvm
+  :config
+  (when (file-exists-p "~/.nvmrc")
+    (nvm-use-for)))
