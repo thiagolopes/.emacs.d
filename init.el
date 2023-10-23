@@ -287,12 +287,13 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
     (setq undo-fu-session-compression 'zst)))
 
 (use-package undo-tree
-  :custom
+  :init
   (global-undo-tree-mode)
-  (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/"))))
+  (add-hook 'prog-mode-hook #'undo-tree-mode)
   :config
   (setq undo-tree-visualizer-diff t
         undo-tree-auto-save-history t
+        undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/")))
         undo-tree-enable-undo-in-region t
         ;; Increase undo limits to avoid emacs prematurely truncating the undo
         ;; history and corrupting the tree. This is larger than the undo-fu
