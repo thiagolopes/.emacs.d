@@ -8,6 +8,11 @@
   (package-install 'use-package))
 (eval-and-compile
   (setq use-package-always-ensure t
+        use-package-verbose
+        init-file-debug
+        use-package-compute-statistics nil
+        debug-on-error
+        init-file-debug
         use-package-expand-minimally t))
 (require 'use-package)
 
@@ -16,6 +21,7 @@
 
 (setq gc-cons-threshold 100000000
       read-process-output-max (* 1024 1024))
+(add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
  '(default ((t ( :weight normal :height 100 :width normal :family "Fira Code")))))
