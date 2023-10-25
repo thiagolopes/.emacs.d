@@ -1,4 +1,5 @@
 (use-package diminish)
+
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
@@ -78,8 +79,6 @@
           ("NOTE" success bold)
           ("BUG" error bold)
           ("XXX" font-lock-constant-face bold))))
-
-
 
 (use-package git-gutter
   :diminish
@@ -180,12 +179,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package amx
   :init
   (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
-
-(use-package solaire-mode
-  :config
-  (solaire-global-mode t)
-  :hook (minibuffer-setup-hook . turn-on-solaire-mode)
-  :hook (popup-buffer-mode . turn-on-solaire-mode))
 
 (use-package smart-mode-line
   :config
@@ -559,3 +552,11 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
    "C-h F"   #'helpful-function)
   (setq counsel-describe-function-function #'helpful-callable
         counsel-describe-variable-function #'helpful-variable))
+
+(use-package solaire-mode
+  :config
+  (solaire-global-mode t))
+
+(use-package buffer-name-relative
+  :config
+  (buffer-name-relative-mode))
