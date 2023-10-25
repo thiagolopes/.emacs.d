@@ -547,3 +547,15 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :config
   (when (file-exists-p "~/.nvmrc")
     (nvm-use-for)))
+
+(use-package helpful
+  :config
+  (general-define-key
+   "C-h f"   #'helpful-callable
+   "C-h v"   #'helpful-variable
+   "C-h k"   #'helpful-key
+   "C-h x"   #'helpful-command
+   "C-c C-d" #'helpful-at-point
+   "C-h F"   #'helpful-function)
+  (setq counsel-describe-function-function #'helpful-callable
+        counsel-describe-variable-function #'helpful-variable))
