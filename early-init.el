@@ -160,7 +160,9 @@
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold nil))
-(load-theme 'doom-solarized-dark-high-contrast t)
+(use-package nezburn-theme)
+
+(load-theme 'nezburn t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
