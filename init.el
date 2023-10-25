@@ -555,6 +555,9 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 (use-package solaire-mode
   :config
+  ;; Made dashboard a real buffer
+  (setq solaire-mode-real-buffer-fn #'(lambda () (or (solaire-mode-real-buffer-p)
+                                                (equal (buffer-name) "*dashboard*"))))
   (solaire-global-mode t))
 
 (use-package buffer-name-relative
