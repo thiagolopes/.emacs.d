@@ -142,6 +142,11 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   ;; UX: update git-gutter after reverting a buffer
   (add-hook 'after-revert-hook #'+vc-gutter-update-h))
 
+(use-package git-gutter-fringe
+  :after (git-gutter)
+  :config
+  (require 'git-gutter-fringe))
+
 (use-package multiple-cursors
   :config
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
