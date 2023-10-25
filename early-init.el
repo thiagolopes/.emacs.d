@@ -271,3 +271,25 @@
       (call-process-shell-command cmd))))
 (when (and (eq system-type 'gnu/linux) (display-graphic-p))
     (set-emacs-frames-gtk "dark"))
+
+;; Imortal *scratch* !!
+(defun immortal-scratch ()
+  (if (eq (current-buffer) (get-buffer "*scratch*"))
+      (progn (bury-buffer)
+             nil) t))
+(defun save-persistent-scratch ()
+  "Save the contents of *scratch*"
+  (with-current-buffer (get-buffer-create "*scratch*")
+    (write-region (point-min) (point-max)
+                  (concat user-emacs-directory "scratch"))))
+(defun load-persistent-scratch ()
+  "Reload the scratch buffer"
+  (let ((scratch-file (concat user-emacs-directory "scratch")))
+    (if (file-exists-p scratch-file)
+        (with-current-buffer (get-buffer "*scratch*")
+          (delete-region (point-min) (point-max))
+          (insert-file-contents scratch-file)))))
+(add-hook 'kill-buffer-query-functions 'immortal-scratch)
+(add-hook 'after-init-hook 'load-persistent-scratch)
+(add-hook 'kill-emacs-hook 'save-persistent-scratch)
+(run-with-idle-timer 300 t 'save-persistent-scratch)
