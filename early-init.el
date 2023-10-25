@@ -230,3 +230,6 @@
 
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
+
+(add-hook 'minibuffer-setup-hook '(lambda () (set (make-local-variable 'face-remapping-alist)
+                                             '((default :height 1.25)))))
