@@ -260,3 +260,14 @@
   (interactive)
   (save-some-buffers t))
 (add-hook 'focus-out-hook 'save-some-buffers)
+
+;; Setup dark GTK theme if available
+(defun set-emacs-frames-gtk (variant)
+  (dolist (frame (frame-list))
+    (let* ((window-id (frame-parameter frame 'outer-window-id))
+           (id (string-to-number window-id))
+           (cmd (format "xprop -id 0x%x -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"%s\"" id
+                        variant)))
+      (call-process-shell-command cmd))))
+(when (and (eq system-type 'gnu/linux) (display-graphic-p))
+    (set-emacs-frames-gtk "dark"))
