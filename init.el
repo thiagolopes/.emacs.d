@@ -270,32 +270,14 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
 (use-package undo-fu-session
   :custom
-  (undo-fu-session-global-mode)
   (undo-fu-session-directory (concat user-emacs-directory "cache/fu/undo-fu-session/"))
   :config
+  (undo-fu-session-global-mode t)
   (setq undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
   (when (executable-find "zstd")
     ;; There are other algorithms available, but zstd is the fastest, and speed
     ;; is our priority within Emacs
     (setq undo-fu-session-compression 'zst)))
-
-(use-package undo-tree
-  :init
-  (global-undo-tree-mode)
-  (add-hook 'prog-mode-hook #'undo-tree-mode)
-  :config
-  (setq undo-tree-visualizer-diff t
-        undo-tree-auto-save-history t
-        undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/")))
-        undo-tree-enable-undo-in-region t
-        ;; Increase undo limits to avoid emacs prematurely truncating the undo
-        ;; history and corrupting the tree. This is larger than the undo-fu
-        ;; defaults because undo-tree trees consume exponentially more space,
-        ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
-        ;; syl20bnr/spacemacs#12110
-        undo-limit 800000            ; 800kb (default is 160kb)
-        undo-strong-limit 12000000   ; 12mb  (default is 240kb)
-        undo-outer-limit 128000000)) ; 128mb (default is 24mb))
 
 (use-package ibuffer-projectile
   ;; Group ibuffer's list by project root
