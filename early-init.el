@@ -160,7 +160,9 @@
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold nil))
-(use-package nezburn-theme)
+(use-package nezburn-theme
+  :config
+  (setq nezburn-add-font-lock-keywords '(:)))
 
 (load-theme 'nezburn t)
 
@@ -248,5 +250,13 @@
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
 
-(add-hook 'minibuffer-setup-hook '(lambda () (set (make-local-variable 'face-remapping-alist)
-                                             '((default :height 1.2)))))
+;; Increase minibuffer font
+(add-hook 'minibuffer-setup-hook
+          '(lambda () (set (make-local-variable 'face-remapping-alist)
+                      '((default :height 1.2)))))
+
+;; Save buffer on focus loose
+(defun save-all ()
+  (interactive)
+  (save-some-buffers t))
+(add-hook 'focus-out-hook 'save-some-buffers)
