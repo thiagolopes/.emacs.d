@@ -252,6 +252,24 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   (setq rainbow-delimiters-max-face-count 4))
 
+(use-package undo-tree
+  :init
+  (global-undo-tree-mode)
+  (add-hook 'prog-mode-hook #'undo-tree-mode)
+  :config
+  (setq undo-tree-visualizer-diff t
+        undo-tree-auto-save-history t
+        undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/")))
+        undo-tree-enable-undo-in-region t
+        ;; Increase undo limits to avoid emacs prematurely truncating the undo
+        ;; history and corrupting the tree. This is larger than the undo-fu
+        ;; defaults because undo-tree trees consume exponentially more space,
+        ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
+        ;; syl20bnr/spacemacs#12110
+        undo-limit 800000            ; 800kb (default is 160kb)
+        undo-strong-limit 12000000   ; 12mb  (default is 240kb)
+        undo-outer-limit 128000000)) ; 128mb (default is 24mb))
+
 (use-package undo-fu
   :config
   ;; Increase undo history limits to reduce likelihood of data loss
