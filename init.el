@@ -186,7 +186,14 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
 
 (use-package smart-mode-line
+  :disabled
   :config
+  (set-face-attribute 'mode-line nil
+                      :overline  'unspecified
+                      :underline 'unspecified)
+  ;; (set-face-attribute 'mode-line-inactive nil
+  ;;                     :overline  'unspecified
+  ;;                     :underline 'unspecified)
   (sml/setup))
 
 (use-package hl-line
@@ -568,3 +575,11 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package buffer-name-relative
   :config
   (buffer-name-relative-mode))
+
+(use-package moody
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode)
+  (moody-replace-eldoc-minibuffer-message-function))
+
