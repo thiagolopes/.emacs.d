@@ -164,7 +164,8 @@
   :config
   (setq nezburn-add-font-lock-keywords '(:)))
 
-(load-theme 'nezburn t)
+;; (load-theme 'nezburn t)
+(load-theme 'doom-solarized-dark-high-contrast t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
