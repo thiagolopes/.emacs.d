@@ -242,10 +242,7 @@
                       '((default :height 1.2)))))
 
 ;; Save buffer on focus loose
-(defun save-all ()
-  (interactive)
-  (save-some-buffers t))
-(add-hook 'focus-out-hook 'save-some-buffers)
+(add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
 
 ;; Setup dark GTK theme if available
 (defun set-emacs-frames-gtk (variant)
