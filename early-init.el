@@ -24,7 +24,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t ( :weight normal :height 100 :width normal :family "Fira Code")))))
+ '(default ((t ( :weight normal :height 110 :width normal :family "Fira Code")))))
 
 (setq whitespace-line-column nil
       whitespace-style
@@ -164,9 +164,11 @@
 (use-package nezburn-theme
   :config
   (setq nezburn-add-font-lock-keywords '(:)))
+(use-package timu-caribbean-theme
+  :init
+  (customize-set-variable 'timu-caribbean-org-intense-colors t))
 
-;; (load-theme 'nezburn t)
-(load-theme 'doom-solarized-dark-high-contrast t)
+(load-theme 'timu-caribbean t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
