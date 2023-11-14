@@ -488,6 +488,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
         lsp-ui-doc-show-with-mouse nil  ; don't disappear on mouseover
         lsp-ui-doc-position 'at-point
         lsp-ui-sideline-ignore-duplicate t
+        lsp-ui-doc-show-with-mouse t
         ;; Don't show symbol definitions in the sideline. They are pretty noisy,
         ;; and there is a bug preventing Flycheck errors from being shown (the
         ;; errors flash briefly and then disappear).
