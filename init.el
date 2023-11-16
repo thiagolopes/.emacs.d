@@ -59,11 +59,6 @@
   (setq company-idle-delay 0.0
         company-minimum-prefix-length 1))
 
-(use-package ligature
-  :config
-  (ligature-set-ligatures 'prog-mode fira-code-mode--ligatures)
-  (global-ligature-mode t))
-
 (use-package hl-todo
   :hook (prog-mode-hook . hl-todo-mode)
   :hook (prog-mode . hl-todo-mode)
@@ -157,8 +152,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :config
   (exec-path-from-shell-initialize))
 
-(use-package dumb-jump)
-
 (use-package projectile
   :commands (projectile-project-root
              projectile-project-name
@@ -186,7 +179,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
 
 (use-package smart-mode-line
-  :disabled
   :config
   (set-face-attribute 'mode-line nil
                       :overline  'unspecified
@@ -578,6 +570,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (buffer-name-relative-mode))
 
 (use-package moody
+  :disabled
   :config
   (setq x-underline-at-descent-line t)
   (moody-replace-mode-line-buffer-identification)

@@ -164,22 +164,24 @@
 (use-package nezburn-theme
   :config
   (setq nezburn-add-font-lock-keywords '(:)))
+(use-package modus-themes)
 (use-package timu-caribbean-theme
   :init
   (customize-set-variable 'timu-caribbean-org-intense-colors t))
 
-(load-theme 'timu-caribbean t)
+(load-theme 'modus-vivendi t)
 
-;; Line number is relative
-(setq display-line-numbers-type 'relative)
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
 ;; Show absolute line numbers for narrowed regions to make it easier to tell the
 ;; buffer is narrowed, and where you are, exactly.
 (setq-default display-line-numbers-widen t)
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
-(add-hook 'text-mode-hook #'display-line-numbers-mode)
-(add-hook 'conf-mode-hook #'display-line-numbers-mode)
+(defun enable-linum-relative ()
+  (setq-default display-line-numbers-type 'relative)
+  (display-line-numbers-mode))
+(add-hook 'prog-mode-hook #'enable-linum-relative)
+(add-hook 'text-mode-hook #'enable-linum-relative)
+(add-hook 'conf-mode-hook #'enable-linum-relative)
 
 (electric-pair-mode t)
 (global-auto-revert-mode t)
@@ -195,21 +197,6 @@
       custom-file (concat user-emacs-directory "/custom.el")
       require-final-newline t
       load-prefer-newer t)
-
-(defconst fira-code-mode--ligatures
-  '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-    ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-    "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-    "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-    "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-    "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-    "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-    "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-    ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-    "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-    "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-    "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-    "\\\\" "://"))
 
 (use-package general)
 (general-define-key "C-=" #'text-scale-increase
