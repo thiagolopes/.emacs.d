@@ -178,16 +178,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :init
   (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
 
-(use-package smart-mode-line
-  :config
-  (set-face-attribute 'mode-line nil
-                      :overline  'unspecified
-                      :underline 'unspecified)
-  ;; (set-face-attribute 'mode-line-inactive nil
-  ;;                     :overline  'unspecified
-  ;;                     :underline 'unspecified)
-  (sml/setup))
-
 (use-package hl-line
   ;; Highlights the current line
   :hook (dashboard-setup-startup-hook . global-hl-line-mode)
@@ -359,13 +349,14 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   (require 'counsel nil t)
   (setq ivy-height 17
         ivy-wrap t
+        ivy-count-format "(%d/%d) "
         ivy-fixed-height-minibuffer t
         ivy-read-action-function #'ivy-hydra-read-action
         ivy-read-action-format-function #'ivy-read-action-format-columns
         ;; don't show recent files in switch-buffer
         ivy-use-virtual-buffers nil
         ;; ...but if that ever changes, show their full path
-        ivy-virtual-abbreviate 'full
+        ivy-virtual-abbreviate 'abbreviate
         ;; don't quit minibuffer on delete-error
         ivy-on-del-error-function #'ignore
         ;; enable ability to select prompt (alternative to `ivy-immediate-done')
@@ -569,11 +560,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :config
   (buffer-name-relative-mode))
 
-(use-package moody
-  :disabled
+(use-package smart-mode-line
   :config
-  (setq x-underline-at-descent-line t)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode)
-  (moody-replace-eldoc-minibuffer-message-function))
-
+  (sml/setup))
