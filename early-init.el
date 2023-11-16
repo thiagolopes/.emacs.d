@@ -170,14 +170,13 @@
 
 (load-theme 'timu-caribbean t)
 
+;; Line number is relative
+(setq display-line-numbers-type 'relative)
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
 ;; Show absolute line numbers for narrowed regions to make it easier to tell the
 ;; buffer is narrowed, and where you are, exactly.
 (setq-default display-line-numbers-widen t)
-;; Enable line numbers in most text-editing modes. We avoid
-;; `global-display-line-numbers-mode' because there are many special and
-;; temporary modes where we don't need/want them.
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 (add-hook 'conf-mode-hook #'display-line-numbers-mode)
