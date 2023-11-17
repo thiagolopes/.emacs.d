@@ -208,11 +208,11 @@
 (general-define-key "<f3>" #'kmacro-start-macro-or-insert-counter
                     "<f4>" #'kmacro-end-or-call-macro)
 
-(general-define-key "M-3" #'(lambda () (interactive) (insert "#"))
-                    "M-9" #'(lambda () (interactive) (insert "("))
-                    "M-0" #'(lambda () (interactive) (insert ")"))
-                    "M-[" #'(lambda () (interactive) (insert "{"))
-                    "M-]" #'(lambda () (interactive) (insert "}")))
+(general-define-key "M-3" '(lambda () (interactive) (insert "#"))
+                    "M-9" '(lambda () (interactive) (insert "("))
+                    "M-0" '(lambda () (interactive) (insert ")"))
+                    "M-[" '(lambda () (interactive) (insert "{"))
+                    "M-]" '(lambda () (interactive) (insert "}")))
 
 (general-define-key "C-x C-b" #'ibuffer
                     "C-r" #'isearch-backward-regexp
