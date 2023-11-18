@@ -164,7 +164,22 @@
 (use-package nezburn-theme
   :config
   (setq nezburn-add-font-lock-keywords '(:)))
-(use-package modus-themes)
+(use-package modus-themes
+  :config
+  (setq modus-themes-prompts '(bold))
+  (setq modus-themes-completions nil)
+  (setq modus-themes-org-blocks 'tinted-background) ;'gray-background)
+  (customize-set-variable 'modus-themes-common-palette-overrides
+                          `((bg-mode-line-active bg-inactive)
+                            (fg-mode-line-active fg-inactive)
+                            (bg-mode-line-inactive bg-inactive)
+                            (fg-mode-line-active fg-dim)
+                            (border-mode-line-active bg-active)
+                            (border-mode-line-inactive bg-main)))
+  (setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs t
+      modus-themes-variable-pitch-ui t
+      modus-themes-mixed-fonts t))
 (use-package timu-caribbean-theme
   :init
   (customize-set-variable 'timu-caribbean-org-intense-colors t))
@@ -197,6 +212,9 @@
       custom-file (concat user-emacs-directory "/custom.el")
       require-final-newline t
       load-prefer-newer t)
+
+;; Made SHIFT+arrow to move to the next adjacent window in the specified direction
+(windmove-default-keybindings)
 
 (use-package general)
 (general-define-key "C-=" #'text-scale-increase
