@@ -205,6 +205,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   :preface (defvar winner-dont-bind-my-keys t) ; I'll bind keys myself
   :hook (dashboard-setup-startup-hook . winner-mode)
   :config
+  (winner-mode 1)
   (appendq! winner-boring-buffers
             '("*Compile-Log*" "*inferior-lisp*" "*Fuzzy Completions*"
               "*Apropos*" "*Help*" "*cvs*" "*Buffer List*" "*Ibuffer*"
