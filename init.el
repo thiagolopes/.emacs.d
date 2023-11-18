@@ -76,7 +76,6 @@
           ("XXX" font-lock-constant-face bold))))
 
 (use-package git-gutter
-  :diminish
   :commands git-gutter:revert-hunk git-gutter:stage-hunk git-gutter:previous-hunk git-gutter:next-hunk
   :init
   (add-hook 'find-file-hook
@@ -173,10 +172,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
   (global-set-key [remap find-tag]         #'projectile-find-tag))
-
-(use-package amx
-  :init
-  (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
 
 (use-package hl-line
   ;; Highlights the current line
@@ -331,7 +326,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
                       "<M-down>"  #'drag-stuff-down
                       "<M-left>"  #'drag-stuff-left
                       "<M-right>" #'drag-stuff-right))
-
 
 (use-package ivy
   :diminish
