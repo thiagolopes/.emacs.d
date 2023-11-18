@@ -227,11 +227,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
              nerd-icons-pomicon
              nerd-icons-powerline))
 
-;; Many major modes do no highlighting of number literals, so we do it for them
-(use-package highlight-numbers
-  :hook ((prog-mode conf-mode) . highlight-numbers-mode)
-  :config (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
-
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
