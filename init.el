@@ -269,7 +269,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
               map)
     :init-value nil
     :global t)
-  (undo-fu-mode))
+  (undo-fu-mode t))
 
 (use-package undo-fu-session
   :custom
