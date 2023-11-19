@@ -24,7 +24,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t ( :weight normal :height 110 :width normal :family "Fira Code")))))
+ '(default ((t ( :weight normal :height 110 :width normal :family "JetBrains Mono")))))
 
 (setq whitespace-line-column nil
       whitespace-style
