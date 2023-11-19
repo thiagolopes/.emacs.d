@@ -87,6 +87,7 @@
       backup-by-copying t
       frame-inhibit-implied-resize t
       ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq make-backup-files nil)
 
 ;; A simple frame title
 (setq frame-title-format '("%b – Emacs")
@@ -183,8 +184,9 @@
 (use-package timu-caribbean-theme
   :init
   (customize-set-variable 'timu-caribbean-org-intense-colors t))
+(use-package gruber-darker-theme)
 
-(load-theme 'modus-vivendi t)
+(load-theme 'gruber-darker t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
