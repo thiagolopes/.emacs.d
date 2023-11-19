@@ -553,3 +553,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package smart-mode-line
   :config
   (sml/setup))
+
+(use-package iedit
+  :config
+  (require 'iedit))
