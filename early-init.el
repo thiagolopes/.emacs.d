@@ -250,9 +250,6 @@
           '(lambda () (set (make-local-variable 'face-remapping-alist)
                       '((default :height 1.2)))))
 
-;; Save buffer on focus loose
-(add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
-
 ;; Setup dark GTK theme if available
 (defun set-emacs-frames-gtk (variant)
   (dolist (frame (frame-list))
