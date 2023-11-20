@@ -282,3 +282,6 @@
 (add-hook 'after-init-hook 'load-persistent-scratch)
 (add-hook 'kill-emacs-hook 'save-persistent-scratch)
 (run-with-idle-timer 300 t 'save-persistent-scratch)
+
+(require 'ido)
+(ido-mode)

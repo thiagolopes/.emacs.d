@@ -6,6 +6,7 @@
 (use-package counsel
   :commands (counsel-yank-pop counsel-ag counsel-fzf)
   :bind
+  ("C-x C-f" . counsel-find-file)
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf))
 
