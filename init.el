@@ -324,6 +324,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
                       "<M-right>" #'drag-stuff-right))
 
 (use-package ivy
+  :disabled
   :diminish
   :init
   (ivy-mode)
@@ -469,6 +470,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
         lsp-ui-sideline-show-hover nil))
 
 (use-package lsp-ivy
+  :after (ivy)
   :commands lsp-ivy-workspace-symbol lsp-ivy-global-workspace-symbol)
 
 (use-package consult-lsp
