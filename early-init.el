@@ -23,12 +23,8 @@
       read-process-output-max (* 1024 1024))
 (add-hook 'after-init-hook #'garbage-collect t)
 
-(if (member "Inconsolata Nerd Font" (font-family-list))
-    (progn
-      (custom-set-faces
-       '(default ((t ( :weight normal :height 130 :width normal :family "Inconsolata Nerd Font")))))
-      (message "Inconssolata Nerd Font!"))
-  (message "Inconsolata Nerd Font not instaled"))
+(custom-set-faces
+ '(default ((t ( :weight normal :height 130 :width normal :family "Inconsolata Nerd Font")))))
 
 (setq whitespace-line-column nil
       whitespace-style
