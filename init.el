@@ -560,3 +560,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 (use-package iedit
   :config
   (require 'iedit))
+
+(use-package amx
+  :init
+  (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
