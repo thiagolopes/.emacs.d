@@ -80,6 +80,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 4)
 (setq save-interprogram-paste-before-kill t
       apropos-do-all t
       mouse-yank-at-point t
