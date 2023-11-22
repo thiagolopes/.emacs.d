@@ -3,13 +3,6 @@
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
-(use-package counsel
-  :commands (counsel-yank-pop counsel-ag counsel-fzf)
-  :bind
-  ("C-x C-f" . counsel-find-file)
-  ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf))
-
 (use-package smartparens
   :bind
   ("C-)" . sp-forward-slurp-sexp)
@@ -336,8 +329,8 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
   ;; navigation less.
   (setq ivy-sort-max-size 7500)
   ;; Counsel changes a lot of ivy's state at startup; to control for that, we
-  ;; need to load it as early as possible. Some packages (like `ivy-prescient')
-  ;; require this.
+  ;; need to load it as early as possible. Some packages (like `ivy-require')
+  ;; prescient this.
   (require 'counsel nil t)
   (setq ivy-height 17
         ivy-wrap t
@@ -382,6 +375,11 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
    [remap swiper]                   #'counsel-grep-or-swiper
    [remap insert-char]              #'counsel-unicode-char
    [remap yank-pop]                 #'counsel-yank-pop)
+  :commands (counsel-yank-pop counsel-ag counsel-fzf)
+  :bind
+  ("C-x C-f" . counsel-find-file)
+  ("M-?" . counsel-ag)
+  ("C-M-?" . counsel-fzf)
   :config
   ;; Don't use ^ as initial input. Set this here because `counsel' defines more
   ;; of its own, on top of the defaults.
