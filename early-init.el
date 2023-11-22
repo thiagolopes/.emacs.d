@@ -285,4 +285,5 @@
 (run-with-idle-timer 300 t 'save-persistent-scratch)
 
 (require 'ido)
-(ido-mode)
+(ido-mode t)
+(ido-everywhere t)

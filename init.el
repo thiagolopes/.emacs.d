@@ -549,10 +549,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
                                                 (equal (buffer-name) "*dashboard*"))))
   (solaire-global-mode t))
 
-(use-package buffer-name-relative
-  :config
-  (buffer-name-relative-mode))
-
 (use-package smart-mode-line
   :config
   (sml/setup))
