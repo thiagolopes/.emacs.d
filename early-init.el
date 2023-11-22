@@ -100,7 +100,7 @@
 
 ;; But do not resize windows pixelwise, this can cause crashes in some cases
 ;; when resizing too many windows at once or rapidly.
-(setq window-resize-pixelwise nil)
+(setq window-resize-pixelwise t)
 
 ;; UX: GUIs are inconsistent across systems, desktop environments, and themes,
 ;;   and don't match the look of Emacs. They also impose inconsistent shortcut
