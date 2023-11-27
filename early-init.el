@@ -284,6 +284,11 @@
 (add-hook 'kill-emacs-hook 'save-persistent-scratch)
 (run-with-idle-timer 300 t 'save-persistent-scratch)
 
-(require 'ido)
-(ido-mode t)
-(ido-everywhere t)
+(setq ido-enable-flex-matching t)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-create-new-buffer 'always)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+(require 'icicles)
+(icy-mode 1)
