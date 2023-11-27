@@ -343,10 +343,10 @@
         dumb-jump-selector 'ivy)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
-(use-package whitespace-cleanup-mode
+(use-package ws-butler
   :diminish
   :config
-  (add-hook 'prog-mode-hook 'whitespace-cleanup-mode))
+  (add-hook 'prog-mode-hook #'ws-butler-mode))
 
 (use-package git-timemachine)
 
@@ -415,3 +415,37 @@
 (use-package amx
   :init
   (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
+
+(use-package ace-popup-menu
+  :config
+  (ace-popup-menu-mode t))
+
+(use-package yascroll
+  :config
+  (global-yascroll-bar-mode t))
+
+(use-package pulsar
+  :config
+  (setq pulsar-pulse t)
+  (pulsar-global-mode))
+
+(use-package volatile-highlights
+  :config
+  (volatile-highlights-mode t))
+
+(use-package buffer-move
+  :config
+  (general-define-key "<C-S-up>" #'buf-move-up
+                      "<C-S-down>" #'buf-move-down
+                      "<C-S-left>" #'buf-move-left
+                      "<C-S-right>" #'buf-move-right))
+
+(use-package goto-line-preview
+  :config
+  (global-set-key [remap goto-line] 'goto-line-preview))
+
+(use-package ido-completing-read+
+  :config
+  (require 'ido-completing-read+)
+  (ido-ubiquitous-mode 1))
+
