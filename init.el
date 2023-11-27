@@ -69,72 +69,6 @@
           ("BUG" error bold)
           ("XXX" font-lock-constant-face bold))))
 
-(use-package git-gutter
-  :commands git-gutter:revert-hunk git-gutter:stage-hunk git-gutter:previous-hunk git-gutter:next-hunk
-  :init
-  (add-hook 'find-file-hook
-            (defun +vc-gutter-init-maybe-h ()
-              "Enable `git-gutter-mode' in the current buffer.
-If the buffer doesn't represent an existing file, `git-gutter-mode's activation
-is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
-              (let ((file-name (buffer-file-name (buffer-base-buffer))))
-                (cond
-                 ((and (file-remote-p (or file-name default-directory))
-                       (not +vc-gutter-in-remote-files)))
-                 ;; UX: If not a valid file, wait until it is written/saved to activate
-                 ;;   git-gutter.
-                 ((not (and file-name (vc-backend file-name)))
-                  (add-hook 'after-save-hook #'+vc-gutter-init-maybe-h nil 'local))
-                 ;; UX: Allow git-gutter or git-gutter-fringe to activate based on the
-                 ;;   type of frame we're in. This allows git-gutter to work for silly
-                 ;;   geese who open both tty and gui frames from the daemon.
-                 ((if (and (display-graphic-p)
-                           (require 'git-gutter-fringe nil t))
-                      (setq-local git-gutter:init-function      #'git-gutter-fr:init
-                                  git-gutter:view-diff-function #'git-gutter-fr:view-diff-infos
-                                  git-gutter:clear-function     #'git-gutter-fr:clear
-                                  git-gutter:window-width -1)
-                    (setq-local git-gutter:init-function      'nil
-                                git-gutter:view-diff-function #'git-gutter:view-diff-infos
-                                git-gutter:clear-function     #'git-gutter:clear-diff-infos
-                                git-gutter:window-width 1))
-                  (unless (memq major-mode git-gutter:disabled-modes)
-                    (git-gutter-mode +1)
-                    (remove-hook 'after-save-hook #'+vc-gutter-init-maybe-h 'local)))))))
-
-  ;; UX: Disable in Org mode, as per syl20bnr/spacemacs#10555 and
-  ;;   syohex/emacs-git-gutter#24. Apparently, the mode-enabling function for
-  ;;   global minor modes gets called for new buffers while they are still in
-  ;;   `fundamental-mode', before a major mode has been assigned. I don't know
-  ;;   why this is the case, but adding `fundamental-mode' here fixes the issue.
-  (setq git-gutter:disabled-modes '(fundamental-mode image-mode pdf-view-mode))
-  :config
-  ;; PERF: Only enable the backends that are available, so it doesn't have to
-  ;;   check when opening each buffer.
-  (setq git-gutter:handled-backends
-        (cons 'git (cl-remove-if-not #'executable-find (list 'hg 'svn 'bzr)
-                                     :key #'symbol-name)))
-
-  ;; UX: update git-gutter on focus (in case I was using git externally)
-  (add-hook 'focus-in-hook #'git-gutter:update-all-windows)
-
-  ;; Stop git-gutter doing things when we don't want
-  (remove-hook 'post-command-hook #'git-gutter:post-command-hook)
-  (advice-remove #'quit-window #'git-gutter:quit-window)
-  (advice-remove #'switch-to-buffer #'git-gutter:switch-to-buffer)
-
-  ;; UX: update git-gutter when using magit commands
-  (advice-add #'magit-stage-file   :after #'+vc-gutter-update-h)
-  (advice-add #'magit-unstage-file :after #'+vc-gutter-update-h)
-
-  ;; UX: update git-gutter after reverting a buffer
-  (add-hook 'after-revert-hook #'+vc-gutter-update-h))
-
-(use-package git-gutter-fringe
-  :after (git-gutter)
-  :config
-  (require 'git-gutter-fringe))
-
 (use-package multiple-cursors
   :config
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -166,28 +100,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
 
   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
   (global-set-key [remap find-tag]         #'projectile-find-tag))
-
-(use-package hl-line
-  ;; Highlights the current line
-  :hook (dashboard-setup-startup-hook . global-hl-line-mode)
-  :init
-  (defvar global-hl-line-modes
-    '(prog-mode text-mode conf-mode special-mode
-                org-agenda-mode dired-mode)
-    "What modes to enable `hl-line-mode' in.")
-  :config
-  ;; HACK I reimplement `global-hl-line-mode' so we can white/blacklist modes in
-  ;;      `global-hl-line-modes' _and_ so we can use `global-hl-line-mode',
-  ;;      which users expect to control hl-line in Emacs.
-  (define-globalized-minor-mode global-hl-line-mode hl-line-mode
-    (lambda ()
-      (and (cond (hl-line-mode nil)
-                 ((null global-hl-line-modes) nil)
-                 ((eq global-hl-line-modes t))
-                 ((eq (car global-hl-line-modes) 'not)
-                  (not (derived-mode-p global-hl-line-modes)))
-                 ((apply #'derived-mode-p global-hl-line-modes)))
-           (hl-line-mode +1)))))
 
 (use-package winner
   ;; undo/redo changes to Emacs' window layout
@@ -316,6 +228,7 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
                       "<M-left>"  #'drag-stuff-left
                       "<M-right>" #'drag-stuff-right))
 
+<<<<<<< HEAD
 (use-package ivy
   :disabled
   :diminish
@@ -347,6 +260,8 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
         ;; enable ability to select prompt (alternative to `ivy-immediate-done')
         ivy-use-selectable-prompt t))
 
+=======
+>>>>>>> e83e690 (Remove git-gutter, git-fringe, ivy, hl-line and lsp-ivy)
 (use-package counsel
   :init
   (general-define-key
@@ -466,10 +381,6 @@ is deferred until the file is saved. Respects `git-gutter:disabled-modes'."
         ;; and there is a bug preventing Flycheck errors from being shown (the
         ;; errors flash briefly and then disappear).
         lsp-ui-sideline-show-hover nil))
-
-(use-package lsp-ivy
-  :after (ivy)
-  :commands lsp-ivy-workspace-symbol lsp-ivy-global-workspace-symbol)
 
 (use-package consult-lsp
   :after (lsp)
