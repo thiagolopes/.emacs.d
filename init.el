@@ -228,40 +228,6 @@
                       "<M-left>"  #'drag-stuff-left
                       "<M-right>" #'drag-stuff-right))
 
-<<<<<<< HEAD
-(use-package ivy
-  :disabled
-  :diminish
-  :init
-  (ivy-mode)
-  ;; Fix #4886: otherwise our remaps are overwritten
-  (setq ivy-mode-map (make-sparse-keymap))
-  :config
-  ;; The default sorter is much to slow and the default for `ivy-sort-max-size'
-  ;; is way too big (30,000). Turn it down so big repos affect project
-  ;; navigation less.
-  (setq ivy-sort-max-size 7500)
-  ;; Counsel changes a lot of ivy's state at startup; to control for that, we
-  ;; need to load it as early as possible. Some packages (like `ivy-require')
-  ;; prescient this.
-  (require 'counsel nil t)
-  (setq ivy-height 17
-        ivy-wrap t
-        ivy-count-format "(%d/%d) "
-        ivy-fixed-height-minibuffer t
-        ivy-read-action-function #'ivy-hydra-read-action
-        ivy-read-action-format-function #'ivy-read-action-format-columns
-        ;; don't show recent files in switch-buffer
-        ivy-use-virtual-buffers nil
-        ;; ...but if that ever changes, show their full path
-        ivy-virtual-abbreviate 'abbreviate
-        ;; don't quit minibuffer on delete-error
-        ivy-on-del-error-function #'ignore
-        ;; enable ability to select prompt (alternative to `ivy-immediate-done')
-        ivy-use-selectable-prompt t))
-
-=======
->>>>>>> e83e690 (Remove git-gutter, git-fringe, ivy, hl-line and lsp-ivy)
 (use-package counsel
   :init
   (general-define-key
@@ -324,26 +290,6 @@
            "Insert absolute org-link"))))
   (setq swiper-action-recenter t)
   (ivy-add-actions 'counsel-file-jump (plist-get ivy--actions-list 'counsel-find-file)))
-
-(use-package ivy-prescient
-  :hook (ivy-mode . ivy-prescient-mode)
-  :hook (ivy-prescient-mode . prescient-persist-mode)
-  :config
-  ;; REVIEW Remove when radian-software/prescient.el#102 is resolved
-  (add-to-list 'ivy-sort-functions-alist '(ivy-resume))
-  (setq ivy-prescient-sort-commands
-        '(:not swiper swiper-isearch ivy-switch-buffer lsp-ivy-workspace-symbol
-               ivy-resume ivy--restore-session counsel-grep counsel-git-grep
-               counsel-rg counsel-ag counsel-ack counsel-fzf counsel-pt counsel-imenu
-               counsel-yank-pop counsel-recentf counsel-buffer-or-recentf
-               counsel-outline counsel-org-goto counsel-jq)
-        ivy-prescient-retain-classic-highlighting t)
-  (defun +ivy-prescient-non-fuzzy (str)
-    (let ((prescient-filter-method '(literal regexp)))
-      (ivy-prescient-re-builder str)))
-
-  ;; NOTE prescient config duplicated with `company'
-  (setq prescient-save-file (concat user-emacs-directory "cache/prescient-save.el")))
 
 (use-package lsp-mode
   :commands lsp-install-server
