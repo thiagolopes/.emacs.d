@@ -195,7 +195,7 @@
 ;; buffer is narrowed, and where you are, exactly.
 (setq-default display-line-numbers-widen t)
 (defun enable-linum-relative ()
-  (setq-default display-line-numbers-type 'relative)
+  ;; (setq-default display-line-numbers-type 'relative)
   (display-line-numbers-mode))
 (add-hook 'prog-mode-hook #'enable-linum-relative)
 (add-hook 'text-mode-hook #'enable-linum-relative)
@@ -236,9 +236,9 @@
                     "M-]" '(lambda () (interactive) (insert "}")))
 
 (general-define-key "C-x C-b" #'ibuffer
-                    "C-r" #'isearch-backward-regexp
-                    "C-M-s" #'isearch-forward
-                    "C-M-r" #'isearch-backward)
+                    "C-r"     #'isearch-backward-regexp
+                    "C-M-s"   #'isearch-forward
+                    "C-M-r"   #'isearch-backward)
 
 (general-define-key "C-s" #'swiper-isearch-thing-at-point
                     "C-S" #'swiper-isearch)

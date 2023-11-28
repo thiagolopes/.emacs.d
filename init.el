@@ -261,6 +261,7 @@
   ("C-x C-f" . counsel-find-file)
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf)
+  ("C-c C-c" . counsel-compile)
   :config
   ;; Don't use ^ as initial input. Set this here because `counsel' defines more
   ;; of its own, on top of the defaults.
@@ -354,10 +355,6 @@
   :diminish
   :init
   (which-key-mode t))
-
-(use-package smart-compile
-  :init
-  (general-define-key "<f8>" #'smart-compile))
 
 (use-package marginalia
   :init
