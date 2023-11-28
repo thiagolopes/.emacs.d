@@ -50,8 +50,8 @@
   :config
   (global-company-mode t)
   :config
-  (setq company-idle-delay 0.0
-        company-minimum-prefix-length 1))
+  (setq company-idle-delay 1.0
+        company-minimum-prefix-length 2))
 
 (use-package hl-todo
   :hook (prog-mode-hook . hl-todo-mode)
