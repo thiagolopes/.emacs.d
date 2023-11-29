@@ -297,7 +297,6 @@
   :init
   ;; Don't touch ~/.emacs.d, which could be purged without warning
   (setq lsp-warn-no-matched-clients nil)
-  (add-hook 'prog-mode-hook #'lsp)
   (setq lsp-auto-guess-root t)
   (setq lsp-session-file (concat user-emacs-directory "cache/lsp-session")
         lsp-server-install-dir (concat user-emacs-directory "cache/lsp"))
@@ -328,11 +327,6 @@
         ;; and there is a bug preventing Flycheck errors from being shown (the
         ;; errors flash briefly and then disappear).
         lsp-ui-sideline-show-hover nil))
-
-(use-package consult-lsp
-  :after (lsp)
-  :config
-  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
 
 (use-package dumb-jump
   :commands dumb-jump-result-follow
