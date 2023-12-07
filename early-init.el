@@ -292,3 +292,7 @@
 
 (require 'icicles)
 (icy-mode 1)
+
+(pixel-scroll-precision-mode t)
+(setq pixel-scroll-precision-large-scroll-height 40.0)
+(setq pixel-scroll-precision-use-momentum t)
