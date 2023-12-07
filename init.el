@@ -393,3 +393,7 @@
 (use-package flycheck
   :config
   (global-flycheck-mode))
+
+(use-package swiper
+  :bind
+  ("C-s" . swiper))
