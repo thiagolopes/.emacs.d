@@ -1,5 +1,18 @@
 (use-package diminish)
 
+(use-package better-defaults)
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package flycheck-inline
+  :config
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
 
@@ -50,8 +63,17 @@
   :config
   (global-company-mode t)
   :config
-  (setq company-idle-delay 1.0
-        company-minimum-prefix-length 2))
+  (setq company-require-match nil
+        company-tooltip-align-annotations t))
+
+(use-package company-c-headers
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
+(use-package company-irony
+  :config
+  (eval-after-load 'company
+    '(add-to-list 'company-backends 'company-irony)))
 
 (use-package hl-todo
   :hook (prog-mode-hook . hl-todo-mode)
@@ -121,18 +143,6 @@
         show-paren-when-point-inside-paren t
         show-paren-when-point-in-periphery t))
 
-(use-package nerd-icons
-  :commands (nerd-icons-octicon
-             nerd-icons-faicon
-             nerd-icons-flicon
-             nerd-icons-wicon
-             nerd-icons-mdicon
-             nerd-icons-codicon
-             nerd-icons-devicon
-             nerd-icons-ipsicon
-             nerd-icons-pomicon
-             nerd-icons-powerline))
-
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
@@ -190,16 +200,7 @@
 
 (use-package ibuffer-projectile
   ;; Group ibuffer's list by project root
-  :hook (ibuffer . ibuffer-projectile-set-filter-groups)
-  :config
-  (setq ibuffer-projectile-prefix
-        (if (modulep! +icons)
-            (concat (nerd-icons-octicon
-                     "nf-oct-file_directory"
-                     :face ibuffer-filter-group-name-face
-                     :v-adjust -0.05)
-                    " ")
-          "Project: ")))
+  :hook (ibuffer . ibuffer-projectile-set-filter-groups))
 
 (use-package magit
   :init
@@ -270,68 +271,13 @@
   (setq counsel-describe-function-function #'helpful-callable
         counsel-describe-variable-function #'helpful-variable
         counsel-descbinds-function #'helpful-callable)
-
-  ;; Record in jumplist when opening files via counsel-{ag,rg,pt,git-grep}
-  (add-hook 'counsel-grep-post-action-hook #'better-jumper-set-jump)
-
-  (add-to-list 'counsel-compile-root-functions #'projectile-project-root)
-  (add-to-list 'ivy-sort-functions-alist '(counsel-imenu))
-
-  ;; `counsel-find-file'
-  (setq counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)")
-  (dolist (fn '(counsel-rg counsel-find-file))
-    (ivy-add-actions
-     fn '(("p" (lambda (path) (with-ivy-window (insert (file-relative-name path default-directory))))
-           "insert relative path")
-          ("P" (lambda (path) (with-ivy-window (insert path)))
-           "insert absolute path")
-          ("l" (lambda (path) (with-ivy-window (insert (format "[[./%s]]" (file-relative-name path default-directory)))))
-           "insert relative org-link")
-          ("L" (lambda (path) (with-ivy-window (insert (format "[[%s]]" path))))
-           "Insert absolute org-link"))))
-  (setq swiper-action-recenter t)
-  (ivy-add-actions 'counsel-file-jump (plist-get ivy--actions-list 'counsel-find-file)))
-
-(use-package lsp-mode
-  :commands lsp-install-server
-  :init
-  ;; Don't touch ~/.emacs.d, which could be purged without warning
-  (setq lsp-warn-no-matched-clients nil)
-  (setq lsp-auto-guess-root t)
-  (setq lsp-session-file (concat user-emacs-directory "cache/lsp-session")
-        lsp-server-install-dir (concat user-emacs-directory "cache/lsp"))
-  ;; Don't auto-kill LSP server after last workspace buffer is killed, because I
-  ;; will do it for you, after `+lsp-defer-shutdown' seconds.
-  (setq lsp-keep-workspace-alive nil)
-
-  ;; Disable features that have great potential to be slow.
-  (setq lsp-enable-folding nil
-        lsp-enable-text-document-color nil)
-  ;; Reduce unexpected modifications to code
-  (setq lsp-enable-on-type-formatting nil)
-  ;; Make breadcrumbs opt-in; they're redundant with the modeline and imenu
-  (setq lsp-headerline-breadcrumb-enable nil))
-
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
-  :config
-  (setq lsp-ui-peek-enable t
-        lsp-ui-doc-max-height 8
-        lsp-ui-doc-max-width 72         ; 150 (default) is too wide
-        lsp-ui-doc-delay 0.75           ; 0.2 (default) is too naggy
-        lsp-ui-doc-show-with-mouse nil  ; don't disappear on mouseover
-        lsp-ui-doc-position 'at-point
-        lsp-ui-sideline-ignore-duplicate t
-        lsp-ui-doc-show-with-mouse t
-        ;; Don't show symbol definitions in the sideline. They are pretty noisy,
-        ;; and there is a bug preventing Flycheck errors from being shown (the
-        ;; errors flash briefly and then disappear).
-        lsp-ui-sideline-show-hover nil))
+  (setq counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)"))
 
 (use-package dumb-jump
   :commands dumb-jump-result-follow
-  :config
+  :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  :config
   (setq dumb-jump-default-project (concat user-emacs-directory "cache/jump")
         dumb-jump-prefer-searcher 'ag
         dumb-jump-aggressive nil
@@ -355,6 +301,8 @@
   (marginalia-mode t))
 
 (use-package mode-line-bell
+  :config
+  (setq mode-line-bell 1)
   :init
   (mode-line-bell-mode t))
 
@@ -441,3 +389,7 @@
   (ido-ubiquitous-mode 1))
 
 (use-package shell-pop)
+
+(use-package flycheck
+  :config
+  (global-flycheck-mode))
