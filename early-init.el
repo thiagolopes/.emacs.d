@@ -187,7 +187,7 @@
   (customize-set-variable 'timu-caribbean-org-intense-colors t))
 (use-package gruber-darker-theme)
 
-(load-theme 'gruber-darker t)
+(load-theme 'doom-zenburn t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
