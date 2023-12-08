@@ -220,6 +220,9 @@
 (windmove-default-keybindings)
 
 (use-package general)
+(general-define-key "<mouse-8>" #'previous-buffer
+                    "<mouse-9>" #'next-buffer)
+
 (general-define-key "C-=" #'text-scale-increase
                     "C-+" #'text-scale-increase
                     "C--" #'text-scale-decrease
