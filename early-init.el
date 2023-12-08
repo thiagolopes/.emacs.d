@@ -24,7 +24,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t ( :weight normal :height 130 :width normal :family "Inconsolata Nerd Font")))))
+ '(default ((t ( :weight medium :height 105 :width normal :family "JetBrains Mono")))))
 
 (setq whitespace-line-column nil
       whitespace-style
