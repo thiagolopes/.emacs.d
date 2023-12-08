@@ -299,3 +299,6 @@
 (pixel-scroll-precision-mode t)
 (setq pixel-scroll-precision-large-scroll-height 40.0)
 (setq pixel-scroll-precision-use-momentum t)
+
+;; Yes, I really want compile
+(setq compilation-ask-about-save nil)
