@@ -359,10 +359,6 @@
   :config
   (ace-popup-menu-mode t))
 
-(use-package yascroll
-  :config
-  (global-yascroll-bar-mode t))
-
 (use-package pulsar
   :config
   (setq pulsar-pulse t)
