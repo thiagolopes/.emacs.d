@@ -308,12 +308,6 @@
   :init
   (marginalia-mode t))
 
-(use-package mode-line-bell
-  :config
-  (setq mode-line-bell 1)
-  :init
-  (mode-line-bell-mode t))
-
 (use-package goto-last-change
   :config
   (general-define-key "C-;" #'goto-last-change))
