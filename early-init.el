@@ -79,6 +79,7 @@
 (menu-bar-mode -1)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (show-paren-mode 1)
+
 (setq save-interprogram-paste-before-kill t
       apropos-do-all t
       mouse-yank-at-point t
@@ -320,6 +321,9 @@
 (setq-default tab-width 4)
 (setq c-set-style "k&r")
 (setq c-basic-offset 4)
+(setq comment-style 'extra-line)
+(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
+                                   comment-end   "")))
 
 ;; copy-paste
 (cua-mode t)
