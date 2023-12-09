@@ -79,8 +79,6 @@
 (menu-bar-mode -1)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (show-paren-mode 1)
-(setq-default indent-tabs-mode nil)
-(setq-default c-basic-offset 4)
 (setq save-interprogram-paste-before-kill t
       apropos-do-all t
       mouse-yank-at-point t
@@ -309,12 +307,19 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
-(require 'icicles)
-(icy-mode 1)
-
 (pixel-scroll-precision-mode t)
 (setq pixel-scroll-precision-large-scroll-height 40.0)
 (setq pixel-scroll-precision-use-momentum t)
 
 ;; Yes, I really want compile
 (setq compilation-ask-about-save nil)
+;;; early-init.el ends here;
+
+;; ctyle
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq c-set-style "k&r")
+(setq c-basic-offset 4)
+
+;; copy-paste
+(cua-mode t)
