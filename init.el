@@ -70,6 +70,14 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
+(use-package irony
+  :config
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode)
+
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
 (use-package company-irony
   :config
   (eval-after-load 'company
