@@ -401,3 +401,8 @@
 (use-package swiper
   :bind
   ("C-s" . swiper))
+
+;; Fringe options
+(fringe-mode)
+(general-setq-default indicate-empty-lines t
+                      indicate-buffer-boundaries 'left)
