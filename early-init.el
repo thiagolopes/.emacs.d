@@ -125,10 +125,26 @@
 ;; user knows what they're doing).
 (setq confirm-nonexistent-file-or-buffer nil)
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'forward
-      ;; no beeping or blinking please
-      ring-bell-function #'ignore
-      visible-bell nil)
+(setq uniquify-buffer-name-style 'forward)
+
+;; no beeping or blinking please
+;; (setq ring-bell-function #'ignore
+;; visible-bell nil)
+;; beeping PLEASE! but not too much
+(setq ring-bell-function
+      (lambda ()
+        (unless (memq this-command
+                      '(isearch-abort
+                        abort-recursive-edit
+                        exit-minibuffer
+                        keyboard-quit
+                        previous-line
+                        next-line
+                        scroll-down
+                        scroll-up
+                        cua-scroll-down
+                        cua-scroll-up))
+          (ding))))
 
 ;; middle-click paste at point, not at click
 (setq mouse-yank-at-point t)
