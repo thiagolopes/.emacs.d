@@ -1,23 +1,42 @@
-(require 'package)
-(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+(setq straight-use-package-by-default t
+      use-package-always-defer t
+      straight-cache-autoloads t
+      straight-vc-git-default-clone-depth 1
+      straight-check-for-modifications '(find-when-checking)
+      package-enable-at-startup nil
+      vc-follow-symlinks t)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(require 'straight-x)
+(straight-use-package 'use-package)
+
 (eval-and-compile
   (setq use-package-always-ensure t
-        use-package-verbose
-        init-file-debug
+        use-package-verbose t
         use-package-compute-statistics nil
-        debug-on-error
-        init-file-debug
+        debug-on-error t
+        init-file-debug t
         use-package-expand-minimally t))
 (require 'use-package)
 
 (setq user-full-name "Thiago Lopes"
       user-mail-address "thiagolopes@protonmail.com")
+
+(defvar comp-deferred-compliation)
+(setq comp-deferred-compilation t)
+(setq package-enable-at-startup nil)
 
 (setq gc-cons-threshold 100000000
       read-process-output-max (* 1024 1024))
@@ -25,6 +44,12 @@
 
 (custom-set-faces
  '(default ((t ( :weight medium :height 105 :width normal :family "JetBrains Mono")))))
+(setq-default line-spacing 1)
+
+;; Add padding inside frames (windows)
+(add-to-list 'default-frame-alist '(internal-border-width . 2))
+
+(set-window-buffer nil (current-buffer))
 
 (setq whitespace-line-column nil
       whitespace-style
@@ -54,6 +79,12 @@
       ;; Screens are larger nowadays, we can afford slightly larger thumbnails
       image-dired-thumb-size 150)
 
+(setq site-run-file nil)
+(setq inhibit-compacting-font-caches t)
+(when (boundp 'read-process-output-max)
+  ;; 1MB in bytes, default 4096 bytes
+  (setq read-process-output-max 1048576))
+
 (global-prettify-symbols-mode t)
 (setq enable-recursive-minibuffers t)
 ;; Show current key-sequence in minibuffer ala 'set showcmd' in vim. Any
@@ -62,11 +93,6 @@
 ;; Expand the minibuffer to fit multi-line text displayed in the echo-area. This
 ;; doesn't look too great with direnv, however...
 (setq resize-mini-windows 'grow-only)
-;; Typing yes/no is obnoxious when y/n will do
-(if (boundp 'use-short-answers)
-    (setq use-short-answers t)
-  ;; DEPRECATED: Remove when we drop 27.x support
-  (advice-add #'yes-or-no-p :override #'y-or-n-p))
 ;; Try to keep the cursor out of the read-only portions of the minibuffer.
 (setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
@@ -177,7 +203,7 @@
 
 (use-package doom-themes
   :config
-  (setq doom-themes-enable-bold nil))
+  (setq doom-themes-enable-bold t))
 (use-package nezburn-theme
   :config
   (setq nezburn-add-font-lock-keywords '(:)))
@@ -202,7 +228,7 @@
   (customize-set-variable 'timu-caribbean-org-intense-colors t))
 (use-package gruber-darker-theme)
 
-(load-theme 'doom-zenburn t)
+(load-theme 'modus-vivendi t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
@@ -314,7 +340,6 @@
 
 ;; Yes, I really want compile
 (setq compilation-ask-about-save nil)
-;;; early-init.el ends here;
 
 ;; ctyle
 (setq-default indent-tabs-mode nil)
@@ -322,8 +347,65 @@
 (setq c-set-style "k&r")
 (setq c-basic-offset 4)
 (setq comment-style 'extra-line)
-(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
-                                   comment-end   "")))
+(add-hook 'c-mode-hook '(lambda () (setq comment-start "//"
+                                    comment-end   "")))
+(add-hook 'prog-mode #'electric-operator-mode)
 
 ;; copy-paste
 (cua-mode t)
+
+;; treat camel-cased words as individual words.
+(add-hook 'prog-mode-hook 'subword-mode)
+;; don't assume sentences end with two spaces after a period.
+(setq sentence-end-double-space nil)
+;; show matching parens
+(show-paren-mode t)
+(setq show-paren-delay 0.0)
+;; limit files to 80 columns. Controversial, I know.
+(setq-default fill-column 80)
+;; handle very long lines without hurting emacs
+(global-so-long-mode)
+
+(use-package gcmh
+  :demand t
+  :config
+  (gcmh-mode 1))
+
+(setq default-directory "~/"
+      ;; overwrite text when selected, like we expect.
+      delete-seleciton-mode t
+      ;; quiet startup
+      inhibit-startup-message t
+      ;; hopefully all themes we install are safe
+      custom-safe-themes t
+      ;; simple lock/backup file management
+      create-lockfiles nil
+      backup-by-copying t
+      delete-old-versions t
+      ;; when quiting emacs, just kill processes
+      confirm-kill-processes nil
+      ;; ask if local variables are safe once.
+      enable-local-variables t
+      ;; life is too short to type yes or no
+      use-short-answers t
+      ;; clean up dired buffers
+      dired-kill-when-opening-new-dired-buffer t)
+
+(setq-default dired-listing-switches "-alh")
+
+;; always highlight code
+(global-font-lock-mode 1)
+;; refresh a buffer if changed on disk
+(global-auto-revert-mode 1)
+
+;; utf8
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8)
+(set-clipboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+
+;;; early-init.el ends here;
