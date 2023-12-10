@@ -2,16 +2,77 @@
 
 (use-package better-defaults)
 
+(use-package no-littering
+  :config
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+
+(use-package which-key
+  :diminish
+  :custom
+  (which-key-allow-evil-operators t)
+  (which-key-show-remaining-keys t)
+  (which-key-sort-order 'which-key-prefix-then-key-order)
+  :config
+  (which-key-mode t)
+  (which-key-setup-minibuffer)
+  (set-face-attribute
+   'which-key-local-map-description-face nil :weight 'bold))
+
+(use-package undo-tree
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq undo-tree-visualizer-diff t
+        undo-tree-auto-save-history t
+        undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/")))
+        undo-tree-enable-undo-in-region t
+        ;; Increase undo limits to avoid emacs prematurely truncating the undo
+        ;; history and corrupting the tree. This is larger than the undo-fu
+        ;; defaults because undo-tree trees consume exponentially more space,
+        ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
+        ;; syl20bnr/spacemacs#12110
+        undo-limit 800000            ; 800kb (default is 160kb)
+        undo-strong-limit 12000000   ; 12mb  (default is 240kb)
+        undo-outer-limit 128000000)) ; 128mb (default is 24mb))
+
+(use-package persistent-soft)
+
+(use-package unicode-fonts
+  :after persistent-soft
+  :config
+  (unicode-fonts-setup))
+
+(use-package mixed-pitch
+  :commands mixed-pitch-mode
+  :custom
+  (mixed-pitch-set-height t))
+
+;; A more complex, more lazy-loaded config
+(use-package solaire-mode
+  :hook
+  ;; Ensure solaire-mode is running in all solaire-mode buffers
+  (change-major-mode . turn-on-solaire-mode)
+  ;; ...if you use auto-revert-mode, this prevents solaire-mode from turning
+  ;; itself off every time Emacs reverts the file
+  (after-revert . turn-on-solaire-mode)
+  ;; To enable solaire-mode unconditionally for certain modes:
+  (ediff-prepare-buffer . solaire-mode)
+  :custom
+  (solaire-mode-auto-swap-bg t)
+  :config
+  (solaire-global-mode +1))
+
+(use-package info-colors
+  :defer 1
+  :config
+  (add-hook 'Info-selection-hook 'info-colors-fontify-node))
+
 (use-package orderless
   :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
-
-(use-package flycheck-inline
-  :config
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
 
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
@@ -20,20 +81,6 @@
   :bind
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
-
-(use-package dashboard
-  :config
-  (setq dashboard-set-navigator t
-        dashboard-projects-backend 'projectile
-        dashboard-icon-type 'all-the-icons
-        dashboard-show-shortcuts t
-        dashboard-items '((recents  . 8)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 2)
-                          (registers . 2))
-        dashboard-center-content t)
-  (dashboard-setup-startup-hook))
 
 (use-package cider
   :config
@@ -58,18 +105,6 @@
         cider-repl-display-help-banner nil
         cider-repl-pop-to-buffer-on-connect 'display-only))
 
-(use-package company
-  :diminish
-  :config
-  (global-company-mode t)
-  :config
-  (setq company-require-match nil
-        company-tooltip-align-annotations t))
-
-(use-package company-c-headers
-  :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-
 (use-package irony
   :config
   (add-hook 'c++-mode-hook 'irony-mode)
@@ -77,11 +112,6 @@
   (add-hook 'objc-mode-hook 'irony-mode)
 
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-
-(use-package company-irony
-  :config
-  (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-irony)))
 
 (use-package hl-todo
   :hook (prog-mode-hook . hl-todo-mode)
@@ -117,15 +147,11 @@
              projectile-relevant-known-projects)
   :init
   (setq projectile-project-search-path '("~/dev/" "~/work/" "~/.emacs.d/" ("~/github" . 1)))
-  (setq projectile-cache-file (concat cache-dir "cache/projectile/")
-        ;; Auto-discovery is slow to do by default. Better to update the list
-        ;; when you need to (`projectile-discover-projects-in-search-path').
-        projectile-auto-discover nil
+  (setq projectile-auto-discover nil
         projectile-enable-caching (not noninteractive)
         projectile-globally-ignored-files '(".DS_Store" "TAGS")
         projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
         projectile-kill-buffers-filter 'kill-only-files
-        projectile-known-projects-file (concat projectile-cache-file "projectile.projects")
         projectile-ignored-projects '("~/"))
 
   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
@@ -155,45 +181,6 @@
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   (setq rainbow-delimiters-max-face-count 4))
-
-(use-package undo-tree
-  :init
-  (global-undo-tree-mode)
-  (add-hook 'prog-mode-hook #'undo-tree-mode)
-  :config
-  (setq undo-tree-visualizer-diff t
-        undo-tree-auto-save-history t
-        undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/")))
-        undo-tree-enable-undo-in-region t
-        ;; Increase undo limits to avoid emacs prematurely truncating the undo
-        ;; history and corrupting the tree. This is larger than the undo-fu
-        ;; defaults because undo-tree trees consume exponentially more space,
-        ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
-        ;; syl20bnr/spacemacs#12110
-        undo-limit 800000            ; 800kb (default is 160kb)
-        undo-strong-limit 12000000   ; 12mb  (default is 240kb)
-        undo-outer-limit 128000000)) ; 128mb (default is 24mb))
-
-(use-package undo-fu
-  :config
-  ;; Increase undo history limits to reduce likelihood of data loss
-  (setq undo-limit 400000           ; 400kb (default is 160kb)
-        undo-strong-limit 3000000   ; 3mb   (default is 240kb)
-        undo-outer-limit 48000000)  ; 48mb  (default is 24mb)
-  (define-minor-mode undo-fu-mode
-    "Enables `undo-fu' for the current session."
-    :keymap (let ((map (make-sparse-keymap)))
-              (define-key map [remap undo] #'undo-fu-only-undo)
-              (define-key map [remap redo] #'undo-fu-only-redo)
-              ;; (define-key map (kbd "C-_")     #'undo-fu-only-undo)
-              ;; (define-key map (kbd "M-_")     #'undo-fu-only-redo)
-              (define-key map (kbd "C-M-_")   #'undo-fu-only-redo-all)
-              (define-key map (kbd "C-x r u") #'undo-fu-session-save)
-              (define-key map (kbd "C-x r U") #'undo-fu-session-recover)
-              map)
-    :init-value nil
-    :global t)
-  (undo-fu-mode t))
 
 (use-package undo-fu-session
   :custom
@@ -299,27 +286,13 @@
 
 (use-package git-timemachine)
 
-(use-package which-key
-  :diminish
-  :init
-  (which-key-mode t))
-
 (use-package marginalia
   :init
   (marginalia-mode t))
 
-(use-package goto-last-change
-  :config
-  (general-define-key "C-;" #'goto-last-change))
-
 (use-package popwin
   :config
   (popwin-mode t))
-
-(use-package no-littering
-  :config
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (use-package nvm
   :config
@@ -337,13 +310,6 @@
    "C-h F"   #'helpful-function)
   (setq counsel-describe-function-function #'helpful-callable
         counsel-describe-variable-function #'helpful-variable))
-
-(use-package solaire-mode
-  :config
-  ;; Made dashboard a real buffer
-  (setq solaire-mode-real-buffer-fn #'(lambda () (or (solaire-mode-real-buffer-p)
-                                                (equal (buffer-name) "*dashboard*"))))
-  (solaire-global-mode t))
 
 (use-package smart-mode-line
   :config
@@ -392,11 +358,37 @@
   :config
   (global-flycheck-mode))
 
+(use-package flycheck-inline
+  :config
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+
 (use-package swiper
   :bind
   ("C-s" . swiper))
+
+(use-package company
+  :config
+  (global-company-mode t))
+
+(use-package company-prescient
+  :after company prescient
+  :config
+  (company-prescient-mode t))
+
+(use-package company-posframe
+  :after company
+  :custom
+  (company-posframe-quickhelp-delay nil)
+  :config
+  (company-posframe-mode t))
+
+(use-package corfu
+  :config
+  (global-corfu-mode))
 
 ;; Fringe options
 (fringe-mode)
 (general-setq-default indicate-empty-lines t
                       indicate-buffer-boundaries 'left)
+
