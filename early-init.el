@@ -1,5 +1,4 @@
 (setq straight-use-package-by-default t
-      use-package-always-defer t
       straight-cache-autoloads t
       straight-vc-git-default-clone-depth 1
       straight-check-for-modifications '(find-when-checking)
@@ -18,19 +17,16 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+(setq vc-follow-symlinks 'ask) ; restore default
 
 (require 'straight-x)
 (straight-use-package 'use-package)
-
-(eval-and-compile
-  (setq use-package-always-ensure t
-        use-package-verbose t
-        use-package-compute-statistics nil
-        debug-on-error t
-        init-file-debug t
-        use-package-expand-minimally t))
 (require 'use-package)
 
+(setq use-package-verbose t
+      use-package-compute-statistics nil
+      debug-on-error t
+      init-file-debug t)
 (setq user-full-name "Thiago Lopes"
       user-mail-address "thiagolopes@protonmail.com")
 
@@ -204,28 +200,27 @@
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t))
-(use-package nezburn-theme
-  :config
-  (setq nezburn-add-font-lock-keywords '(:)))
+
 (use-package modus-themes
-  :config
-  (setq modus-themes-prompts '(bold))
-  (setq modus-themes-completions nil)
-  (setq modus-themes-org-blocks 'tinted-background) ;'gray-background)
-  (customize-set-variable 'modus-themes-common-palette-overrides
-                          `((bg-mode-line-active bg-inactive)
-                            (fg-mode-line-active fg-inactive)
-                            (bg-mode-line-inactive bg-inactive)
-                            (fg-mode-line-active fg-dim)
-                            (border-mode-line-active bg-active)
-                            (border-mode-line-inactive bg-main)))
-  (setq modus-themes-italic-constructs t
-      modus-themes-bold-constructs t
-      modus-themes-variable-pitch-ui t
-      modus-themes-mixed-fonts t))
-(use-package timu-caribbean-theme
-  :init
-  (customize-set-variable 'timu-caribbean-org-intense-colors t))
+  :defer t
+  :custom
+  (modus-themes-italic-constructs t)
+  (modus-themes-intense-markup t)
+  (modus-themes-mode-line '(borderless moody))
+  (modus-themes-tabs-accented t)
+  (modus-themes-completions
+   '((matches . (extrabold background intense))
+     (selection . (semibold accented intense))
+     (popup . (accented))
+     (t . (extrabold intense))))
+  (modus-themes-org-blocks 'tinted-background)
+  (modus-themes-mixed-fonts t)
+  (modus-themes-headings
+      '((1 . (rainbow))
+        (2 . (rainbow))
+        (3 . (rainbow))
+        (t . (monochrome)))))
+
 (use-package gruber-darker-theme)
 
 (load-theme 'modus-vivendi t)
@@ -337,6 +332,15 @@
 (pixel-scroll-precision-mode t)
 (setq pixel-scroll-precision-large-scroll-height 40.0)
 (setq pixel-scroll-precision-use-momentum t)
+(setq fast-but-imprecise-scrolling t
+      jit-lock-defer-time 0)
+(use-package fast-scroll
+  :hook
+  (fast-scroll-start . (lambda () (flycheck-mode -1)))
+  (fast-scroll-end . (lambda () (flycheck-mode 1)))
+  :config
+  (fast-scroll-config)
+  (fast-scroll-mode 1))
 
 ;; Yes, I really want compile
 (setq compilation-ask-about-save nil)
@@ -407,5 +411,7 @@
 (set-file-name-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
+
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
 ;;; early-init.el ends here;
