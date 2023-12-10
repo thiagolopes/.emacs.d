@@ -393,7 +393,7 @@
   :after flycheck
   :hook (flycheck-mode . flycheck-posframe-mode)
   :config
-  (,flycheck-posframe-configure-pretty-defaults)
+  (flycheck-posframe-configure-pretty-defaults)
   (add-hook 'flycheck-posframe-inhibit-functions #'company--active-p))
 
 (use-package flycheck-inline
