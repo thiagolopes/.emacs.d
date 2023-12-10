@@ -387,6 +387,20 @@
   :config
   (global-corfu-mode))
 
+(use-package dashboard
+  :config
+  (setq dashboard-set-navigator t
+        dashboard-projects-backend 'projectile
+        dashboard-icon-type 'all-the-icons
+        dashboard-show-shortcuts t
+        dashboard-items '((recents  . 8)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 2)
+                          (registers . 2))
+        dashboard-center-content t)
+  (dashboard-setup-startup-hook))
+
 ;; Fringe options
 (fringe-mode)
 (general-setq-default indicate-empty-lines t
