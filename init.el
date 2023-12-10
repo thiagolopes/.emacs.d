@@ -64,15 +64,38 @@
   (solaire-global-mode +1))
 
 (use-package info-colors
-  :defer 1
   :config
   (add-hook 'Info-selection-hook 'info-colors-fontify-node))
 
 (use-package orderless
-  :ensure t
   :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (completion-styles '(orderless))
+  :config
+  (defun prefix-if-tilde (pattern _index _total)
+    (when (string-suffix-p "~" pattern)
+      `(orderless-prefixes . ,(substring pattern 0 -1))))
+
+  (defun regexp-if-slash (pattern _index _total)
+    (when (string-prefix-p "/" pattern)
+      `(orderless-regexp . ,(substring pattern 1))))
+
+  (defun literal-if-equal (pattern _index _total)
+    (when (string-suffix-p "=" pattern)
+      `(orderless-literal . ,(substring pattern 0 -1))))
+
+  (defun without-if-bang (pattern _index _total)
+    (cond
+     ((equal "!" pattern)
+      '(orderless-literal . ""))
+     ((string-prefix-p "!" pattern)
+      `(orderless-without-literal . ,(substring pattern 1)))))
+
+  (setq orderless-matching-styles '(orderless-flex))
+  (setq orderless-style-dispatchers
+        '(prefix-if-tilde
+          regexp-if-slash
+          literal-if-equal
+          without-if-bang)))
 
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
@@ -217,6 +240,13 @@
         magit-revision-insert-related-refs nil)
   (add-hook 'magit-process-mode-hook #'goto-address-mode))
 
+(use-package magit-todos
+  :after magit
+  :commands magit-todos-list magit-todos-mode
+  :general
+  (leader-def
+    "gt" 'magit-todos-list))
+
 (use-package drag-stuff
   :init
   (general-define-key "<M-up>"    #'drag-stuff-up
@@ -276,7 +306,7 @@
   (setq dumb-jump-default-project (concat user-emacs-directory "cache/jump")
         dumb-jump-prefer-searcher 'ag
         dumb-jump-aggressive nil
-        dumb-jump-selector 'ivy)
+        dumb-jump-selector 'popup)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
 (use-package ws-butler
@@ -356,7 +386,15 @@
 
 (use-package flycheck
   :config
+  (setq flycheck-indication-mode nil)
   (global-flycheck-mode))
+
+(use-package flycheck-posframe
+  :after flycheck
+  :hook (flycheck-mode . flycheck-posframe-mode)
+  :config
+  (,flycheck-posframe-configure-pretty-defaults)
+  (add-hook 'flycheck-posframe-inhibit-functions #'company--active-p))
 
 (use-package flycheck-inline
   :config
@@ -383,10 +421,6 @@
   :config
   (company-posframe-mode t))
 
-(use-package corfu
-  :config
-  (global-corfu-mode))
-
 (use-package dashboard
   :config
   (setq dashboard-set-navigator t
@@ -400,6 +434,40 @@
                           (registers . 2))
         dashboard-center-content t)
   (dashboard-setup-startup-hook))
+
+(use-package savehist
+  :config
+  (savehist-mode))
+
+(use-package vertico
+  :custom
+  (vertico-resize t)
+  (vertico-cycle t)
+  :config
+  (vertico-mode))
+
+(use-package icomplete
+  :custom
+  (read-file-name-completion-ignore-case t)
+  (read-buffer-completion-ignore-case t)
+  (completion-ignore-case t)
+
+  (completion-category-defaults nil)
+  (completion-category-overrides
+   '((file (styles basic partial-completion))))
+
+  (completion-group t)
+  (completions-group-format
+        (concat
+         (propertize "    " 'face 'completions-group-separator)
+         (propertize " %s " 'face 'completions-group-title)
+         (propertize " " 'face 'completions-group-separator
+                     'display '(space :align-to right)))))
+
+(use-package ivy-xref
+  :init
+  (setq xref-show-definitions-function #'ivy-xref-show-defs)
+  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 ;; Fringe options
 (fringe-mode)
