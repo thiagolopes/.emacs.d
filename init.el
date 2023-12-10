@@ -306,7 +306,7 @@
   (setq dumb-jump-default-project (concat user-emacs-directory "cache/jump")
         dumb-jump-prefer-searcher 'ag
         dumb-jump-aggressive nil
-        dumb-jump-selector 'popup)
+        dumb-jump-selector 'ivy)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
 (use-package ws-butler
