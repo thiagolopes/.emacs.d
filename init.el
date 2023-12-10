@@ -255,39 +255,13 @@
                       "<M-right>" #'drag-stuff-right))
 
 (use-package counsel
-  :init
-  (general-define-key
-   [remap apropos]                  #'counsel-apropos
-   [remap bookmark-jump]            #'counsel-bookmark
-   [remap compile]                  #'counsel-compile
-   [remap describe-bindings]        #'counsel-descbinds
-   [remap describe-face]            #'counsel-faces
-   [remap describe-function]        #'counsel-describe-function
-   [remap describe-variable]        #'counsel-describe-variable
-   [remap describe-symbol]          #'counsel-describe-symbol
-   [remap evil-show-registers]      #'counsel-evil-registers
-   [remap evil-show-marks]          #'counsel-mark-ring
-   [remap execute-extended-command] #'counsel-M-x
-   [remap find-file]                #'counsel-find-file
-   [remap find-library]             #'counsel-find-library
-   [remap imenu]                    #'counsel-imenu
-   [remap info-lookup-symbol]       #'counsel-info-lookup-symbol
-   [remap load-theme]               #'counsel-load-theme
-   [remap locate]                   #'counsel-locate
-   [remap org-goto]                 #'counsel-org-goto
-   [remap org-set-tags-command]     #'counsel-org-tag
-   [remap projectile-compile-project] #'projectile-compile
-   [remap recentf-open-files]       #'counsel-recentf
-   [remap set-variable]             #'counsel-set-variable
-   [remap swiper]                   #'counsel-grep-or-swiper
-   [remap insert-char]              #'counsel-unicode-char
-   [remap yank-pop]                 #'counsel-yank-pop)
-  :commands (counsel-yank-pop counsel-ag counsel-fzf)
   :bind
+  ("M-x" . counsel-M-x)
   ("C-x C-f" . counsel-find-file)
   ("M-?" . counsel-ag)
   ("C-M-?" . counsel-fzf)
   ("C-c C-c" . counsel-compile)
+  ("M-y" . counsel-yank-pop)
   :config
   ;; Don't use ^ as initial input. Set this here because `counsel' defines more
   ;; of its own, on top of the defaults.
