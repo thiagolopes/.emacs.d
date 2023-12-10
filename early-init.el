@@ -1,3 +1,5 @@
+(setq package-enable-at-startup nil)
+
 (setq straight-use-package-by-default t
       straight-cache-autoloads t
       straight-vc-git-default-clone-depth 1
