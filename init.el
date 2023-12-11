@@ -1,5 +1,7 @@
 (use-package diminish)
 
+(use-package i3wm-config-mode)
+
 (use-package better-defaults)
 
 (use-package no-littering
@@ -442,6 +444,18 @@
   :init
   (setq xref-show-definitions-function #'ivy-xref-show-defs)
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
+(use-package elisp-mode
+  :straight (:type built-in)
+  :hook
+  (org-src-mode . me/disable-flycheck-checkers-for-elisp))
+
+(use-package web-mode)
+
+(use-package emmet-mode
+  :commands emmet-mode
+  :hook
+  (web-mode . emmet-mode))
 
 ;; Fringe options
 (fringe-mode)
