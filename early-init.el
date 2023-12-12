@@ -339,6 +339,7 @@
       jit-lock-defer-time 0)
 
 (use-package fast-scroll
+  :diminish
   :hook
   (fast-scroll-start . (lambda () (flycheck-mode -1)))
   (fast-scroll-end . (lambda () (flycheck-mode 1)))
@@ -375,6 +376,7 @@
 (global-so-long-mode)
 
 (use-package gcmh
+  :diminish
   :demand t
   :config
   (gcmh-mode 1))

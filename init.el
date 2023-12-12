@@ -1,9 +1,14 @@
-(use-package diminish)
+;;; package -- init.el
+;;; commentary: this package will run after early-init.el
+
+(use-package diminish
+  :config
+  (diminish))
 
 (use-package corfu
   :custom
   (corfu-cycle t)
-  (corfu-auto nil) ;; nil to use overlay
+  (corfu-auto t)
   (corfu-auto-prefix 3)
   (corfu-auto-delay 0.0)
   (corfu-quit-at-boundary 't)
@@ -11,6 +16,7 @@
   (corfu-preview-current 'insert)
   (corfu-preselect-first nil)
   :init
+  (global-set-key (kbd "C-<tab>") 'completion-at-point)
   (corfu-echo-mode t)
   (corfu-popupinfo-mode t)
   (global-corfu-mode)
@@ -19,17 +25,6 @@
         ("M-SPC" . corfu-insert-separator)
         ("RET" . nil) ;; let my enter alone please
         ))
-
-(use-package corfu-candidate-overlay
-  :straight (:type git
-                   :repo "https://code.bsdgeek.org/adam/corfu-candidate-overlay"
-                   :files (:defaults "*.el"))
-  :after corfu
-  :config
-  (corfu-candidate-overlay-mode +1)
-  (global-set-key (kbd "C-<tab>") 'completion-at-point)
-  (global-set-key (kbd "s-<tab>") 'completion-at-point)
-  (global-set-key (kbd "C-<iso-lefttab>") 'corfu-candidate-overlay-complete-at-point))
 
 (use-package corfu-terminal
   :init
@@ -78,6 +73,7 @@
    'which-key-local-map-description-face nil :weight 'bold))
 
 (use-package undo-tree
+  :diminish
   :init
   (global-undo-tree-mode)
   :config
@@ -393,6 +389,7 @@
   (pulsar-global-mode))
 
 (use-package volatile-highlights
+  :diminish
   :config
   (volatile-highlights-mode t))
 
