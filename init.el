@@ -1,16 +1,35 @@
 (use-package diminish)
+
 (use-package corfu
   :custom
   (corfu-cycle t)
-  (corfu-auto t)
+  (corfu-auto nil) ;; nil to use overlay
   (corfu-auto-prefix 3)
   (corfu-auto-delay 0.0)
-  (corfu-quit-at-boundary 'separator)
+  (corfu-quit-at-boundary 't)
   (corfu-echo-documetation 0.25)
   (corfu-preview-current 'insert)
   (corfu-preselect-first nil)
   :init
-  (global-corfu-mode))
+  (corfu-echo-mode t)
+  (corfu-popupinfo-mode t)
+  (global-corfu-mode)
+  :bind
+  (:map corfu-map
+        ("M-SPC" . corfu-insert-separator)
+        ("RET" . nil) ;; let my enter alone please
+        ))
+
+(use-package corfu-candidate-overlay
+  :straight (:type git
+                   :repo "https://code.bsdgeek.org/adam/corfu-candidate-overlay"
+                   :files (:defaults "*.el"))
+  :after corfu
+  :config
+  (corfu-candidate-overlay-mode +1)
+  (global-set-key (kbd "C-<tab>") 'completion-at-point)
+  (global-set-key (kbd "s-<tab>") 'completion-at-point)
+  (global-set-key (kbd "C-<iso-lefttab>") 'corfu-candidate-overlay-complete-at-point))
 
 (use-package corfu-terminal
   :init
@@ -176,7 +195,6 @@
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'objc-mode-hook 'irony-mode)
-
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package hl-todo
