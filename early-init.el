@@ -332,11 +332,12 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
-(pixel-scroll-precision-mode t)
-(setq pixel-scroll-precision-large-scroll-height 40.0)
-(setq pixel-scroll-precision-use-momentum t)
+;; (pixel-scroll-precision-mode t)
+;; (setq pixel-scroll-precision-large-scroll-height 101.0)
+;; (setq pixel-scroll-precision-use-momentum nil)
 (setq fast-but-imprecise-scrolling t
       jit-lock-defer-time 0)
+
 (use-package fast-scroll
   :hook
   (fast-scroll-start . (lambda () (flycheck-mode -1)))
