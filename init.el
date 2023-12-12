@@ -479,6 +479,10 @@
   :hook
   (web-mode . emmet-mode))
 
+(use-package symbol-overlay
+  :init
+  (symbol-overlay-mode))
+
 ;; Fringe options
 (fringe-mode)
 (general-setq-default indicate-empty-lines t
