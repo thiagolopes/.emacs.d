@@ -1,6 +1,42 @@
 (use-package diminish)
+(use-package corfu
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
+  (corfu-auto-prefix 3)
+  (corfu-auto-delay 0.0)
+  (corfu-quit-at-boundary 'separator)
+  (corfu-echo-documetation 0.25)
+  (corfu-preview-current 'insert)
+  (corfu-preselect-first nil)
+  :init
+  (global-corfu-mode))
 
-(use-package i3wm-config-mode)
+(use-package corfu-terminal
+  :init
+  (unless (display-graphic-p)
+    (corfu-terminal-mode +1)))
+
+(use-package cape
+  :defer 1
+  :init
+  ;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+  (add-to-list 'completion-at-point-functions #'cape-history)
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-abbrev)
+  :config
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
+
+(use-package kind-icon
+    :defer 1
+    :config
+    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package i3wm-config-mode
+  :defer 2)
 
 (use-package better-defaults)
 
@@ -10,6 +46,7 @@
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (use-package which-key
+  :defer 2
   :diminish
   :custom
   (which-key-allow-evil-operators t)
@@ -52,6 +89,7 @@
 
 ;; A more complex, more lazy-loaded config
 (use-package solaire-mode
+  :defer 5
   :hook
   ;; Ensure solaire-mode is running in all solaire-mode buffers
   (change-major-mode . turn-on-solaire-mode)
@@ -103,11 +141,13 @@
   :bind ("M-@" . er/expand-region))
 
 (use-package smartparens
+  :defer 5
   :bind
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
 
 (use-package cider
+  :defer 2
   :config
   (setq nrepl-hide-special-buffers t
         nrepl-log-messages nil
@@ -131,6 +171,7 @@
         cider-repl-pop-to-buffer-on-connect 'display-only))
 
 (use-package irony
+  :defer 2
   :config
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'c-mode-hook 'irony-mode)
@@ -155,6 +196,7 @@
           ("XXX" font-lock-constant-face bold))))
 
 (use-package multiple-cursors
+  :defer 2
   :config
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -183,7 +225,6 @@
   (global-set-key [remap find-tag]         #'projectile-find-tag))
 
 (use-package winner
-  ;; undo/redo changes to Emacs' window layout
   :preface (defvar winner-dont-bind-my-keys t) ; I'll bind keys myself
   :hook (dashboard-setup-startup-hook . winner-mode)
   :config
@@ -194,7 +235,7 @@
               "*esh command on file*")))
 
 (use-package paren
-  ;; highlight matching delimiters
+  :defer 2
   :hook (dashboard-setup-startup-hook . show-paren-mode)
   :config
   (setq show-paren-delay 0.1
@@ -242,14 +283,8 @@
         magit-revision-insert-related-refs nil)
   (add-hook 'magit-process-mode-hook #'goto-address-mode))
 
-(use-package magit-todos
-  :after magit
-  :commands magit-todos-list magit-todos-mode
-  :general
-  (leader-def
-    "gt" 'magit-todos-list))
-
 (use-package drag-stuff
+  :defer 2
   :init
   (general-define-key "<M-up>"    #'drag-stuff-up
                       "<M-down>"  #'drag-stuff-down
@@ -334,6 +369,7 @@
   (ace-popup-menu-mode t))
 
 (use-package pulsar
+  :defer 2
   :config
   (setq pulsar-pulse t)
   (pulsar-global-mode))
@@ -350,6 +386,7 @@
                       "<C-S-right>" #'buf-move-right))
 
 (use-package goto-line-preview
+  :defer 2
   :config
   (global-set-key [remap goto-line] 'goto-line-preview))
 
@@ -361,6 +398,7 @@
 (use-package shell-pop)
 
 (use-package flycheck
+  :defer 2
   :config
   (setq flycheck-indication-mode nil)
   (global-flycheck-mode))
@@ -369,10 +407,10 @@
   :after flycheck
   :hook (flycheck-mode . flycheck-posframe-mode)
   :config
-  (flycheck-posframe-configure-pretty-defaults)
-  (add-hook 'flycheck-posframe-inhibit-functions #'company--active-p))
+  (flycheck-posframe-configure-pretty-defaults))
 
 (use-package flycheck-inline
+  :after flycheck
   :config
   (with-eval-after-load 'flycheck
     (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
@@ -381,37 +419,19 @@
   :bind
   ("C-s" . swiper))
 
-(use-package company
-  :config
-  (global-company-mode t))
-
-(use-package company-prescient
-  :after company prescient
-  :config
-  (company-prescient-mode t))
-
-(use-package company-posframe
-  :after company
-  :custom
-  (company-posframe-quickhelp-delay nil)
-  :config
-  (company-posframe-mode t))
-
 (use-package dashboard
   :config
   (setq dashboard-set-navigator t
         dashboard-projects-backend 'projectile
         dashboard-icon-type 'all-the-icons
         dashboard-show-shortcuts t
-        dashboard-items '((recents  . 8)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 2)
-                          (registers . 2))
+        dashboard-items '((recents  . 15)
+                          (projects . 3))
         dashboard-center-content t)
   (dashboard-setup-startup-hook))
 
 (use-package savehist
+  :defer 2
   :config
   (savehist-mode))
 
@@ -450,9 +470,11 @@
   :hook
   (org-src-mode . me/disable-flycheck-checkers-for-elisp))
 
-(use-package web-mode)
+(use-package web-mode
+  :defer 5)
 
 (use-package emmet-mode
+  :after web-mode
   :commands emmet-mode
   :hook
   (web-mode . emmet-mode))
