@@ -1,9 +1,16 @@
 ;;; package -- init.el
 ;;; commentary: this package will run after early-init.el
+;;; code:
 
-(use-package diminish
+(use-package diminish)
+(use-package better-defaults)
+(use-package persistent-soft)
+(use-package git-timemachine)
+(use-package web-mode :defer 5)
+
+(use-package shell-pop
   :config
-  (diminish))
+  (general-define-key "<f12>" #'shell-pop))
 
 (use-package corfu
   :custom
@@ -15,16 +22,15 @@
   (corfu-echo-documetation 0.25)
   (corfu-preview-current 'insert)
   (corfu-preselect-first nil)
+  :bind
+  (:map corfu-map
+        ("M-SPC" . corfu-insert-separator)
+        ("RET" . nil)) ;; let my enter alone please
   :init
   (global-set-key (kbd "C-<tab>") 'completion-at-point)
   (corfu-echo-mode t)
   (corfu-popupinfo-mode t)
-  (global-corfu-mode)
-  :bind
-  (:map corfu-map
-        ("M-SPC" . corfu-insert-separator)
-        ("RET" . nil) ;; let my enter alone please
-        ))
+  (global-corfu-mode t))
 
 (use-package corfu-terminal
   :init
@@ -51,8 +57,6 @@
 
 (use-package i3wm-config-mode
   :defer 2)
-
-(use-package better-defaults)
 
 (use-package no-littering
   :config
@@ -89,8 +93,6 @@
         undo-limit 800000            ; 800kb (default is 160kb)
         undo-strong-limit 12000000   ; 12mb  (default is 240kb)
         undo-outer-limit 128000000)) ; 128mb (default is 24mb))
-
-(use-package persistent-soft)
 
 (use-package unicode-fonts
   :after persistent-soft
@@ -186,7 +188,6 @@
         cider-repl-pop-to-buffer-on-connect 'display-only))
 
 (use-package irony
-  :defer 2
   :config
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'c-mode-hook 'irony-mode)
@@ -339,8 +340,6 @@
   :config
   (add-hook 'prog-mode-hook #'ws-butler-mode))
 
-(use-package git-timemachine)
-
 (use-package marginalia
   :init
   (marginalia-mode t))
@@ -409,8 +408,6 @@
   :config
   (require 'ido-completing-read+)
   (ido-ubiquitous-mode 1))
-
-(use-package shell-pop)
 
 (use-package flycheck
   :defer 2
@@ -484,9 +481,6 @@
   :straight (:type built-in)
   :hook
   (org-src-mode . me/disable-flycheck-checkers-for-elisp))
-
-(use-package web-mode
-  :defer 5)
 
 (use-package emmet-mode
   :after web-mode
