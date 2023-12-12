@@ -201,6 +201,7 @@
 
 (use-package doom-themes
   :config
+  (setq doom-themes-enable-italic nil)
   (setq doom-themes-enable-bold t))
 
 (use-package modus-themes
