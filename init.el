@@ -6,6 +6,7 @@
 (use-package better-defaults)
 (use-package persistent-soft)
 (use-package git-timemachine)
+(use-package irony)
 (use-package web-mode :defer 5)
 
 (use-package shell-pop
@@ -186,13 +187,6 @@
         cider-stacktrace-default-filters '(tooling dup)
         cider-repl-display-help-banner nil
         cider-repl-pop-to-buffer-on-connect 'display-only))
-
-(use-package irony
-  :config
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'objc-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package hl-todo
   :hook (prog-mode-hook . hl-todo-mode)

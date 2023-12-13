@@ -24,6 +24,7 @@
 (require 'straight-x)
 (straight-use-package 'use-package)
 (require 'use-package)
+(use-package general)
 
 (setq use-package-verbose t
       use-package-compute-statistics nil
@@ -171,7 +172,6 @@
 
 ;; middle-click paste at point, not at click
 (setq mouse-yank-at-point t)
-
 (setq hscroll-margin 2
       hscroll-step 1
       ;; Emacs spends too much effort recentering the screen if you scroll the
@@ -203,7 +203,6 @@
   :config
   (setq doom-themes-enable-italic nil)
   (setq doom-themes-enable-bold t))
-
 (use-package modus-themes
   :defer t
   :custom
@@ -223,9 +222,7 @@
         (2 . (rainbow))
         (3 . (rainbow))
         (t . (monochrome)))))
-
 (use-package gruber-darker-theme)
-
 (load-theme 'modus-vivendi t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
@@ -233,12 +230,15 @@
 ;; Show absolute line numbers for narrowed regions to make it easier to tell the
 ;; buffer is narrowed, and where you are, exactly.
 (setq-default display-line-numbers-widen t)
+(setq display-line-numbers-type nil) ;; disable line number as default
 (defun enable-linum-relative ()
   ;; (setq-default display-line-numbers-type 'relative)
   (display-line-numbers-mode))
 (add-hook 'prog-mode-hook #'enable-linum-relative)
 (add-hook 'text-mode-hook #'enable-linum-relative)
 (add-hook 'conf-mode-hook #'enable-linum-relative)
+(defalias 'toggle-line-number #'display-line-numbers-mode)
+(general-define-key "<f10>" #'toggle-line-number)
 
 (electric-pair-mode t)
 (global-auto-revert-mode t)
@@ -248,8 +248,7 @@
 (save-place-mode t)
 (setq save-place-file (concat user-emacs-directory "cache/places"))
 
-(setq display-line-numbers-type t
-      org-directory "~/org/"
+(setq org-directory "~/org/"
       cache-dir (concat user-emacs-directory "/cache")
       custom-file (concat user-emacs-directory "/custom.el")
       require-final-newline t
@@ -258,7 +257,6 @@
 ;; Made SHIFT+arrow to move to the next adjacent window in the specified direction
 (windmove-default-keybindings)
 
-(use-package general)
 (general-define-key "<mouse-8>" #'previous-buffer
                     "<mouse-9>" #'next-buffer)
 
@@ -419,5 +417,9 @@
 (set-buffer-file-coding-system 'utf-8)
 
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
+;; default browser
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "chromium")
 
 ;;; early-init.el ends here;
