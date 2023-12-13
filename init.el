@@ -492,6 +492,10 @@
   :init
   (symbol-overlay-mode))
 
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "chromium")
+
 ;; Fringe options
 (fringe-mode)
 (general-setq-default indicate-empty-lines t
