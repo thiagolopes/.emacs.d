@@ -42,7 +42,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t ( :weight medium :height 105 :width normal :family "JetBrains Mono")))))
+ '(default ((t ( :weight medium :height 90 :width normal :family "JetBrains Mono")))))
 (setq-default line-spacing 1)
 
 ;; Add padding inside frames (windows)
