@@ -7,6 +7,7 @@
 (use-package persistent-soft)
 (use-package git-timemachine)
 (use-package irony)
+(use-package sudo-edit)
 (use-package web-mode :defer 5)
 
 (use-package shell-pop
