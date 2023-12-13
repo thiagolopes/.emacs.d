@@ -486,9 +486,18 @@
   :init
   (symbol-overlay-mode))
 
-
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "chromium")
+(use-package lsp-mode
+  :config
+  ;; Annoying stuff
+  (setq lsp-enable-links nil)
+  (setq lsp-signature-render-documentation nil)
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-completion-enable-additional-text-edit nil)
+  ;; Suggestions from official docs for performance
+  (setq lsp-completion-provider :capf)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-log-io nil))
 
 ;; Fringe options
 (fringe-mode)
