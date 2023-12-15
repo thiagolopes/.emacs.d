@@ -2,13 +2,16 @@
 ;;; commentary: this package will run after early-init.el
 ;;; code:
 
-(use-package diminish)
 (use-package better-defaults)
 (use-package persistent-soft)
 (use-package git-timemachine)
 (use-package irony)
 (use-package sudo-edit)
 (use-package web-mode :defer 5)
+
+(use-package minions
+  :init
+  (minions-mode))
 
 (use-package shell-pop
   :config
@@ -67,7 +70,6 @@
 
 (use-package which-key
   :defer 2
-  :diminish
   :custom
   (which-key-allow-evil-operators t)
   (which-key-show-remaining-keys t)
@@ -79,7 +81,6 @@
    'which-key-local-map-description-face nil :weight 'bold))
 
 (use-package undo-tree
-  :diminish
   :init
   (global-undo-tree-mode)
   :config
@@ -331,7 +332,6 @@
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
 (use-package ws-butler
-  :diminish
   :config
   (add-hook 'prog-mode-hook #'ws-butler-mode))
 
@@ -383,7 +383,6 @@
   (pulsar-global-mode))
 
 (use-package volatile-highlights
-  :diminish
   :config
   (volatile-highlights-mode t))
 
