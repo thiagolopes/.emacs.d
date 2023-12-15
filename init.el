@@ -2,6 +2,7 @@
 ;;; commentary: this package will run after early-init.el
 ;;; code:
 
+(use-package cmake-mode)
 (use-package better-defaults)
 (use-package persistent-soft)
 (use-package git-timemachine)
