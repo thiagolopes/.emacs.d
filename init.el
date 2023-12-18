@@ -312,6 +312,8 @@
   ("C-c C-c" . counsel-compile)
   ("M-y" . counsel-yank-pop)
   :config
+  (add-to-list 'ivy-sort-functions-alist
+               '(read-file-name-internal . ivy--sort-by-length))
   ;; Don't use ^ as initial input. Set this here because `counsel' defines more
   ;; of its own, on top of the defaults.
   (setq ivy-initial-inputs-alist nil)
