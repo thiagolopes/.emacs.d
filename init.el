@@ -361,10 +361,6 @@
   (setq counsel-describe-function-function #'helpful-callable
         counsel-describe-variable-function #'helpful-variable))
 
-(use-package smart-mode-line
-  :config
-  (sml/setup))
-
 (use-package iedit
   :config
   (require 'iedit))
@@ -484,8 +480,8 @@
   (web-mode . emmet-mode))
 
 (use-package symbol-overlay
-  :init
-  (symbol-overlay-mode))
+  :hook
+  (prog-mode . symbol-overlay-mode))
 
 (use-package lsp-mode
   :config
