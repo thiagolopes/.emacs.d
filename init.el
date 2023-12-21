@@ -498,6 +498,17 @@
   (setq lsp-idle-delay 0.500)
   (setq lsp-log-io nil))
 
+(use-package mwim
+  :config
+  (global-set-key (kbd "C-a") 'mwim-beginning)
+  (global-set-key (kbd "C-e") 'mwim-end))
+
+(use-package topsy
+  :straight (topsy :fetcher github :repo "alphapapa/topsy.el")
+  :hook
+  (prog-mode . topsy-mode)
+  (magit-section-mode . topsy-mode))
+
 ;; Fringe options
 (fringe-mode)
 (general-setq-default indicate-empty-lines t

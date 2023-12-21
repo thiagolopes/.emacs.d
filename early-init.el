@@ -35,15 +35,14 @@
 
 (defvar comp-deferred-compliation)
 (setq comp-deferred-compilation t)
-(setq package-enable-at-startup nil)
 
 (setq gc-cons-threshold 100000000
       read-process-output-max (* 1024 1024))
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t ( :weight medium :height 90 :width normal :family "JetBrains Mono")))))
-(setq-default line-spacing 1)
+ '(default ((t (:weight regular :height 95 :width normal :family "JetBrains Mono")))))
+(setq-default line-spacing 0.2)
 
 ;; Add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
