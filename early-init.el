@@ -421,4 +421,6 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium")
 
+;;
+(which-function-mode t)
 ;;; early-init.el ends here;
