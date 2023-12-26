@@ -222,7 +222,13 @@
         (3 . (rainbow))
         (t . (monochrome)))))
 (use-package gruber-darker-theme)
-(load-theme 'modus-vivendi t)
+(use-package darktooth-theme)
+(use-package subatomic-theme
+  :config
+  (setq subatomic-high-contrast t))
+(use-package naysayer-theme)
+
+(load-theme 'naysayer t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
