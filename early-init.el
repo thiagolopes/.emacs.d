@@ -191,6 +191,7 @@
       mouse-wheel-scroll-amount-horizontal 2)
 
 (blink-cursor-mode -1)
+(setq-default cursor-type 'box)
 (setq-default cursor-in-non-selected-windows nil)
 (setq blink-matching-paren nil)
 (setq x-stretch-cursor nil)
@@ -226,8 +227,25 @@
 (use-package subatomic-theme
   :config
   (setq subatomic-high-contrast t))
-(use-package naysayer-theme)
-
+(use-package naysayer-theme
+  :config
+  ;; my modifications to became more readable
+  (let ((punctuation "#8cde94")
+        (background "#062329")
+        (text "#d1b897"))
+    (custom-set-faces
+     `(cursor ((t (:background ,punctuation))))
+     `(mode-line-inactive ((t (:inverse-video unspecified
+                                              :underline unspecified
+                                              :foreground ,text
+                                              :background ,background
+                                              :box ,text))))
+     `(which-func ((t (:inverse-video unspecified
+                                      :underline unspecified
+                                      :foreground ,background
+                                      :weight bold
+                                      :box ,text)))))))
+;;; load theme
 (load-theme 'naysayer t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
