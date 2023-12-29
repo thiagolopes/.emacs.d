@@ -253,15 +253,11 @@
 ;; Show absolute line numbers for narrowed regions to make it easier to tell the
 ;; buffer is narrowed, and where you are, exactly.
 (setq-default display-line-numbers-widen t)
-(setq display-line-numbers-type nil) ;; disable line number as default
-(defun enable-linum-relative ()
-  ;; (setq-default display-line-numbers-type 'relative)
-  (display-line-numbers-mode))
-(add-hook 'prog-mode-hook #'enable-linum-relative)
-(add-hook 'text-mode-hook #'enable-linum-relative)
-(add-hook 'conf-mode-hook #'enable-linum-relative)
-(defalias 'toggle-line-number #'display-line-numbers-mode)
-(general-define-key "<f10>" #'toggle-line-number)
+;; (add-hook 'prog-mode-hook #'display-line-number-mode)
+;; (add-hook 'text-mode-hook #'display-line-number-mode)
+;; (add-hook 'conf-mode-hook #'display-line-number-mode)
+;; (setq display-line-numbers-type t) ;; disable line number as default
+(general-define-key "<f10>" 'global-display-line-numbers-mode)
 
 (electric-pair-mode t)
 (global-auto-revert-mode t)
