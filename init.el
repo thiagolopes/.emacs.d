@@ -4,7 +4,6 @@
 
 (use-package cmake-mode)
 (use-package better-defaults)
-(use-package persistent-soft)
 (use-package git-timemachine)
 (use-package irony)
 (use-package sudo-edit)
@@ -506,6 +505,23 @@
 (use-package rainbow-mode
   :hook
   (prog-mode . rainbow-mode))
+
+(use-package bufler
+  :defer 1
+  :straight (bufler :fetcher github :repo "alphapapa/bufler.el"
+                    :files (:defaults (:exclude "helm-bufler.el")))
+  :bind (("C-x C-b" . bufler)))
+
+(use-package fancy-compilation
+  :defer 1
+  :config
+  (setq fancy-compilation-override-colors nil)
+  (fancy-compilation-mode))
+
+(use-package yafolding
+  :defer 2
+  :bind
+  (("C-`" . yafolding-toggle-element)))
 
 ;; Fringe options
 (fringe-mode)
