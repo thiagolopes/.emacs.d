@@ -41,8 +41,9 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t (:weight regular :height 120 :width normal :family "Consolas")))))
-(setq-default line-spacing 0.2)
+ '(default ((t (:weight regular :height 110 :width normal :family "Cascadia Code")))))
+(setq-default line-spacing 0.0)
+
 
 ;; Add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
@@ -229,51 +230,53 @@
   (setq subatomic-high-contrast t))
 (use-package naysayer-theme
   :config
-  ;; my modifications to became more readable
-  (let ((yellow "#b58900")
-        (orange "#cb4b16")
-        (red "#dc322f")
-        (magenta "#d33682")
-        (blue "#268bd2")
-        (green "#859900")
-        (cyan "#2aa198")
-        (violet "#6c71c4"))
-    (defcustom naysayer-theme-yellow  ,yellow  "Primary colors - yellow"  :type 'string :group 'monokai)
-    (defcustom naysayer-theme-orange  ,orange  "Primary colors - orange"  :type 'string :group 'monokai)
-    (defcustom naysayer-theme-red     ,red     "Primary colors - red"     :type 'string :group 'monokai)
-    (defcustom naysayer-theme-magenta ,magenta "Primary colors - magenta" :type 'string :group 'monokai)
-    (defcustom naysayer-theme-blue    ,blue    "Primary colors - blue"    :type 'string :group 'monokai)
-    (defcustom naysayer-theme-green   ,green   "Primary colors - green"   :type 'string :group 'monokai)
-    (defcustom naysayer-theme-cyan    ,cyan    "Primary colors - cyan"    :type 'string :group 'monokai)
-    (defcustom naysayer-theme-violet  ,violet  "Primary colors - violet"  :type 'string :group 'monokai)
-    (custom-set-faces
-     `(rainbow-delimiters-depth-1-face ((t (:foreground ,violet))))
-     `(rainbow-delimiters-depth-2-face ((t (:foreground ,blue))))
-     `(rainbow-delimiters-depth-3-face ((t (:foreground ,green))))
-     `(rainbow-delimiters-depth-4-face ((t (:foreground ,yellow))))
-     `(rainbow-delimiters-depth-5-face ((t (:foreground ,orange))))
-     `(rainbow-delimiters-depth-6-face ((t (:foreground ,red))))
-     `(rainbow-delimiters-depth-7-face ((t (:foreground ,violet))))
-     `(rainbow-delimiters-depth-8-face ((t (:foreground ,blue))))
-     `(rainbow-delimiters-depth-9-face ((t (:foreground ,green))))
-     `(rainbow-delimiters-depth-10-face ((t (:foreground ,yellow))))
-     `(rainbow-delimiters-depth-11-face ((t (:foreground ,orange))))
-     `(rainbow-delimiters-depth-12-face ((t (:foreground ,red))))))
-  (let ((punctuation "#8cde94")
-        (background "#062329")
-        (text "#d1b897"))
-    (custom-set-faces
-     `(cursor ((t (:background ,punctuation))))
-     `(mode-line-inactive ((t (:inverse-video unspecified
-                                              :underline unspecified
-                                              :foreground ,text
-                                              :background ,background
-                                              :box ,text))))
-     `(which-func ((t (:inverse-video unspecified
-                                      :underline unspecified
-                                      :foreground ,background
-                                      :weight bold
-                                      :box ,text)))))))
+  (defun naysayer-customize ()
+    (let ((punctuation "#8cde94")
+          (background "#062329")
+          (text "#d1b897"))
+      (custom-set-faces
+       `(cursor ((t (:background ,punctuation))))
+       `(mode-line-inactive ((t (:inverse-video unspecified
+                                                :underline unspecified
+                                                :foreground ,text
+                                                :background ,background
+                                                :box ,text))))
+       `(which-func ((t (:inverse-video unspecified
+                                        :underline unspecified
+                                        :foreground ,background
+                                        :weight bold
+                                        :box ,text)))))))
+  (defun naysayer-customize-rainbow ()
+    (let ((yellow "#b58900")
+          (orange "#cb4b16")
+          (red "#dc322f")
+          (magenta "#d33682")
+          (blue "#268bd2")
+          (green "#859900")
+          (cyan "#2aa198")
+          (violet "#6c71c4"))
+      (defcustom naysayer-theme-yellow  ,yellow  "Primary colors - yellow"  :type 'string :group 'monokai)
+      (defcustom naysayer-theme-orange  ,orange  "Primary colors - orange"  :type 'string :group 'monokai)
+      (defcustom naysayer-theme-red     ,red     "Primary colors - red"     :type 'string :group 'monokai)
+      (defcustom naysayer-theme-magenta ,magenta "Primary colors - magenta" :type 'string :group 'monokai)
+      (defcustom naysayer-theme-blue    ,blue    "Primary colors - blue"    :type 'string :group 'monokai)
+      (defcustom naysayer-theme-green   ,green   "Primary colors - green"   :type 'string :group 'monokai)
+      (defcustom naysayer-theme-cyan    ,cyan    "Primary colors - cyan"    :type 'string :group 'monokai)
+      (defcustom naysayer-theme-violet  ,violet  "Primary colors - violet"  :type 'string :group 'monokai)
+      (custom-set-faces
+       `(rainbow-delimiters-depth-1-face ((t (:foreground ,violet))))
+       `(rainbow-delimiters-depth-2-face ((t (:foreground ,blue))))
+       `(rainbow-delimiters-depth-3-face ((t (:foreground ,green))))
+       `(rainbow-delimiters-depth-4-face ((t (:foreground ,yellow))))
+       `(rainbow-delimiters-depth-5-face ((t (:foreground ,orange))))
+       `(rainbow-delimiters-depth-6-face ((t (:foreground ,red))))
+       `(rainbow-delimiters-depth-7-face ((t (:foreground ,violet))))
+       `(rainbow-delimiters-depth-8-face ((t (:foreground ,blue))))
+       `(rainbow-delimiters-depth-9-face ((t (:foreground ,green))))
+       `(rainbow-delimiters-depth-10-face ((t (:foreground ,yellow))))
+       `(rainbow-delimiters-depth-11-face ((t (:foreground ,orange))))
+       `(rainbow-delimiters-depth-12-face ((t (:foreground ,red))))))))
+
 ;;; load theme
 (load-theme 'naysayer t)
 
@@ -295,7 +298,6 @@
 (setq-default save-place t)
 (save-place-mode t)
 (setq save-place-file (concat user-emacs-directory "cache/places"))
-
 (setq org-directory "~/org/"
       cache-dir (concat user-emacs-directory "/cache")
       custom-file (concat user-emacs-directory "/custom.el")

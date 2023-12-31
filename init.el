@@ -528,3 +528,6 @@
 (general-setq-default indicate-empty-lines t
                       indicate-buffer-boundaries 'left)
 
+;; load theme customization
+(naysayer-customize)
+(naysayer-customize-rainbow)
