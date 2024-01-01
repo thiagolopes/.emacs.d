@@ -41,7 +41,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t (:weight regular :height 110 :width normal :family "Cascadia Code")))))
+ '(default ((t (:weight regular :height 110 :width normal :family "Cascadia Mono")))))
 (setq-default line-spacing 0.0)
 
 
