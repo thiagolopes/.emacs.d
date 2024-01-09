@@ -5,8 +5,9 @@
 (use-package cmake-mode)
 (use-package better-defaults)
 (use-package git-timemachine)
-(use-package irony)
 (use-package sudo-edit)
+(use-package irony)
+(use-package pdf-tools :defer 5)
 (use-package web-mode :defer 5)
 
 (use-package minions
