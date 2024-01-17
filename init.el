@@ -527,6 +527,7 @@
 
 (use-package ace-window
   :config
+  (setq aw-char-position 'left)
   (global-set-key (kbd "M-o") 'ace-window))
 
 ;; Fringe options
