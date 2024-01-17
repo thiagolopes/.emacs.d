@@ -9,6 +9,7 @@
 (use-package irony)
 (use-package pdf-tools :defer 5)
 (use-package web-mode :defer 5)
+(use-package transpose-frame :defer 3)
 
 (use-package minions
   :init
@@ -523,6 +524,10 @@
   :defer 2
   :bind
   (("C-`" . yafolding-toggle-element)))
+
+(use-package ace-window
+  :config
+  (global-set-key (kbd "M-o") 'ace-window))
 
 ;; Fringe options
 (fringe-mode)
