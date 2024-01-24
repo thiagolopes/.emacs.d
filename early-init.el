@@ -234,10 +234,10 @@
     (let ((punctuation "#8cde94")
           (background "#062329")
           (text "#d1b897")
-          (selection  "#0000ff"))
+          (white "#ffffff"))
       (custom-set-faces
        `(cursor ((t (:background ,punctuation))))
-       `(show-paren-match ((t (:background ,selection))))
+       `(show-paren-match ((t (:background ,white))))
        `(mode-line-inactive ((t (:inverse-video unspecified
                                                 :underline unspecified
                                                 :foreground ,text
