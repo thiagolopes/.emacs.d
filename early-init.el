@@ -42,7 +42,7 @@
 
 (custom-set-faces
  '(default ((t (:weight regular :height 110 :width normal :family "Go Mono")))))
-(setq-default line-spacing 0.1)
+(setq-default line-spacing 0.15)
 
 
 ;; Add padding inside frames (windows)
