@@ -42,8 +42,7 @@
 
 (custom-set-faces
  '(default ((t (:weight regular :height 110 :width normal :family "Go Mono")))))
-(setq-default line-spacing 0.15)
-
+(setq-default line-spacing 0.2)
 
 ;; Add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
@@ -234,10 +233,10 @@
     (let ((punctuation "#8cde94")
           (background "#062329")
           (text "#d1b897")
-          (white "#ffffff"))
+          (selection  "#0000ff"))
       (custom-set-faces
        `(cursor ((t (:background ,punctuation))))
-       `(show-paren-match ((t (:background ,white))))
+       `(show-paren-match ((t (:background ,selection))))
        `(mode-line-inactive ((t (:inverse-video unspecified
                                                 :underline unspecified
                                                 :foreground ,text
