@@ -240,7 +240,8 @@
        `(cursor ((t (:background ,punctuation))))
        `(show-paren-match ((t (:background nil
                                            :bold t
-                                           :underline t))))
+                                           :underline t
+                                           :inverse-video t))))
        `(mode-line-inactive ((t (:inverse-video unspecified
                                                 :underline unspecified
                                                 :foreground ,text
