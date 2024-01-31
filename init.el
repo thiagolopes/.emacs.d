@@ -550,6 +550,10 @@
   (setq dired-sidebar-use-term-integration t)
   (setq dired-sidebar-use-custom-font t))
 
+(use-package mode-line-bell
+  :config
+  (mode-line-bell-mode))
+
 ;; Fringe options
 (fringe-mode)
 (general-setq-default indicate-empty-lines t
