@@ -483,6 +483,8 @@
   (web-mode . emmet-mode))
 
 (use-package symbol-overlay
+  :config
+  (setq symbol-overlay-idle-time 1.0)
   :hook
   (prog-mode . symbol-overlay-mode))
 
