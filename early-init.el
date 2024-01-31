@@ -234,6 +234,7 @@
           (background "#062329")
           (text "#d1b897"))
       (custom-set-faces
+       `(symbol-overlay-default-face ((t (:background nil :bold t :underline t))))
        `(cursor ((t (:background ,punctuation))))
        `(show-paren-match ((t (:background nil
                                            :bold t
