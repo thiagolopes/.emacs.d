@@ -218,10 +218,10 @@
   (modus-themes-org-blocks 'tinted-background)
   (modus-themes-mixed-fonts t)
   (modus-themes-headings
-      '((1 . (rainbow))
-        (2 . (rainbow))
-        (3 . (rainbow))
-        (t . (monochrome)))))
+   '((1 . (rainbow))
+     (2 . (rainbow))
+     (3 . (rainbow))
+     (t . (monochrome)))))
 (use-package gruber-darker-theme)
 (use-package darktooth-theme)
 (use-package subatomic-theme
@@ -232,11 +232,12 @@
   (defun naysayer-customize ()
     (let ((punctuation "#8cde94")
           (background "#062329")
-          (text "#d1b897")
-          (selection  "#0000ff"))
+          (text "#d1b897"))
       (custom-set-faces
        `(cursor ((t (:background ,punctuation))))
-       `(show-paren-match ((t (:background ,selection))))
+       `(show-paren-match ((t (:background nil
+                                           :bold t
+                                           :underline t))))
        `(mode-line-inactive ((t (:inverse-video unspecified
                                                 :underline unspecified
                                                 :foreground ,text
@@ -293,7 +294,6 @@
 (general-define-key "<f10>" 'global-display-line-numbers-mode)
 
 (electric-pair-mode t)
-(global-auto-revert-mode t)
 
 (require 'saveplace)
 (setq-default save-place t)
@@ -351,7 +351,7 @@
                         variant)))
       (call-process-shell-command cmd))))
 (when (and (eq system-type 'gnu/linux) (display-graphic-p))
-    (set-emacs-frames-gtk "dark"))
+  (set-emacs-frames-gtk "dark"))
 
 ;; Imortal *scratch* !!
 (defun immortal-scratch ()
@@ -424,10 +424,10 @@ for an open paren, -1 for a close paren, and OUTSIDE is the buffer
 position of the outside of the paren.  Otherwise return nil."
   (let* ((before (show-paren--categorize-paren (point))))
     (when (or
-       (eq (car before) 1)
-       (eq (car before) -1))
+           (eq (car before) 1)
+           (eq (car before) -1))
       before)))
-(advice-add 'show-paren--locate-near-paren :override #'show-paren--locate-near-paren-ad)
+;; (advice-add 'show-paren--locate-near-paren :override #'show-paren--locate-near-paren-ad)
 (show-paren-mode t)
 (setq show-paren-delay 0.0)
 ;; limit files to 80 columns. Controversial, I know.
