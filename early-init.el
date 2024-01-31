@@ -232,8 +232,10 @@
   (defun naysayer-customize ()
     (let ((punctuation "#8cde94")
           (background "#062329")
+          (background-darker "#041b20")
           (text "#d1b897"))
       (custom-set-faces
+       `(solaire-default-face ((t (:background ,background-darker))))
        `(symbol-overlay-default-face ((t (:background nil :bold t :underline t))))
        `(cursor ((t (:background ,punctuation))))
        `(show-paren-match ((t (:background nil
