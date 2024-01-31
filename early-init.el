@@ -469,6 +469,7 @@ position of the outside of the paren.  Otherwise return nil."
 ;; always highlight code
 (global-font-lock-mode 1)
 ;; refresh a buffer if changed on disk
+(setq global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
 
 ;; utf8

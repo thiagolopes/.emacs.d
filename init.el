@@ -10,6 +10,7 @@
 (use-package pdf-tools :defer 5)
 (use-package web-mode :defer 5)
 (use-package transpose-frame :defer 3)
+(use-package i3wm-config-mode :defer 2)
 
 (use-package minions
   :init
@@ -61,9 +62,6 @@
     :defer 1
     :config
     (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-
-(use-package i3wm-config-mode
-  :defer 2)
 
 (use-package no-littering
   :config
@@ -437,8 +435,8 @@
   (dashboard-setup-startup-hook))
 
 (use-package savehist
-  :defer 2
   :config
+  (setq history-length 25)
   (savehist-mode))
 
 (use-package vertico
