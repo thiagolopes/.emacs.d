@@ -1,1 +1,1 @@
-![image](https://github.com/thiagolopes/emacs.d/assets/5994972/9b0220ce-7b60-43a2-a780-64f93e922145)
+![image](https://github.com/thiagolopes/emacs.d/assets/5994972/08a7ee19-c28d-4ff1-9724-24f5102335f9)
