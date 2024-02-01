@@ -236,6 +236,8 @@
           (text "#d1b897"))
       (custom-set-faces
        `(flycheck-posframe-background-face ((t (:background ,background-darker))))
+       `(flycheck-posframe-border-face ((t (:foreground ,background-darker))))
+
        `(flycheck-inline-error ((t (:background ,background-darker))))
        `(flycheck-inline-warning ((t (:background ,background-darker))))
        `(flycheck-inline-info ((t (:background ,background-darker))))
