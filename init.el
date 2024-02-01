@@ -386,6 +386,7 @@
 
 (use-package buffer-move
   :config
+  (setq buffer-move-behavior 'move)
   (general-define-key "<C-S-up>" #'buf-move-up
                       "<C-S-down>" #'buf-move-down
                       "<C-S-left>" #'buf-move-left
@@ -404,6 +405,7 @@
 (use-package flycheck
   :defer 2
   :config
+  (setq flycheck-highlighting-mode 'column)
   (setq flycheck-indication-mode nil)
   (global-flycheck-mode))
 
@@ -411,7 +413,7 @@
   :after flycheck
   :hook (flycheck-mode . flycheck-posframe-mode)
   :config
-  (flycheck-posframe-configure-pretty-defaults))
+  (setq flycheck-posframe-position 'window-top-right-corner))
 
 (use-package flycheck-inline
   :after flycheck
@@ -552,7 +554,7 @@
 
 (use-package mode-line-bell
   :config
-  (mode-line-bell-mode))
+  (mode-line-bell-mode t))
 
 ;; Fringe options
 (fringe-mode)

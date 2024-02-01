@@ -41,7 +41,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t (:weight regular :height 110 :width normal :family "Iosevka Extended")))))
+ '(default ((t (:height 120 :width expanded :family "Iosevka Slab")))))
 (setq-default line-spacing 0.2)
 
 ;; Add padding inside frames (windows)
@@ -235,12 +235,16 @@
           (background-darker "#041b20")
           (text "#d1b897"))
       (custom-set-faces
+       `(flycheck-posframe-background-face ((t (:background ,background-darker))))
+       `(flycheck-inline-error ((t (:background ,background-darker))))
+       `(flycheck-inline-warning ((t (:background ,background-darker))))
+       `(flycheck-inline-info ((t (:background ,background-darker))))
+
        `(solaire-default-face ((t (:background ,background-darker))))
        `(symbol-overlay-default-face ((t (:background nil :bold t :underline t))))
        `(cursor ((t (:background ,punctuation))))
        `(show-paren-match ((t (:background nil
                                            :bold t
-                                           :underline t
                                            :inverse-video t))))
        `(mode-line-inactive ((t (:inverse-video unspecified
                                                 :underline unspecified
