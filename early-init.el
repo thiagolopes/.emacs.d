@@ -235,19 +235,14 @@
           (background-darker "#041b20")
           (text "#d1b897"))
       (custom-set-faces
+       ;; Flycheck
        `(flycheck-posframe-background-face ((t (:background ,background-darker))))
        `(flycheck-posframe-border-face ((t (:foreground ,background-darker))))
-
        `(flycheck-inline-error ((t (:background ,background-darker))))
        `(flycheck-inline-warning ((t (:background ,background-darker))))
        `(flycheck-inline-info ((t (:background ,background-darker))))
 
-       `(solaire-default-face ((t (:background ,background-darker))))
-       `(symbol-overlay-default-face ((t (:background nil :bold t :underline t))))
        `(cursor ((t (:background ,punctuation))))
-       `(show-paren-match ((t (:background nil
-                                           :bold t
-                                           :inverse-video t))))
        `(mode-line-inactive ((t (:inverse-video unspecified
                                                 :underline unspecified
                                                 :foreground ,text
@@ -257,7 +252,14 @@
                                         :underline unspecified
                                         :foreground ,background
                                         :weight bold
-                                        :box ,text)))))))
+                                        :box ,text))))
+       `(show-paren-match ((t (:background nil
+                                           :bold t
+                                           :inverse-video t))))
+       `(solaire-default-face ((t (:background ,background-darker))))
+       `(symbol-overlay-default-face ((t (:background nil :bold t :underline t))))
+       `(whitespace-space ((t (:background ,background :foreground ,background-darker)))))
+      (message "naysayer customized...")))
   (defun naysayer-customize-rainbow ()
     (let ((yellow "#b58900")
           (orange "#cb4b16")
@@ -276,6 +278,30 @@
       (defcustom naysayer-theme-cyan    ,cyan    "Primary colors - cyan"    :type 'string :group 'monokai)
       (defcustom naysayer-theme-violet  ,violet  "Primary colors - violet"  :type 'string :group 'monokai)
       (custom-set-faces
+
+       ;; Flymake
+       `(flymake-errline
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,red)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:foreground ,red :weight bold :underline t))))
+       `(flymake-warnline
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,yellow)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:forground ,yellow :weight bold :underline t))))
+       `(flymake-infoline
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,green)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:forground ,green :weight bold :underline t))))
+
        `(rainbow-delimiters-depth-1-face ((t (:foreground ,violet))))
        `(rainbow-delimiters-depth-2-face ((t (:foreground ,blue))))
        `(rainbow-delimiters-depth-3-face ((t (:foreground ,green))))

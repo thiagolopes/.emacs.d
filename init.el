@@ -402,25 +402,6 @@
   (require 'ido-completing-read+)
   (ido-ubiquitous-mode 1))
 
-(use-package flycheck
-  :defer 2
-  :config
-  (setq flycheck-highlighting-mode 'column)
-  (setq flycheck-indication-mode nil)
-  (global-flycheck-mode))
-
-(use-package flycheck-posframe
-  :after flycheck
-  :hook (flycheck-mode . flycheck-posframe-mode)
-  :config
-  (setq flycheck-posframe-position 'window-top-right-corner))
-
-(use-package flycheck-inline
-  :after flycheck
-  :config
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
-
 (use-package swiper
   :bind
   ("C-s" . swiper))
@@ -470,11 +451,6 @@
   :init
   (setq xref-show-definitions-function #'ivy-xref-show-defs)
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
-
-(use-package elisp-mode
-  :straight (:type built-in)
-  :hook
-  (org-src-mode . me/disable-flycheck-checkers-for-elisp))
 
 (use-package emmet-mode
   :after web-mode
@@ -555,6 +531,10 @@
 (use-package mode-line-bell
   :config
   (mode-line-bell-mode t))
+
+(use-package flymake
+  :hook
+  (prog-mode . flymake-mode))
 
 ;; Fringe options
 (fringe-mode)
