@@ -533,6 +533,9 @@
   (mode-line-bell-mode t))
 
 (use-package flymake
+  :defer 2
+  :config
+  (setq flymake-fringe-indicator-position nil)
   :hook
   (prog-mode . flymake-mode))
 
@@ -541,6 +544,4 @@
 (general-setq-default indicate-empty-lines t
                       indicate-buffer-boundaries 'left)
 
-;; load theme customization
 (naysayer-customize)
-(naysayer-customize-rainbow)

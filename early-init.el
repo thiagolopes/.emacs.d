@@ -230,10 +230,31 @@
 (use-package naysayer-theme
   :config
   (defun naysayer-customize ()
+    (interactive)
     (let ((punctuation "#8cde94")
           (background "#062329")
+          (selection  "#0000ff")
           (background-darker "#041b20")
-          (text "#d1b897"))
+          (fg "#126367")
+          (text "#d1b897")
+          (white "#ffffff")
+          ;; colors from solarized
+          (yellow "#b58900")
+          (orange "#cb4b16")
+          (red "#dc322f")
+          (magenta "#d33682")
+          (blue "#268bd2")
+          (green "#859900")
+          (cyan "#2aa198")
+          (violet "#6c71c4"))
+      (defcustom naysayer-theme-yellow  ,yellow  "Primary colors - yellow"  :type 'string :group 'solarized)
+      (defcustom naysayer-theme-orange  ,orange  "Primary colors - orange"  :type 'string :group 'solarized)
+      (defcustom naysayer-theme-red     ,red     "Primary colors - red"     :type 'string :group 'solarized)
+      (defcustom naysayer-theme-magenta ,magenta "Primary colors - magenta" :type 'string :group 'solarized)
+      (defcustom naysayer-theme-blue    ,blue    "Primary colors - blue"    :type 'string :group 'solarized)
+      (defcustom naysayer-theme-green   ,green   "Primary colors - green"   :type 'string :group 'solarized)
+      (defcustom naysayer-theme-cyan    ,cyan    "Primary colors - cyan"    :type 'string :group 'solarized)
+      (defcustom naysayer-theme-violet  ,violet  "Primary colors - violet"  :type 'string :group 'solarized)
       (custom-set-faces
        ;; Flycheck
        `(flycheck-posframe-background-face ((t (:background ,background-darker))))
@@ -241,6 +262,29 @@
        `(flycheck-inline-error ((t (:background ,background-darker))))
        `(flycheck-inline-warning ((t (:background ,background-darker))))
        `(flycheck-inline-info ((t (:background ,background-darker))))
+
+       ;; Flymake
+       `(flymake-errline
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,red)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:foreground ,red :weight normal :underline t))))
+       `(flymake-warnline
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,yellow)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:forground ,yellow :weight normal :underline t))))
+       `(flymake-infoline
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,green)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:forground ,green :weight normal :underline t))))
 
        `(cursor ((t (:background ,punctuation))))
        `(mode-line-inactive ((t (:inverse-video unspecified
@@ -258,50 +302,14 @@
                                            :inverse-video t))))
        `(solaire-default-face ((t (:background ,background-darker))))
        `(symbol-overlay-default-face ((t (:background nil :bold t :underline t))))
-       `(whitespace-space ((t (:background ,background :foreground ,background-darker)))))
-      (message "naysayer customized...")))
-  (defun naysayer-customize-rainbow ()
-    (let ((yellow "#b58900")
-          (orange "#cb4b16")
-          (red "#dc322f")
-          (magenta "#d33682")
-          (blue "#268bd2")
-          (green "#859900")
-          (cyan "#2aa198")
-          (violet "#6c71c4"))
-      (defcustom naysayer-theme-yellow  ,yellow  "Primary colors - yellow"  :type 'string :group 'monokai)
-      (defcustom naysayer-theme-orange  ,orange  "Primary colors - orange"  :type 'string :group 'monokai)
-      (defcustom naysayer-theme-red     ,red     "Primary colors - red"     :type 'string :group 'monokai)
-      (defcustom naysayer-theme-magenta ,magenta "Primary colors - magenta" :type 'string :group 'monokai)
-      (defcustom naysayer-theme-blue    ,blue    "Primary colors - blue"    :type 'string :group 'monokai)
-      (defcustom naysayer-theme-green   ,green   "Primary colors - green"   :type 'string :group 'monokai)
-      (defcustom naysayer-theme-cyan    ,cyan    "Primary colors - cyan"    :type 'string :group 'monokai)
-      (defcustom naysayer-theme-violet  ,violet  "Primary colors - violet"  :type 'string :group 'monokai)
-      (custom-set-faces
+       `(whitespace-space ((t (:background ,background :foreground ,fg))))
 
-       ;; Flymake
-       `(flymake-errline
-         ((((supports :underline (:style wave)))
-           (:underline (:style wave :color ,red)
-                       :foreground unspecified
-                       :background unspecified
-                       :inherit unspecified))
-          (t (:foreground ,red :weight bold :underline t))))
-       `(flymake-warnline
-         ((((supports :underline (:style wave)))
-           (:underline (:style wave :color ,yellow)
-                       :foreground unspecified
-                       :background unspecified
-                       :inherit unspecified))
-          (t (:forground ,yellow :weight bold :underline t))))
-       `(flymake-infoline
-         ((((supports :underline (:style wave)))
-           (:underline (:style wave :color ,green)
-                       :foreground unspecified
-                       :background unspecified
-                       :inherit unspecified))
-          (t (:forground ,green :weight bold :underline t))))
+       ;; Ido
+       `(ido-first-match ((t (:foreground ,white :bold t))))
+       ;; `(ido-only-match ((t (:foreground ,green :weight bold))))
+       ;; `(ido-subdir ((t (:foreground ,violet :weight bold))))
 
+       ;; rainbow
        `(rainbow-delimiters-depth-1-face ((t (:foreground ,violet))))
        `(rainbow-delimiters-depth-2-face ((t (:foreground ,blue))))
        `(rainbow-delimiters-depth-3-face ((t (:foreground ,green))))
@@ -313,8 +321,8 @@
        `(rainbow-delimiters-depth-9-face ((t (:foreground ,green))))
        `(rainbow-delimiters-depth-10-face ((t (:foreground ,yellow))))
        `(rainbow-delimiters-depth-11-face ((t (:foreground ,orange))))
-       `(rainbow-delimiters-depth-12-face ((t (:foreground ,red))))))))
-
+       `(rainbow-delimiters-depth-12-face ((t (:foreground ,red)))))))
+  (naysayer-customize))
 ;;; load theme
 (load-theme 'naysayer t)
 
