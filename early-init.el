@@ -264,21 +264,21 @@
        `(flycheck-inline-info ((t (:background ,background-darker))))
 
        ;; Flymake
-       `(flymake-errline
+       `(flymake-error
          ((((supports :underline (:style wave)))
            (:underline (:style wave :color ,red)
                        :foreground unspecified
                        :background unspecified
                        :inherit unspecified))
           (t (:foreground ,red :weight normal :underline t))))
-       `(flymake-warnline
+       `(flymake-warning
          ((((supports :underline (:style wave)))
            (:underline (:style wave :color ,yellow)
                        :foreground unspecified
                        :background unspecified
                        :inherit unspecified))
           (t (:forground ,yellow :weight normal :underline t))))
-       `(flymake-infoline
+       `(flymake-note
          ((((supports :underline (:style wave)))
            (:underline (:style wave :color ,green)
                        :foreground unspecified
