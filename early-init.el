@@ -103,6 +103,7 @@
 (menu-bar-mode -1)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (show-paren-mode 1)
+(setq show-paren-highlight-openparen nil)
 
 (setq save-interprogram-paste-before-kill t
       apropos-do-all t
@@ -262,6 +263,28 @@
        `(flycheck-inline-error ((t (:background ,background-darker))))
        `(flycheck-inline-warning ((t (:background ,background-darker))))
        `(flycheck-inline-info ((t (:background ,background-darker))))
+       `(flycheck-error
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,red)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:foreground ,red :weight normal :underline t))))
+       `(flycheck-warning
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,yellow)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:forground ,yellow :weight normal :underline t))))
+       `(flycheck-info
+         ((((supports :underline (:style wave)))
+           (:underline (:style wave :color ,green)
+                       :foreground unspecified
+                       :background unspecified
+                       :inherit unspecified))
+          (t (:forground ,green :weight normal :underline t))))
+
 
        ;; Flymake
        `(flymake-error
