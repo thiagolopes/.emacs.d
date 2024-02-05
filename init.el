@@ -191,7 +191,6 @@
         cider-repl-pop-to-buffer-on-connect 'display-only))
 
 (use-package hl-todo
-  :hook (prog-mode-hook . hl-todo-mode)
   :hook (prog-mode . hl-todo-mode)
   :hook (yaml-mode . hl-todo-mode)
   :config
@@ -255,8 +254,10 @@
         show-paren-when-point-in-periphery t))
 
 (use-package rainbow-delimiters
+  :bind
+  ("<f8>" . rainbow-delimiters-mode)
   :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  ;; (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   (setq rainbow-delimiters-max-face-count 4))
 
 (use-package undo-fu-session
@@ -410,7 +411,6 @@
   :config
   (setq dashboard-set-navigator t
         dashboard-projects-backend 'projectile
-        dashboard-icon-type 'all-the-icons
         dashboard-show-shortcuts t
         dashboard-items '((recents  . 15)
                           (projects . 3))
@@ -507,10 +507,6 @@
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
-(use-package all-the-icons
-  :defer 3
-  :if (display-graphic-p))
-
 (use-package dired-sidebar
   :defer 2
   :bind (("<f9>" . dired-sidebar-toggle-sidebar))
@@ -532,12 +528,11 @@
   :config
   (mode-line-bell-mode t))
 
-(use-package flymake
-  :defer 2
+(use-package flycheck
+  :bind ("<f7>". flycheck-mode)
+  :init (global-flycheck-mode)
   :config
-  (setq flymake-fringe-indicator-position nil)
-  :hook
-  (prog-mode . flymake-mode))
+  (setq flycheck-indication-mode nil))
 
 ;; Fringe options
 (fringe-mode)
