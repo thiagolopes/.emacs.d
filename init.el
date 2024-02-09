@@ -471,6 +471,7 @@
   (setq lsp-signature-render-documentation nil)
   (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-ui-doc-enable nil)
+  (setq lsp-lens-enable nil)
   (setq lsp-completion-enable-additional-text-edit nil)
   ;; Suggestions from official docs for performance
   (setq lsp-completion-provider :capf)
