@@ -334,8 +334,9 @@
                                                           :style released-button
                                                           :foreground ,text)))))
        `(show-paren-match ((t (:background nil
+                                           :foreground ,white
                                            :bold t
-                                           :inverse-video t))))
+                                           :inverse-video nil))))
        `(solaire-default-face ((t (:background ,background-darker))))
        `(symbol-overlay-default-face ((t (:background nil :bold t :underline t))))
        `(whitespace-space ((t (:background ,background :foreground ,fg))))
