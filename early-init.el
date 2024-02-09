@@ -232,7 +232,8 @@
   :config
   (defun naysayer-customize ()
     (interactive)
-    (let ((punctuation "#8cde94")
+    (let ((border-width -1)
+          (punctuation "#8cde94")
           (background "#062329")
           (selection  "#0000ff")
           (background-darker "#041b20")
@@ -309,17 +310,29 @@
                        :inherit unspecified))
           (t (:forground ,green :weight normal :underline t))))
 
-       `(cursor ((t (:background ,punctuation))))
+       ;; mode-line
+       `(mode-line ((t (:inverse-video unspecified
+                                       :underline unspecified
+                                       :foreground ,background
+                                       :background ,text
+                                       :box (:line-width ,border-width
+                                                         :style released-button)))))
        `(mode-line-inactive ((t (:inverse-video unspecified
                                                 :underline unspecified
                                                 :foreground ,text
                                                 :background ,background-darker
-                                                :box ,text))))
+                                                :box (:line-width ,border-width
+                                                                  :style released-button
+                                                                  :foreground ,text)))))
+
+       `(cursor ((t (:background ,punctuation))))
        `(which-func ((t (:inverse-video unspecified
                                         :underline unspecified
                                         :foreground ,background
                                         :weight bold
-                                        :box ,text))))
+                                        :box (:line-width ,border-width
+                                                          :style released-button
+                                                          :foreground ,text)))))
        `(show-paren-match ((t (:background nil
                                            :bold t
                                            :inverse-video t))))
