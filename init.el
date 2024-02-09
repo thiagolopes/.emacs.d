@@ -169,26 +169,27 @@
 (use-package cider
   :defer 2
   :config
-  (setq nrepl-hide-special-buffers t
-        nrepl-log-messages nil
-        cider-font-lock-dynamically '(macro core function var deprecated)
-        cider-overlays-use-font-lock t
-        cider-prompt-for-symbol nil
-        cider-repl-history-display-duplicates nil
-        cider-repl-history-display-style 'one-line
-        cider-repl-history-file (concat user-emacs-directory "cache/cider-repl-history")
-        cider-repl-history-highlight-current-entry t
-        cider-repl-history-quit-action 'delete-and-restore
-        cider-repl-history-highlight-inserted-item t
-        cider-repl-history-size 1000
-        cider-repl-result-prefix ";; => "
-        cider-repl-print-length 100
-        cider-repl-use-clojure-font-lock t
-        cider-repl-use-pretty-printing t
-        cider-repl-wrap-history nil
-        cider-stacktrace-default-filters '(tooling dup)
-        cider-repl-display-help-banner nil
-        cider-repl-pop-to-buffer-on-connect 'display-only))
+  (setq-default nrepl-hide-special-buffers t
+                nrepl-log-messages nil
+                cider-font-lock-dynamically '(macro core function var deprecated)
+                cider-overlays-use-font-lock t
+                cider-prompt-for-symbol nil
+                cider-inject-dependencies-at-jack-in nil
+                cider-repl-history-display-duplicates nil
+                cider-repl-history-display-style 'one-line
+                cider-repl-history-file (concat user-emacs-directory "cache/cider-repl-history")
+                cider-repl-history-highlight-current-entry t
+                cider-repl-history-quit-action 'delete-and-restore
+                cider-repl-history-highlight-inserted-item t
+                cider-repl-history-size 1000
+                cider-repl-result-prefix ";; => "
+                cider-repl-print-length 100
+                cider-repl-use-clojure-font-lock t
+                cider-repl-use-pretty-printing t
+                cider-repl-wrap-history nil
+                cider-stacktrace-default-filters '(tooling dup)
+                cider-repl-display-help-banner nil
+                cider-repl-pop-to-buffer-on-connect 'display-only))
 
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode)
@@ -460,7 +461,8 @@
 
 (use-package symbol-overlay
   :config
-  (setq symbol-overlay-idle-time 1.0)
+  (setq symbol-overlay-idle-time 2.0)
+  (setq symbol-overlay-temp-highlight-single nil)
   :hook
   (prog-mode . symbol-overlay-mode))
 
