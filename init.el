@@ -11,6 +11,7 @@
 (use-package web-mode :defer 5)
 (use-package transpose-frame :defer 3)
 (use-package i3wm-config-mode :defer 2)
+(use-package ivy)
 
 (use-package minions
   :init
