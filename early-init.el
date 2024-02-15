@@ -41,7 +41,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t (:height 120 :width expanded :family "Iosevka Slab")))))
+ '(default ((t (:height 120 :width expanded :family "Iosevka")))))
 (setq-default line-spacing 0.2)
 
 ;; Add padding inside frames (windows)
@@ -345,6 +345,9 @@
        `(ido-first-match ((t (:foreground ,white :bold t))))
        ;; `(ido-only-match ((t (:foreground ,green :weight bold))))
        ;; `(ido-subdir ((t (:foreground ,violet :weight bold))))
+
+       ;; lsp
+       `(lsp-face-highlight-textual ((t (:background , background-darker))))
 
        ;; rainbow
        `(rainbow-delimiters-depth-1-face ((t (:foreground ,violet))))
