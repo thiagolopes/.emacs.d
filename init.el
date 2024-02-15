@@ -5,6 +5,7 @@
 (use-package cmake-mode)
 (use-package better-defaults)
 (use-package git-timemachine)
+(use-package git-link)
 (use-package sudo-edit)
 (use-package irony)
 (use-package pdf-tools :defer 5)
@@ -537,6 +538,16 @@
   :init (global-flycheck-mode)
   :config
   (setq flycheck-indication-mode nil))
+
+(use-package sideline
+  :hook (flycheck-mode . sideline-mode)
+  :init
+  (setq sideline-backends-right '(sideline-flycheck)))
+
+(use-package sideline-flycheck
+  :hook (flycheck-mode . sideline-flycheck-setup)
+  :config
+  (setq sideline-flycheck-show-checker-name t))
 
 ;; Fringe options
 (fringe-mode)
