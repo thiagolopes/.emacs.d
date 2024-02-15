@@ -477,6 +477,7 @@
   (setq lsp-ui-doc-enable nil)
   (setq lsp-lens-enable nil)
   (setq lsp-completion-enable-additional-text-edit nil)
+  (setq lsp-enable-symbol-highlighting nil)
   ;; Suggestions from official docs for performance
   (setq lsp-completion-provider :capf)
   (setq lsp-idle-delay 0.500)
