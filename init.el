@@ -13,6 +13,7 @@
 (use-package transpose-frame :defer 3)
 (use-package i3wm-config-mode :defer 2)
 (use-package ivy)
+(use-package virtualenvwrapper)
 
 (use-package minions
   :init
@@ -20,6 +21,8 @@
 
 (use-package shell-pop
   :config
+  (custom-set-variables
+   '(shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell))))))
   (general-define-key "<f12>" #'shell-pop))
 
 (use-package corfu
@@ -554,5 +557,5 @@
 (fringe-mode)
 (general-setq-default indicate-empty-lines t
                       indicate-buffer-boundaries 'left)
-
-(naysayer-customize)
+(provide 'init)
+;;; init.el ends here
