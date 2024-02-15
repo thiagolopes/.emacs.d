@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (setq package-enable-at-startup nil)
 
 (setq straight-use-package-by-default t
@@ -240,6 +241,9 @@
           (fg "#126367")
           (text "#d1b897")
           (white "#ffffff")
+          (black "#000000")
+          (variables "#c1d1e3")
+          (strings    "#2ec09c")
           ;; colors from solarized
           (yellow "#b58900")
           (orange "#cb4b16")
@@ -258,6 +262,16 @@
       (defcustom naysayer-theme-cyan    ,cyan    "Primary colors - cyan"    :type 'string :group 'solarized)
       (defcustom naysayer-theme-violet  ,violet  "Primary colors - violet"  :type 'string :group 'solarized)
       (custom-set-faces
+       ;; error, warning, info, success
+       `(error ((t (:background ,background :foreground ,red :height 100))))
+       `(warning ((t (:background ,background :foreground ,yellow :height 100))))
+       `(info ((t (:background ,background :foreground ,magenta :height 100))))
+       `(success ((t (:background ,background :foreground ,green :height 100))))
+
+       ;; Swipper
+       `(swiper-line-face ((t (:background ,background-darker))))
+       `(swiper-match-face-2 ((t (:background ,strings :foreground ,black))))
+
        ;; Flycheck
        `(flycheck-posframe-background-face ((t (:background ,background-darker))))
        `(flycheck-posframe-border-face ((t (:foreground ,background-darker))))

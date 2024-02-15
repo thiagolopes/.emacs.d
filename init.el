@@ -1,4 +1,4 @@
-;;; package -- init.el
+;;; package -- init.el  -*- lexical-binding: t; -*-
 ;;; commentary: this package will run after early-init.el
 ;;; code:
 
@@ -463,7 +463,7 @@
 
 (use-package symbol-overlay
   :config
-  (setq symbol-overlay-idle-time 2.0)
+  (setq symbol-overlay-idle-time 1.0)
   (setq symbol-overlay-temp-highlight-single nil)
   :hook
   (prog-mode . symbol-overlay-mode))
