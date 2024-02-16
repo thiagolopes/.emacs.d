@@ -262,7 +262,7 @@
       (defcustom naysayer-theme-cyan    ,cyan    "Primary colors - cyan"    :type 'string :group 'solarized)
       (defcustom naysayer-theme-violet  ,violet  "Primary colors - violet"  :type 'string :group 'solarized)
       (custom-set-faces
-       ;; error, warning, info, success
+       ;; Error, Warning, Info, Success
        `(error ((t (:background ,background :foreground ,red :height 100))))
        `(warning ((t (:background ,background :foreground ,yellow :height 100))))
        `(info ((t (:background ,background :foreground ,magenta :height 100))))
@@ -299,7 +299,6 @@
                        :background unspecified
                        :inherit unspecified))
           (t (:forground ,green :weight normal :underline t))))
-
 
        ;; Flymake
        `(flymake-error
@@ -357,11 +356,18 @@
 
        ;; Ido
        `(ido-first-match ((t (:foreground ,white :bold t))))
-       ;; `(ido-only-match ((t (:foreground ,green :weight bold))))
-       ;; `(ido-subdir ((t (:foreground ,violet :weight bold))))
 
-       ;; lsp
+       ;; LSP
        `(lsp-face-highlight-textual ((t (:background , background-darker))))
+
+       ;; Pulsar
+       `(pulsar-generic ((t (:background ,selection))))
+       `(pulsar-red ((t (:background ,red))))
+       `(pulsar-gree ((t (:background ,green))))
+       `(pulsar-yellow ((t (:background ,yellow))))
+       `(pulsar-blue ((t (:background ,blue))))
+       `(pulsar-magenta ((t (:background ,magenta))))
+       `(pulsar-cyan ((t (:background ,cyan))))
 
        ;; rainbow
        `(rainbow-delimiters-depth-1-face ((t (:foreground ,violet))))
