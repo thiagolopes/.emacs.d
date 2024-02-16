@@ -551,7 +551,7 @@
 (use-package sideline-flycheck
   :hook (flycheck-mode . sideline-flycheck-setup)
   :config
-  (setq sideline-flycheck-show-checker-name t))
+  (setq sideline-flycheck-show-checker-name nil))
 
 ;; Fringe options
 (fringe-mode)
