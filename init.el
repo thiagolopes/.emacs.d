@@ -406,6 +406,7 @@
   (ido-ubiquitous-mode 1))
 
 (use-package swiper
+  :disabled
   :bind
   ("C-s" . swiper))
 
@@ -459,13 +460,6 @@
   :commands emmet-mode
   :hook
   (web-mode . emmet-mode))
-
-(use-package symbol-overlay
-  :config
-  (setq symbol-overlay-idle-time 1.0)
-  (setq symbol-overlay-temp-highlight-single nil)
-  :hook
-  (prog-mode . symbol-overlay-mode))
 
 (use-package lsp-mode
   :config
@@ -548,6 +542,10 @@
   :hook (flycheck-mode . sideline-flycheck-setup)
   :config
   (setq sideline-flycheck-show-checker-name nil))
+
+(use-package ctrlf
+  :config
+  (ctrlf-mode +1))
 
 (provide 'init)
 ;;; init.el ends here
