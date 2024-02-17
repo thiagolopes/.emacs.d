@@ -541,6 +541,7 @@
   :bind ("<f7>". flycheck-mode)
   :init (global-flycheck-mode)
   :config
+  (setq flycheck-highlighting-mode 'symbol)
   (setq flycheck-indication-mode nil))
 
 (use-package sideline
