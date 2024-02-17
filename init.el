@@ -73,9 +73,9 @@
     (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package no-littering
-  :config
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+  :custom
+  (auto-save-file-name-transforms
+   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (use-package which-key
   :defer 2
@@ -92,19 +92,19 @@
 (use-package undo-tree
   :init
   (global-undo-tree-mode)
-  :config
-  (setq undo-tree-visualizer-diff t
-        undo-tree-auto-save-history t
-        undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/")))
-        undo-tree-enable-undo-in-region t
-        ;; Increase undo limits to avoid emacs prematurely truncating the undo
-        ;; history and corrupting the tree. This is larger than the undo-fu
-        ;; defaults because undo-tree trees consume exponentially more space,
-        ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
-        ;; syl20bnr/spacemacs#12110
-        undo-limit 800000            ; 800kb (default is 160kb)
-        undo-strong-limit 12000000   ; 12mb  (default is 240kb)
-        undo-outer-limit 128000000)) ; 128mb (default is 24mb))
+  :custom
+  (undo-tree-visualizer-diff t)
+  (undo-tree-auto-save-history t)
+  (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/"))))
+  (undo-tree-enable-undo-in-region t)
+  ;; Increase undo limits to avoid emacs prematurely truncating the undo
+  ;; history and corrupting the tree. This is larger than the undo-fu
+  ;; defaults because undo-tree trees consume exponentially more space,
+  ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
+  ;; syl20bnr/spacemacs#12110
+  (undo-limit 800000)            ; 800kb (default is 160kb)
+  (undo-strong-limit 12000000)   ; 12mb  (default is 240kb)
+  (ndo-outer-limit 128000000)) ; 128mb (default is 24mb))
 
 (use-package unicode-fonts
   :after persistent-soft
@@ -159,12 +159,13 @@
      ((string-prefix-p "!" pattern)
       `(orderless-without-literal . ,(substring pattern 1)))))
 
-  (setq orderless-matching-styles '(orderless-flex))
-  (setq orderless-style-dispatchers
-        '(prefix-if-tilde
-          regexp-if-slash
-          literal-if-equal
-          without-if-bang)))
+  :custom
+  (orderless-matching-styles '(orderless-flex))
+  (orderless-style-dispatchers
+   '(prefix-if-tilde
+     regexp-if-slash
+     literal-if-equal
+     without-if-bang)))
 
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
@@ -177,35 +178,35 @@
 
 (use-package cider
   :defer 2
-  :config
-  (setq-default nrepl-hide-special-buffers t
-                nrepl-log-messages nil
-                cider-font-lock-dynamically '(macro core function var deprecated)
-                cider-overlays-use-font-lock t
-                cider-prompt-for-symbol nil
-                cider-inject-dependencies-at-jack-in nil
-                cider-repl-history-display-duplicates nil
-                cider-repl-history-display-style 'one-line
-                cider-repl-history-file (concat user-emacs-directory "cache/cider-repl-history")
-                cider-repl-history-highlight-current-entry t
-                cider-repl-history-quit-action 'delete-and-restore
-                cider-repl-history-highlight-inserted-item t
-                cider-repl-history-size 1000
-                cider-repl-result-prefix ";; => "
-                cider-repl-print-length 100
-                cider-repl-use-clojure-font-lock t
-                cider-repl-use-pretty-printing t
-                cider-repl-wrap-history nil
-                cider-stacktrace-default-filters '(tooling dup)
-                cider-repl-display-help-banner nil
-                cider-repl-pop-to-buffer-on-connect 'display-only))
+  :custom
+  (nrepl-hide-special-buffers t)
+  (nrepl-log-messages nil)
+  (cider-font-lock-dynamically '(macro core function var deprecated))
+  (cider-overlays-use-font-lock t)
+  (cider-prompt-for-symbol nil)
+  (cider-inject-dependencies-at-jack-in nil)
+  (cider-repl-history-display-duplicates nil)
+  (cider-repl-history-display-style 'one-line)
+  (cider-repl-history-file (concat user-emacs-directory "cache/cider-repl-history"))
+  (cider-repl-history-highlight-current-entry t)
+  (cider-repl-history-quit-action 'delete-and-restore)
+  (cider-repl-history-highlight-inserted-item t)
+  (cider-repl-history-size 1000)
+  (cider-repl-result-prefix ";; => ")
+  (cider-repl-print-length 100)
+  (cider-repl-use-clojure-font-lock t)
+  (cider-repl-use-pretty-printing t)
+  (cider-repl-wrap-history nil)
+  (cider-stacktrace-default-filters '(tooling dup))
+  (cider-repl-display-help-banner nil)
+  (ider-repl-pop-to-buffer-on-connect 'display-only))
 
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode)
   :hook (yaml-mode . hl-todo-mode)
-  :config
-  (setq hl-todo-highlight-punctuation ":"
-        hl-todo-keyword-faces
+  :custom
+  (hl-todo-highlight-punctuation ":")
+  (hl-todo-keyword-faces
         '(("TODO" warning bold)
           ("FIXME" error bold)
           ("REVIEW" font-lock-keyword-face bold)
@@ -227,12 +228,12 @@
   (exec-path-from-shell-initialize))
 
 (use-package projectile
+  :custom
+  (projectile-project-search-path '(("~/dev/" . 1) ("~/.emacs.d/" . 1)))
+  (projectile-globally-ignored-files '(".DS_Store" "TAGS")
+                                     projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
+                                     projectile-kill-buffers-filter 'kill-only-files)
   :init
-  (setq projectile-project-search-path '(("~/dev/" . 1) ("~/.emacs.d/" . 1)))
-  (setq projectile-globally-ignored-files '(".DS_Store" "TAGS")
-        projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
-        projectile-kill-buffers-filter 'kill-only-files)
-
   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
   (global-set-key [remap find-tag]         #'projectile-find-tag))
 
@@ -249,52 +250,51 @@
 (use-package paren
   :defer 2
   :hook (dashboard-setup-startup-hook . show-paren-mode)
-  :config
-  (setq show-paren-delay 0.1
-        show-paren-highlight-openparen t
-        show-paren-when-point-inside-paren t
-        show-paren-when-point-in-periphery t))
+  :custom
+  (show-paren-delay 0.1)
+  (show-paren-highlight-openparen t)
+  (show-paren-when-point-inside-paren t)
+  (show-paren-when-point-in-periphery t))
 
 (use-package rainbow-delimiters
   :bind
   ("<f8>" . rainbow-delimiters-mode)
-  :config
+  ;; :config
   ;; (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-  (setq rainbow-delimiters-max-face-count 4))
+  :custom
+  (rainbow-delimiters-max-face-count 4))
 
 (use-package undo-fu-session
   :custom
   (undo-fu-session-directory (concat user-emacs-directory "cache/fu/undo-fu-session/"))
+  (undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
   :config
   (undo-fu-session-global-mode t)
-  (setq undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
   (when (executable-find "zstd")
     ;; There are other algorithms available, but zstd is the fastest, and speed
     ;; is our priority within Emacs
-    (setq undo-fu-session-compression 'zst)))
+    (setq-default undo-fu-session-compression 'zst)))
 
 (use-package ibuffer-projectile
   ;; Group ibuffer's list by project root
   :hook (ibuffer . ibuffer-projectile-set-filter-groups))
 
 (use-package magit
-  :init
-  (setq magit-auto-revert-mode nil)  ; we do this ourselves further down
-  ;; Must be set early to prevent ~/.config/emacs/transient from being created
-  (let ((data-dir user-emacs-directory))
-    (setq transient-levels-file  (concat data-dir "transient/levels")
-          transient-values-file  (concat data-dir "transient/values")
-          transient-history-file (concat data-dir "transient/history")))
+  :custom
+  (magit-auto-revert-mode nil)  ; we do this ourselves further down
+  (transient-default-level 5)
+  (magit-diff-refine-hunk t) ; show granular diffs in selected hunk
+  ;; Don't autosave repo buffers. This is too magical, and saving can
+  ;; trigger a bunch of unwanted side-effects, like save hooks and
+  ;; formatters. Trust the user to know what they're doing.
+  (magit-save-repository-buffers nil)
+  ;; Don't display parent/related refs in commit buffers; they are rarely
+  ;; helpful and only add to runtime costs.
+  (magit-revision-insert-related-refs nil)
+  (transient-levels-file  (concat user-emacs-directory "transient/levels"))
+  (transient-values-file  (concat user-emacs-directory "transient/values"))
+  (transient-history-file (concat user-emacs-directory "transient/history"))
   :config
-  (setq transient-default-level 5
-        magit-diff-refine-hunk t ; show granular diffs in selected hunk
-        ;; Don't autosave repo buffers. This is too magical, and saving can
-        ;; trigger a bunch of unwanted side-effects, like save hooks and
-        ;; formatters. Trust the user to know what they're doing.
-        magit-save-repository-buffers nil
-        ;; Don't display parent/related refs in commit buffers; they are rarely
-        ;; helpful and only add to runtime costs.
-        magit-revision-insert-related-refs nil)
   (add-hook 'magit-process-mode-hook #'goto-address-mode))
 
 (use-package drag-stuff
@@ -318,22 +318,24 @@
                '(read-file-name-internal . ivy--sort-by-length))
   ;; Don't use ^ as initial input. Set this here because `counsel' defines more
   ;; of its own, on top of the defaults.
-  (setq ivy-initial-inputs-alist nil)
+  :custom
+  (ivy-initial-inputs-alist nil)
   ;; Integrate with `helpful'
-  (setq counsel-describe-function-function #'helpful-callable
-        counsel-describe-variable-function #'helpful-variable
-        counsel-descbinds-function #'helpful-callable)
-  (setq counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)"))
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  (counsel-descbinds-function #'helpful-callable)
+  (counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)"))
 
 (use-package dumb-jump
   :commands dumb-jump-result-follow
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  :custom
+  (dumb-jump-default-project (concat user-emacs-directory "cache/jump"))
+  (dumb-jump-prefer-searcher 'ag)
+  (dumb-jump-aggressive nil)
+  (dumb-jump-selector 'ivy)
   :config
-  (setq dumb-jump-default-project (concat user-emacs-directory "cache/jump")
-        dumb-jump-prefer-searcher 'ag
-        dumb-jump-aggressive nil
-        dumb-jump-selector 'ivy)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
 (use-package ws-butler
@@ -362,16 +364,17 @@
    "C-h x"   #'helpful-command
    "C-c C-d" #'helpful-at-point
    "C-h F"   #'helpful-function)
-  (setq counsel-describe-function-function #'helpful-callable
-        counsel-describe-variable-function #'helpful-variable))
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable))
 
 (use-package iedit
   :config
   (require 'iedit))
 
 (use-package amx
-  :init
-  (setq amx-save-file (concat user-emacs-directory "cache/amx-items")))
+  :custom
+  (amx-save-file (concat user-emacs-directory "cache/amx-items")))
 
 (use-package ace-popup-menu
   :config
@@ -379,8 +382,9 @@
 
 (use-package pulsar
   :defer 2
+  :custom
+  (pulsar-pulse t)
   :config
-  (setq pulsar-pulse t)
   (pulsar-global-mode))
 
 (use-package volatile-highlights
@@ -388,8 +392,9 @@
   (volatile-highlights-mode t))
 
 (use-package buffer-move
+  :custom
+  (buffer-move-behavior 'move)
   :config
-  (setq buffer-move-behavior 'move)
   (general-define-key "<C-S-up>" #'buf-move-up
                       "<C-S-down>" #'buf-move-down
                       "<C-S-left>" #'buf-move-left
@@ -411,18 +416,20 @@
   ("C-s" . swiper))
 
 (use-package dashboard
+  :custom
+  (dashboard-set-navigator t)
+  (dashboard-projects-backend 'projectile)
+  (dashboard-show-shortcuts t)
+  (dashboard-items '((recents  . 15)
+                     (projects . 10)))
+  (dashboard-center-content t)
   :config
-  (setq dashboard-set-navigator t
-        dashboard-projects-backend 'projectile
-        dashboard-show-shortcuts t
-        dashboard-items '((recents  . 15)
-                          (projects . 10))
-        dashboard-center-content t)
   (dashboard-setup-startup-hook))
 
 (use-package savehist
+  :custom
+  (history-length 25)
   :config
-  (setq history-length 25)
   (savehist-mode))
 
 (use-package vertico
@@ -451,9 +458,9 @@
                      'display '(space :align-to right)))))
 
 (use-package ivy-xref
-  :init
-  (setq xref-show-definitions-function #'ivy-xref-show-defs)
-  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+  :custom
+  (xref-show-definitions-function #'ivy-xref-show-defs)
+  (xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package emmet-mode
   :after web-mode
@@ -462,19 +469,19 @@
   (web-mode . emmet-mode))
 
 (use-package lsp-mode
-  :config
+  :custom
   ;; Annoying stuff
-  (setq lsp-enable-links nil)
-  (setq lsp-signature-render-documentation nil)
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-ui-doc-enable nil)
-  (setq lsp-lens-enable nil)
-  (setq lsp-completion-enable-additional-text-edit nil)
-  (setq lsp-enable-symbol-highlighting nil)
+  (lsp-enable-links nil)
+  (lsp-signature-render-documentation nil)
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-ui-doc-enable nil)
+  (lsp-lens-enable nil)
+  (lsp-completion-enable-additional-text-edit nil)
+  (lsp-enable-symbol-highlighting nil)
   ;; Suggestions from official docs for performance
-  (setq lsp-completion-provider :capf)
-  (setq lsp-idle-delay 0.500)
-  (setq lsp-log-io nil))
+  (lsp-completion-provider :capf)
+  (lsp-idle-delay 0.500)
+  (lsp-log-io nil))
 
 (use-package mwim
   :config
@@ -493,8 +500,9 @@
 
 (use-package fancy-compilation
   :defer 1
+  :custom
+  (fancy-compilation-override-colors nil)
   :config
-  (setq fancy-compilation-override-colors nil)
   (fancy-compilation-mode))
 
 (use-package yafolding
@@ -517,9 +525,10 @@
   :config
   (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
   (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
-  (setq dired-sidebar-subtree-line-prefix "__")
-  (setq dired-sidebar-theme 'ascii)
-  (setq dired-sidebar-use-custom-font t))
+  :custom
+  (dired-sidebar-subtree-line-prefix "__")
+  (dired-sidebar-theme 'ascii)
+  (dired-sidebar-use-custom-font t))
 
 (use-package mode-line-bell
   :config
@@ -528,20 +537,20 @@
 (use-package flycheck
   :bind ("<f7>". flycheck-mode)
   :init (global-flycheck-mode)
-  :config
-  (setq flycheck-indication-mode 'left-fringe)
-  (setq flycheck-highlighting-mode 'sexps)
-  (setq flycheck-indication-mode nil))
+  :custom
+  (flycheck-indication-mode 'left-fringe)
+  (flycheck-highlighting-mode 'sexps)
+  (flycheck-indication-mode nil))
 
 (use-package sideline
   :hook (flycheck-mode . sideline-mode)
-  :init
-  (setq sideline-backends-right '(sideline-flycheck)))
+  :custom
+  (sideline-backends-right '(sideline-flycheck)))
 
 (use-package sideline-flycheck
   :hook (flycheck-mode . sideline-flycheck-setup)
-  :config
-  (setq sideline-flycheck-show-checker-name nil))
+  :custom
+  (sideline-flycheck-show-checker-name nil))
 
 (use-package ctrlf
   :config
@@ -549,8 +558,8 @@
 
 (use-package bm
   :demand t
-  :config
-  (setq bm-cycle-all-buffers t)
+  :custom
+  (bm-cycle-all-buffers t)
   :bind (("<insert>" . bm-next)
          ("S-<insert>" . bm-previous)
          ("C-<insert>" . bm-toggle)))
