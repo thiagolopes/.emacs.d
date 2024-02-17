@@ -1,4 +1,8 @@
-;; -*- lexical-binding: t; -*-
+;;; early-init.el -- only focus on emacs setup -*- lexical-binding: t; -*-
+;;; Commentary:
+;;;  to everthing early
+;;; Code:
+
 (setq package-enable-at-startup nil)
 
 (setq straight-use-package-by-default t
@@ -438,6 +442,10 @@
 (general-define-key "C-s" #'swiper-isearch-thing-at-point
                     "C-S" #'swiper-isearch)
 
+(setq isearch-lax-whitespace t
+      isearch-regexp-lax-whitespace t
+      search-whitespace-regexp "[ \t\r\n]+")
+
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
 
@@ -588,6 +596,11 @@ position of the outside of the paren.  Otherwise return nil."
 ;; default browser
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium")
-
+;;
 (which-function-mode t)
+
+;;
+(fringe-mode)
+(general-setq-default indicate-empty-lines t
+                      indicate-buffer-boundaries 'left)
 ;;; early-init.el ends here;

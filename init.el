@@ -1,7 +1,7 @@
-;;; package -- init.el  -*- lexical-binding: t; -*-
-;;; commentary: this package will run after early-init.el
-;;; code:
-
+;;; init.el -- init file only with use-package  -*- lexical-binding: t; -*-
+;;; Commentary:
+;;;  this package will run after early-init.el
+;;; Code:
 (use-package cmake-mode)
 (use-package better-defaults)
 (use-package git-timemachine)
@@ -541,7 +541,8 @@
   :bind ("<f7>". flycheck-mode)
   :init (global-flycheck-mode)
   :config
-  (setq flycheck-highlighting-mode 'symbol)
+  (setq flycheck-indication-mode 'left-fringe)
+  (setq flycheck-highlighting-mode 'sexps)
   (setq flycheck-indication-mode nil))
 
 (use-package sideline
@@ -554,9 +555,5 @@
   :config
   (setq sideline-flycheck-show-checker-name nil))
 
-;; Fringe options
-(fringe-mode)
-(general-setq-default indicate-empty-lines t
-                      indicate-buffer-boundaries 'left)
 (provide 'init)
 ;;; init.el ends here
