@@ -547,5 +547,13 @@
   :config
   (ctrlf-mode +1))
 
+(use-package bm
+  :demand t
+  :config
+  (setq bm-cycle-all-buffers t)
+  :bind (("<insert>" . bm-next)
+         ("S-<insert>" . bm-previous)
+         ("C-<insert>" . bm-toggle)))
+
 (provide 'init)
 ;;; init.el ends here

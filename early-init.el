@@ -331,6 +331,9 @@
                        :inherit unspecified))
           (t (:forground ,green :weight normal :underline t))))
 
+       ;; bm
+       `(bm-persistent-face ((t (:background ,background-darker))))
+
        ;; mode-line
        `(mode-line ((t (:inverse-video unspecified
                                        :underline unspecified
