@@ -555,5 +555,9 @@
          ("S-<insert>" . bm-previous)
          ("C-<insert>" . bm-toggle)))
 
+(use-package avy
+  :config
+  (global-set-key (kbd "M-z") 'avy-goto-word-1))
+
 (provide 'init)
 ;;; init.el ends here
