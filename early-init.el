@@ -272,6 +272,10 @@
        `(info ((t (:background ,background :foreground ,magenta :height 100))))
        `(success ((t (:background ,background :foreground ,green :height 100))))
 
+       ;; CTRLF
+       `(ctrlf-highlight-active ((t (:background ,selection :foreground ,white))))
+       `(ctrlf-highlight-passive ((t (:background ,background-darker :foreground ,fg))))
+
        ;; Swipper
        `(swiper-line-face ((t (:background ,background-darker))))
        `(swiper-match-face-2 ((t (:background ,strings :foreground ,black))))
