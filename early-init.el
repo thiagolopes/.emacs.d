@@ -237,7 +237,7 @@
   :config
   (defun naysayer-customize ()
     (interactive)
-    (let ((border-width 4)
+    (let ((border-width -1)
           (punctuation "#8cde94")
           (background "#062329")
           (selection  "#0000ff")
@@ -340,17 +340,23 @@
                                        :foreground ,background
                                        :background ,text
                                        :box (:line-width ,border-width
-                                                         :color ,text)))))
+                                                         :style released-button)))))
        `(mode-line-inactive ((t (:inverse-video unspecified
                                                 :underline unspecified
                                                 :foreground ,text
                                                 :background ,background-darker
                                                 :box (:line-width ,border-width
-                                                                  :color ,background-darker
+                                                                  :style released-button
                                                                   :foreground ,text)))))
 
        `(cursor ((t (:background ,punctuation))))
-
+       `(which-func ((t (:inverse-video unspecified
+                                        :underline unspecified
+                                        :foreground ,background
+                                        :weight bold
+                                        :box (:line-width ,border-width
+                                                          :style released-button
+                                                          :foreground ,text)))))
        `(show-paren-match ((t (:background nil
                                            :foreground ,white
                                            :bold t
