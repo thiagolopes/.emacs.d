@@ -267,10 +267,10 @@
       (defcustom naysayer-theme-violet  ,violet  "Primary colors - violet"  :type 'string :group 'solarized)
       (custom-set-faces
        ;; Error, Warning, Info, Success
-       `(error ((t (:background ,background :foreground ,red :height 100))))
-       `(warning ((t (:background ,background :foreground ,yellow :height 100))))
-       `(info ((t (:background ,background :foreground ,magenta :height 100))))
-       `(success ((t (:background ,background :foreground ,green :height 100))))
+       `(error ((t (:foreground ,red :height 100))))
+       `(warning ((t (:foreground ,yellow :height 100))))
+       `(info ((t (:foreground ,magenta :height 100))))
+       `(success ((t (:foreground ,green :height 100))))
 
        ;; CTRLF
        `(ctrlf-highlight-active ((t (:background ,selection :foreground ,white))))
