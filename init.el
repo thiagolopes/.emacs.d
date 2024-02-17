@@ -15,6 +15,10 @@
 (use-package ivy)
 (use-package virtualenvwrapper)
 
+(use-package page-break-lines
+  :config
+  (global-page-break-lines-mode))
+
 (use-package minions
   :init
   (minions-mode))
@@ -223,19 +227,11 @@
   (exec-path-from-shell-initialize))
 
 (use-package projectile
-  :commands (projectile-project-root
-             projectile-project-name
-             projectile-project-p
-             projectile-locate-dominating-file
-             projectile-relevant-known-projects)
   :init
-  (setq projectile-project-search-path '("~/dev/" "~/work/" "~/.emacs.d/" ("~/github" . 1)))
-  (setq projectile-auto-discover nil
-        projectile-enable-caching (not noninteractive)
-        projectile-globally-ignored-files '(".DS_Store" "TAGS")
+  (setq projectile-project-search-path '(("~/dev/" . 1) ("~/.emacs.d/" . 1)))
+  (setq projectile-globally-ignored-files '(".DS_Store" "TAGS")
         projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
-        projectile-kill-buffers-filter 'kill-only-files
-        projectile-ignored-projects '("~/"))
+        projectile-kill-buffers-filter 'kill-only-files)
 
   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
   (global-set-key [remap find-tag]         #'projectile-find-tag))
@@ -419,7 +415,7 @@
         dashboard-projects-backend 'projectile
         dashboard-show-shortcuts t
         dashboard-items '((recents  . 15)
-                          (projects . 3))
+                          (projects . 10))
         dashboard-center-content t)
   (dashboard-setup-startup-hook))
 
@@ -519,7 +515,6 @@
 (use-package dired-sidebar
   :defer 2
   :bind (("<f9>" . dired-sidebar-toggle-sidebar))
-  :commands (dired-sidebar-toggle-sidebar)
   :init
   (add-hook 'dired-sidebar-mode-hook
             (lambda ()
@@ -529,8 +524,7 @@
   (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
   (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
   (setq dired-sidebar-subtree-line-prefix "__")
-  (setq dired-sidebar-theme 'icons)
-  (setq dired-sidebar-use-term-integration t)
+  (setq dired-sidebar-theme 'ascii)
   (setq dired-sidebar-use-custom-font t))
 
 (use-package mode-line-bell
