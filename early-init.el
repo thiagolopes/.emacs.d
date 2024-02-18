@@ -237,7 +237,7 @@
   :config
   (defun naysayer-customize ()
     (interactive)
-    (let ((border-width -1)
+    (let ((border-width '(3 . 3))
           (punctuation "#8cde94")
           (background "#062329")
           (selection  "#0000ff")
