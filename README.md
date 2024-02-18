@@ -1,1 +1,2 @@
-![image](https://github.com/thiagolopes/emacs.d/assets/5994972/9718ad47-9e18-4fcc-a3f5-c258082aa415)
+# My final config
+![image](https://github.com/thiagolopes/emacs.d/assets/5994972/4e055b4c-0c57-4ff8-b763-ccec3b860ce5)
