@@ -602,4 +602,8 @@ position of the outside of the paren.  Otherwise return nil."
 (fringe-mode)
 (general-setq-default indicate-empty-lines t
                       indicate-buffer-boundaries 'left)
+
+;; please, maximize
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;;; early-init.el ends here;
