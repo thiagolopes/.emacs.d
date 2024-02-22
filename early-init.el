@@ -266,7 +266,7 @@
 
        ;; CTRLF
        `(ctrlf-highlight-active ((t (:background ,selection :foreground ,white))))
-       `(ctrlf-highlight-passive ((t (:background ,background-darker :foreground ,fg))))
+       `(ctrlf-highlight-passive ((t (:background ,background-darker :foreground ,strings))))
 
        ;; Swipper
        `(swiper-line-face ((t (:background ,background-darker))))
