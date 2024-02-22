@@ -565,6 +565,9 @@
          ("C-<insert>" . bm-toggle)))
 
 (use-package avy
+  :custom
+  (ctrlf-auto-recenter t)
+  (ctrlf-alternate-search-style 'literal)
   :config
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
