@@ -68,9 +68,9 @@
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
 (use-package kind-icon
-    :defer 1
-    :config
-    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  :defer 1
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package no-littering
   :custom
@@ -207,14 +207,14 @@
   :custom
   (hl-todo-highlight-punctuation ":")
   (hl-todo-keyword-faces
-        '(("TODO" warning bold)
-          ("FIXME" error bold)
-          ("REVIEW" font-lock-keyword-face bold)
-          ("HACK" font-lock-constant-face bold)
-          ("DEPRECATED" font-lock-doc-face bold)
-          ("NOTE" success bold)
-          ("BUG" error bold)
-          ("XXX" font-lock-constant-face bold))))
+   '(("TODO" warning bold)
+     ("FIXME" error bold)
+     ("REVIEW" font-lock-keyword-face bold)
+     ("HACK" font-lock-constant-face bold)
+     ("DEPRECATED" font-lock-doc-face bold)
+     ("NOTE" success bold)
+     ("BUG" error bold)
+     ("XXX" font-lock-constant-face bold))))
 
 (use-package multiple-cursors
   :defer 2
@@ -451,11 +451,11 @@
 
   (completion-group t)
   (completions-group-format
-        (concat
-         (propertize "    " 'face 'completions-group-separator)
-         (propertize " %s " 'face 'completions-group-title)
-         (propertize " " 'face 'completions-group-separator
-                     'display '(space :align-to right)))))
+   (concat
+    (propertize "    " 'face 'completions-group-separator)
+    (propertize " %s " 'face 'completions-group-title)
+    (propertize " " 'face 'completions-group-separator
+                'display '(space :align-to right)))))
 
 (use-package ivy-xref
   :custom
