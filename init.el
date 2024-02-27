@@ -25,8 +25,6 @@
 
 (use-package shell-pop
   :config
-  (custom-set-variables
-   '(shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell))))))
   (general-define-key "<f12>" #'shell-pop))
 
 (use-package corfu
@@ -480,7 +478,7 @@
   (lsp-enable-symbol-highlighting nil)
   ;; Suggestions from official docs for performance
   (lsp-completion-provider :capf)
-  (lsp-idle-delay 0.500)
+  (lsp-idle-delay 0.01)
   (lsp-log-io nil))
 
 (use-package mwim

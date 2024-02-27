@@ -594,7 +594,7 @@ position of the outside of the paren.  Otherwise return nil."
 
 ;; default browser
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "chromium")
+      browse-url-generic-program "firefox")
 ;;
 (which-function-mode t)
 
@@ -605,5 +605,8 @@ position of the outside of the paren.  Otherwise return nil."
 
 ;; please, maximize
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; eletric-mode
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 
 ;;; early-init.el ends here;
