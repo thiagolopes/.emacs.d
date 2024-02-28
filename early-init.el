@@ -197,7 +197,7 @@
       mouse-wheel-scroll-amount-horizontal 2)
 
 (blink-cursor-mode -1)
-(setq-default cursor-type 'box)
+(setq-default cursor-type 'bar)
 (setq-default cursor-in-non-selected-windows nil)
 (setq blink-matching-paren nil)
 (setq x-stretch-cursor nil)
