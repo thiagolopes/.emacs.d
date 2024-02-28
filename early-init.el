@@ -45,8 +45,6 @@
       read-process-output-max (* 1024 1024))
 (add-hook 'after-init-hook #'garbage-collect t)
 
-(custom-set-faces
- '(default ((t (:height 120 :width expanded :family "Iosevka")))))
 (setq-default line-spacing 0.2)
 
 ;; Add padding inside frames (windows)
@@ -205,6 +203,10 @@
 (setq indicate-buffer-boundaries nil
       indicate-empty-lines nil)
 
+;; Default font
+(custom-set-faces
+ '(default ((t (:height 130 :width expanded :family "Iosevka")))))
+
 (use-package doom-themes
   :config
   (setq doom-themes-enable-italic nil)
@@ -247,7 +249,11 @@
           (white "#ffffff")
           (black "#000000")
           (variables "#c1d1e3")
-          (strings    "#2ec09c")
+          (strings "#2ec09c")
+          (constants "#7ad0c6")
+          (keywords "#ffffff")
+          (comments "#44b340")
+          (builtin "#ffffff")
           ;; colors from monokay
           (yellow "#E6DB74")
           (orange "#DF911F")
@@ -256,13 +262,14 @@
           (blue "#66D8EF")
           (green "#A6E22E")
           (cyan "#A1EFE4")
-          (violet "#AE81FF"))
+          (violet "#AE81FF")
+          (smaller 110))
       (custom-set-faces
        ;; Error, Warning, Info, Success
-       `(error ((t (:foreground ,red :height 100))))
-       `(warning ((t (:foreground ,yellow :height 100))))
-       `(info ((t (:foreground ,magenta :height 100))))
-       `(success ((t (:foreground ,green :height 100))))
+       `(error ((t (:foreground ,red :height ,smaller))))
+       `(warning ((t (:foreground ,yellow :height ,smaller))))
+       `(info ((t (:foreground ,magenta :height ,smaller))))
+       `(success ((t (:foreground ,green :height ,smaller))))
 
        ;; CTRLF
        `(ctrlf-highlight-active ((t (:background ,selection :foreground ,white))))
@@ -271,6 +278,21 @@
        ;; Swipper
        `(swiper-line-face ((t (:background ,background-darker))))
        `(swiper-match-face-2 ((t (:background ,strings :foreground ,black))))
+
+       ;; Font lock
+       `(font-lock-keyword-face ((t (:foreground ,keywords :slant italic))))
+       `(font-lock-constant-face ((t (:foreground ,constants))))
+       `(font-lock-builtin-face ((t (:foreground ,builtin :slant italic))))
+       `(font-lock-comment-face ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
+       `(font-lock-comment-delimiter-face ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
+       ;; `(font-lock-type-face              ((t (:foreground ,punctuation))))
+       ;; `(font-lock-variable-name-face     ((t (:foreground ,variables))))
+       ;; `(font-lock-string-face            ((t (:foreground ,strings))))
+       ;; `(font-lock-doc-face               ((t (:foreground ,comments))))
+       ;; `(font-lock-function-name-face     ((t (:foreground ,functions))))
+       ;; `(font-lock-doc-string-face        ((t (:foreground ,strings))))
+       ;; `(font-lock-preprocessor-face      ((t (:foreground ,macros))))
+       ;; `(font-lock-warning-face           ((t (:foreground ,warning))))
 
        ;; Flycheck
        `(flycheck-posframe-background-face ((t (:background ,background-darker))))
