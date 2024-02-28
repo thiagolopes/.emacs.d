@@ -45,7 +45,9 @@
       read-process-output-max (* 1024 1024))
 (add-hook 'after-init-hook #'garbage-collect t)
 
-(setq-default line-spacing 0.2)
+(custom-set-faces
+ '(default ((t (:height 110 :width expanded :family "Iosevka")))))
+(setq-default line-spacing 0)
 
 ;; Add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
@@ -203,10 +205,6 @@
 (setq indicate-buffer-boundaries nil
       indicate-empty-lines nil)
 
-;; Default font
-(custom-set-faces
- '(default ((t (:height 130 :width expanded :family "Iosevka")))))
-
 (use-package doom-themes
   :config
   (setq doom-themes-enable-italic nil)
@@ -263,7 +261,7 @@
           (green "#A6E22E")
           (cyan "#A1EFE4")
           (violet "#AE81FF")
-          (smaller 110))
+          (smaller 90))
       (custom-set-faces
        ;; Error, Warning, Info, Success
        `(error ((t (:foreground ,red :height ,smaller))))
