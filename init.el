@@ -557,9 +557,10 @@
   (global-flycheck-eglot-mode 1))
 
 (use-package eglot-booster
-  :straight (eglot-booster :fetcher github :repo "radian-software/straight.el"
-                           :files ("*eglot-booster.el"))
+  :disabled
   :after eglot
+  :straight (eglot-booster :fetcher github :repo "jdtsmith/eglot-booster"
+                           :files ("eglot-booster.el"))
   :config (eglot-booster-mode))
 
 (use-package symbol-overlay
