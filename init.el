@@ -352,6 +352,8 @@
   :defer 2
   :custom
   (pulsar-pulse t)
+  :bind
+  ("<M-RET>" . pulsar-pulse-line-cyan)
   :config
   (pulsar-global-mode))
 
