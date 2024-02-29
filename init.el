@@ -527,11 +527,16 @@
 
 (use-package company
   :custom
+  (company-format-margin-function #'company-vscode-light-icons-margin)
   (company-idle-delay 0.2)
   (company-minimum-prefix-length 3)
+  (company-tooltip-flip-when-above t)
+  (company-tooltip-margin 3)
+  (company-text-icons-add-background t)
+  (company-frontends '(company-preview-common-frontend
+                       company-pseudo-tooltip-unless-just-one-frontend
+                       company-echo-metadata-frontend))
   :config
-  (add-hook 'prog-mode 'global-company-mode)
-  (add-hook 'after-init-hook 'global-company-mode)
   (global-company-mode t))
 
 (use-package eglot

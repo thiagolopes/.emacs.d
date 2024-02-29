@@ -424,6 +424,22 @@ position of the outside of the paren.  Otherwise return nil."
 ;; eletric-mode disabled
 (electric-indent-mode -1)
 
+;; Hippie-expand
+(hippie-expand t)
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        ;; try-expand-dabbrev-from-kill
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol
+        try-complete-file-name-partially
+        try-complete-file-name
+        ;; try-expand-all-abbrevs
+        ;; try-expand-list
+        ;; try-expand-line
+))
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
+
 ;; Load theme
 (load-theme 'greenized)
 

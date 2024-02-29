@@ -81,15 +81,11 @@
 
    ;; Company
    `(company-tooltip ((t (:foreground ,white :background ,line-fg))))
-   `(company-scrollbar-fg ((t (:background ,strings))))
-   `(company-scrollbar-bg ((t (:background ,text))))
+   ;; `(company-scrollbar-fg ((t (:background ,strings))))
+   ;; `(company-scrollbar-bg ((t (:background ,text))))
    `(company-tooltip-annotation-selection ((t (:foreground ,white :background ,selection))))
-   `(company-tooltip-selection ((t (:foreground ,text :background ,selection))))
+   `(company-tooltip-selection ((t (:foreground ,text :background ,background-darker))))
    `(company-tooltip-common ((t (:foreground ,white))))
-   ;; `(company-tooltip-mouse ((t (:background ,zenburn-bg-1))))
-   ;; `(company-tooltip-common-selection ((t (:foreground ,zenburn-green+2))))
-   ;; `(company-preview ((t (:background ,zenburn-green+2))))
-   ;; `(company-preview-common ((t (:foreground ,zenburn-green+2 :background ,zenburn-bg-1))))
 
    ;; CTRLF
    `(ctrlf-highlight-active ((t (:background ,selection :foreground ,white))))
