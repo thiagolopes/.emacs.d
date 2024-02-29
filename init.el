@@ -556,12 +556,12 @@
   :config
   (global-flycheck-eglot-mode 1))
 
-(use-package eglot-booster
-  :disabled
-  :after eglot
-  :straight (eglot-booster :fetcher github :repo "jdtsmith/eglot-booster"
-                           :files ("eglot-booster.el"))
-  :config (eglot-booster-mode))
+(when (executable-find "emacs-lsp-booster")
+  (use-package eglot-booster
+    :after eglot
+    :straight (eglot-booster :fetcher github :repo "https://github.com/jdtsmith/eglot-booster"
+                             :files ("eglot-booster.el"))
+    :config (eglot-booster-mode)))
 
 (use-package symbol-overlay
   :custom
