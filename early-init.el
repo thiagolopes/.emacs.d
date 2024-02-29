@@ -639,7 +639,7 @@ position of the outside of the paren.  Otherwise return nil."
 ;; please, maximize
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; eletric-mode
-(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+;; eletric-mode disabled
+(electric-indent-mode -1)
 
 ;;; early-init.el ends here;
