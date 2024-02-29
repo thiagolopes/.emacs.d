@@ -47,10 +47,10 @@
 
 (custom-set-faces
  '(default ((t (:height 110 :width expanded :family "Iosevka")))))
-(setq-default line-spacing 0)
+(setq-default line-spacing 0.1)
 
 ;; Add padding inside frames (windows)
-(add-to-list 'default-frame-alist '(internal-border-width . 2))
+(add-to-list 'default-frame-alist '(internal-border-width . 6))
 
 (set-window-buffer nil (current-buffer))
 

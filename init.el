@@ -15,6 +15,7 @@
 (use-package ivy)
 (use-package virtualenvwrapper)
 (use-package markdown-mode)
+(use-package lua-mode)
 
 (use-package page-break-lines
   :config
