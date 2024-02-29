@@ -482,7 +482,10 @@
   (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
   (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
   :custom
+  (dired-sidebar-use-custom-modeline nil)
   (dired-sidebar-subtree-line-prefix "__")
+  (dired-sidebar-should-follow-file t)
+  (dired-sidebar-refresh-on-project-switch t)
   (dired-sidebar-theme 'ascii)
   (dired-sidebar-use-custom-font t))
 

@@ -78,6 +78,7 @@
    `(warning ((t (:foreground ,yellow :height ,smaller))))
    `(info ((t (:foreground ,magenta :height ,smaller))))
    `(success ((t (:foreground ,green :height ,smaller))))
+   `(tooltip ((t (:foreground ,white :background ,line-fg))))
 
    ;; Company
    `(company-tooltip ((t (:foreground ,white :background ,line-fg))))
