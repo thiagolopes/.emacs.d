@@ -261,7 +261,7 @@
           (green "#A6E22E")
           (cyan "#A1EFE4")
           (violet "#AE81FF")
-          (smaller 90))
+          (smaller 0.8))
       (custom-set-faces
        ;; Error, Warning, Info, Success
        `(error ((t (:foreground ,red :height ,smaller))))
