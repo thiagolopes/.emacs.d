@@ -137,7 +137,6 @@
     (let ((completion-styles '(basic partial-completion)))
       (apply capf-fn args)))
   (advice-add 'company-capf :around #'company-completion-styles)
-
   :custom
   (completion-styles '(orderless flex))
   (completion-category-overrides '((eglot (styles . (orderless flex)))))
@@ -541,6 +540,7 @@
   (company-idle-delay 0.2)
   (company-minimum-prefix-length 3)
   :config
+  (global-company-mode t)
   (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package eglot
@@ -564,9 +564,9 @@
   :config (eglot-booster-mode))
 
 (use-package symbol-overlay
-  :config
-  (setq symbol-overlay-idle-time 1.0)
-  (setq symbol-overlay-temp-highlight-single nil)
+  :custom
+  (symbol-overlay-idle-time 1.0)
+  (symbol-overlay-temp-highlight-single nil)
   :hook
   (prog-mode . symbol-overlay-mode))
 
