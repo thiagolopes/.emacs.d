@@ -14,6 +14,7 @@
 (use-package i3wm-config-mode :defer 2)
 (use-package ivy)
 (use-package virtualenvwrapper)
+(use-package markdown-mode)
 
 (use-package page-break-lines
   :config
@@ -26,20 +27,6 @@
 (use-package shell-pop
   :config
   (general-define-key "<f12>" #'shell-pop))
-
-(use-package cape
-  :disabled
-  :defer 1
-  :init
-  ;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-elisp-block)
-  (add-to-list 'completion-at-point-functions #'cape-history)
-  (add-to-list 'completion-at-point-functions #'cape-keyword)
-  (add-to-list 'completion-at-point-functions #'cape-abbrev)
-  :config
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
 
 (use-package no-littering
   :custom
@@ -543,8 +530,9 @@
   (company-idle-delay 0.2)
   (company-minimum-prefix-length 3)
   :config
-  (global-company-mode t)
-  (add-hook 'after-init-hook 'global-company-mode))
+  (add-hook 'prog-mode 'global-company-mode)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (global-company-mode t))
 
 (use-package eglot
   :custom
