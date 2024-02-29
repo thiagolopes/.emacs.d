@@ -221,8 +221,7 @@
                     "M-n" #'forward-paragraph
                     "M-p" #'backward-paragraph)
 
-(general-define-key "<f3>" #'kmacro-start-macro-or-insert-counter
-                    "<f4>" #'kmacro-end-or-call-macro)
+(general-define-key "<f6>" #'font-lock-mode)
 
 (general-define-key "M-3" '(lambda () (interactive) (insert "#"))
                     "M-9" '(lambda () (interactive) (insert "("))
