@@ -27,32 +27,8 @@
   :config
   (general-define-key "<f12>" #'shell-pop))
 
-(use-package corfu
-  :custom
-  (corfu-cycle t)
-  (corfu-auto t)
-  (corfu-auto-prefix 3)
-  (corfu-auto-delay 0.0)
-  (corfu-quit-at-boundary 't)
-  (corfu-echo-documetation 0.25)
-  (corfu-preview-current 'insert)
-  (corfu-preselect-first nil)
-  :bind
-  (:map corfu-map
-        ("M-SPC" . corfu-insert-separator)
-        ("RET" . nil)) ;; let my enter alone please
-  :init
-  (global-set-key (kbd "C-<tab>") 'completion-at-point)
-  (corfu-echo-mode t)
-  (corfu-popupinfo-mode t)
-  (global-corfu-mode t))
-
-(use-package corfu-terminal
-  :init
-  (unless (display-graphic-p)
-    (corfu-terminal-mode +1)))
-
 (use-package cape
+  :disabled
   :defer 1
   :init
   ;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
@@ -64,11 +40,6 @@
   :config
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
-
-(use-package kind-icon
-  :defer 1
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package no-littering
   :custom
@@ -157,8 +128,19 @@
      ((string-prefix-p "!" pattern)
       `(orderless-without-literal . ,(substring pattern 1)))))
 
+  (setq orderless-component-separator "[ &]")
+  (defun just-one-face (fn &rest args)
+    (let ((orderless-match-faces [completions-common-part]))
+      (apply fn args)))
+  (advice-add 'company-capf--candidates :around #'just-one-face)
+  (defun company-completion-styles (capf-fn &rest args)
+    (let ((completion-styles '(basic partial-completion)))
+      (apply capf-fn args)))
+  (advice-add 'company-capf :around #'company-completion-styles)
+
   :custom
-  (orderless-matching-styles '(orderless-flex))
+  (completion-styles '(orderless flex))
+  (completion-category-overrides '((eglot (styles . (orderless flex)))))
   (orderless-style-dispatchers
    '(prefix-if-tilde
      regexp-if-slash
@@ -466,21 +448,6 @@
   :hook
   (web-mode . emmet-mode))
 
-(use-package lsp-mode
-  :custom
-  ;; Annoying stuff
-  (lsp-enable-links nil)
-  (lsp-signature-render-documentation nil)
-  (lsp-headerline-breadcrumb-enable nil)
-  (lsp-ui-doc-enable nil)
-  (lsp-lens-enable nil)
-  (lsp-completion-enable-additional-text-edit nil)
-  (lsp-enable-symbol-highlighting nil)
-  ;; Suggestions from official docs for performance
-  (lsp-completion-provider :capf)
-  (lsp-idle-delay 0.01)
-  (lsp-log-io nil))
-
 (use-package mwim
   :config
   (global-set-key (kbd "C-a") 'mwim-beginning)
@@ -568,6 +535,39 @@
   (ctrlf-alternate-search-style 'literal)
   :config
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
+
+(use-package company
+  :custom
+  (company-idle-delay 0.2)
+  (company-minimum-prefix-length 3)
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package eglot
+  :custom
+  (eglot-sync-connect nil)
+  (eglot-events-buffer-size 0)
+  (eglot-connect-timeout nil)
+  :config
+  (fset #'jsonrpc--log-event #'ignore))
+
+(use-package flycheck-eglot
+  :after (flycheck eglot)
+  :config
+  (global-flycheck-eglot-mode 1))
+
+(use-package eglot-booster
+  :straight (eglot-booster :fetcher github :repo "radian-software/straight.el"
+                           :files ("*eglot-booster.el"))
+  :after eglot
+  :config (eglot-booster-mode))
+
+(use-package symbol-overlay
+  :config
+  (setq symbol-overlay-idle-time 1.0)
+  (setq symbol-overlay-temp-highlight-single nil)
+  :hook
+  (prog-mode . symbol-overlay-mode))
 
 (provide 'init)
 ;;; init.el ends here
