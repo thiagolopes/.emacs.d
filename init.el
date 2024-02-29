@@ -394,7 +394,8 @@
 (use-package swiper
   :disabled
   :bind
-  ("C-s" . swiper))
+  ("C-s" . swiper-isearch-thing-at-point)
+  ("C-S" . swiper-isearch))
 
 (use-package dashboard
   :custom
@@ -550,6 +551,7 @@
   (eglot-sync-connect nil)
   (eglot-events-buffer-size 0)
   (eglot-connect-timeout nil)
+  (org-directory "~/org/")
   :config
   (fset #'jsonrpc--log-event #'ignore))
 

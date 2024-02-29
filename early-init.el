@@ -438,8 +438,7 @@
 (setq-default save-place t)
 (save-place-mode t)
 (setq save-place-file (concat user-emacs-directory "cache/places"))
-(setq org-directory "~/org/"
-      cache-dir (concat user-emacs-directory "/cache")
+(setq cache-dir (concat user-emacs-directory "/cache")
       custom-file (concat user-emacs-directory "/custom.el")
       require-final-newline t
       load-prefer-newer t)
@@ -470,8 +469,6 @@
                     "C-M-s"   #'isearch-forward
                     "C-M-r"   #'isearch-backward)
 
-(general-define-key "C-s" #'swiper-isearch-thing-at-point
-                    "C-S" #'swiper-isearch)
 
 (setq isearch-lax-whitespace t
       isearch-regexp-lax-whitespace t
