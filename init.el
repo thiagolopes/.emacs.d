@@ -17,6 +17,11 @@
 (use-package markdown-mode)
 (use-package lua-mode)
 
+(use-package gcmh
+  :diminish
+  :config
+  (gcmh-mode 1))
+
 (use-package page-break-lines
   :config
   (global-page-break-lines-mode))

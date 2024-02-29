@@ -17,8 +17,6 @@
 
 (deftheme greenized "The green solarized color theme.")
 
-;; Solarized colors
-
 (require 'use-package)
 (use-package naysayer-theme)
 (load-theme 'naysayer)
@@ -53,6 +51,7 @@
       (background-darker "#041b20")
       (smaller 0.9)
 
+      ;; Solarized colors
       (yellow "#b58900")
       (orange "#cb4b16")
       (red "#dc322f")
@@ -79,6 +78,9 @@
    `(info ((t (:foreground ,magenta :height ,smaller))))
    `(success ((t (:foreground ,green :height ,smaller))))
    `(tooltip ((t (:foreground ,white :background ,line-fg))))
+
+   ;; ace-window
+   `(aw-leading-char-face ((t (:foreground ,red))))
 
    ;; Company
    `(company-tooltip ((t (:foreground ,white :background ,line-fg))))

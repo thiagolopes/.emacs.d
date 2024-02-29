@@ -50,7 +50,7 @@
 (setq-default line-spacing 0.1)
 
 ;; Add padding inside frames (windows)
-(add-to-list 'default-frame-alist '(internal-border-width . 6))
+(add-to-list 'default-frame-alist '(internal-border-width . 3))
 
 (set-window-buffer nil (current-buffer))
 
@@ -324,12 +324,6 @@ position of the outside of the paren.  Otherwise return nil."
 (setq-default fill-column 80)
 ;; handle very long lines without hurting emacs
 (global-so-long-mode)
-
-(use-package gcmh
-  :diminish
-  :demand t
-  :config
-  (gcmh-mode 1))
 
 (setq default-directory "~/"
       ;; overwrite text when selected, like we expect.
