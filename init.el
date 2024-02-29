@@ -572,5 +572,9 @@
   :hook
   (prog-mode . symbol-overlay-mode))
 
+(use-package super-save
+  :config
+  (super-save-mode t))
+
 (provide 'init)
 ;;; init.el ends here
