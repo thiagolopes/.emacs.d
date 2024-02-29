@@ -177,24 +177,6 @@
 
 ;; middle-click paste at point, not at click
 (setq mouse-yank-at-point t)
-;; (setq hscroll-margin 2
-;;       hscroll-step 1
-;;       ;; Emacs spends too much effort recentering the screen if you scroll the
-;;       ;; cursor more than N lines past window edges (where N is the settings of
-;;       ;; `scroll-conservatively'). This is especially slow in larger files
-;;       ;; during large-scale scrolling commands. If kept over 100, the window is
-;;       ;; never automatically recentered. The default (0) triggers this too
-;;       ;; aggressively, so I've set it to 10 to recenter if scrolling too far
-;;       ;; off-screen.
-;;       scroll-conservatively 10
-;;       scroll-margin 0
-;;       scroll-preserve-screen-position t
-;;       ;; Reduce cursor lag by a tiny bit by not auto-adjusting `window-vscroll'
-;;       ;; for tall lines.
-;;       auto-window-vscroll nil
-;;       ;; mouse
-;;       mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
-;;       mouse-wheel-scroll-amount-horizontal 2)
 
 (blink-cursor-mode -1)
 (setq-default cursor-type 'bar)
@@ -304,22 +286,6 @@
 (setq ido-create-new-buffer 'always)
 (setq ido-everywhere t)
 (ido-mode 1)
-
-(use-package fast-scroll
-  :disabled
-  :diminish
-  :custom
-  ;; (pixel-scroll-precision-mode t)
-  ;; (setq pixel-scroll-precision-large-scroll-height 101.0)
-  ;; (setq pixel-scroll-precision-use-momentum nil)
-  (fast-but-imprecise-scrolling t)
-  (jit-lock-defer-time 0)
-  :hook
-  (fast-scroll-start . (lambda () (flycheck-mode -1)))
-  (fast-scroll-end . (lambda () (flycheck-mode 1)))
-  :config
-  (fast-scroll-config)
-  (fast-scroll-mode 1))
 
 ;; Yes, I really want compile
 (setq compilation-ask-about-save nil)
