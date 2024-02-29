@@ -51,7 +51,7 @@
 
       (border-width '(2 . 2))
       (background-darker "#041b20")
-      (smaller 0.8)
+      (smaller 0.9)
 
       (yellow "#b58900")
       (orange "#cb4b16")

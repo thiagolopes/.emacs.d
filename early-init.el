@@ -403,7 +403,7 @@ position of the outside of the paren.  Otherwise return nil."
         ;; try-expand-all-abbrevs
         ;; try-expand-list
         ;; try-expand-line
-))
+        ))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 ;; Load theme
