@@ -1,6 +1,7 @@
 ;;; greenized.el --- The green version of solarized (fork of naysayer color theme)
 
-;; Author: Thiago Lopes <thiagolopes@pm.me>, Nick Aversano <nickav@users.noreply.github.com>
+;; Original Author Nick Aversano <nickav@users.noreply.github.com>
+;; Author: Thiago Lopes <thiagolopes@pm.me>
 ;; Version: 0.1
 ;; Filename: greenized.el
 ;; Package-Requires: ((emacs "24"))
@@ -21,6 +22,8 @@
 (require 'use-package)
 (use-package naysayer-theme)
 (load-theme 'naysayer)
+
+;; TODO add options to: italic off, comentary style off, modeline border off;
 
 (let ((background "#062329")
       (gutters    "#062329")
