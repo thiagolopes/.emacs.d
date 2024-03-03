@@ -164,28 +164,13 @@
    `(bm-persistent-face ((t (:background ,background-darker))))
 
    ;; mode-line
-   `(mode-line ((t (:inverse-video unspecified
-                                   :underline unspecified
-                                   :foreground ,background
-                                   :background ,text
-                                   :box (:line-width ,border-width
-                                                     :style released-button)))))
-   `(mode-line-inactive ((t (:inverse-video unspecified
-                                            :underline unspecified
-                                            :foreground ,text
-                                            :background ,background-darker
-                                            :box (:line-width ,border-width
-                                                              :style released-button
-                                                              :foreground ,text)))))
+   `(mode-line-inactive ((t (:background ,background-darker))))
 
    `(cursor ((t (:background ,punctuation))))
    `(which-func ((t (:inverse-video unspecified
                                     :underline unspecified
                                     :foreground ,background
-                                    :weight bold
-                                    :box (:line-width ,border-width
-                                                      :style released-button
-                                                      :foreground ,text)))))
+                                    :weight normal))))
    `(show-paren-match ((t (:background nil
                                        :foreground ,white
                                        :bold t
@@ -199,6 +184,9 @@
 
    ;; LSP
    `(lsp-face-highlight-textual ((t (:background ,background-darker))))
+
+   ;; Eglot
+   `(eglot-mode-line ((t (:foreground ,background :weight normal))))
 
    ;; Pulsar
    `(pulsar-generic ((t (:background ,selection))))
