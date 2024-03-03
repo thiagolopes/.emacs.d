@@ -72,6 +72,17 @@
   (custom-theme-set-faces
    'greenized
    ;; *****************************************   CHANGES START HERE   *****************************************
+
+   ;; Font lock faces
+   ;; *****************************************************************************
+   `(font-lock-constant-face          ((t (:foreground ,text))))
+   `(font-lock-variable-name-face     ((t (:foreground ,text))))
+   `(font-lock-keyword-face ((t (:foreground ,keywords :slant italic))))
+   `(font-lock-builtin-face ((t (:foreground ,builtin :slant italic))))
+   `(font-lock-comment-face ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
+   `(font-lock-comment-delimiter-face ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
+
+
    ;; Error, Warning, Info, Success
    `(error ((t (:foreground ,red :height ,smaller))))
    `(warning ((t (:foreground ,yellow :height ,smaller))))
@@ -97,21 +108,6 @@
    ;; Swipper
    `(swiper-line-face ((t (:background ,background-darker))))
    `(swiper-match-face-2 ((t (:background ,strings :foreground ,black))))
-
-   ;; Font lock
-   `(font-lock-keyword-face ((t (:foreground ,keywords :slant italic))))
-   `(font-lock-constant-face ((t (:foreground ,constants))))
-   `(font-lock-builtin-face ((t (:foreground ,builtin :slant italic))))
-   `(font-lock-comment-face ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
-   `(font-lock-comment-delimiter-face ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
-   ;; `(font-lock-type-face              ((t (:foreground ,punctuation))))
-   ;; `(font-lock-variable-name-face     ((t (:foreground ,variables))))
-   ;; `(font-lock-string-face            ((t (:foreground ,strings))))
-   ;; `(font-lock-doc-face               ((t (:foreground ,comments))))
-   ;; `(font-lock-function-name-face     ((t (:foreground ,functions))))
-   ;; `(font-lock-doc-string-face        ((t (:foreground ,strings))))
-   ;; `(font-lock-preprocessor-face      ((t (:foreground ,macros))))
-   ;; `(font-lock-warning-face           ((t (:foreground ,warning))))
 
    ;; Flycheck
    `(flycheck-posframe-background-face ((t (:background ,background-darker))))

@@ -582,5 +582,9 @@
   :config
   (super-save-mode t))
 
+(use-package highlight-numbers
+  :hook
+  (prog-mode . highlight-numbers-mode))
+
 (provide 'init)
 ;;; init.el ends here
