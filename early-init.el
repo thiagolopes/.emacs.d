@@ -46,7 +46,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t (:height 110 :width expanded :family "Iosevka")))))
+ '(default ((t (:height 120 :width expanded :family "Iosevka")))))
 (setq-default line-spacing 0.1)
 
 ;; Add padding inside frames (windows)

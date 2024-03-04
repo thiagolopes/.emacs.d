@@ -1,2 +1,2 @@
 # My greenish Emacs
-![image](https://github.com/thiagolopes/emacs.d/assets/5994972/4e055b4c-0c57-4ff8-b763-ccec3b860ce5)
+![image](https://github.com/thiagolopes/emacs.d/assets/5994972/15329eae-7702-43ab-9846-366fc7e703b0)
