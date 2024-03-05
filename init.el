@@ -108,7 +108,6 @@
       (apply capf-fn args)))
   (advice-add 'company-capf :around #'company-completion-styles)
   :custom
-  (completion-styles '(orderless))
   (orderless-component-separator "[ &]")
   (completion-styles '(orderless flex))
   (completion-category-overrides '((eglot (styles . (orderless flex))))))
@@ -496,13 +495,14 @@
 
 (use-package icomplete-vertical
   :config
-  (icomplete-vertical-mode)
-  :bind (:map icomplete-minibuffer-map
-              ("<down>" . icomplete-forward-completions)
-              ("C-n" . icomplete-forward-completions)
-              ("<up>" . icomplete-backward-completions)
-              ("C-p" . icomplete-backward-completions)
-              ("C-v" . icomplete-vertical-toggle)))
+  (ido-mode -1)
+  (icomplete-vertical-mode t))
+
+(use-package ag
+  :bind ("M-?" . ag))
+
+(use-package fzf
+  :bind ("C-M-?" . fzf))
 
 (provide 'init)
 ;;; init.el ends here

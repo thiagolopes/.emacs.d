@@ -230,11 +230,7 @@
                     "M-[" '(lambda () (interactive) (insert "{"))
                     "M-]" '(lambda () (interactive) (insert "}")))
 
-(general-define-key "C-x C-b" #'ibuffer
-                    "C-r"     #'isearch-backward-regexp
-                    "C-M-s"   #'isearch-forward
-                    "C-M-r"   #'isearch-backward)
-
+(general-define-key "C-x C-b" #'ibuffer)
 
 (setq isearch-lax-whitespace t
       isearch-regexp-lax-whitespace t
@@ -244,9 +240,9 @@
 (setq confirm-kill-emacs nil)
 
 ;; Increase minibuffer font
-(add-hook 'minibuffer-setup-hook
-          '(lambda () (set (make-local-variable 'face-remapping-alist)
-                      '((default :height 1.4)))))
+;; (add-hook 'minibuffer-setup-hook
+;;           '(lambda () (set (make-local-variable 'face-remapping-alist)
+;;                       '((default :height 1.4)))))
 
 ;; Setup dark GTK theme if available
 (defun set-emacs-frames-gtk (variant)
@@ -393,10 +389,6 @@ position of the outside of the paren.  Otherwise return nil."
         ;; try-expand-line
         ))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
-
-;; use icomplete
-(ido-mode nil)
-(icomplete-mode t)
 
 ;; Load theme
 (load-theme 'greenized)
