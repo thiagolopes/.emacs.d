@@ -17,10 +17,6 @@
 
 (deftheme greenized "The green solarized color theme.")
 
-(require 'use-package)
-(use-package naysayer-theme)
-(load-theme 'naysayer)
-
 ;; TODO add options to: italic off, comentary style off, modeline border off;
 
 (let ((background "#062329")
@@ -71,35 +67,84 @@
 
   (custom-theme-set-faces
    'greenized
-   ;; *****************************************   CHANGES START HERE   *****************************************
+
+   ;; Default colors
+   ;; *****************************************************************************
+   `(cursor                           ((t (:background ,punctuation))))
+   `(default                          ((t (:foreground ,text :background ,background, :weight normal))))
+   `(region                           ((t (:foreground nil :background ,selection))))
+   `(fringe                           ((t (:background ,background   :foreground ,white))))
+   `(linum                            ((t (:background ,background :foreground ,gutter-fg))))
+   `(highlight                        ((t (:foreground nil :background ,selection))))
 
    ;; Font lock faces
    ;; *****************************************************************************
    `(font-lock-constant-face          ((t (:foreground ,text))))
    `(font-lock-variable-name-face     ((t (:foreground ,text))))
-   `(font-lock-keyword-face ((t (:foreground ,keywords :slant italic))))
-   `(font-lock-builtin-face ((t (:foreground ,builtin :slant italic))))
-   `(font-lock-comment-face ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
+   `(font-lock-keyword-face           ((t (:foreground ,keywords :slant italic))))
+   `(font-lock-builtin-face           ((t (:foreground ,builtin :slant italic))))
+   `(font-lock-comment-face           ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
    `(font-lock-comment-delimiter-face ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
 
+   `(font-lock-type-face              ((t (:foreground ,punctuation))))
+   `(font-lock-string-face            ((t (:foreground ,strings))))
+   `(font-lock-doc-face               ((t (:foreground ,comments))))
+   `(font-lock-function-name-face     ((t (:foreground ,functions))))
+   `(font-lock-doc-string-face        ((t (:foreground ,strings))))
+   `(font-lock-preprocessor-face      ((t (:foreground ,macros))))
+   `(font-lock-warning-face           ((t (:foreground ,warning))))
 
    ;; Error, Warning, Info, Success
-   `(error ((t (:foreground ,red :height ,smaller))))
+   `(error ((t (:foreground ,red :height ,smaller :weight normal))))
    `(warning ((t (:foreground ,yellow :height ,smaller))))
    `(info ((t (:foreground ,magenta :height ,smaller))))
    `(success ((t (:foreground ,green :height ,smaller))))
    `(tooltip ((t (:foreground ,white :background ,line-fg))))
 
+   ;; Plugins
+   ;; *****************************************************************************
+   `(trailing-whitespace ((t (:foreground nil :background ,warning))))
+   `(whitespace-trailing ((t (:background nil :foreground ,warning :inverse-video t))))
+
+   `(linum ((t (:foreground ,line-fg :background ,background))))
+   `(linum-relative-current-face ((t (:foreground ,white :background ,background))))
+   `(line-number ((t (:foreground ,line-fg :background ,background))))
+   `(line-number-current-line ((t (:foreground ,white :background ,background))))
+
+   ;; hl-line-mode
+   `(hl-line ((t (:background ,highlight-line))))
+   `(hl-line-face ((t (:background ,highlight-line))))
+
+   ;; which-func
+   `(which-func ((t (:inverse-video unspecified
+                                    :underline unspecified
+                                    :foreground ,background
+                                    :weight normal))))
+
+   ;; mode-line and powerline
+   `(mode-line-inactive ((t (:background ,background-darker))))
+   `(mode-line-buffer-id ((t (:foreground ,background :distant-foreground ,text :text ,text :weight bold))))
+   `(mode-line ((t (:inverse-video unspecified
+                                   :underline unspecified
+                                   :foreground ,background
+                                   :background ,text
+                                   :box nil))))
+   `(powerline-active1 ((t (:background ,text :foreground ,background))))
+   `(powerline-active2 ((t (:background ,text :foreground ,background))))
+   `(powerline-inactive1 ((t (:background ,background :foreground ,text))))
+   `(powerline-inactive2 ((t (:background ,background :foreground ,text))))
+   `(doom-modeline-project-dir ((t (:foreground nil :weight bold))))
+
    ;; ace-window
    `(aw-leading-char-face ((t (:foreground ,red))))
 
    ;; Company
-   `(company-tooltip ((t (:foreground ,white :background ,line-fg))))
+   `(company-tooltip ((t (:foreground ,white :background ,background-darker))))
    ;; `(company-scrollbar-fg ((t (:background ,strings))))
    ;; `(company-scrollbar-bg ((t (:background ,text))))
    `(company-tooltip-annotation-selection ((t (:foreground ,white :background ,selection))))
-   `(company-tooltip-selection ((t (:foreground ,text :background ,background-darker))))
-   `(company-tooltip-common ((t (:foreground ,white))))
+   `(company-tooltip-selection ((t (:foreground ,white :background ,line-fg))))
+   `(company-tooltip-common ((t (:foreground ,text))))
 
    ;; CTRLF
    `(ctrlf-highlight-active ((t (:background ,selection :foreground ,white))))
@@ -163,14 +208,7 @@
    ;; bm
    `(bm-persistent-face ((t (:background ,background-darker))))
 
-   ;; mode-line
-   `(mode-line-inactive ((t (:background ,background-darker))))
 
-   `(cursor ((t (:background ,punctuation))))
-   `(which-func ((t (:inverse-video unspecified
-                                    :underline unspecified
-                                    :foreground ,background
-                                    :weight normal))))
    `(show-paren-match ((t (:background nil
                                        :foreground ,white
                                        :bold t
@@ -210,13 +248,32 @@
    `(rainbow-delimiters-depth-10-face ((t (:foreground ,yellow))))
    `(rainbow-delimiters-depth-11-face ((t (:foreground ,orange))))
    `(rainbow-delimiters-depth-12-face ((t (:foreground ,red))))
-  )
+
+   ;; js2-mode
+   `(js2-function-call ((t (:inherit (font-lock-function-name-face)))))
+   `(js2-function-param ((t (:foreground ,text))))
+   `(js2-jsdoc-tag ((t (:foreground ,keywords))))
+   `(js2-jsdoc-type ((t (:foreground ,constants))))
+   `(js2-jsdoc-value((t (:foreground ,text))))
+   `(js2-object-property ((t (:foreground ,text))))
+   `(js2-external-variable ((t (:foreground ,constants))))
+   `(js2-error ((t (:foreground ,error))))
+   `(js2-warning ((t (:foreground ,warning))))
+
+   ;; highlight numbers
+   `(highlight-numbers-number ((t (:foreground ,numbers))))
+
+   ;; tab-bar-mode
+   `(tab-bar ((t (:inherit modeline))))
+   `(tab-bar-tab ((t (:foreground ,background :background ,text))))
+   `(tab-bar-tab-inactive ((t (:foreground ,text :background ,background))))
+   )
 
   (custom-theme-set-variables
-    'greenized
-    '(linum-format " %5i ")
+   'greenized
+   '(linum-format " %5i ")
+   )
   )
-)
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
