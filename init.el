@@ -263,8 +263,10 @@
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
 (use-package marginalia
+  :custom
+  (marginalia-align 'right)
   :init
-  (marginalia-mode t))
+  (marginalia-mode))
 
 (use-package popwin
   :config
@@ -395,7 +397,7 @@
   (dired-sidebar-subtree-line-prefix "__")
   (dired-sidebar-should-follow-file t)
   (dired-sidebar-refresh-on-project-switch t)
-  (dired-sidebar-theme 'ascii)
+  (dired-sidebar-theme 'icons)
   (dired-sidebar-use-custom-font t))
 
 (use-package mode-line-bell
@@ -514,6 +516,14 @@
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
                  (window-parameters (mode-line-format . none)))))
+
+(use-package all-the-icons)
+
+(use-package all-the-icons-completion
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
 
 (provide 'init)
 ;;; init.el ends here
