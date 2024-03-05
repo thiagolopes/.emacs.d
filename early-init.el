@@ -246,7 +246,7 @@
 ;; Increase minibuffer font
 (add-hook 'minibuffer-setup-hook
           '(lambda () (set (make-local-variable 'face-remapping-alist)
-                      '((default :height 1.2)))))
+                      '((default :height 1.4)))))
 
 ;; Setup dark GTK theme if available
 (defun set-emacs-frames-gtk (variant)
