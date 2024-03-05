@@ -504,5 +504,16 @@
 (use-package fzf
   :bind ("C-M-?" . fzf))
 
+(use-package embark
+  :bind
+  ("C-." . embark-act)
+  :custom
+  (prefix-help-command #'embark-prefix-help-command)
+  :config
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
 (provide 'init)
 ;;; init.el ends here
