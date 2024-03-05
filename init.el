@@ -2,17 +2,16 @@
 ;;; Commentary:
 ;;;  this package will run after early-init.el
 ;;; Code:
+
 (use-package cmake-mode)
 (use-package better-defaults)
 (use-package git-timemachine)
 (use-package git-link)
 (use-package sudo-edit)
-(use-package irony)
 (use-package pdf-tools :defer 5)
 (use-package web-mode :defer 5)
 (use-package transpose-frame :defer 3)
 (use-package i3wm-config-mode :defer 2)
-(use-package ivy)
 (use-package virtualenvwrapper)
 (use-package markdown-mode)
 (use-package lua-mode)
@@ -99,29 +98,7 @@
   (add-hook 'Info-selection-hook 'info-colors-fontify-node))
 
 (use-package orderless
-  :custom
-  (completion-styles '(orderless))
   :config
-  (defun prefix-if-tilde (pattern _index _total)
-    (when (string-suffix-p "~" pattern)
-      `(orderless-prefixes . ,(substring pattern 0 -1))))
-
-  (defun regexp-if-slash (pattern _index _total)
-    (when (string-prefix-p "/" pattern)
-      `(orderless-regexp . ,(substring pattern 1))))
-
-  (defun literal-if-equal (pattern _index _total)
-    (when (string-suffix-p "=" pattern)
-      `(orderless-literal . ,(substring pattern 0 -1))))
-
-  (defun without-if-bang (pattern _index _total)
-    (cond
-     ((equal "!" pattern)
-      '(orderless-literal . ""))
-     ((string-prefix-p "!" pattern)
-      `(orderless-without-literal . ,(substring pattern 1)))))
-
-  (setq orderless-component-separator "[ &]")
   (defun just-one-face (fn &rest args)
     (let ((orderless-match-faces [completions-common-part]))
       (apply fn args)))
@@ -131,13 +108,10 @@
       (apply capf-fn args)))
   (advice-add 'company-capf :around #'company-completion-styles)
   :custom
+  (completion-styles '(orderless))
+  (orderless-component-separator "[ &]")
   (completion-styles '(orderless flex))
-  (completion-category-overrides '((eglot (styles . (orderless flex)))))
-  (orderless-style-dispatchers
-   '(prefix-if-tilde
-     regexp-if-slash
-     literal-if-equal
-     without-if-bang)))
+  (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
 (use-package expand-region
   :bind ("M-@" . er/expand-region))
@@ -277,27 +251,6 @@
                       "<M-left>"  #'drag-stuff-left
                       "<M-right>" #'drag-stuff-right))
 
-(use-package counsel
-  :bind
-  ("M-x" . counsel-M-x)
-  ("C-x C-f" . counsel-find-file)
-  ("M-?" . counsel-ag)
-  ("C-M-?" . counsel-fzf)
-  ("C-c C-c" . counsel-compile)
-  ("M-y" . counsel-yank-pop)
-  :config
-  (add-to-list 'ivy-sort-functions-alist
-               '(read-file-name-internal . ivy--sort-by-length))
-  ;; Don't use ^ as initial input. Set this here because `counsel' defines more
-  ;; of its own, on top of the defaults.
-  :custom
-  (ivy-initial-inputs-alist nil)
-  ;; Integrate with `helpful'
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  (counsel-descbinds-function #'helpful-callable)
-  (counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)"))
-
 (use-package dumb-jump
   :commands dumb-jump-result-follow
   :init
@@ -340,10 +293,6 @@
   :config
   (require 'iedit))
 
-(use-package amx
-  :custom
-  (amx-save-file (concat user-emacs-directory "cache/amx-items")))
-
 (use-package ace-popup-menu
   :config
   (ace-popup-menu-mode t))
@@ -375,17 +324,6 @@
   :config
   (global-set-key [remap goto-line] 'goto-line-preview))
 
-(use-package ido-completing-read+
-  :config
-  (require 'ido-completing-read+)
-  (ido-ubiquitous-mode 1))
-
-(use-package swiper
-  :disabled
-  :bind
-  ("C-s" . swiper-isearch-thing-at-point)
-  ("C-S" . swiper-isearch))
-
 (use-package dashboard
   :custom
   (dashboard-set-navigator t)
@@ -409,29 +347,6 @@
   (vertico-cycle t)
   :config
   (vertico-mode))
-
-(use-package icomplete
-  :custom
-  (read-file-name-completion-ignore-case t)
-  (read-buffer-completion-ignore-case t)
-  (completion-ignore-case t)
-
-  (completion-category-defaults nil)
-  (completion-category-overrides
-   '((file (styles basic partial-completion))))
-
-  (completion-group t)
-  (completions-group-format
-   (concat
-    (propertize "    " 'face 'completions-group-separator)
-    (propertize " %s " 'face 'completions-group-title)
-    (propertize " " 'face 'completions-group-separator
-                'display '(space :align-to right)))))
-
-(use-package ivy-xref
-  :custom
-  (xref-show-definitions-function #'ivy-xref-show-defs)
-  (xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package emmet-mode
   :after web-mode
@@ -460,11 +375,6 @@
   (fancy-compilation-override-colors nil)
   :config
   (fancy-compilation-mode))
-
-(use-package yafolding
-  :defer 2
-  :bind
-  (("C-`" . yafolding-toggle-element)))
 
 (use-package ace-window
   :config
@@ -513,7 +423,7 @@
 
 (use-package ctrlf
   :config
-  (ctrlf-mode +1))
+  (ctrlf-mode t))
 
 (use-package bm
   :demand t
@@ -579,6 +489,20 @@
 (use-package highlight-numbers
   :hook
   (prog-mode . highlight-numbers-mode))
+
+(use-package selectrum
+  :init
+  (selectrum-mode t))
+
+(use-package icomplete-vertical
+  :config
+  (icomplete-vertical-mode)
+  :bind (:map icomplete-minibuffer-map
+              ("<down>" . icomplete-forward-completions)
+              ("C-n" . icomplete-forward-completions)
+              ("<up>" . icomplete-backward-completions)
+              ("C-p" . icomplete-backward-completions)
+              ("C-v" . icomplete-vertical-toggle)))
 
 (provide 'init)
 ;;; init.el ends here

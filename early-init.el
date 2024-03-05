@@ -281,12 +281,6 @@
 (add-hook 'kill-emacs-hook 'save-persistent-scratch)
 (run-with-idle-timer 300 t 'save-persistent-scratch)
 
-(setq ido-enable-flex-matching t)
-(setq ido-use-filename-at-point 'guess)
-(setq ido-create-new-buffer 'always)
-(setq ido-everywhere t)
-(ido-mode 1)
-
 ;; Yes, I really want compile
 (setq compilation-ask-about-save nil)
 
@@ -399,6 +393,10 @@ position of the outside of the paren.  Otherwise return nil."
         ;; try-expand-line
         ))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+
+;; use icomplete
+(ido-mode nil)
+(icomplete-mode t)
 
 ;; Load theme
 (load-theme 'greenized)
