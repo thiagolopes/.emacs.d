@@ -310,12 +310,6 @@
   :config
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
-(use-package ws-butler
-  :custom
-  (ws-butler-keep-whitespace-before-point t)
-  :config
-  (add-hook 'prog-mode-hook #'ws-butler-mode))
-
 (use-package marginalia
   :init
   (marginalia-mode t))

@@ -54,6 +54,7 @@
 
 (set-window-buffer nil (current-buffer))
 
+(add-hook 'before-save-hook 'whitespace-cleanup)
 (setq whitespace-line-column nil
       whitespace-style
       '(face indentation tabs tab-mark spaces space-mark newline newline-mark
