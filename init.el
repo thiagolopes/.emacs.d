@@ -15,6 +15,7 @@
 (use-package virtualenvwrapper)
 (use-package markdown-mode)
 (use-package lua-mode)
+(use-package all-the-icons)
 
 (use-package gcmh
   :diminish
@@ -516,8 +517,6 @@
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
                  (window-parameters (mode-line-format . none)))))
-
-(use-package all-the-icons)
 
 (use-package all-the-icons-completion
   :after (marginalia all-the-icons)

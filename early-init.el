@@ -35,6 +35,7 @@
       use-package-compute-statistics nil
       debug-on-error t
       init-file-debug t)
+
 (setq user-full-name "Thiago Lopes"
       user-mail-address "thiagolopes@protonmail.com")
 
@@ -82,8 +83,8 @@
       ;; Screens are larger nowadays, we can afford slightly larger thumbnails
       image-dired-thumb-size 150)
 
-(setq site-run-file nil)
-(setq inhibit-compacting-font-caches t)
+(setq site-run-file nil
+      inhibit-compacting-font-caches t)
 (when (boundp 'read-process-output-max)
   ;; 1MB in bytes, default 4096 bytes
   (setq read-process-output-max 1048576))
@@ -100,17 +101,17 @@
 (setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
-(setq x-select-enable-clipboard-manager nil)
-(setq warning-minimum-level :error)
+(setq x-select-enable-clipboard-manager nil
+      warning-minimum-level :error)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 (menu-bar-mode -1)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (show-paren-mode 1)
-(setq show-paren-highlight-openparen nil)
 
-(setq save-interprogram-paste-before-kill t
+(setq show-paren-highlight-openparen nil
+      save-interprogram-paste-before-kill t
       apropos-do-all t
       mouse-yank-at-point t
       require-final-newline t
@@ -152,9 +153,9 @@
 
 ;; Don't prompt for confirmation when we create a new file or buffer (assume the
 ;; user knows what they're doing).
-(setq confirm-nonexistent-file-or-buffer nil)
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
+(setq confirm-nonexistent-file-or-buffer nil
+      uniquify-buffer-name-style 'forward)
 
 ;; no beeping or blinking please
 ;; (setq ring-bell-function #'ignore
@@ -179,10 +180,10 @@
 (setq mouse-yank-at-point t)
 
 (blink-cursor-mode -1)
-(setq-default cursor-type 'bar)
-(setq-default cursor-in-non-selected-windows nil)
-(setq blink-matching-paren nil)
-(setq x-stretch-cursor nil)
+(setq-default cursor-type 'bar
+              cursor-in-non-selected-windows nil)
+(setq blink-matching-paren nil
+      x-stretch-cursor nil)
 ;; useful information, like git-gutter and flycheck.
 (setq indicate-buffer-boundaries nil
       indicate-empty-lines nil)
@@ -203,8 +204,8 @@
 (require 'saveplace)
 (setq-default save-place t)
 (save-place-mode t)
-(setq save-place-file (concat user-emacs-directory "cache/places"))
-(setq cache-dir (concat user-emacs-directory "/cache")
+(setq save-place-file (concat user-emacs-directory "cache/places")
+      cache-dir (concat user-emacs-directory "/cache")
       custom-file (concat user-emacs-directory "/custom.el")
       require-final-newline t
       load-prefer-newer t)
@@ -229,7 +230,8 @@
                     "M-[" '(lambda () (interactive) (insert "{"))
                     "M-]" '(lambda () (interactive) (insert "}")))
 
-(general-define-key "C-x C-b" #'ibuffer)
+(general-define-key "C-x C-b" 'ibuffer
+                    "C-c p"   'find-file-at-point)
 
 (setq isearch-lax-whitespace t
       isearch-regexp-lax-whitespace t
@@ -280,11 +282,11 @@
 (setq compilation-ask-about-save nil)
 
 ;; ctyle
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq c-set-style "k&r")
-(setq c-basic-offset 4)
-(setq comment-style 'extra-line)
+(setq-default indent-tabs-mode nil
+              tab-width 4
+              c-set-style "k&r"
+              c-basic-offset 4
+              comment-style 'extra-line)
 (add-hook 'c-mode-hook '(lambda () (setq comment-start "//"
                                     comment-end   "")))
 (add-hook 'prog-mode #'electric-operator-mode)
@@ -389,8 +391,20 @@ position of the outside of the paren.  Otherwise return nil."
         ))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-;; Load theme
-(load-theme 'greenized)
+
+;; Duplicate line - stolen from rexim
+(defun duplicate-line ()
+  "Duplicate current line"
+  (interactive)
+  (let ((column (- (point) (point-at-bol)))
+        (line (let ((s (thing-at-point 'line t)))
+                (if s (string-remove-suffix "\n" s) ""))))
+    (move-end-of-line 1)
+    (newline)
+    (insert line)
+    (move-beginning-of-line 1)
+    (forward-char column)))
+(general-define-key "C-," 'duplicate-line)
 
 ;; FIXME finish mode-line
 ;; https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
@@ -416,7 +430,6 @@ position of the outside of the paren.  Otherwise return nil."
 ;;               '("%e"
 ;;                 my-modeline-buffer-name
 ;;                 my-modeline-minion-mode))
-
 (setq-default mode-line-format
               '("%e" mode-line-front-space
                 (:propertize
@@ -425,10 +438,13 @@ position of the outside of the paren.  Otherwise return nil."
                  display (min-width (1.0)))
                 mode-line-frame-identification
                 mode-line-buffer-identification
-                " / "
+                " - "
                 minions-mode-line-modes
                 mode-line-misc-info
                 (vc-mode vc-mode) "  "
                 mode-line-end-spaces))
+
+;; Load theme
+(load-theme 'greenized)
 
 ;;; early-init.el ends here;
