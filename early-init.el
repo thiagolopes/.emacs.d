@@ -46,7 +46,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t (:height 135 :family "Iosevka Comfy Motion")))))
+ '(default ((t (:height 135 :family "Iosevka Comfy")))))
 
 ;; Add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
@@ -360,7 +360,7 @@ position of the outside of the paren.  Otherwise return nil."
       browse-url-generic-program "firefox")
 
 ;; modeline which function
-(which-function-mode t)
+(which-function-mode -1)
 
 ;; enable fringe mode
 (fringe-mode)
@@ -391,5 +391,44 @@ position of the outside of the paren.  Otherwise return nil."
 
 ;; Load theme
 (load-theme 'greenized)
+
+;; FIXME finish mode-line
+;; https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
+;; (defun buffer-name-modeline ()
+;;   (format " %s  " (buffer-name)))
+;; (defun buffer-modified-modeline ()
+;;   (when (buffer-modified-p)
+;;     (format " %s")))
+
+;; (defvar-local my-modeline-modified
+;;   '(:eval
+;;     (when (mode-line-window-selected-p)
+;;       (propertize (buffer-name-modeline) 'face 'font-lock-comment-delimiter-face))))
+;; (put 'my-modeline-buffer-name 'risky-local-variable t)
+
+;; (defvar-local my-modeline-minion-mode
+;;   '(:eval
+;;     (when (mode-line-window-selected-p)
+;;       minions-mode-line-modes)))
+;; (put 'my-modeline-minion-mode 'risky-local-variable t)
+
+;; (setq-default mode-line-format
+;;               '("%e"
+;;                 my-modeline-buffer-name
+;;                 my-modeline-minion-mode))
+
+(setq-default mode-line-format
+              '("%e" mode-line-front-space
+                (:propertize
+                 ("" mode-line-mule-info mode-line-client mode-line-modified
+                  mode-line-remote)
+                 display (min-width (1.0)))
+                mode-line-frame-identification
+                mode-line-buffer-identification
+                " / "
+                minions-mode-line-modes
+                mode-line-misc-info
+                (vc-mode vc-mode) "  "
+                mode-line-end-spaces))
 
 ;;; early-init.el ends here;
