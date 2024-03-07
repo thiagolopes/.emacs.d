@@ -95,10 +95,10 @@
    `(font-lock-warning-face               ((t (:foreground ,warning))))
 
    ;; Error, Warning, Info, Success
-   `(error                                ((t (:foreground ,red :height ,smaller :weight normal))))
-   `(warning                              ((t (:foreground ,yellow :height ,smaller))))
-   `(info                                 ((t (:foreground ,magenta :height ,smaller))))
-   `(success                              ((t (:foreground ,green :height ,smaller))))
+   `(error                                ((t (:foreground ,red))))
+   `(warning                              ((t (:foreground ,yellow))))
+   `(info                                 ((t (:foreground ,magenta))))
+   `(success                              ((t (:foreground ,green))))
    `(tooltip                              ((t (:foreground ,white :background ,line-fg))))
 
    ;; Plugins
