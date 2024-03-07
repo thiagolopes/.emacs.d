@@ -12,6 +12,7 @@
 (use-package ctrlf :config (ctrlf-mode t))
 (use-package fzf :bind ("C-M-?" . fzf))
 (use-package gcmh :config (gcmh-mode 1))
+(use-package goto-last-change :bind ("C-<dead-acute>" . goto-last-change))
 (use-package git-link)
 (use-package git-timemachine)
 (use-package i3wm-config-mode :defer 2)
