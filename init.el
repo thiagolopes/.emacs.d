@@ -332,6 +332,9 @@
                      (projects . 10)))
   (dashboard-center-content t)
   :config
+  (if (display-graphic-p)
+      (setq dashboard-startup-banner 'official)
+      (setq dashboard-startup-banner 'nil))
   (dashboard-setup-startup-hook))
 
 (use-package savehist
