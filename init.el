@@ -16,23 +16,20 @@
 (use-package markdown-mode)
 (use-package lua-mode)
 (use-package all-the-icons)
-
-(use-package gcmh
-  :diminish
-  :config
-  (gcmh-mode 1))
-
-(use-package page-break-lines
-  :config
-  (global-page-break-lines-mode))
-
-(use-package minions
-  :init
-  (minions-mode))
-
-(use-package shell-pop
-  :config
-  (general-define-key "<f12>" #'shell-pop))
+(use-package super-save :config (super-save-mode t))
+(use-package selectrum :init (selectrum-mode t))
+(use-package ctrlf :config (ctrlf-mode t))
+(use-package ag :bind ("M-?" . ag))
+(use-package fzf :bind ("C-M-?" . fzf))
+(use-package prescient :config (prescient-persist-mode))
+(use-package company-prescient :config (company-prescient-mode t))
+(use-package selectrum-prescient :config (selectrum-prescient-mode t))
+(use-package vertico-prescient :config (vertico-prescient-mode t))
+(use-package all-the-icons-dired :hook (dired-mode . all-the-icons-dired-mode))
+(use-package gcmh :config (gcmh-mode 1))
+(use-package page-break-lines :config (global-page-break-lines-mode))
+(use-package minions :init (minions-mode))
+(use-package shell-pop :config (general-define-key "<f12>" #'shell-pop))
 
 (use-package no-littering
   :custom
@@ -423,10 +420,6 @@
   :custom
   (sideline-flycheck-show-checker-name t))
 
-(use-package ctrlf
-  :config
-  (ctrlf-mode t))
-
 (use-package bm
   :demand t
   :custom
@@ -462,6 +455,7 @@
   (eglot-connect-timeout nil)
   (org-directory "~/org/")
   :config
+  (setopt eglot-report-progress nil)
   (fset #'jsonrpc--log-event #'ignore))
 
 (use-package flycheck-eglot
@@ -471,7 +465,6 @@
 
 (when (executable-find "emacs-lsp-booster")
   (use-package eglot-booster
-    :after eglot
     :straight (eglot-booster :fetcher github :repo "https://github.com/jdtsmith/eglot-booster"
                              :files ("eglot-booster.el"))
     :config (eglot-booster-mode)))
@@ -483,28 +476,21 @@
   :hook
   (prog-mode . symbol-overlay-mode))
 
-(use-package super-save
-  :config
-  (super-save-mode t))
+
 
 (use-package highlight-numbers
   :hook
   (prog-mode . highlight-numbers-mode))
 
-(use-package selectrum
+
+(use-package cape
   :init
-  (selectrum-mode t))
+  (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package icomplete-vertical
   :config
   (ido-mode -1)
   (icomplete-vertical-mode t))
-
-(use-package ag
-  :bind ("M-?" . ag))
-
-(use-package fzf
-  :bind ("C-M-?" . fzf))
 
 (use-package embark
   :bind

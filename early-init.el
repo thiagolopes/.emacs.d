@@ -445,7 +445,9 @@ position of the outside of the paren.  Otherwise return nil."
                 mode-line-end-spaces))
 
 ;; Completion preview
-(require 'completion-preview)
+(when (not (fboundp 'completion-preview-mode))
+  (load "~/.emacs.d/completion-preview.el")
+  (require 'completion-preview))
 (add-hook 'prog-mode-hook #'completion-preview-mode)
 ;; also in text buffers
 (add-hook 'text-mode-hook #'completion-preview-mode)
