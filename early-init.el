@@ -89,7 +89,6 @@
   ;; 1MB in bytes, default 4096 bytes
   (setq read-process-output-max 1048576))
 
-(global-prettify-symbols-mode t)
 (setq enable-recursive-minibuffers t)
 ;; Show current key-sequence in minibuffer ala 'set showcmd' in vim. Any
 ;; feedback after typing is better UX than no feedback at all.
@@ -444,7 +443,14 @@ position of the outside of the paren.  Otherwise return nil."
                 (vc-mode vc-mode) "  "
                 mode-line-end-spaces))
 
+;; Completion preview
+(require 'completion-preview)
+(add-hook 'prog-mode-hook #'completion-preview-mode)
+;; also in text buffers
+(add-hook 'text-mode-hook #'completion-preview-mode)
+
 ;; Load theme
 (load-theme 'greenized)
+;; (load-theme 'zenburned)
 
 ;;; early-init.el ends here;

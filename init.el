@@ -421,7 +421,7 @@
 (use-package sideline-flycheck
   :hook (flycheck-mode . sideline-flycheck-setup)
   :custom
-  (sideline-flycheck-show-checker-name nil))
+  (sideline-flycheck-show-checker-name t))
 
 (use-package ctrlf
   :config
@@ -443,6 +443,7 @@
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
 (use-package company
+  :disabled
   :custom
   (company-format-margin-function #'company-vscode-light-icons-margin)
   (company-idle-delay 0.2)
@@ -450,9 +451,7 @@
   (company-tooltip-flip-when-above t)
   (company-tooltip-margin 3)
   (company-text-icons-add-background t)
-  (company-frontends '(company-preview-common-frontend
-                       company-pseudo-tooltip-unless-just-one-frontend
-                       company-echo-metadata-frontend))
+  (company-frontends '(company-preview-if-just-one-frontend))
   :config
   (global-company-mode t))
 
