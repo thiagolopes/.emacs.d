@@ -33,17 +33,14 @@
 
 (setq use-package-verbose t
       use-package-compute-statistics nil
-      debug-on-error t
-      init-file-debug t)
-
-(setq user-full-name "Thiago Lopes"
-      user-mail-address "thiagolopes@protonmail.com")
+      user-full-name "Thiago Lopes"
+      user-mail-address "thiagolopes@protonmail.com"
+      gc-cons-threshold 100000000
+      read-process-output-max (* 1024 1024)
+      comp-deferred-compilation t)
 
 (defvar comp-deferred-compliation)
-(setq comp-deferred-compilation t)
 
-(setq gc-cons-threshold 100000000
-      read-process-output-max (* 1024 1024))
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
@@ -449,7 +446,6 @@ position of the outside of the paren.  Otherwise return nil."
   (load "~/.emacs.d/completion-preview.el")
   (require 'completion-preview))
 (add-hook 'prog-mode-hook #'completion-preview-mode)
-;; also in text buffers
 (add-hook 'text-mode-hook #'completion-preview-mode)
 
 ;; Load theme

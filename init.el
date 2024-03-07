@@ -72,7 +72,6 @@
   (unicode-fonts-setup))
 
 (use-package mixed-pitch
-  :commands mixed-pitch-mode
   :custom
   (mixed-pitch-set-height t))
 
@@ -250,7 +249,6 @@
                       "<M-right>" #'drag-stuff-right))
 
 (use-package dumb-jump
-  :commands dumb-jump-result-follow
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :custom
@@ -353,7 +351,6 @@
 
 (use-package emmet-mode
   :after web-mode
-  :commands emmet-mode
   :hook
   (web-mode . emmet-mode))
 
