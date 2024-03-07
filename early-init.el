@@ -230,7 +230,8 @@
                     "M-]" '(lambda () (interactive) (insert "}")))
 
 (general-define-key "C-x C-b" 'ibuffer
-                    "C-c p"   'find-file-at-point)
+                    "C-c p"   'find-file-at-point
+                    "M-j"     'join-line)
 
 (setq isearch-lax-whitespace t
       isearch-regexp-lax-whitespace t
