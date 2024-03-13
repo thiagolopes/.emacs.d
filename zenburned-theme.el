@@ -269,7 +269,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(trailing-whitespace ((t (:background ,zenburned-red))))
    `(vertical-border ((t (:foreground ,zenburned-fg))))
 ;;;;; font lock
-   `(font-lock-builtin-face ((t (:foreground ,zenburned-yellow :slat italic))))
+   `(font-lock-builtin-face ((t (:foreground ,zenburned-yellow :slant italic))))
    `(font-lock-comment-face ((t (:foreground ,zenburned-green-1 :background ,zenburned-bg-1))))
    `(font-lock-comment-delimiter-face ((t (:foreground ,zenburned-green-1 :background ,zenburned-bg-1))))
    `(font-lock-constant-face ((t (:foreground ,zenburned-fg))))
