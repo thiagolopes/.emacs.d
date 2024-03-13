@@ -366,9 +366,6 @@ position of the outside of the paren.  Otherwise return nil."
 (general-setq-default indicate-empty-lines t
                       indicate-buffer-boundaries 'left)
 
-;; please, maximize
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
 ;; eletric-mode disabled
 (electric-indent-mode -1)
 
@@ -378,16 +375,14 @@ position of the outside of the paren.  Otherwise return nil."
       '(try-expand-dabbrev
         try-expand-dabbrev-all-buffers
         ;; try-expand-dabbrev-from-kill
+        ;; try-expand-all-abbrevs
+        ;; try-expand-list
+        ;; try-expand-lien
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol
         try-complete-file-name-partially
-        try-complete-file-name
-        ;; try-expand-all-abbrevs
-        ;; try-expand-list
-        ;; try-expand-line
-        ))
+        try-complete-file-name))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
-
 
 ;; Duplicate line - stolen from rexim
 (defun duplicate-line ()
