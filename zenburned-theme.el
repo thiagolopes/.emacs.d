@@ -287,7 +287,7 @@ Also bind `class' to ((class color) (min-colors 89))."
 
    `(c-annotation-face ((t (:inherit font-lock-constant-face))))
 ;;;;; line numbers (Emacs 26.1 and above)
-   `(line-number ((t (:inherit default :foreground ,zenburned-bg+3 :background ,zenburned-bg-05))))
+   `(line-number ((t (:inherit default :foreground ,zenburned-bg+3 :background ,zenburned-bg))))
    `(line-number-current-line ((t (:inherit line-number :foreground ,zenburned-yellow-2))))
 ;;;;; man
    '(Man-overstrike ((t (:inherit font-lock-keyword-face))))
