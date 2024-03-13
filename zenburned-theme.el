@@ -270,8 +270,8 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(vertical-border ((t (:foreground ,zenburned-fg))))
 ;;;;; font lock
    `(font-lock-builtin-face ((t (:foreground ,zenburned-yellow :slant italic))))
-   `(font-lock-comment-face ((t (:foreground ,zenburned-green-1 :background ,zenburned-bg-1))))
-   `(font-lock-comment-delimiter-face ((t (:foreground ,zenburned-green-1 :background ,zenburned-bg-1))))
+   `(font-lock-comment-face ((t (:foreground ,zenburned-green-1 :background ,zenburned-bg-1 :height 0.9))))
+   `(font-lock-comment-delimiter-face ((t (:foreground ,zenburned-green-1 :background ,zenburned-bg-1 :height 0.9))))
    `(font-lock-constant-face ((t (:foreground ,zenburned-fg))))
    `(font-lock-doc-face ((t (:foreground ,zenburned-green+2))))
    `(font-lock-function-name-face ((t (:foreground ,zenburned-cyan))))
