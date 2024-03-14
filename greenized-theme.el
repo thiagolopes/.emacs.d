@@ -250,6 +250,19 @@
    `(rainbow-delimiters-depth-11-face     ((t (:foreground ,orange))))
    `(rainbow-delimiters-depth-12-face     ((t (:foreground ,red))))
 
+   ;; eshell
+   `(eshell-prompt ((t (:foreground ,constants :weight bold))))
+   `(eshell-ls-archive ((t (:foreground ,red :weight bold))))
+   `(eshell-ls-backup ((t (:inherit font-lock-comment-face))))
+   `(eshell-ls-clutter ((t (:inherit font-lock-comment-face))))
+   `(eshell-ls-directory ((t (:foreground ,blue :weight bold))))
+   `(eshell-ls-executable ((t (:foreground ,green :weight bold))))
+   `(eshell-ls-unreadable ((t (:background ,background-darker))))
+   `(eshell-ls-missing ((t (:inherit font-lock-warning-face))))
+   `(eshell-ls-product ((t (:inherit font-lock-doc-face))))
+   `(eshell-ls-special ((t (:foreground ,yellow :weight bold))))
+   `(eshell-ls-symlink ((t (:foreground ,cyan :weight bold))))
+
    ;; js2-mode
    `(js2-function-call                    ((t (:inherit (font-lock-function-name-face)))))
    `(js2-function-param                   ((t (:foreground ,text))))
