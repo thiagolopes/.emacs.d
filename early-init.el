@@ -44,7 +44,7 @@
 (add-hook 'after-init-hook #'garbage-collect t)
 
 (custom-set-faces
- '(default ((t (:height 135 :family "Iosevka Comfy")))))
+ '(default ((t (:height 135 :family "Iosevka Comfy" :weight semi-light)))))
 
 ;; Add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))

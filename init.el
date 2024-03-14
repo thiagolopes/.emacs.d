@@ -22,7 +22,7 @@
 (use-package page-break-lines :config (global-page-break-lines-mode))
 (use-package pdf-tools :defer 5)
 (use-package prescient :config (prescient-persist-mode))
-(use-package selectrum :init (selectrum-mode t) :custom (selectrum-max-window-height 30))
+(use-package selectrum :init (selectrum-mode t) :custom (selectrum-max-window-height 20))
 (use-package selectrum-prescient :config (selectrum-prescient-mode t))
 (use-package sudo-edit)
 (use-package super-save :config (super-save-mode t))
