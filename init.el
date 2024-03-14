@@ -24,7 +24,6 @@
 (use-package prescient :config (prescient-persist-mode))
 (use-package selectrum :init (selectrum-mode t))
 (use-package selectrum-prescient :config (selectrum-prescient-mode t))
-(use-package shell-pop :config (general-define-key "<f12>" #'shell-pop))
 (use-package sudo-edit)
 (use-package super-save :config (super-save-mode t))
 (use-package transpose-frame :defer 3)

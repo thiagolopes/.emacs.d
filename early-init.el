@@ -443,6 +443,21 @@ position of the outside of the paren.  Otherwise return nil."
 (add-hook 'prog-mode-hook #'completion-preview-mode)
 (add-hook 'text-mode-hook #'completion-preview-mode)
 
+;; eshell pop
+(defun eshell-pop ()
+  "Eshell popup."
+  (interactive)
+  (if (not (get-buffer-window "*eshell*"))
+    (progn
+      (split-window-below 10)
+      ;; (other-window -1)
+      (switch-to-buffer (next-buffer))
+      (eshell))
+    (if (equal (buffer-name) "*eshell*")
+        (delete-window)
+        (switch-to-buffer-other-window "*eshell*"))))
+(general-define-key "<f12>" #'eshell-pop)
+
 ;; Load theme
 (load-theme 'greenized)
 ;; (load-theme 'zenburned)
