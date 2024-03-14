@@ -24,7 +24,8 @@
       (gutter-fg  "#062329")
       (gutters-active "#062329")
       (builtin      "#ffffff")
-      (selection  "#0000ff")
+      ;; (selection  "#0000ff")
+      (selection  "#073642")
       (text       "#d1b897")
       (comments   "#44b340")
       (punctuation "#8cde94")
@@ -72,7 +73,7 @@
    ;; *****************************************************************************
    `(cursor                               ((t (:background ,punctuation))))
    `(default                              ((t (:foreground ,text :background ,background, :weight normal))))
-   `(region                               ((t (:foreground nil :background ,selection))))
+   `(region                               ((t (:foreground nil :background ,selection :inverse-video t))))
    `(fringe                               ((t (:background ,background   :foreground ,white))))
    `(linum                                ((t (:background ,background :foreground ,gutter-fg))))
    `(highlight                            ((t (:foreground nil :background ,selection))))
