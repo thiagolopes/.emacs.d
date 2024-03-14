@@ -22,7 +22,7 @@
 (use-package page-break-lines :config (global-page-break-lines-mode))
 (use-package pdf-tools :defer 5)
 (use-package prescient :config (prescient-persist-mode))
-(use-package selectrum :init (selectrum-mode t))
+(use-package selectrum :init (selectrum-mode t) :custom (selectrum-max-window-height 30))
 (use-package selectrum-prescient :config (selectrum-prescient-mode t))
 (use-package sudo-edit)
 (use-package super-save :config (super-save-mode t))
@@ -376,8 +376,8 @@
   (fancy-compilation-mode))
 
 (use-package ace-window
-  :config
-  (global-set-key (kbd "M-o") 'ace-window))
+  :bind
+  ("M-o" . ace-window))
 
 (use-package dired-sidebar
   :defer 2
@@ -395,7 +395,8 @@
   (dired-sidebar-subtree-line-prefix "__")
   (dired-sidebar-should-follow-file t)
   (dired-sidebar-refresh-on-project-switch t)
-  (dired-sidebar-theme 'icons)
+  ;; (dired-sidebar-theme 'icons)
+  (dired-sidebar-theme 'vscode)
   (dired-sidebar-use-custom-font t))
 
 (use-package mode-line-bell
@@ -476,12 +477,9 @@
   :hook
   (prog-mode . symbol-overlay-mode))
 
-
-
 (use-package highlight-numbers
   :hook
   (prog-mode . highlight-numbers-mode))
-
 
 (use-package cape
   :init

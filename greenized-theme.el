@@ -73,7 +73,7 @@
    ;; *****************************************************************************
    `(cursor                               ((t (:background ,punctuation))))
    `(default                              ((t (:foreground ,text :background ,background, :weight normal))))
-   `(region                               ((t (:foreground nil :background ,selection :inverse-video t))))
+   `(region                               ((t (:foreground nil :background ,selection))))
    `(fringe                               ((t (:background ,background   :foreground ,white))))
    `(linum                                ((t (:background ,background :foreground ,gutter-fg))))
    `(highlight                            ((t (:foreground nil :background ,selection))))
