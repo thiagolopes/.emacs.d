@@ -28,8 +28,13 @@
 (use-package super-save :config (super-save-mode t))
 (use-package transpose-frame :defer 3)
 (use-package vertico-prescient :config (vertico-prescient-mode t))
-(use-package virtualenvwrapper)
 (use-package web-mode :defer 5)
+
+(use-package virtualenvwrapper
+  :config (venv-initialize-eshell)
+  (add-hook 'venv-postactivate-hook
+            (lambda () (shell-command "pip install 'python-lsp-server[all]' nose flake8 jedi isort")
+              (kill-buffer "*Shell Command Output*"))))
 
 (use-package no-littering
   :custom
