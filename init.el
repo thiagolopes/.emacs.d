@@ -516,5 +516,16 @@
   :hook
   (python-mode . highlight-indent-guides-mode))
 
+(use-package xterm-color
+  :custom
+  (comint-output-filter-functions
+   (remove 'ansi-color-process-output comint-output-filter-functions))
+  :config
+  (add-hook 'shell-mode-hook (lambda ()
+                               (font-lock-mode -1)
+                               (make-local-variable 'font-lock-function)
+                               (setq font-lock-function (lambda (_) nil))
+                               (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter nil t))))
+
 (provide 'init)
 ;;; init.el ends here

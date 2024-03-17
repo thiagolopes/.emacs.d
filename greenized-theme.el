@@ -45,7 +45,8 @@
       (black "#000000")
 
       (border-width '(2 . 2))
-      (background-darker "#041b20")
+      (background-darker "#051f24")
+      (background-darker-darker "#04181c")
       (smaller 0.9)
 
       ;; Solarized colors
@@ -74,13 +75,13 @@
    `(cursor                               ((t (:background ,punctuation))))
    `(default                              ((t (:foreground ,text :background ,background, :weight normal))))
    `(region                               ((t (:foreground nil :background ,selection :weight light))))
-   `(fringe                               ((t (:background ,background   :foreground ,white))))
+   `(fringe                               ((t (:background ,background :foreground ,text))))
    `(linum                                ((t (:background ,background :foreground ,gutter-fg))))
    `(highlight                            ((t (:foreground nil :background ,selection))))
 
    ;; Font lock faces
    ;; *****************************************************************************
-   `(font-lock-constant-face              ((t (:foreground ,text))))
+   `(font-lock-constant-face              ((t (:foreground ,constants))))
    `(font-lock-variable-name-face         ((t (:foreground ,text))))
    `(font-lock-keyword-face               ((t (:foreground ,keywords :slant italic))))
    `(font-lock-builtin-face               ((t (:foreground ,builtin :slant italic))))
@@ -214,7 +215,7 @@
                                                            :foreground ,white
                                                            :bold t
                                                            :inverse-video nil))))
-   `(solaire-default-face                 ((t (:background ,background-darker))))
+   `(solaire-default-face                 ((t (:background ,background-darker-darker))))
    `(symbol-overlay-default-face          ((t (:bold t))))
    `(whitespace-space                     ((t (:background ,background :foreground ,line-fg))))
 
@@ -251,17 +252,17 @@
    `(rainbow-delimiters-depth-12-face     ((t (:foreground ,red))))
 
    ;; eshell
-   `(eshell-prompt ((t (:foreground ,constants :weight bold))))
-   `(eshell-ls-archive ((t (:foreground ,red :weight bold))))
-   `(eshell-ls-backup ((t (:inherit font-lock-comment-face))))
-   `(eshell-ls-clutter ((t (:inherit font-lock-comment-face))))
-   `(eshell-ls-directory ((t (:foreground ,blue :weight bold))))
-   `(eshell-ls-executable ((t (:foreground ,green :weight bold))))
-   `(eshell-ls-unreadable ((t (:background ,background-darker))))
-   `(eshell-ls-missing ((t (:inherit font-lock-warning-face))))
-   `(eshell-ls-product ((t (:inherit font-lock-doc-face))))
-   `(eshell-ls-special ((t (:foreground ,yellow :weight bold))))
-   `(eshell-ls-symlink ((t (:foreground ,cyan :weight bold))))
+   `(eshell-prompt                        ((t (:foreground ,constants :weight bold))))
+   `(eshell-ls-archive                    ((t (:foreground ,red :weight bold))))
+   `(eshell-ls-backup                     ((t (:inherit font-lock-comment-face))))
+   `(eshell-ls-clutter                    ((t (:inherit font-lock-comment-face))))
+   `(eshell-ls-directory                  ((t (:foreground ,blue :weight bold))))
+   `(eshell-ls-executable                 ((t (:foreground ,green :weight bold))))
+   `(eshell-ls-unreadable                 ((t (:background ,background-darker))))
+   `(eshell-ls-missing                    ((t (:inherit font-lock-warning-face))))
+   `(eshell-ls-product                    ((t (:inherit font-lock-doc-face))))
+   `(eshell-ls-special                    ((t (:foreground ,yellow :weight bold))))
+   `(eshell-ls-symlink                    ((t (:foreground ,cyan :weight bold))))
 
    ;; js2-mode
    `(js2-function-call                    ((t (:inherit (font-lock-function-name-face)))))
