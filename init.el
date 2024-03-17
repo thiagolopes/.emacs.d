@@ -108,11 +108,8 @@
   (completion-styles '(orderless flex))
   (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
-(if (and (>= emacs-major-version 29) (>= emacs-minor-version 1))
-    (use-package expreg
-      :bind ("M-@" . expreg-expand))
-  (use-package expand-region
-    :bind ("M-@" . er/expand-region)))
+(use-package expand-region
+  :bind ("M-@" . er/expand-region))
 
 (use-package smartparens
   :defer 5
@@ -520,19 +517,26 @@
 
 (use-package consult
   :hook (completion-list-mode . consult-preview-at-point-mode)
-  :custom
-  (setq xref-show-xrefs-function #'consult-xref
+  :config
+  (setf xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
   (advice-add #'register-preview :override #'consult-register-window)
+  (autoload 'projectile-project-root "projectile")
+  (setq consult-project-function (lambda (_) (projectile-project-root)))
   :bind
   (("C-x 4 b" . consult-buffer-other-window)
    ("C-x 5 b" . consult-buffer-other-frame)
    ("C-x b"   . consult-buffer)
    ("C-M-?"   . consult-find)
+   ("M-g i"   . consult-imenu)
    ("M-?"     . consult-ripgrep)
    ("M-g g"   . consult-goto-line)
    ("M-g M-g" . consult-goto-line)
    ("M-y"     . consult-yank-pop)))
+
+(use-package hl-line+
+  :config
+  (toggle-hl-line-when-idle t))
 
 (provide 'init)
 ;;; init.el ends here
