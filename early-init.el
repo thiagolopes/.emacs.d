@@ -195,6 +195,8 @@
 ;; (setq display-line-numbers-type t) ;; disable line number as default
 (general-define-key "<f10>" 'global-display-line-numbers-mode)
 
+(setq visual-line-fringe-indicators t)
+
 (electric-pair-mode t)
 
 (require 'saveplace)
