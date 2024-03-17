@@ -512,5 +512,9 @@
   :init
   (all-the-icons-completion-mode))
 
+(use-package highlight-indent-guides
+  :hook
+  (python-mode . highlight-indent-guides-mode))
+
 (provide 'init)
 ;;; init.el ends here

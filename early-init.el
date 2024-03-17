@@ -455,7 +455,7 @@ position of the outside of the paren.  Otherwise return nil."
         (delete-window)
         (switch-to-buffer-other-window name))))
 (general-define-key "M-<f12>" '(lambda () (interactive) (term-pop 'eshell "*eshell*"))
-                    "<f12>" '(lambda () (interactive) (term-pop 'shell "*shell*")))
+                    "<f12>"   '(lambda () (interactive) (term-pop 'shell "*shell*")))
 
 ;; Load theme
 (load-theme 'greenized)
