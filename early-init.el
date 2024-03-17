@@ -444,19 +444,18 @@ position of the outside of the paren.  Otherwise return nil."
 (add-hook 'text-mode-hook #'completion-preview-mode)
 
 ;; eshell pop
-(defun eshell-pop ()
-  "Eshell popup."
-  (interactive)
-  (if (not (get-buffer-window "*eshell*"))
+(defun term-pop (fn name)
+  (if (not (get-buffer-window name))
     (progn
       (split-window-below 10)
       ;; (other-window -1)
       (switch-to-buffer (next-buffer))
-      (eshell))
-    (if (equal (buffer-name) "*eshell*")
+      (funcall fn))
+    (if (equal (buffer-name) name)
         (delete-window)
-        (switch-to-buffer-other-window "*eshell*"))))
-(general-define-key "<f12>" #'eshell-pop)
+        (switch-to-buffer-other-window name))))
+(general-define-key "M-<f12>" '(lambda () (interactive) (term-pop 'eshell "*eshell*"))
+                    "<f12>" '(lambda () (interactive) (term-pop 'shell "*shell*")))
 
 ;; Load theme
 (load-theme 'greenized)
