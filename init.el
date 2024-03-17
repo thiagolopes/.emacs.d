@@ -3,14 +3,11 @@
 ;;;  this package will run after early-init.el
 ;;; Code:
 
-(use-package ag :bind ("M-?" . ag))
 (use-package all-the-icons)
 (use-package all-the-icons-dired :hook (dired-mode . all-the-icons-dired-mode))
 (use-package better-defaults)
 (use-package cmake-mode)
-(use-package company-prescient :config (company-prescient-mode t))
 (use-package ctrlf :config (ctrlf-mode t))
-(use-package fzf :bind ("C-M-?" . fzf))
 (use-package gcmh :config (gcmh-mode 1))
 (use-package goto-last-change :bind ("C-<dead-acute>" . goto-last-change))
 (use-package git-link)
@@ -25,7 +22,6 @@
 (use-package sudo-edit)
 (use-package super-save :config (super-save-mode t))
 (use-package transpose-frame :defer 3)
-(use-package vertico-prescient :config (vertico-prescient-mode t))
 (use-package web-mode :defer 5)
 
 (use-package virtualenvwrapper
@@ -112,8 +108,11 @@
   (completion-styles '(orderless flex))
   (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
-(use-package expand-region
-  :bind ("M-@" . er/expand-region))
+(if (and (>= emacs-major-version 29) (>= emacs-minor-version 1))
+    (use-package expreg
+      :bind ("M-@" . expreg-expand))
+  (use-package expand-region
+    :bind ("M-@" . er/expand-region)))
 
 (use-package smartparens
   :defer 5
@@ -319,10 +318,7 @@
                       "<C-S-left>" #'buf-move-left
                       "<C-S-right>" #'buf-move-right))
 
-(use-package goto-line-preview
-  :defer 2
-  :config
-  (global-set-key [remap goto-line] 'goto-line-preview))
+
 
 (use-package dashboard
   :custom
@@ -344,13 +340,27 @@
   :config
   (savehist-mode))
 
+(use-package clean-kill-ring
+  :config (clean-kill-ring-mode))
+
 (use-package vertico
   :custom
   (vertico-resize nil)
   (vertico-count 20)
   (vertico-cycle nil)
   :config
+  (setq completion-in-region-function
+      (lambda (&rest args)
+        (apply (if vertico-mode
+                   #'consult-completion-in-region
+                 #'completion--in-region)
+               args)))
+  (ido-mode -1)
   (vertico-mode))
+
+(use-package vertico-prescient
+  :after vertico
+  :config (vertico-prescient-mode t))
 
 (use-package emmet-mode
   :after web-mode
@@ -440,19 +450,6 @@
   :config
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
-(use-package company
-  :disabled
-  :custom
-  (company-format-margin-function #'company-vscode-light-icons-margin)
-  (company-idle-delay 0.2)
-  (company-minimum-prefix-length 3)
-  (company-tooltip-flip-when-above t)
-  (company-tooltip-margin 3)
-  (company-text-icons-add-background t)
-  (company-frontends '(company-preview-if-just-one-frontend))
-  :config
-  (global-company-mode t))
-
 (use-package eglot
   :custom
   (eglot-sync-connect nil)
@@ -489,11 +486,6 @@
   :init
   (add-to-list 'completion-at-point-functions #'cape-file))
 
-(use-package icomplete-vertical
-  :config
-  (ido-mode -1)
-  (icomplete-vertical-mode t))
-
 (use-package embark
   :bind
   ("C-." . embark-act)
@@ -525,6 +517,22 @@
                                (make-local-variable 'font-lock-function)
                                (setq font-lock-function (lambda (_) nil))
                                (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter nil t))))
+
+(use-package consult
+  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :custom
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  (advice-add #'register-preview :override #'consult-register-window)
+  :bind
+  (("C-x 4 b" . consult-buffer-other-window)
+   ("C-x 5 b" . consult-buffer-other-frame)
+   ("C-x b"   . consult-buffer)
+   ("C-M-?"   . consult-find)
+   ("M-?"     . consult-ripgrep)
+   ("M-g g"   . consult-goto-line)
+   ("M-g M-g" . consult-goto-line)
+   ("M-y"     . consult-yank-pop)))
 
 (provide 'init)
 ;;; init.el ends here
