@@ -538,5 +538,10 @@
   :config
   (toggle-hl-line-when-idle t))
 
+(use-package org-mode
+  :hook
+  (org-mode-hook . visual-line-mode)
+  (org-mode      . hl-todo-mode))
+
 (provide 'init)
 ;;; init.el ends here
