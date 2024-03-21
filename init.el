@@ -12,17 +12,18 @@
 (use-package goto-last-change :bind ("C-<dead-acute>" . goto-last-change))
 (use-package git-link)
 (use-package git-timemachine)
-(use-package i3wm-config-mode :defer 2)
+(use-package i3wm-config-mode)
 (use-package lua-mode)
 (use-package markdown-mode)
 (use-package minions :init (minions-mode))
 (use-package page-break-lines :config (global-page-break-lines-mode))
-(use-package pdf-tools :defer 5)
+(use-package pdf-tools :defer 1)
 (use-package prescient :config (prescient-persist-mode))
 (use-package sudo-edit)
 (use-package super-save :config (super-save-mode t))
-(use-package transpose-frame :defer 3)
-(use-package web-mode :defer 5)
+(use-package transpose-frame)
+(use-package web-mode)
+
 
 (use-package virtualenvwrapper
   :config (venv-initialize-eshell)
@@ -36,7 +37,6 @@
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (use-package which-key
-  :defer 2
   :custom
   (which-key-allow-evil-operators t)
   (which-key-show-remaining-keys t)
@@ -75,7 +75,6 @@
 
 ;; A more complex, more lazy-loaded config
 (use-package solaire-mode
-  :defer 5
   :hook
   ;; Ensure solaire-mode is running in all solaire-mode buffers
   (change-major-mode . turn-on-solaire-mode)
@@ -112,13 +111,11 @@
   :bind ("M-@" . er/expand-region))
 
 (use-package smartparens
-  :defer 5
   :bind
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
 
 (use-package cider
-  :defer 2
   :custom
   (nrepl-hide-special-buffers t)
   (nrepl-log-messages nil)
@@ -158,7 +155,6 @@
      ("XXX" font-lock-constant-face bold))))
 
 (use-package multiple-cursors
-  :defer 2
   :config
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -189,7 +185,6 @@
               "*esh command on file*")))
 
 (use-package paren
-  :defer 2
   :hook (dashboard-setup-startup-hook . show-paren-mode)
   :custom
   (show-paren-delay 0.1)
@@ -239,7 +234,6 @@
   (add-hook 'magit-process-mode-hook #'goto-address-mode))
 
 (use-package drag-stuff
-  :defer 2
   :init
   (general-define-key "<M-up>"    #'drag-stuff-up
                       "<M-down>"  #'drag-stuff-down
@@ -294,7 +288,6 @@
   (ace-popup-menu-mode t))
 
 (use-package pulsar
-  :defer 2
   :custom
   (pulsar-pulse t)
   :bind
@@ -374,13 +367,11 @@
   (prog-mode . rainbow-mode))
 
 (use-package bufler
-  :defer 1
   :straight (bufler :fetcher github :repo "alphapapa/bufler.el"
                     :files (:defaults (:exclude "helm-bufler.el")))
   :bind (("C-x C-b" . bufler)))
 
 (use-package fancy-compilation
-  :defer 1
   :custom
   (fancy-compilation-override-colors nil)
   :config
@@ -391,7 +382,6 @@
   ("M-o" . ace-window))
 
 (use-package dired-sidebar
-  :defer 2
   :bind (("<f9>" . dired-sidebar-toggle-sidebar))
   :init
   (add-hook 'dired-sidebar-mode-hook
@@ -538,7 +528,7 @@
   :config
   (toggle-hl-line-when-idle t))
 
-(use-package org-mode
+(use-package org
   :hook
   (org-mode-hook . visual-line-mode)
   (org-mode      . hl-todo-mode))
