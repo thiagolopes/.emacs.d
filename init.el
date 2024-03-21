@@ -23,7 +23,7 @@
 (use-package super-save :config (super-save-mode t))
 (use-package transpose-frame)
 (use-package web-mode)
-
+(use-package yaml-mode)
 
 (use-package virtualenvwrapper
   :config (venv-initialize-eshell)
