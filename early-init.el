@@ -211,6 +211,10 @@
 ;; Made SHIFT+arrow to move to the next adjacent window in the specified direction
 (windmove-default-keybindings)
 
+(general-define-key "M-u" #'upcase-dwim
+                    "M-l" #'downcase-dwim
+                    "M-c" #'capitalize-dwim)
+
 (general-define-key "<mouse-8>" #'previous-buffer
                     "<mouse-9>" #'next-buffer)
 
@@ -399,6 +403,11 @@ position of the outside of the paren.  Otherwise return nil."
     (move-beginning-of-line 1)
     (forward-char column)))
 (general-define-key "C-," 'duplicate-line)
+
+;;
+(follow-mode 1)
+;;
+(setq view-read-only t)
 
 ;; FIXME finish mode-line
 ;; https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
