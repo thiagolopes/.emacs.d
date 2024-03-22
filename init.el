@@ -515,6 +515,23 @@
 (use-package consult
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :config
+  ;; BEGIN TRAMP settings
+  (defun consult-buffer-state-no-tramp ()
+    "Buffer state function that doesn't preview Tramp buffers."
+    (let ((orig-state (consult--buffer-state))
+          (filter (lambda (action cand)
+                    (if (and cand
+                             (or (eq action 'return)
+                                 (let ((buffer (get-buffer cand)))
+                                   (and buffer
+                                        (not (file-remote-p (buffer-local-value 'default-directory buffer)))))))
+                        cand
+                      nil))))
+      (lambda (action cand)
+        (funcall orig-state action (funcall filter action cand)))))
+  (setq consult--source-buffer
+        (plist-put consult--source-buffer :state #'consult-buffer-state-no-tramp))
+  ;; END TRAMP settings
   (setf xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
   (advice-add #'register-preview :override #'consult-register-window)
