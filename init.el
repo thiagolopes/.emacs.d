@@ -491,6 +491,13 @@
   (all-the-icons-completion-mode))
 
 (use-package highlight-indent-guides
+  :config
+  (defun my-highlighter (level responsive display)
+    (if (> 1 level)
+        nil
+      (highlight-indent-guides--highlighter-default level responsive display)))
+  (setq highlight-indent-guides-highlighter-function 'my-highlighter)
+  (setq highlight-indent-guides-responsive 'top)
   :hook
   (python-mode . highlight-indent-guides-mode))
 
