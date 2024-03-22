@@ -540,5 +540,9 @@
   (org-mode-hook . visual-line-mode)
   (org-mode      . hl-todo-mode))
 
+(use-package org-bullets
+  :hook
+  (org-mode . org-bullets-mode))
+
 (provide 'init)
 ;;; init.el ends here
