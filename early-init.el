@@ -341,6 +341,9 @@ position of the outside of the paren.  Otherwise return nil."
       dired-kill-when-opening-new-dired-buffer t)
 
 (setq-default dired-listing-switches "-alh")
+(require 'ls-lisp)
+(setq ls-lisp-dirs-first t)
+(setq ls-lisp-use-insert-directory-program nil)
 
 ;; always highlight code
 (global-font-lock-mode 1)
