@@ -290,10 +290,15 @@
 (use-package pulsar
   :custom
   (pulsar-pulse t)
-  :bind
-  ("<M-RET>" . pulsar-pulse-line-cyan)
+
   :config
-  (pulsar-global-mode))
+  (defun pulse-line (&rest _)
+    (pulse-momentary-highlight-one-line (point)))
+  (dolist (command '(scroll-up-command
+                     scroll-down-command
+                     recenter-top-bottom
+                     other-window))
+    (advice-add command :after #'pulse-line)))
 
 (use-package volatile-highlights
   :config
