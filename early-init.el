@@ -475,4 +475,15 @@ position of the outside of the paren.  Otherwise return nil."
 (load-theme 'greenized)
 ;; (load-theme 'zenburned)
 
+;; save only last buffer and window size
+(desktop-save-mode 1)
+(setq desktop-files-not-to-save "^$")
+(defun clean-desktop-save ()
+  (interactive)
+  (progn
+    (setq desktop-clear-preserve-buffers t)
+    (desktop-save-in-desktop-dir)
+    (setq desktop-clear-preserve-buffers nil)))
+(add-hook 'kill-emacs-hook 'clean-desktop-save)
+
 ;;; early-init.el ends here;
