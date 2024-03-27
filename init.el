@@ -7,7 +7,6 @@
 (use-package all-the-icons-dired :hook (dired-mode . all-the-icons-dired-mode))
 (use-package better-defaults)
 (use-package cmake-mode)
-(use-package ctrlf :config (ctrlf-mode t))
 (use-package gcmh :config (gcmh-mode 1))
 (use-package goto-last-change :bind ("C-<dead-acute>" . goto-last-change))
 (use-package git-link)
@@ -24,6 +23,12 @@
 (use-package transpose-frame)
 (use-package web-mode)
 (use-package yaml-mode)
+
+(use-package ctrlf
+  :config (ctrlf-mode t)
+  :custom
+  (ctrlf-auto-recenter t)
+  (ctrlf-alternate-search-style 'literal))
 
 (use-package virtualenvwrapper
   :config (venv-initialize-eshell)
@@ -436,9 +441,6 @@
          ("C-<insert>" . bm-toggle)))
 
 (use-package avy
-  :custom
-  (ctrlf-auto-recenter t)
-  (ctrlf-alternate-search-style 'literal)
   :config
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
