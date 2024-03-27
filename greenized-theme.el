@@ -264,6 +264,9 @@
    `(eshell-ls-special                    ((t (:foreground ,yellow :weight bold))))
    `(eshell-ls-symlink                    ((t (:foreground ,cyan :weight bold))))
 
+   ;; avy
+   `(avy-lead-face                        ((t (:foreground ,white :background ,red :weight bold))))
+
    ;; js2-mode
    `(js2-function-call                    ((t (:inherit (font-lock-function-name-face)))))
    `(js2-function-param                   ((t (:foreground ,text))))

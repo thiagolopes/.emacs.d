@@ -441,6 +441,9 @@
          ("C-<insert>" . bm-toggle)))
 
 (use-package avy
+  :custom
+  (avy-background t)
+  (avy-single-candidate-jump t)
   :config
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
