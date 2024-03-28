@@ -33,7 +33,7 @@
 (use-package virtualenvwrapper
   :config (venv-initialize-eshell)
   (add-hook 'venv-postactivate-hook
-            (lambda () (shell-command "pip install 'python-lsp-server[all]' nose flake8 jedi isort")
+            (lambda () (shell-command "pip install 'python-lsp-server[all]' nose flake8 jedi isort pylint")
               (kill-buffer "*Shell Command Output*"))))
 
 (use-package no-littering
