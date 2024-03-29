@@ -415,23 +415,17 @@
   :config
   (mode-line-bell-mode t))
 
-(use-package flycheck
-  :bind ("<f7>". flycheck-mode)
-  :init (global-flycheck-mode)
-  :custom
-  (flycheck-indication-mode 'left-fringe)
-  (flycheck-highlighting-mode 'sexps)
-  (flycheck-indication-mode nil))
-
 (use-package sideline
   :hook (flycheck-mode . sideline-mode)
   :custom
   (sideline-backends-right '(sideline-flycheck)))
 
-(use-package sideline-flycheck
-  :hook (flycheck-mode . sideline-flycheck-setup)
-  :custom
-  (sideline-flycheck-show-checker-name t))
+(use-package sideline-flymake
+  :hook (flymake-mode . sideline-mode)
+  :init
+  (setq sideline-flymake-display-mode 'point) ; 'point to show errors only on point
+                                              ; 'line to show errors on the current line
+  (setq sideline-backends-right '(sideline-flymake)))
 
 (use-package bm
   :demand t

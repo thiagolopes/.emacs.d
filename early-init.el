@@ -211,6 +211,19 @@
 ;; Made SHIFT+arrow to move to the next adjacent window in the specified direction
 (windmove-default-keybindings)
 
+;; Duplicate line - stolen from rexim
+(defun duplicate-line ()
+  "Duplicate current line"
+  (interactive)
+  (let ((column (- (point) (point-at-bol)))
+        (line (let ((s (thing-at-point 'line t)))
+                (if s (string-remove-suffix "\n" s) ""))))
+    (move-end-of-line 1)
+    (newline)
+    (insert line)
+    (move-beginning-of-line 1)
+    (forward-char column)))
+
 (general-define-key "M-u" #'upcase-dwim
                     "M-l" #'downcase-dwim
                     "M-c" #'capitalize-dwim)
@@ -222,7 +235,8 @@
                     "C-+" #'text-scale-increase
                     "C--" #'text-scale-decrease
                     "M-n" #'forward-paragraph
-                    "M-p" #'backward-paragraph)
+                    "M-p" #'backward-paragraph
+                    "C-," 'duplicate-line)
 
 (general-define-key "<f6>" #'font-lock-mode)
 
@@ -394,24 +408,12 @@ position of the outside of the paren.  Otherwise return nil."
         try-complete-file-name))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-;; Duplicate line - stolen from rexim
-(defun duplicate-line ()
-  "Duplicate current line"
-  (interactive)
-  (let ((column (- (point) (point-at-bol)))
-        (line (let ((s (thing-at-point 'line t)))
-                (if s (string-remove-suffix "\n" s) ""))))
-    (move-end-of-line 1)
-    (newline)
-    (insert line)
-    (move-beginning-of-line 1)
-    (forward-char column)))
-(general-define-key "C-," 'duplicate-line)
-
-;;
+;; Virtual tall files
 (follow-mode 1)
-;;
+;; enable read only
 (setq view-read-only t)
+;; std flymake
+(flymake-mode 1)
 
 ;; FIXME finish mode-line
 ;; https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
@@ -477,8 +479,9 @@ position of the outside of the paren.  Otherwise return nil."
 ;; (load-theme 'zenburned)
 
 ;; save only last buffer and window size
-(desktop-save-mode 1)
+(setq desktop-load-locked-desktop t)
 (setq desktop-files-not-to-save "^$")
+(desktop-save-mode 1)
 (defun clean-desktop-save ()
   (interactive)
   (progn
