@@ -369,6 +369,7 @@ position of the outside of the paren.  Otherwise return nil."
 
 ;; modeline which function
 (which-function-mode -1)
+(setq x-underline-at-descent-line t)
 
 ;; enable fringe mode
 (fringe-mode)
