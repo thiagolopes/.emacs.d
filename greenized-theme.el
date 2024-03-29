@@ -47,7 +47,7 @@
       (border-width '(2 . 2))
       (background-darker "#051f24")
       (background-darker-darker "#04181c")
-      (smaller 0.9)
+      (smaller 0.8)
 
       ;; Solarized colors
       (yellow "#b58900")
