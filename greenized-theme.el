@@ -17,20 +17,26 @@
 
 (deftheme greenized "The green solarized color theme.")
 
+(defvar greenized-theme-default-text-color t)
+
 ;; TODO add options to: italic off, comentary style off, modeline border off;
 
 (let ((background "#062329")
       (gutters    "#062329")
       (gutter-fg  "#062329")
       (gutters-active "#062329")
-      (builtin      "#ffffff")
+      ;; (builtin      "#ffffff")
+      (builtin      "#c1d1e3")
       ;; (selection  "#0000ff")
       (selection  "#073642")
-      (text       "#d1b897")
+      (text
+       (if greenized-theme-default-text-color
+           "#d1b897"
+         "#839496"))
       (comments   "#44b340")
       (punctuation "#8cde94")
       (keywords "#ffffff")
-      (variables "#c1d1e3")
+      ;; (variables "#c1d1e3")
       (functions "#ffffff")
       (methods    "#c1d1e3")
       (strings    "#2ec09c")
