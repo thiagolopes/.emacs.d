@@ -439,6 +439,7 @@ position of the outside of the paren.  Otherwise return nil."
 ;;               '("%e"
 ;;                 my-modeline-buffer-name
 ;;                 my-modeline-minion-mode))
+
 (setq-default mode-line-format
               '("%e" mode-line-front-space
                 (:propertize
@@ -475,6 +476,7 @@ position of the outside of the paren.  Otherwise return nil."
                     "<f12>"   '(lambda () (interactive) (term-pop 'shell "*shell*")))
 
 ;; Load theme
+(setq greenized-theme-default-text-color t)
 (load-theme 'greenized)
 ;; (load-theme 'zenburned)
 

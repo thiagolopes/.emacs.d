@@ -566,5 +566,11 @@
   :hook
   (org-mode . org-bullets-mode))
 
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install t)
+  :config
+  (global-treesit-auto-mode))
+
 (provide 'init)
 ;;; init.el ends here
