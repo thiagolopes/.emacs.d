@@ -392,6 +392,7 @@ position of the outside of the paren.  Otherwise return nil."
 
 ;; eletric-mode disabled
 (electric-indent-mode -1)
+(electric-pair-mode -1)
 
 ;; Hippie-expand
 (hippie-expand t)

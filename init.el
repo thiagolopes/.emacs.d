@@ -572,5 +572,14 @@
   :config
   (global-treesit-auto-mode))
 
+(use-package electric-operator
+  :config
+  (add-hook 'python-mode-hook #'electric-operator-mode))
+
+(use-package siege-mode
+  :straight (siege-mode :repo "https://github.com/tslilc/siege-mode" :fetcher github)
+  :config
+  (siege-mode t))
+
 (provide 'init)
 ;;; init.el ends here
