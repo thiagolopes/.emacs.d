@@ -580,6 +580,8 @@
 
 (use-package siege-mode
   :straight (siege-mode :repo "https://github.com/tslilc/siege-mode" :fetcher github)
+  :hook
+  (prog-mode . siege-mode)
   :config
   (siege-mode t))
 

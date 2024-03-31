@@ -484,7 +484,8 @@ position of the outside of the paren.  Otherwise return nil."
 
 ;; save only last buffer and window size
 (setq desktop-load-locked-desktop t)
-(setq desktop-files-not-to-save "^$")
+(setq desktop-files-not-to-save "^.*$")
+(setq desktop-buffer-not-to-save "^.*$")
 (desktop-save-mode 1)
 (defun clean-desktop-save ()
   (interactive)
