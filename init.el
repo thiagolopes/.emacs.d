@@ -562,9 +562,9 @@
   (org-mode-hook . visual-line-mode)
   (org-mode      . hl-todo-mode))
 
-(use-package org-bullets
-  :hook
-  (org-mode . org-bullets-mode))
+(use-package org-modern
+  :config
+  (with-eval-after-load 'org (global-org-modern-mode)))
 
 (use-package treesit-auto
   :custom
