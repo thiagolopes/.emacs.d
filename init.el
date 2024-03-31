@@ -298,14 +298,14 @@
 (use-package pulsar
   :custom
   (pulsar-pulse t)
-
   :config
   (defun pulse-line (&rest _)
-    (pulse-momentary-highlight-one-line (point)))
+    (pulsar-pulse-line))
   (dolist (command '(scroll-up-command
                      scroll-down-command
                      recenter-top-bottom
-                     other-window))
+                     other-window
+                     ace-window))
     (advice-add command :after #'pulse-line)))
 
 (use-package volatile-highlights
