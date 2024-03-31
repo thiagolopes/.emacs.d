@@ -585,5 +585,12 @@
   :config
   (siege-mode t))
 
+(use-package zeal-at-point
+  :bind
+  (("\C-cd" . zeal-at-point))
+  :straight (zeal-at-point :repo "jinzhu/zeal-at-point" :fetcher github
+                           :files ("zeal-at-point.el")))
+
+
 (provide 'init)
 ;;; init.el ends here
