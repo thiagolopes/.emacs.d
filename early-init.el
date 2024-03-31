@@ -477,6 +477,7 @@ position of the outside of the paren.  Otherwise return nil."
 
 ;; Load theme
 (setq greenized-theme-default-text-color t)
+(setq greenized-theme-mixed-fonts t)
 (load-theme 'greenized)
 ;; (load-theme 'zenburned)
 

@@ -17,7 +17,10 @@
 
 (deftheme greenized "The green solarized color theme.")
 
-(defvar greenized-theme-default-text-color t)
+(defvar greenized-theme-default-text-color t
+  "Enable secundary mood")
+(defvar greenized-theme-mixed-fonts t
+  "Disable italic")
 
 ;; TODO add options to: italic off, comentary style off, modeline border off;
 
@@ -55,6 +58,11 @@
       (background-darker-darker "#04181c")
       (smaller 0.8)
 
+      (font-slant
+       (if greenized-theme-mixed-fonts
+           'italic
+         'normal))
+
       ;; Solarized colors
       (yellow "#b58900")
       (orange "#cb4b16")
@@ -89,8 +97,8 @@
    ;; *****************************************************************************
    `(font-lock-constant-face              ((t (:foreground ,constants))))
    `(font-lock-variable-name-face         ((t (:foreground ,text))))
-   `(font-lock-keyword-face               ((t (:foreground ,keywords :slant italic))))
-   `(font-lock-builtin-face               ((t (:foreground ,builtin :slant italic))))
+   `(font-lock-keyword-face               ((t (:foreground ,keywords :slant ,font-slant))))
+   `(font-lock-builtin-face               ((t (:foreground ,builtin  :slant ,font-slant))))
    `(font-lock-comment-face               ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
    `(font-lock-comment-delimiter-face     ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
 
