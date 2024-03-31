@@ -591,6 +591,34 @@
   :straight (zeal-at-point :repo "jinzhu/zeal-at-point" :fetcher github
                            :files ("zeal-at-point.el")))
 
+(use-package fontaine
+  :config
+  (setq fontaine-presets
+        '((hack
+           :default-family "Hack"
+           :line-spacing 1
+           :default-weight normal
+           :default-height 130
+           :bold-weight extrabold
+           :fixed-pitch-family "Sans"
+           :fixed-pitch-height 1.0)
+          (iosevka
+           :default-family "Iosevka Comfy"
+           :line-spacing 1
+           :default-weight normal
+           :default-height 130
+           :bold-weight extrabold
+           :fixed-pitch-family "Iosevka Comfy Duo"
+           :fixed-pitch-height 1.0)
+          (cascadia
+           :default-family "Cascadia Mono"
+           :line-spacing 1
+           :default-weight semilight
+           :default-height 140
+           :bold-weight extrabold
+           :fixed-pitch-family "Cascadia Mono PL"
+           :fixed-pitch-height 1.0)))
+  (fontaine-set-preset 'cascadia))
 
 (provide 'init)
 ;;; init.el ends here
