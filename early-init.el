@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;;  to everthing early
 ;;; Code:
-
-(setq package-enable-at-startup nil)
-
 (setq straight-use-package-by-default t
       straight-cache-autoloads t
       straight-vc-git-default-clone-depth 1
@@ -198,7 +195,7 @@
 
 (require 'saveplace)
 (setq-default save-place t)
-(save-place-mode t)
+(save-place-mode 1)
 (setq save-place-file (concat user-emacs-directory "cache/places")
       cache-dir (concat user-emacs-directory "/cache")
       custom-file (concat user-emacs-directory "/custom.el")
@@ -495,7 +492,7 @@ position of the outside of the paren.  Otherwise return nil."
 ;; org hooks
 (add-hook 'org-mode-hook 'visual-line-mode)
 
-;; emacs
+;; set full file name on frame
 (setq frame-title-format
       (list '(buffer-file-name "%f" "%b")
             '(:eval (format " - GNU Emacs %s" emacs-version))))

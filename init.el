@@ -610,7 +610,7 @@
            :default-family "Cascadia Mono"
            :line-spacing 1
            :default-weight semilight
-           :default-height 140
+           :default-height 130
            :bold-weight extrabold
            :fixed-pitch-family "Cascadia Mono PL"
            :fixed-pitch-height 1.0)))
