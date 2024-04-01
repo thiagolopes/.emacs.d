@@ -492,4 +492,7 @@ position of the outside of the paren.  Otherwise return nil."
     (setq desktop-clear-preserve-buffers nil)))
 (add-hook 'kill-emacs-hook 'clean-desktop-save)
 
+;; org hooks
+(add-hook 'org-mode-hook 'visual-line-mode)
+
 ;;; early-init.el ends here;

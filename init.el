@@ -149,6 +149,7 @@
 
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode)
+  :hook (org-mode  . hl-todo-mode)
   :hook (yaml-mode . hl-todo-mode)
   :custom
   (hl-todo-highlight-punctuation ":")
@@ -558,11 +559,6 @@
 (use-package hl-line+
   :config
   (toggle-hl-line-when-idle t))
-
-(use-package org
-  :hook
-  (org-mode-hook . visual-line-mode)
-  (org-mode      . hl-todo-mode))
 
 (use-package org-modern
   :config
