@@ -495,4 +495,8 @@ position of the outside of the paren.  Otherwise return nil."
 ;; org hooks
 (add-hook 'org-mode-hook 'visual-line-mode)
 
+;; emacs
+(setq frame-title-format
+      (list '(buffer-file-name "%f" "%b")
+            '(:eval (format " - GNU Emacs %s" emacs-version))))
 ;;; early-init.el ends here;
