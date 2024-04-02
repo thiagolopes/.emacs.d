@@ -10,48 +10,54 @@
 (setq use-package-verbose t)
 (setq use-package-compute-statistics nil)
 
-;; Add padding inside frames (windows)
-(add-to-list 'default-frame-alist '(internal-border-width . 2))
-
 (set-window-buffer nil (current-buffer))
-
-(add-hook 'before-save-hook 'whitespace-cleanup)
 
 (context-menu-mode t)
 (column-number-mode t)
 
- ;;; suggest a target for moving/copying intelligently
+
+;; sanity dired
+;;; suggest a target for moving/copying intelligently
 (setq dired-dwim-target t)
 (setq dired-hide-details-hide-symlink-targets nil)
-      ;; don't prompt to revert, just do it
+;; don't prompt to revert, just do it
 (setq dired-auto-revert-buffer #'dired-buffer-stale-p)
-      ;; Always copy/delete recursively
-(setq dired-recursive-copies  'always)
+;; Always copy/delete recursively
+(setq dired-recursive-copies 'always)
 (setq dired-recursive-deletes 'top)
-      ;; Ask whether destination dirs should get created when copying/removing files.
+;; Ask whether destination dirs should get created when copying/removing files.
 (setq dired-create-destination-dirs 'ask)
-      ;; Where to store image caches
+;; clean up dired buffers
+(setq dired-kill-when-opening-new-dired-buffer t)
+(setq dired-listing-switches "-alh")
+
+;; Where to store image caches
 (setq image-dired-dir (concat user-emacs-directory "image-dired/"))
 (setq image-dired-db-file (concat image-dired-dir "db.el"))
 (setq image-dired-gallery-dir (concat image-dired-dir "gallery/"))
 (setq image-dired-temp-image-file (concat image-dired-dir "temp-image"))
 (setq image-dired-temp-rotate-image-file (concat image-dired-dir "temp-rotate-image"))
-      ;; Screens are larger nowadays, we can afford slightly larger thumbnails
+;; Screens are larger nowadays, we can afford slightly larger thumbnails
 (setq image-dired-thumb-size 150)
 
+;; TODO
 (setq site-run-file nil)
 (setq inhibit-compacting-font-caches t)
 (when (boundp 'read-process-output-max)
   ;; 1MB in bytes, default 4096 bytes
   (setq read-process-output-max 1048576))
 
+;; recursive
 (setq enable-recursive-minibuffers t)
+
 ;; Show current key-sequence in minibuffer ala 'set showcmd' in vim. Any
 ;; feedback after typing is better UX than no feedback at all.
 (setq echo-keystrokes 0.02)
+
 ;; Expand the minibuffer to fit multi-line text displayed in the echo-area. This
 ;; doesn't look too great with direnv, however...
 (setq resize-mini-windows 'grow-only)
+
 ;; Try to keep the cursor out of the read-only portions of the minibuffer.
 (setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
@@ -59,9 +65,7 @@
 (setq x-select-enable-clipboard-manager nil)
 (setq warning-minimum-level :emergency)
 (defalias 'yes-or-no-p 'y-or-n-p)
-(show-paren-mode 1)
 
-(setq show-paren-highlight-openparen nil)
 (setq save-interprogram-paste-before-kill t)
 (setq apropos-do-all t)
 (setq mouse-yank-at-point t)
@@ -105,25 +109,6 @@
 (require 'uniquify)
 (setq confirm-nonexistent-file-or-buffer nil)
 (setq uniquify-buffer-name-style 'forward)
-
-;; no beeping or blinking please
-;; (setq ring-bell-function #'ignore
-;; visible-bell nil)
-;; beeping PLEASE! but not too much
-(setq ring-bell-function
-      (lambda ()
-    (unless (memq this-command
-              '(isearch-abort
-            abort-recursive-edit
-            exit-minibuffer
-            keyboard-quit
-            previous-line
-            next-line
-            scroll-down
-            scroll-up
-            cua-scroll-down
-            cua-scroll-up))
-      (ding))))
 
 ;; middle-click paste at point, not at click
 (setq mouse-yank-at-point t)
@@ -191,17 +176,6 @@
 ;;           '(lambda () (set (make-local-variable 'face-remapping-alist)
 ;;                       '((default :height 1.4)))))
 
-;; Setup dark GTK theme if available
-(defun set-emacs-frames-gtk (variant)
-  (dolist (frame (frame-list))
-    (let* ((window-id (frame-parameter frame 'outer-window-id))
-       (id (string-to-number window-id))
-       (cmd (format "xprop -id 0x%x -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"%s\"" id
-            variant)))
-      (call-process-shell-command cmd))))
-(when (and (eq system-type 'gnu/linux) (display-graphic-p))
-  (set-emacs-frames-gtk "dark"))
-
 ;; Yes, I really want compile
 (setq compilation-ask-about-save nil)
 
@@ -209,33 +183,17 @@
 (add-hook 'c-mode-hook '(lambda () (setq comment-start "//"
                                          comment-end   "")))
 
-(add-hook 'prog-mode #'electric-operator-mode)
-
 ;; copy-paste with ctrl c/v
 (cua-mode t)
 
 ;; treat camel-cased words as individual words.
 (add-hook 'prog-mode-hook 'subword-mode)
+
 ;; don't assume sentences end with two spaces after a period.
 (setq sentence-end-double-space nil)
-;; show matching parens
-(defun show-paren--locate-near-paren-ad ()
-  "Locate an unescaped paren \"near\" point to show.
-If one is found, return the cons (DIR . OUTSIDE), where DIR is 1
-for an open paren, -1 for a close paren, and OUTSIDE is the buffer
-position of the outside of the paren.  Otherwise return nil."
-  (let* ((before (show-paren--categorize-paren (point))))
-    (when (or
-       (eq (car before) 1)
-       (eq (car before) -1))
-      before)))
-;; (advice-add 'show-paren--locate-near-paren :override #'show-paren--locate-near-paren-ad)
-(show-paren-mode t)
-(setq show-paren-delay 0.0)
-;; limit files to 80 columns. Controversial, I know.
-(setq-default fill-column 80)
+
 ;; handle very long lines without hurting emacs
-(global-so-long-mode)
+;; (global-so-long-mode)
 
 ;; (setq make-backup-files nil)
 ;; (setq backup-by-copying t)
@@ -266,19 +224,10 @@ position of the outside of the paren.  Otherwise return nil."
 (setq enable-local-variables t)
 ;; life is too short to type yes or no
 (setq use-short-answers t)
-;; clean up dired buffers
-(setq dired-kill-when-opening-new-dired-buffer t)
 
-(setq-default dired-listing-switches "-alh")
 (require 'ls-lisp)
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
-
-;; always highlight code
-(global-font-lock-mode 1)
-;; refresh a buffer if changed on disk
-(setq global-auto-revert-non-file-buffers t)
-(global-auto-revert-mode 1)
 
 ;; utf8
 (prefer-coding-system 'utf-8)
@@ -290,14 +239,17 @@ position of the outside of the paren.  Otherwise return nil."
 (set-clipboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
-
 ;; default browser
 (setq browse-url-browser-function 'browse-url-generic)
 
 ;; modeline which function
 (which-function-mode -1)
+
+;; better underline
 (setq x-underline-at-descent-line t)
+
+;; show parens
+(show-paren-mode t)
 
 ;; enable fringe mode
 (fringe-mode)
@@ -309,24 +261,26 @@ position of the outside of the paren.  Otherwise return nil."
 (electric-pair-mode -1)
 
 ;; Hippie-expand
-(hippie-expand t)
-(setq hippie-expand-try-functions-list
-      '(try-expand-dabbrev
-        try-expand-dabbrev-all-buffers
-        ;; try-expand-dabbrev-from-kill
-        ;; try-expand-all-abbrevs
-        ;; try-expand-list
-        ;; try-expand-lien
-        try-complete-lisp-symbol-partially
-        try-complete-lisp-symbol
-        try-complete-file-name-partially
-        try-complete-file-name))
-(global-set-key [remap dabbrev-expand] 'hippie-expand)
+;; (hippie-expand t)
+;; (setq hippie-expand-try-functions-list
+;;       '(try-expand-dabbrev
+;;         try-expand-dabbrev-all-buffers
+;;         ;; try-expand-dabbrev-from-kill
+;;         ;; try-expand-all-abbrevs
+;;         ;; try-expand-list
+;;         ;; try-expand-lien
+;;         try-complete-lisp-symbol-partially
+;;         try-complete-lisp-symbol
+;;         try-complete-file-name-partially
+;;         try-complete-file-name))
+;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 ;; Virtual tall files
 (follow-mode 1)
+
 ;; enable read only
 (setq view-read-only t)
+
 ;; std flymake
 (flymake-mode 1)
 
@@ -376,6 +330,26 @@ position of the outside of the paren.  Otherwise return nil."
 (add-hook 'prog-mode-hook #'completion-preview-mode)
 (add-hook 'text-mode-hook #'completion-preview-mode)
 
+;; save only last buffer and window size
+(setq desktop-load-locked-desktop t)
+(setq desktop-files-not-to-save "^.*$")
+(setq desktop-buffer-not-to-save "^.*$")
+(desktop-save-mode 1)
+
+;; org hooks
+(add-hook 'org-mode-hook 'visual-line-mode)
+;; TODO
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+;; remove white spaces
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; set full file name on frame
+(setq frame-title-format
+      (list '(buffer-file-name "%f" "%b")
+        '(:eval (format " - GNU Emacs %s" emacs-version))))
+
+
+
 ;; eshell pop
 (defun term-pop (fn name)
   (if (not (get-buffer-window name))
@@ -387,20 +361,6 @@ position of the outside of the paren.  Otherwise return nil."
     (if (equal (buffer-name) name)
     (delete-window)
     (switch-to-buffer-other-window name))))
-
-;; save only last buffer and window size
-(setq desktop-load-locked-desktop t)
-(setq desktop-files-not-to-save "^.*$")
-(setq desktop-buffer-not-to-save "^.*$")
-(desktop-save-mode 1)
-
-;; org hooks
-(add-hook 'org-mode-hook 'visual-line-mode)
-
-;; set full file name on frame
-(setq frame-title-format
-      (list '(buffer-file-name "%f" "%b")
-        '(:eval (format " - GNU Emacs %s" emacs-version))))
 
 
 
@@ -425,6 +385,19 @@ position of the outside of the paren.  Otherwise return nil."
 (add-hook 'after-init-hook 'load-persistent-scratch)
 (add-hook 'kill-emacs-hook 'save-persistent-scratch)
 (run-with-idle-timer 300 t 'save-persistent-scratch)
+
+
+
+;; Setup dark GTK theme if available only on X11
+(defun set-emacs-frames-gtk (variant)
+  (dolist (frame (frame-list))
+    (let* ((window-id (frame-parameter frame 'outer-window-id))
+       (id (string-to-number window-id))
+       (cmd (format "xprop -id 0x%x -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"%s\"" id
+            variant)))
+      (call-process-shell-command cmd))))
+(when (and (eq system-type 'gnu/linux) (display-graphic-p))
+  (set-emacs-frames-gtk "dark"))
 
 
 

@@ -9,11 +9,13 @@
 (setq greenized-theme-default-text-color t)
 (setq greenized-theme-mixed-fonts t)
 (load-theme 'greenized t)
+;; style add padding inside frames (windows)
+(add-to-list 'default-frame-alist '(internal-border-width . 2))
 
 ;; remove ui
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(horizontal-scroll-bar-mode -1)
-(menu-bar-mode -1)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(horizontal-scroll-bar-mode 0)
+(menu-bar-mode 0)
 
 (provide 'early-init)

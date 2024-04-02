@@ -287,7 +287,7 @@
 
 (use-package marginalia
   :custom
-  (marginalia-align 'right)
+  (marginalia-align 'left)
   :init
   (marginalia-mode))
 
