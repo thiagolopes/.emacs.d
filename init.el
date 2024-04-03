@@ -158,7 +158,10 @@
 
 ;; ctyle - change comentary to //
 (add-hook 'c-mode-hook '(lambda () (setopt comment-start "//"
-					 comment-end   "")))
+					   comment-end   "")))
+
+;; follow mode to split 1 file in to buffers
+(follow-mode 1)
 
 ;; copy-paste with ctrl c/v
 (cua-mode t)
@@ -334,9 +337,6 @@
 
 ;;; better output colors
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
-;;; virtual tall files
-(add-hook 'prog-mode-hook 'follow-mode)
-(add-hook 'text-mode-hook 'follow-mode)
 ;;; org hooks
 (add-hook 'org-mode-hook 'visual-line-mode)
 ;;; TODO
