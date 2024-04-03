@@ -114,9 +114,7 @@
 (global-visual-line-mode)
 (setq visual-line-fringe-indicators '(nil right-curly-arrow))
 
-;; save position cursor
-(require 'saveplace)
-(setq-default save-place t)
+;; saveaition cursor
 (save-place-mode 1)
 (setopt save-place-file (concat user-emacs-directory "cache/places"))
 
@@ -214,6 +212,7 @@
 ;; default browser
 (setopt browse-url-browser-function 'browse-url-generic)
 
+
 ;; modeline which function
 (which-function-mode 1)
 
@@ -246,9 +245,6 @@
 ;; enable read only
 (setopt view-read-only t)
 
-;; std flymake on!
-(flymake-mode 1)
-
 ;; save desktop only window size, without questions - stolen from Xat
 (defun desktop-file-modtime-reset ()
   "Reset `desktop-file-modtime' so the user is not bothered."
@@ -260,26 +256,26 @@
 (defun desktop-settings-setup ()
   "Some settings setup for desktop-save-mode."
   (interactive)
-  (when (not (eq (emacs-pid) (desktop-owner)))
-    ;; do not save any buffer
-    (setopt desktop-files-not-to-save "^.*$")
-    (setopt desktop-buffer-not-to-save "^.*$")
-    ;; Here we activate the desktop mode
-    (desktop-save-mode 1)
-    ;; The default desktop is saved always
-    (setq desktop-save t)
-    ;; The default desktop is loaded anyway if it is locked
-    (setq desktop-load-locked-desktop t)
-    ;; Set the location to save/load default desktop
-    (setq desktop-dirname user-emacs-directory)
-    ;; Make sure that even if emacs or OS crashed, emacs still have last opened files.
-    (add-hook 'find-file-hook 'desktop-file-modtime-reset)
-    ;; Read default desktop
-    (if (file-exists-p (concat desktop-dirname desktop-base-file-name))
-	(desktop-read desktop-dirname))
-    ;; Add a hook when emacs is closed to we reset the desktop modification time
-    ;;(in this way the user does not get a warning message about desktop modifications)
-    (add-hook 'kill-emacs-hook 'desktop-file-modtime-reset)))
+  ;; do not save any buffer
+  (setopt desktop-files-not-to-save "^.*$")
+  (setopt desktop-buffer-not-to-save "^.*$")
+  ;; Here we activate the desktop mode
+  (desktop-save-mode 1)
+  ;; The default desktop is saved always
+  (setq desktop-save t)
+  ;; The default desktop is loaded anyway if it is locked
+  (setq desktop-load-locked-desktop t)
+  ;; Set the location to save/load default desktop
+  (setq desktop-dirname user-emacs-directory)
+  ;; Make sure that even if emacs or OS crashed, emacs still have last opened files.
+  (add-hook 'find-file-hook 'desktop-file-modtime-reset)
+  ;; Read default desktop
+  (if (file-exists-p (concat desktop-dirname desktop-base-file-name))
+      (desktop-read desktop-dirname))
+  ;; Add a hook when emacs is closed to we reset the desktop modification time
+  ;;(in this way the user does not get a warning message about desktop modifications)
+  ;; (add-hook 'kill-emacs-hook 'desktop-file-modtime-reset))
+  )
 (add-hook 'after-init-hook 'desktop-settings-setup "APPEND")
 
 ;; FIXME finish mode-line

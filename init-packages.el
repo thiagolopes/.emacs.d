@@ -68,17 +68,20 @@
 
 ;; remove minor modes from modeline - TODO remove after modeline settings
 (use-package minions
-  :init (minions-mode))
+  :config
+  (minions-mode))
 
 (use-package page-break-lines
-  :config (global-page-break-lines-mode))
+  :config
+  (global-page-break-lines-mode))
 
 ;; edit by sudo
 (use-package sudo-edit)
 
 ;; save on focus loose
 (use-package super-save
-  :config (super-save-mode t))
+  :config
+  (super-save-mode t))
 
 ;; buffer moviments
 (use-package transpose-frame)
@@ -93,7 +96,8 @@
 
 ;; search on file engine
 (use-package ctrlf
-  :config (ctrlf-mode t)
+  :config
+  (ctrlf-mode t)
   :custom
   (ctrlf-auto-recenter t)
   (ctrlf-alternate-search-style 'literal))
@@ -233,7 +237,6 @@
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
-
 (use-package projectile
   :custom
   (projectile-project-search-path '(("~/dev/" . 1) ("~/.emacs.d/" . 1)))
@@ -245,8 +248,10 @@
   (global-set-key [remap find-tag]         #'projectile-find-tag))
 
 (use-package winner
-  :preface (defvar winner-dont-bind-my-keys t) ; I'll bind keys myself
-  :hook (dashboard-setup-startup-hook . winner-mode)
+  :preface
+  (defvar winner-dont-bind-my-keys t) ; I'll bind keys myself
+  :hook
+  (dashboard-setup-startup-hook . winner-mode)
   :config
   (winner-mode 1)
   (appendq! winner-boring-buffers
@@ -255,7 +260,8 @@
 	      "*esh command on file*")))
 
 (use-package paren
-  :hook (dashboard-setup-startup-hook . show-paren-mode)
+  :hook
+  (dashboard-setup-startup-hook . show-paren-mode)
   :custom
   (show-paren-delay 0.1)
   (show-paren-highlight-openparen t)
@@ -314,7 +320,7 @@
    ("<M-left>" . drag-stuff-left)
    ("<M-right>". drag-stuff-right)))
 
-;; goto reference engine withtou LSP
+;; ;; goto reference engine withtou LSP
 (use-package dumb-jump
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
@@ -381,19 +387,16 @@
 		     (projects . 10)))
   (dashboard-center-content t)
   :config
-  (if (display-graphic-p)
-      (setq dashboard-startup-banner 'official)
-      (setq dashboard-startup-banner 'nil))
   (dashboard-setup-startup-hook))
 
-;; save minibuffer historical
+;; ;; save minibuffer historical
 (use-package savehist
   :custom
   (history-length 25)
   :config
   (savehist-mode))
 
-;; avoid trash in kill ring
+;; ;; avoid trash in kill ring
 (use-package clean-kill-ring
   :config (clean-kill-ring-mode))
 
@@ -403,12 +406,6 @@
   (marginalia-align 'left)
   :init
   (marginalia-mode))
-
-;; better completition
-(use-package orderless
-  :custom
-  (completion-styles '(orderless flex))
-  (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
 ;; better minibuffer
 (use-package consult
@@ -432,11 +429,11 @@
   (completion-styles '(orderless flex))
   (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
-;; minibuffer search candidate
+;; ;; minibuffer search candidate
 (use-package vertico
   :custom
   (vertico-resize nil)
-  (vertico-count 20)
+  (vertico-count 6)
   (vertico-cycle nil)
   :config
   (setq completion-in-region-function
@@ -575,9 +572,6 @@
 		 nil
 		 (window-parameters (mode-line-format . none)))))
 
-
-
-
 (use-package xterm-color
   :custom
   (comint-output-filter-functions
@@ -597,18 +591,18 @@
   :config
   (with-eval-after-load 'org (global-org-modern-mode)))
 
-;; (use-package treesit-auto
-;;   :custom
-;;   (treesit-auto-install t)
-;;   :config
-;;   (global-treesit-auto-mode))
-
-(use-package siege-mode
-  :straight (siege-mode :repo "https://github.com/tslilc/siege-mode" :fetcher github)
-  :hook
-  (prog-mode . siege-mode)
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install t)
   :config
-  (siege-mode t))
+  (global-treesit-auto-mode))
+
+;; (use-package siege-mode
+;;   :straight (siege-mode :repo "https://github.com/tslilc/siege-mode" :fetcher github)
+;;   :hook
+;;   (prog-mode . siege-mode)
+;;   :config
+;;   (siege-mode t))
 
 (use-package zeal-at-point
   :bind
@@ -617,6 +611,7 @@
 			   :files ("zeal-at-point.el")))
 
 (use-package fontaine
+  :if (display-graphic-p)
   :config
   (setq fontaine-presets
 	'((hack
