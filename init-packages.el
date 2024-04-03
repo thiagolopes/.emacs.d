@@ -128,15 +128,6 @@
   (add-hook 'Info-selection-hook 'info-colors-fontify-node))
 
 (use-package orderless
-  :config
-  (defun just-one-face (fn &rest args)
-    (let ((orderless-match-faces [completions-common-part]))
-      (apply fn args)))
-  (advice-add 'company-capf--candidates :around #'just-one-face)
-  (defun company-completion-styles (capf-fn &rest args)
-    (let ((completion-styles '(basic partial-completion)))
-      (apply capf-fn args)))
-  (advice-add 'company-capf :around #'company-completion-styles)
   :custom
   (orderless-component-separator "[ &]")
   (completion-styles '(orderless flex))
@@ -501,10 +492,6 @@
   :hook
   (prog-mode . highlight-numbers-mode))
 
-(use-package cape
-  :init
-  (add-to-list 'completion-at-point-functions #'cape-file))
-
 (use-package embark
   :bind
   ("C-." . embark-act)
@@ -545,7 +532,8 @@
                                (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter nil t))))
 
 (use-package consult
-  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :hook
+  (completion-list-mode . consult-preview-at-point-mode)
   :config
   ;; BEGIN TRAMP settings
   (defun consult-buffer-state-no-tramp ()
@@ -564,11 +552,6 @@
   (setq consult--source-buffer
         (plist-put consult--source-buffer :state #'consult-buffer-state-no-tramp))
   ;; END TRAMP settings
-  (setf xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-  (advice-add #'register-preview :override #'consult-register-window)
-  (autoload 'projectile-project-root "projectile")
-  (setq consult-project-function (lambda (_) (projectile-project-root)))
   :bind
   (("C-x 4 b" . consult-buffer-other-window)
    ("C-x 5 b" . consult-buffer-other-frame)
