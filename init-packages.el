@@ -26,6 +26,8 @@
 (require 'straight-x)
 (straight-use-package 'use-package)
 (require 'use-package)
+(setq use-package-verbose t)
+(setq use-package-compute-statistics nil)
 
 ;; packages
 (use-package all-the-icons)

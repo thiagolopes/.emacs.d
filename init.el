@@ -5,16 +5,14 @@
 (when (version< emacs-version "29.0")
   (message "Your Emacs is old. Please upgrade if possible."))
 
+;;by
 (setq user-full-name "Thiago Lopes")
 (setq user-mail-address "thiagolopes@protonmail.com")
-(setq use-package-verbose t)
-(setq use-package-compute-statistics nil)
 
 (set-window-buffer nil (current-buffer))
 
+;; right click mouse
 (context-menu-mode t)
-(column-number-mode t)
-
 
 ;; sanity dired
 ;;; suggest a target for moving/copying intelligently
@@ -186,8 +184,9 @@
 ;; copy-paste with ctrl c/v
 (cua-mode t)
 
+;; looks horrible
 ;; treat camel-cased words as individual words.
-(add-hook 'prog-mode-hook 'subword-mode)
+;; (add-hook 'prog-mode-hook 'subword-mode)
 
 ;; don't assume sentences end with two spaces after a period.
 (setq sentence-end-double-space nil)
@@ -195,13 +194,9 @@
 ;; handle very long lines without hurting emacs
 ;; (global-so-long-mode)
 
-;; (setq make-backup-files nil)
-;; (setq backup-by-copying t)
-
 ;; backup setup
 ;;; don't clobber symlinks
 (setq backup-by-copying t)
-;;; don't litter my fs tree
 (setq backup-directory-alist '(("." . "~/.emacs.d/var/saves/")))
 (setq delete-old-versions t)
 (setq kept-new-versions 6)
@@ -215,9 +210,6 @@
 (setq inhibit-startup-message t)
 ;; hopefully all themes we install are safe
 (setq custom-safe-themes t)
-;; simple lock/backup file management
-(setq create-lockfiles nil)
-(setq delete-old-versions t)
 ;; when quiting emacs, just kill processes
 (setq confirm-kill-processes nil)
 ;; ask if local variables are safe once.
@@ -261,22 +253,19 @@
 (electric-pair-mode -1)
 
 ;; Hippie-expand
-;; (hippie-expand t)
-;; (setq hippie-expand-try-functions-list
-;;       '(try-expand-dabbrev
-;;         try-expand-dabbrev-all-buffers
-;;         ;; try-expand-dabbrev-from-kill
-;;         ;; try-expand-all-abbrevs
-;;         ;; try-expand-list
-;;         ;; try-expand-lien
-;;         try-complete-lisp-symbol-partially
-;;         try-complete-lisp-symbol
-;;         try-complete-file-name-partially
-;;         try-complete-file-name))
-;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
-
-;; Virtual tall files
-(follow-mode 1)
+(hippie-expand t)
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        ;; try-expand-dabbrev-from-kill
+        ;; try-expand-all-abbrevs
+        ;; try-expand-list
+        ;; try-expand-lien
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol
+        try-complete-file-name-partially
+        try-complete-file-name))
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 ;; enable read only
 (setq view-read-only t)
@@ -309,19 +298,20 @@
 ;;                 my-modeline-buffer-name
 ;;                 my-modeline-minion-mode))
 
-(setq-default mode-line-format
-          '("%e" mode-line-front-space
-        (:propertize
-         ("" mode-line-mule-info mode-line-client mode-line-modified
-          mode-line-remote)
-         display (min-width (1.0)))
-        mode-line-frame-identification
-        mode-line-buffer-identification
-        " - "
-        minions-mode-line-modes
-        mode-line-misc-info
-        (vc-mode vc-mode) "  "
-        mode-line-end-spaces))
+;; (setq mode-line-format
+;;       '("%e" mode-line-front-space
+;;         (:propertize
+;;          ("" mode-line-mule-info mode-line-client mode-line-modified
+;;           mode-line-remote)
+;;          display (min-width (1.0)))
+;;         mode-line-frame-identification
+;;         mode-line-buffer-identification
+;;         " - "
+;;         mode-line-
+;;         minions-mode-line-modes
+;;         mode-line-misc-info
+;;         (vc-mode vc-mode) "  "
+;;         mode-line-end-spaces))
 
 ;; Completion preview
 (when (not (fboundp 'completion-preview-mode))
@@ -336,17 +326,23 @@
 (setq desktop-buffer-not-to-save "^.*$")
 (desktop-save-mode 1)
 
-;; org hooks
-(add-hook 'org-mode-hook 'visual-line-mode)
-;; TODO
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
-;; remove white spaces
-(add-hook 'before-save-hook 'whitespace-cleanup)
-
 ;; set full file name on frame
 (setq frame-title-format
       (list '(buffer-file-name "%f" "%b")
         '(:eval (format " - GNU Emacs %s" emacs-version))))
+
+;; hooks!!
+;;; better output colors
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+;;; virtual tall files
+(add-hook 'prog-mode-hook 'follow-mode)
+(add-hook 'text-mode-hook 'follow-mode)
+;;; org hooks
+(add-hook 'org-mode-hook 'visual-line-mode)
+;;; TODO
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+;;; remove white spaces
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 
 
