@@ -185,7 +185,6 @@
 (setopt kept-old-versions 2)
 (setopt version-control t)
 
-
 ;; overwrite text when selected, like we expect.
 (setopt delete-seleciton-mode t)
 ;; quiet startup
@@ -215,7 +214,6 @@
 ;; default browser
 (setopt browse-url-browser-function 'browse-url-generic)
 
-
 ;; modeline which function
 (which-function-mode 1)
 
@@ -231,55 +229,58 @@
 (setq-default indicate-buffer-boundaries 'left)
 
 ;; Hippie-expand
-;; (hippie-expand t)
-;; (setopt hippie-expand-try-functions-list
-;;       '(try-expand-dabbrev
-;;	try-expand-dabbrev-all-buffers
-;;	;; try-expand-dabbrev-from-kill
-;;	;; try-expand-all-abbrevs
-;;	;; try-expand-list
-;;	;; try-expand-lien
-;;	try-complete-lisp-symbol-partially
-;;	try-complete-lisp-symbol
-;;	try-complete-file-name-partially
-;;	try-complete-file-name))
-;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
+(hippie-expand t)
+(setopt hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+	try-expand-dabbrev-all-buffers
+	;; try-expand-dabbrev-from-kill
+	;; try-expand-all-abbrevs
+	;; try-expand-list
+	;; try-expand-lien
+	try-complete-lisp-symbol-partially
+	try-complete-lisp-symbol
+	try-complete-file-name-partially
+	try-complete-file-name))
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
+
+;; icomplete - old and good
+(icomplete-mode t)
 
 ;; enable read only
 (setopt view-read-only t)
 
 ;; save desktop only window size, without questions - stolen from Xat
-(defun desktop-file-modtime-reset ()
-  "Reset `desktop-file-modtime' so the user is not bothered."
-  (interactive)
-  (run-with-timer 5 nil
-	  (lambda ()
-	    (setq desktop-file-modtime (nth 5 (file-attributes (desktop-full-file-name))))
-	    (desktop-save user-emacs-directory))))
-(defun desktop-settings-setup ()
-  "Some settings setup for desktop-save-mode."
-  (interactive)
-  ;; do not save any buffer
-  (setopt desktop-files-not-to-save "^.*$")
-  (setopt desktop-buffer-not-to-save "^.*$")
-  ;; Here we activate the desktop mode
-  (desktop-save-mode 1)
-  ;; The default desktop is saved always
-  (setq desktop-save t)
-  ;; The default desktop is loaded anyway if it is locked
-  (setq desktop-load-locked-desktop t)
-  ;; Set the location to save/load default desktop
-  (setq desktop-dirname user-emacs-directory)
-  ;; Make sure that even if emacs or OS crashed, emacs still have last opened files.
-  (add-hook 'find-file-hook 'desktop-file-modtime-reset)
-  ;; Read default desktop
-  (if (file-exists-p (concat desktop-dirname desktop-base-file-name))
-      (desktop-read desktop-dirname))
-  ;; Add a hook when emacs is closed to we reset the desktop modification time
-  ;;(in this way the user does not get a warning message about desktop modifications)
-  ;; (add-hook 'kill-emacs-hook 'desktop-file-modtime-reset))
-  )
-(add-hook 'after-init-hook 'desktop-settings-setup "APPEND")
+;; (defun desktop-file-modtime-reset ()
+;;   "Reset `desktop-file-modtime' so the user is not bothered."
+;;   (interactive)
+;;   (run-with-timer 5 nil
+;;	  (lambda ()
+;;	    (setq desktop-file-modtime (nth 5 (file-attributes (desktop-full-file-name))))
+;;	    (desktop-save user-emacs-directory))))
+;; (defun desktop-settings-setup ()
+;;   "Some settings setup for desktop-save-mode."
+;;   (interactive)
+;;   ;; do not save any buffer
+;;   (setopt desktop-files-not-to-save "^.*$")
+;;   (setopt desktop-buffer-not-to-save "^.*$")
+;;   ;; Here we activate the desktop mode
+;;   (desktop-save-mode 1)
+;;   ;; The default desktop is saved always
+;;   (setq desktop-save t)
+;;   ;; The default desktop is loaded anyway if it is locked
+;;   (setq desktop-load-locked-desktop t)
+;;   ;; Set the location to save/load default desktop
+;;   (setq desktop-dirname user-emacs-directory)
+;;   ;; Make sure that even if emacs or OS crashed, emacs still have last opened files.
+;;   (add-hook 'find-file-hook 'desktop-file-modtime-reset)
+;;   ;; Read default desktop
+;;   (if (file-exists-p (concat desktop-dirname desktop-base-file-name))
+;;       (desktop-read desktop-dirname))
+;;   ;; Add a hook when emacs is closed to we reset the desktop modification time
+;;   ;;(in this way the user does not get a warning message about desktop modifications)
+;;   ;; (add-hook 'kill-emacs-hook 'desktop-file-modtime-reset))
+;;   )
+;; (add-hook 'after-init-hook 'desktop-settings-setup "APPEND")
 
 ;; FIXME finish mode-line
 ;; https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
