@@ -19,6 +19,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setopt use-short-answers t)
 
+;; smart parens
+(electric-pair-mode 1)
+
 ;; right click mouse
 (context-menu-mode t)
 
@@ -420,7 +423,7 @@
 
 ;; eshell pop
 (global-set-key (kbd "M-<f12>") '(lambda () (interactive) (term-pop 'eshell "*eshell*")))
-(global-set-key (kbd "<f12>")   '(lambda () (interactive) (term-pop 'shell "*shell*")))
+;; (global-set-key (kbd "<f12>")   '(lambda () (interactive) (term-pop 'shell "*shell*")))
 
 ;; (global-set-key (kbd "M-n") #'forward-paragraph)
 ;; (global-set-key (kbd "M-p") #'backward-paragraph)

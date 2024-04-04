@@ -64,7 +64,8 @@
 
 ;; emacs gc
 (use-package gcmh
-  :config (gcmh-mode 1))
+  :config
+  (gcmh-mode 1))
 
 ;; remove minor modes from modeline - TODO remove after modeline settings
 (use-package minions
@@ -132,8 +133,8 @@
 (use-package virtualenvwrapper
   :config (venv-initialize-eshell))
 (use-package electric-operator
-  :config
-  (add-hook 'python-mode-hook #'electric-operator-mode))
+  :hook
+  (python-mode . electric-operator-mode))
 (use-package highlight-indent-guides
   :config
   (defun my-highlighter (level responsive display)
@@ -189,7 +190,7 @@
   :custom
   (mixed-pitch-set-height t))
 
-;; Darker buffer where is not about edit text
+;; darker buffer where is not about edit text
 (use-package solaire-mode
   :hook
   (change-major-mode . turn-on-solaire-mode)
@@ -200,12 +201,14 @@
   :config
   (solaire-global-mode +1))
 
+;; info (better man)
 (use-package info-colors
-  :config
-  (add-hook 'Info-selection-hook 'info-colors-fontify-node))
+  :hook
+  (Info-selection . info-colors-fontify-node))
 
 (use-package expand-region
-  :bind ("M-@" . er/expand-region))
+  :bind
+  ("M-@" . er/expand-region))
 
 ;; move parens
 (use-package smartparens
@@ -251,22 +254,13 @@
   :preface
   (defvar winner-dont-bind-my-keys t) ; I'll bind keys myself
   :hook
-  (dashboard-setup-startup-hook . winner-mode)
+  (dashboard-setup-startup . winner-mode)
   :config
   (winner-mode 1)
   (appendq! winner-boring-buffers
 	    '("*Compile-Log*" "*inferior-lisp*" "*Fuzzy Completions*"
 	      "*Apropos*" "*Help*" "*cvs*" "*Buffer List*" "*Ibuffer*"
 	      "*esh command on file*")))
-
-(use-package paren
-  :hook
-  (dashboard-setup-startup-hook . show-paren-mode)
-  :custom
-  (show-paren-delay 0.1)
-  (show-paren-highlight-openparen t)
-  (show-paren-when-point-inside-paren t)
-  (show-paren-when-point-in-periphery t))
 
 (use-package rainbow-delimiters
   :bind
@@ -287,10 +281,6 @@
     ;; is our priority within Emacs
     (setq-default undo-fu-session-compression 'zst)))
 
-(use-package ibuffer-projectile
-  ;; Group ibuffer's list by project root
-  :hook (ibuffer . ibuffer-projectile-set-filter-groups))
-
 ;; git!
 (use-package git-link)
 (use-package git-timemachine)
@@ -309,8 +299,8 @@
   (transient-levels-file  (concat user-emacs-directory "transient/levels"))
   (transient-values-file  (concat user-emacs-directory "transient/values"))
   (transient-history-file (concat user-emacs-directory "transient/history"))
-  :config
-  (add-hook 'magit-process-mode-hook #'goto-address-mode))
+  :hook
+  (magit-process-mode goto-address-mode))
 
 ;; move blocks
 (use-package drag-stuff
@@ -323,15 +313,16 @@
 ;; ;; goto reference engine withtou LSP
 (use-package dumb-jump
   :init
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   :custom
   (dumb-jump-default-project (concat user-emacs-directory "cache/jump"))
   (dumb-jump-prefer-searcher 'ag)
   (dumb-jump-aggressive nil)
   (dumb-jump-selector 'ivy)
   :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
+;; remove *buffer-name* from first candites
 (use-package popwin
   :config
   (popwin-mode t))
@@ -353,14 +344,16 @@
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable))
 
+;; edit all references
 (use-package iedit
   :config
   (require 'iedit))
 
-(use-package ace-popup-menu
-  :config
-  (ace-popup-menu-mode t))
+;;(use-package ace-popup-menu
+;;   :config
+;;   (ace-popup-menu-mode t))
 
+;; pulsar cursor
 (use-package pulsar
   :custom
   (pulsar-pulse t)
@@ -374,10 +367,12 @@
 		     ace-window))
     (advice-add command :after #'pulse-line)))
 
+;; visual feedback on some operations
 (use-package volatile-highlights
   :config
   (volatile-highlights-mode t))
 
+;; fancy welcome
 (use-package dashboard
   :custom
   (dashboard-set-navigator t)
@@ -389,14 +384,14 @@
   :config
   (dashboard-setup-startup-hook))
 
-;; ;; save minibuffer historical
+;; save minibuffer historical
 (use-package savehist
   :custom
   (history-length 25)
   :config
   (savehist-mode))
 
-;; ;; avoid trash in kill ring
+;; avoid trash in kill ring
 (use-package clean-kill-ring
   :config (clean-kill-ring-mode))
 
@@ -475,17 +470,19 @@
   :config
   (fancy-compilation-mode))
 
+;; move open buffers
 (use-package ace-window
   :bind
   ("M-o" . ace-window))
 
+;; tree sidebar
 (use-package dired-sidebar
-  :bind (("<f9>" . dired-sidebar-toggle-sidebar))
-  :init
-  (add-hook 'dired-sidebar-mode-hook
-	    (lambda ()
-	      (unless (file-remote-p default-directory)
-		(auto-revert-mode))))
+  :bind
+  ("<f9>" . dired-sidebar-toggle-sidebar)
+  :hook
+  (dired-sidebar-mode . (lambda ()
+			  (unless (file-remote-p default-directory)
+			    (auto-revert-mode))))
   :config
   (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
   (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
@@ -498,30 +495,24 @@
   (dired-sidebar-theme 'vscode)
   (dired-sidebar-use-custom-font t))
 
+;; Blink mode line
 (use-package mode-line-bell
   :config
   (mode-line-bell-mode t))
 
+;; Error ui
+(use-package flymake)
 (use-package sideline
   :hook (flycheck-mode . sideline-mode)
   :custom
   (sideline-backends-right '(sideline-flycheck)))
-
 (use-package sideline-flymake
   :hook (flymake-mode . sideline-mode)
   :init
-  (setq sideline-flymake-display-mode 'point) ; 'point to show errors only on point
-					      ; 'line to show errors on the current line
+  (setq sideline-flymake-display-mode 'point)
   (setq sideline-backends-right '(sideline-flymake)))
 
-(use-package bm
-  :demand t
-  :custom
-  (bm-cycle-all-buffers t)
-  :bind (("<insert>" . bm-next)
-	 ("S-<insert>" . bm-previous)
-	 ("C-<insert>" . bm-toggle)))
-
+;; Jump to char
 (use-package avy
   :custom
   (avy-background t)
@@ -529,6 +520,7 @@
   :config
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
+;; LSP
 (use-package eglot
   :custom
   (eglot-sync-connect nil)
@@ -538,18 +530,13 @@
   :config
   (setopt eglot-report-progress nil)
   (fset #'jsonrpc--log-event #'ignore))
-
-(use-package flycheck-eglot
-  :after (flycheck eglot)
-  :config
-  (global-flycheck-eglot-mode 1))
-
 (when (executable-find "emacs-lsp-booster")
   (use-package eglot-booster
     :straight (eglot-booster :fetcher github :repo "https://github.com/jdtsmith/eglot-booster"
 			     :files ("eglot-booster.el"))
     :config (eglot-booster-mode)))
 
+;; Overlay symbol!!
 (use-package symbol-overlay
   :custom
   (symbol-overlay-idle-time 1.0)
@@ -557,10 +544,13 @@
   :hook
   (prog-mode . symbol-overlay-mode))
 
+;; show number color
 (use-package highlight-numbers
+  :disabled
   :hook
   (prog-mode . highlight-numbers-mode))
 
+;; List of coletions
 (use-package embark
   :bind
   ("C-." . embark-act)
@@ -571,17 +561,20 @@
 	       '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
 		 nil
 		 (window-parameters (mode-line-format . none)))))
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package xterm-color
   :custom
   (comint-output-filter-functions
    (remove 'ansi-color-process-output comint-output-filter-functions))
-  :config
-  (add-hook 'shell-mode-hook (lambda ()
-			       (font-lock-mode -1)
-			       (make-local-variable 'font-lock-function)
-			       (setq font-lock-function (lambda (_) nil))
-			       (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter nil t))))
+  :hook
+  (shell-mode . (lambda ()
+		  (font-lock-mode -1)
+		  (make-local-variable 'font-lock-function)
+		  (setq font-lock-function (lambda (_) nil))
+		  (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter nil t))))
 
 (use-package hl-line+
   :config
@@ -609,6 +602,19 @@
   (("\C-cd" . zeal-at-point))
   :straight (zeal-at-point :repo "jinzhu/zeal-at-point" :fetcher github
 			   :files ("zeal-at-point.el")))
+
+;; libterm terminal
+(use-package vterm)
+(use-package shell-pop
+  :custom
+  (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*"
+				(lambda nil (ansi-term shell-pop-term-shell)))))
+  (shell-pop-universal-key "C-t")
+  (shell-pop-window-size 30)
+  (shell-pop-full-span t)
+  (shell-pop-window-position "bottom")
+  (shell-pop-autocd-to-working-dir t)
+  (shell-pop-restore-window-configuration t))
 
 (use-package fontaine
   :if (display-graphic-p)
