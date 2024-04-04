@@ -62,6 +62,9 @@
 ;; debuger
 (use-package realgud)
 
+;; keyboard drive questions
+(use-package transient)
+
 ;; emacs gc
 (use-package gcmh
   :config
