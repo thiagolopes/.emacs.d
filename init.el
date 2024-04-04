@@ -338,6 +338,14 @@
 (add-hook 'prog-mode-hook #'completion-preview-mode)
 (add-hook 'text-mode-hook #'completion-preview-mode)
 
+;; hide modeline if not focused
+(set-face-attribute 'mode-line-inactive nil
+		    :height 10
+		    :underline (face-foreground 'default)
+		    :background (face-foreground 'default)
+		    :overline nil
+		    :box nil)
+
 
 ;;; better output colors
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
