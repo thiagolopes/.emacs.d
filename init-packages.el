@@ -612,11 +612,10 @@
   :custom
   (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*"
 				(lambda nil (ansi-term shell-pop-term-shell)))))
-  (shell-pop-universal-key "C-t")
+  (shell-pop-universal-key "<f12>")
   (shell-pop-window-size 30)
   (shell-pop-full-span t)
   (shell-pop-window-position "bottom")
-  (shell-pop-autocd-to-working-dir t)
   (shell-pop-restore-window-configuration t))
 
 (use-package fontaine
