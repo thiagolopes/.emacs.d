@@ -407,6 +407,15 @@
 
 ;; better minibuffer
 (use-package consult
+  :config
+  (setq completion-in-region-function
+      (lambda (&rest args)
+	(apply (if vertico-mode
+		   #'consult-completion-in-region
+		 #'completion--in-region)
+	       args)))
+  (setq xref-show-xrefs-function #'consult-xref
+	xref-show-definitions-function #'consult-xref)
   :hook
   (completion-list-mode . consult-preview-at-point-mode)
   :bind
@@ -433,13 +442,6 @@
   (vertico-resize nil)
   (vertico-count 6)
   (vertico-cycle nil)
-  :config
-  (setq completion-in-region-function
-	(lambda (&rest args)
-	  (apply (if vertico-mode
-		     #'consult-completion-in-region
-		   #'completion--in-region)
-		 args)))
   :config
   (ido-mode 0)
   (vertico-mode))
