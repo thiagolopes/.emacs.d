@@ -218,7 +218,7 @@
 (setopt browse-url-browser-function 'browse-url-generic)
 
 ;; modeline which function
-(which-function-mode 1)
+;; (which-function-mode 1)
 
 ;; better underline
 (setopt x-underline-at-descent-line t)
@@ -338,14 +338,6 @@
 (add-hook 'prog-mode-hook #'completion-preview-mode)
 (add-hook 'text-mode-hook #'completion-preview-mode)
 
-;; hide modeline if not focused
-(set-face-attribute 'mode-line-inactive nil
-		    :height 10
-		    :underline (face-foreground 'default)
-		    :background (face-foreground 'default)
-		    :overline nil
-		    :box nil)
-
 
 ;;; better output colors
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
@@ -368,7 +360,6 @@
     (if (equal (buffer-name) name)
     (delete-window)
     (switch-to-buffer-other-window name))))
-
 
 ;; Imortal *scratch* !!
 (defun immortal-scratch ()

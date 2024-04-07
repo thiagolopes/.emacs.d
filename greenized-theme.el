@@ -34,8 +34,8 @@
       (selection  "#073642")
       (text
        (if greenized-theme-default-text-color
-           "#d1b897"
-         "#839496"))
+	   "#d1b897"
+	 "#839496"))
       (comments   "#44b340")
       (punctuation "#8cde94")
       (keywords "#ffffff")
@@ -60,8 +60,8 @@
 
       (font-slant
        (if greenized-theme-mixed-fonts
-           'italic
-         'normal))
+	   'italic
+	 'normal))
 
       ;; Solarized colors
       (yellow "#b58900")
@@ -125,7 +125,7 @@
    `(linum                                ((t (:foreground ,line-fg :background ,background))))
    `(linum-relative-current-face          ((t (:foreground ,white :background ,background))))
    `(line-number                          ((t (:foreground ,line-fg :background ,background))))
-   `(line-number-current-line             ((t (:foreground ,white :background ,background))))
+   `(line-number-current-line             ((t (:foreground ,white :background ,line-fg))))
 
    ;; hl-line-mode
    `(hl-line                              ((t (:background ,highlight-line))))
@@ -133,23 +133,28 @@
 
    ;; which-func
    `(which-func                           ((t (:inverse-video unspecified
-                                                              :underline unspecified
-                                                              :foreground ,background
-                                                              :weight normal))))
+							      :underline unspecified
+							      :foreground ,background
+							      :weight normal))))
 
    ;; mode-line and powerline
-   `(mode-line-inactive                   ((t (:background ,background-darker))))
+   `(mode-line-inactive                   ((t (:background ,background :foreground ,highlight-line :box 1))))
    `(mode-line-buffer-id                  ((t (:foreground ,background :distant-foreground ,text :text ,text :weight bold))))
    `(mode-line                            ((t (:inverse-video unspecified
-                                                              :underline unspecified
-                                                              :foreground ,background
-                                                              :background ,text
-                                                              :box nil))))
+							      :underline unspecified
+							      :foreground ,background
+							      :background ,text
+							      :box nil))))
    `(powerline-active1                    ((t (:background ,text :foreground ,background))))
    `(powerline-active2                    ((t (:background ,text :foreground ,background))))
    `(powerline-inactive1                  ((t (:background ,background :foreground ,text))))
    `(powerline-inactive2                  ((t (:background ,background :foreground ,text))))
+
+   ;; doom modeline
    `(doom-modeline-project-dir            ((t (:foreground nil :weight bold))))
+   `(doom-modeline-project-parent-dir     ((t (:background ,text :foreground nil :weight bold))))
+   `(doom-modeline-buffer-file            ((t (:foreground ,black))))
+   `(doom-modeline-buffer-modified        ((t (:foreground ,warning))))
 
    ;; ace-window
    `(aw-leading-char-face                 ((t (:foreground ,red))))
@@ -179,46 +184,46 @@
    `(flycheck-error
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,red)
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
+		   :foreground unspecified
+		   :background unspecified
+		   :inherit unspecified))
       (t (:foreground ,red :weight normal :underline t))))
    `(flycheck-warning
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,yellow)
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
+		   :foreground unspecified
+		   :background unspecified
+		   :inherit unspecified))
       (t (:forground ,yellow :weight normal :underline t))))
    `(flycheck-info
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,green)
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
+		   :foreground unspecified
+		   :background unspecified
+		   :inherit unspecified))
       (t (:forground ,green :weight normal :underline t))))
 
    ;; Flymake
    `(flymake-error
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,red)
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
+		   :foreground unspecified
+		   :background unspecified
+		   :inherit unspecified))
       (t (:foreground ,red :weight normal :underline t))))
    `(flymake-warning
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,yellow)
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
+		   :foreground unspecified
+		   :background unspecified
+		   :inherit unspecified))
       (t (:forground ,yellow :weight normal :underline t))))
    `(flymake-note
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,green)
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
+		   :foreground unspecified
+		   :background unspecified
+		   :inherit unspecified))
       (t (:forground ,green :weight normal :underline t))))
 
    ;; bm
@@ -226,9 +231,9 @@
 
 
    `(show-paren-match                     ((t (:background nil
-                                                           :foreground ,white
-                                                           :bold t
-                                                           :inverse-video nil))))
+							   :foreground ,white
+							   :bold t
+							   :inverse-video nil))))
    `(solaire-default-face                 ((t (:background ,background-darker-darker))))
    `(symbol-overlay-default-face          ((t (:bold t))))
    `(whitespace-space                     ((t (:background ,background :foreground ,line-fg))))
@@ -310,7 +315,7 @@
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
   (add-to-list 'custom-theme-load-path
-               (file-name-as-directory (file-name-directory load-file-name))))
+	       (file-name-as-directory (file-name-directory load-file-name))))
 
 ;; *****************************************************************************
 
