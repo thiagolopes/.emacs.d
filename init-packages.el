@@ -103,7 +103,7 @@
   :config
   (ctrlf-mode t)
   :custom
-  (ctrlf-auto-recenter t)
+  (ctrlf-auto-recenter nil)
   (ctrlf-alternate-search-style 'literal))
 
 ;; clojure
@@ -390,7 +390,7 @@
 ;; save minibuffer historical
 (use-package savehist
   :custom
-  (history-length 25)
+  (history-length 50)
   :config
   (savehist-mode))
 
@@ -619,6 +619,21 @@
   (shell-pop-full-span t)
   (shell-pop-window-position "bottom")
   (shell-pop-restore-window-configuration t))
+
+(use-package doom-modeline
+  :custom
+  (doom-modeline-major-mode-color-icon t)
+  (doom-modeline-buffer-file-name-style 'truncate-upto-project)
+  (doom-modeline-buffer-modification-icon t)
+  (doom-modeline-time-icon t)
+  (doom-modeline-icon t)
+  (doom-modeline-highlight-modified-buffer-name t)
+  (doom-modeline-position-column-line-format '("(%l:%c)"))
+  (doom-modeline-enable-word-count t)
+  (doom-modeline-height 28)
+  (doom-modeline-buffer-encoding nil)
+  :init
+  (doom-modeline-mode 1))
 
 (use-package fontaine
   :if (display-graphic-p)

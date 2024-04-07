@@ -52,6 +52,7 @@
       (line-fg "#126367")
       (black "#000000")
 
+      (modeline "#dac6ab")
       (border-width '(2 . 2))
       (background-darker "#051f24")
       (background-darker-darker "#04181c")
@@ -137,23 +138,25 @@
 							      :weight normal))))
 
    ;; mode-line and powerline
-   `(mode-line-inactive                   ((t (:background ,background :foreground ,highlight-line :box 1))))
+   `(mode-line-inactive                   ((t (:background ,background :foreground ,highlight-line :box t))))
    `(mode-line-buffer-id                  ((t (:foreground ,background :distant-foreground ,text :text ,text :weight bold))))
    `(mode-line                            ((t (:inverse-video unspecified
 							      :underline unspecified
-							      :foreground ,background
-							      :background ,text
-							      :box nil))))
+							      :foreground ,background-darker-darker
+							      :background ,modeline))))
    `(powerline-active1                    ((t (:background ,text :foreground ,background))))
    `(powerline-active2                    ((t (:background ,text :foreground ,background))))
    `(powerline-inactive1                  ((t (:background ,background :foreground ,text))))
    `(powerline-inactive2                  ((t (:background ,background :foreground ,text))))
 
    ;; doom modeline
-   `(doom-modeline-project-dir            ((t (:foreground ,background :weight bold))))
-   `(doom-modeline-project-parent-dir     ((t (:background ,text :foreground nil :weight normal))))
-   `(doom-modeline-buffer-file            ((t (:foreground ,black :weight bold))))
-   `(doom-modeline-buffer-modified        ((t (:foreground ,black :weight normal))))
+   `(doom-modeline-project-dir            ((t (:foreground ,background :weight normal))))
+   `(doom-modeline-project-parent-dir     ((t (:background ,modeline :foreground nil :weight normal))))
+   `(doom-modeline-buffer-file            ((t (:foreground ,background-darker-darker :weight bold))))
+   `(doom-modeline-buffer-modified        ((t (:foreground ,background-darker-darker :weight normal))))
+   `(doom-modeline-warning                ((t (:foreground ,error :weight normal))))
+   `(doom-modeline-bar                    ((t (:background ,text))))
+   `(doom-modeline-bar-inactive           ((t (:background ,background))))
 
     ;; ace-window
    `(aw-leading-char-face                 ((t (:foreground ,red))))
