@@ -23,7 +23,6 @@
   "Disable italic")
 
 ;; TODO add options to: italic off, comentary style off, modeline border off;
-
 (let ((background "#062329")
       (gutters    "#062329")
       (gutter-fg  "#062329")
@@ -151,12 +150,12 @@
    `(powerline-inactive2                  ((t (:background ,background :foreground ,text))))
 
    ;; doom modeline
-   `(doom-modeline-project-dir            ((t (:foreground nil :weight bold))))
-   `(doom-modeline-project-parent-dir     ((t (:background ,text :foreground nil :weight bold))))
-   `(doom-modeline-buffer-file            ((t (:foreground ,black))))
-   `(doom-modeline-buffer-modified        ((t (:foreground ,warning))))
+   `(doom-modeline-project-dir            ((t (:foreground ,background :weight bold))))
+   `(doom-modeline-project-parent-dir     ((t (:background ,text :foreground nil :weight normal))))
+   `(doom-modeline-buffer-file            ((t (:foreground ,black :weight bold))))
+   `(doom-modeline-buffer-modified        ((t (:foreground ,black :weight normal))))
 
-   ;; ace-window
+    ;; ace-window
    `(aw-leading-char-face                 ((t (:foreground ,red))))
 
    ;; Company
@@ -168,8 +167,8 @@
    `(company-tooltip-common               ((t (:foreground ,text))))
 
    ;; CTRLF
-   `(ctrlf-highlight-active               ((t (:background ,selection :foreground ,white))))
-   `(ctrlf-highlight-passive              ((t (:background ,background-darker :foreground ,strings))))
+   `(ctrlf-highlight-active               ((t (:background ,line-fg :foreground ,white))))
+   `(ctrlf-highlight-passive              ((t (:background ,selection :foreground ,strings))))
 
    ;; Swipper
    `(swiper-line-face                     ((t (:background ,background-darker))))
