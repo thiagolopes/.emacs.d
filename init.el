@@ -105,6 +105,14 @@
 (setopt blink-matching-paren nil)
 (setopt x-stretch-cursor nil)
 
+;; avoid cursor recenter every scroll
+(setq scroll-margin 3)
+(setq scroll-conservatively 101)
+(setq scroll-up-aggressively 0.01)
+(setq scroll-down-aggressively 0.01)
+(setq scroll-preserve-screen-position t)
+(setq auto-window-vscroll nil)
+
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
 (setq-default display-line-numbers-widen t)
