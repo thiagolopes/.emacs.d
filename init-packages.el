@@ -643,7 +643,7 @@
 	   :default-family "Hack"
 	   :line-spacing 1
 	   :default-weight normal
-	   :default-height 130
+	   :default-height 120
 	   :bold-weight extrabold
 	   :fixed-pitch-family "Sans"
 	   :fixed-pitch-height 1.0)
@@ -651,7 +651,7 @@
 	   :default-family "Iosevka Comfy"
 	   :line-spacing 1
 	   :default-weight normal
-	   :default-height 130
+	   :default-height 120
 	   :bold-weight extrabold
 	   :fixed-pitch-family "Iosevka Comfy Duo"
 	   :fixed-pitch-height 1.0)
@@ -663,7 +663,7 @@
 	   :bold-weight extrabold
 	   :fixed-pitch-family "Cascadia Mono PL"
 	   :fixed-pitch-height 1.0)))
-  (fontaine-set-preset 'cascadia))
+  (fontaine-set-preset 'hack))
 
 (provide 'init-packages)
 ;;; init.el ends here
