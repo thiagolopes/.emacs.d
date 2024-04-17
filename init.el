@@ -100,7 +100,7 @@
 
 ;; cursor config
 (blink-cursor-mode 0)
-(setopt cursor-type 'bar)
+(setopt cursor-type 'box)
 (setopt cursor-in-non-selected-windows nil)
 (setopt blink-matching-paren nil)
 (setopt x-stretch-cursor nil)
