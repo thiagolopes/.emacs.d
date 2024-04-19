@@ -636,7 +636,6 @@
   (doom-modeline-mode 1))
 
 (use-package server
-  :straight nil
   :config
   (unless (server-running-p)
     (server-start)))

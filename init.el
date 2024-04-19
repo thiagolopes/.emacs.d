@@ -112,6 +112,7 @@
 (setq scroll-down-aggressively 0.01)
 (setq scroll-preserve-screen-position t)
 (setq auto-window-vscroll nil)
+(setq text-scale-mode-step 1.05)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 (setq-default display-line-numbers-width 3)
