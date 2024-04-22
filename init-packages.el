@@ -640,6 +640,10 @@
   (unless (server-running-p)
     (server-start)))
 
+(use-package breadcrumb
+  :init
+  (breadcrumb-mode t))
+
 (use-package fontaine
   :if (display-graphic-p)
   :config
