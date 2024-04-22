@@ -154,7 +154,7 @@
    `(doom-modeline-project-parent-dir     ((t (:background ,modeline :foreground nil :weight normal))))
    `(doom-modeline-buffer-file            ((t (:foreground ,background-darker-darker :weight bold))))
    `(doom-modeline-buffer-modified        ((t (:foreground ,background-darker-darker :weight normal))))
-   `(doom-modeline-warning                ((t (:foreground ,orange :weight normal))))
+   `(doom-modeline-warning                ((t (:foreground ,error :weight normal))))
    `(doom-modeline-bar                    ((t (:background ,text))))
    `(doom-modeline-bar-inactive           ((t (:background ,background))))
 

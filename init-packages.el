@@ -622,8 +622,8 @@
 
 (use-package doom-modeline
   :custom
-  (doom-modeline-major-mode-color-icon t)
-  (doom-modeline-buffer-file-name-style 'truncate-upto-root)
+  (doom-modeline-major-mode-color-icon nil)
+  (doom-modeline-buffer-file-name-style 'truncate-upto-project)
   (doom-modeline-buffer-modification-icon t)
   (doom-modeline-time-icon t)
   (doom-modeline-icon t)
