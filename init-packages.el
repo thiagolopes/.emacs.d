@@ -147,7 +147,8 @@
   (setq highlight-indent-guides-highlighter-function 'my-highlighter)
   (setq highlight-indent-guides-responsive 'top)
   :hook
-  (python-mode . highlight-indent-guides-mode))
+  (python-mode    . highlight-indent-guides-mode)
+  (python-ts-mode . highlight-indent-guides-mode))
 
 ;; organize cache files
 (use-package no-littering
@@ -585,9 +586,12 @@
   :config
   (toggle-hl-line-when-idle t))
 
+;; org mode
 (use-package org-modern
   :config
   (with-eval-after-load 'org (global-org-modern-mode)))
+(use-package verb
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (use-package treesit-auto
   :custom
