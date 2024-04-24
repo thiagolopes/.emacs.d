@@ -443,8 +443,12 @@
   (vertico-resize nil)
   (vertico-count 6)
   (vertico-cycle nil)
+  (read-file-name-completion-ignore-case t)
+  (read-buffer-completion-ignore-case t)
+  (completion-ignore-case t)
   :config
-  (ido-mode 0)
+  (ido-mode -1)
+  (fido-mode -1)
   (vertico-mode))
 
 ;; html genereta tags html>body
