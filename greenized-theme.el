@@ -131,6 +131,9 @@
    `(hl-line                              ((t (:background ,highlight-line))))
    `(hl-line-face                         ((t (:background ,highlight-line))))
 
+   ;;page-break-lines
+   `(page-break-lines                     ((t (:background ,background))))
+
    ;; which-func
    `(which-func                           ((t (:inverse-video unspecified
 							      :underline unspecified
