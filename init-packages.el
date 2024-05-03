@@ -652,6 +652,10 @@
   :init
   (breadcrumb-mode t))
 
+(use-package dirvish
+  :config
+  (dirvish-override-dired-mode t))
+
 (use-package fontaine
   :if (display-graphic-p)
   :config
