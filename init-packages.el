@@ -441,7 +441,7 @@
 (use-package vertico
   :custom
   (vertico-resize nil)
-  (vertico-count 6)
+  (vertico-count 12)
   (vertico-cycle nil)
   (read-file-name-completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
