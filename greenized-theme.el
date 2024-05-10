@@ -23,39 +23,40 @@
   "Disable italic")
 
 ;; TODO add options to: italic off, comentary style off, modeline border off;
-(let ((background "#062329")
-      (gutters    "#062329")
-      (gutter-fg  "#062329")
-      (gutters-active "#062329")
+(let ((background "#041818")
+      (gutters    'background)
+      (gutter-fg  'background)
+      (gutters-active 'background)
+      (builtin      "#c8d4ec")
       ;; (builtin      "#ffffff")
-      (builtin      "#c1d1e3")
       ;; (selection  "#0000ff")
-      (selection  "#073642")
+      (selection  "#072828")
       (text
        (if greenized-theme-default-text-color
-	   "#d1b897"
+	   "#d3b58d"
 	 "#839496"))
       (comments   "#44b340")
       (punctuation "#8cde94")
       (keywords "#ffffff")
-      ;; (variables "#c1d1e3")
       (functions "#ffffff")
-      (methods    "#c1d1e3")
-      (strings    "#2ec09c")
-      (constants "#7ad0c6")
+      ;; (variables "#c1d1e3")
+      ;; (methods    "#c1d1e3")
+      (strings    "#0fdfaf")
+      (constants "#c8d4ec")
       (macros "#8cde94")
       (numbers "#7ad0c6")
-      (white     "#ffffff")
+      (white "#ffffff")
       (error "#ff0000")
-      (warning "#ffaa00")
+      (warning "#504038")
+      (highlight "darkseagreen2")
       (highlight-line "#0b3335")
       (line-fg "#126367")
       (black "#000000")
 
       (modeline "#dac6ab")
       (border-width '(2 . 2))
-      (background-darker "#051f24")
-      (background-darker-darker "#04181c")
+      (background-darker "#031515")
+      (background-darker-darker "#021010")
       (smaller 0.8)
 
       (font-slant
@@ -91,7 +92,7 @@
    `(region                               ((t (:foreground nil :background ,selection :weight light))))
    `(fringe                               ((t (:background ,background :foreground ,white))))
    `(linum                                ((t (:background ,background :foreground ,gutter-fg))))
-   `(highlight                            ((t (:foreground nil :background ,selection))))
+   `(highlight                            ((t (:foreground ,highlight :background ,selection))))
 
    ;; Font lock faces
    ;; *****************************************************************************

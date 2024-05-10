@@ -447,9 +447,9 @@
   (read-buffer-completion-ignore-case t)
   (completion-ignore-case t)
   :config
-  (ido-mode -1)
-  (fido-mode -1)
-  (vertico-mode))
+  (ido-mode 0)
+  (fido-mode 0)
+  (vertico-mode t))
 
 ;; html genereta tags html>body
 (use-package emmet-mode
