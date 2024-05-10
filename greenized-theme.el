@@ -35,8 +35,9 @@
        (if greenized-theme-default-text-color
 	   "#d3b58d"
 	 "#839496"))
-      (comments   "#44b340")
-      (punctuation "#8cde94")
+
+      (comments "#3fdf1f")
+      (punctuation "lightgreen")
       (keywords "#ffffff")
       (functions "#ffffff")
       ;; (variables "#c1d1e3")
@@ -162,7 +163,7 @@
    `(doom-modeline-bar                    ((t (:background ,text))))
    `(doom-modeline-bar-inactive           ((t (:background ,background))))
 
-    ;; ace-window
+   ;; ace-window
    `(aw-leading-char-face                 ((t (:foreground ,red))))
 
    ;; Company
