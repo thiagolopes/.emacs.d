@@ -112,6 +112,9 @@
    `(font-lock-preprocessor-face          ((t (:foreground ,macros))))
    `(font-lock-warning-face               ((t (:foreground ,warning))))
 
+   ;; Minibuffer
+   `(minibuffer-prompt                    ((t (:foreground ,comments))))
+
    ;; Error, Warning, Info, Success
    `(error                                ((t (:foreground ,red))))
    `(warning                              ((t (:foreground ,yellow))))
