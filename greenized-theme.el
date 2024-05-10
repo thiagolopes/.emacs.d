@@ -53,7 +53,8 @@
       (line-fg "#126367")
       (black "#000000")
 
-      (modeline "#dac6ab")
+      (modeline "#d3b58d")
+      (breadcrumb "#839496")
       (border-width '(2 . 2))
       (background-darker "#031515")
       (background-darker-darker "#021010")
@@ -180,6 +181,9 @@
    ;; Swipper
    `(swiper-line-face                     ((t (:background ,background-darker))))
    `(swiper-match-face-2                  ((t (:background ,strings :foreground ,black))))
+
+   ;; breadcrumb
+   `(breadcrumb-face                          ((t (:foreground ,breadcrumb))))
 
    ;; Flycheck
    `(flycheck-posframe-background-face    ((t (:background ,background-darker))))
