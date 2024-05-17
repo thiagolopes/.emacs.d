@@ -261,6 +261,10 @@
 ;; enable read only
 (setopt view-read-only t)
 
+;; orgmode
+(setq org-todo-keywords
+      '((sequence "TODO" "VERIFY" "|" "DONE" "STOPED")))
+
 ;; save desktop only window size, without questions - stolen from Xat
 ;; (defun desktop-file-modtime-reset ()
 ;;   "Reset `desktop-file-modtime' so the user is not bothered."
