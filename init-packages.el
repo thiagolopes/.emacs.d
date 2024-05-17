@@ -656,6 +656,19 @@
   :config
   (dirvish-override-dired-mode t))
 
+(use-package scroll-on-jump
+  :custom
+  (scroll-on-jump-curve 'linear)
+  :config
+  (scroll-on-jump-advice-add forward-paragraph)
+  (scroll-on-jump-advice-add backward-paragraph)
+  (scroll-on-jump-advice-add scroll-up-command)
+  (scroll-on-jump-advice-add scroll-down-command)
+  (scroll-on-jump-advice-add end-of-buffer)
+  (scroll-on-jump-advice-add beginning-of-buffer)
+  (scroll-on-jump-advice-add cua-exchange-point-and-mark)
+  (scroll-on-jump-advice-add exchange-point-and-mark))
+
 (use-package fontaine
   :if (display-graphic-p)
   :config

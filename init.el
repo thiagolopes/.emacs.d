@@ -176,7 +176,7 @@
 (follow-mode 1)
 
 ;; copy-paste with ctrl c/v
-(cua-mode t)
+(cua-mode 0)
 
 ;; looks horrible
 ;; treat camel-cased words as individual words.
