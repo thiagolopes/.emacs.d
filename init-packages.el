@@ -675,15 +675,15 @@
   (setq fontaine-presets
 	'((hack
 	   :default-family "Hack"
-	   :line-spacing 1
+	   :line-spacing 2
 	   :default-weight normal
-	   :default-height 120
+	   :default-height 110
 	   :bold-weight extrabold
 	   :fixed-pitch-family "Sans"
 	   :fixed-pitch-height 1.0)
 	  (iosevka
 	   :default-family "Iosevka Comfy"
-	   :line-spacing 1
+	   :line-spacing 2
 	   :default-weight normal
 	   :default-height 120
 	   :bold-weight extrabold
@@ -691,7 +691,7 @@
 	   :fixed-pitch-height 1.0)
 	  (cascadia
 	   :default-family "Cascadia Mono"
-	   :line-spacing 1
+	   :line-spacing 3
 	   :default-weight semilight
 	   :default-height 120
 	   :bold-weight extrabold
