@@ -620,8 +620,7 @@
 (use-package vterm)
 (use-package shell-pop
   :custom
-  (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*"
-				(lambda nil (ansi-term shell-pop-term-shell)))))
+  ;; (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
   (shell-pop-universal-key "<f12>")
   (shell-pop-window-size 30)
   (shell-pop-full-span t)
