@@ -695,8 +695,16 @@
 	   :default-height 120
 	   :bold-weight extrabold
 	   :fixed-pitch-family "Cascadia Mono PL"
+	   :fixed-pitch-height 1.0)
+	  (pragmasevka
+	   :default-family "Pragmasevka"
+	   :line-spacing 3
+	   :default-weight normal
+	   :default-height 130
+	   :bold-weight extrabold
+	   :fixed-pitch-family "Pragmasevka"
 	   :fixed-pitch-height 1.0)))
-  (fontaine-set-preset 'hack))
+  (fontaine-set-preset 'pragmasevka))
 
 (provide 'init-packages)
 ;;; init.el ends here
