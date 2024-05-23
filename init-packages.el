@@ -696,15 +696,32 @@
 	   :bold-weight extrabold
 	   :fixed-pitch-family "Cascadia Mono PL"
 	   :fixed-pitch-height 1.0)
+	  (iosvmata
+	   :default-family "Iosvmata"
+	   :line-spacing 2
+	   :default-weight normal
+	   :default-height 110
+	   :bold-weight bold
+	   :fixed-pitch-family "Iosvmata"
+	   :fixed-pitch-height 1.0)
+	  (nrk
+	   :default-family "NRK Mono"
+	   :default-width normal
+	   :line-spacing 2
+	   :default-weight normal
+	   :default-height 110
+	   :bold-weight bold
+	   :fixed-pitch-family "NRK Mono"
+	   :fixed-pitch-height 1.0)
 	  (pragmasevka
 	   :default-family "Pragmasevka"
 	   :line-spacing 3
-	   :default-weight normal
+	   :default-weight regular
 	   :default-height 130
 	   :bold-weight extrabold
 	   :fixed-pitch-family "Pragmasevka"
 	   :fixed-pitch-height 1.0)))
-  (fontaine-set-preset 'pragmasevka))
+  (fontaine-set-preset 'nrk))
 
 (provide 'init-packages)
 ;;; init.el ends here
