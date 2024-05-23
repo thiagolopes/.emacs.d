@@ -665,8 +665,7 @@
   (scroll-on-jump-advice-add scroll-down-command)
   (scroll-on-jump-advice-add end-of-buffer)
   (scroll-on-jump-advice-add beginning-of-buffer)
-  (scroll-on-jump-advice-add cua-exchange-point-and-mark)
-  (scroll-on-jump-advice-add exchange-point-and-mark))
+  (scroll-on-jump-advice-add cua-exchange-point-and-mark))
 
 (use-package fontaine
   :if (display-graphic-p)
