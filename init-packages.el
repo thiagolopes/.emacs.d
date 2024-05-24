@@ -697,9 +697,9 @@
 	   :fixed-pitch-height 1.0)
 	  (iosvmata
 	   :default-family "Iosvmata"
-	   :line-spacing 2
+	   :line-spacing 3
 	   :default-weight normal
-	   :default-height 110
+	   :default-height 120
 	   :bold-weight bold
 	   :fixed-pitch-family "Iosvmata"
 	   :fixed-pitch-height 1.0)
@@ -720,7 +720,7 @@
 	   :bold-weight extrabold
 	   :fixed-pitch-family "Pragmasevka"
 	   :fixed-pitch-height 1.0)))
-  (fontaine-set-preset 'nrk))
+  (fontaine-set-preset 'iosvmata))
 
 (provide 'init-packages)
 ;;; init.el ends here
