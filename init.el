@@ -122,8 +122,10 @@
 ;; (add-hook 'conf-mode-hook #'display-line-number-mode)
 ;; (setopt display-line-numbers-type t) ;; disable line number as default
 
+;; line wrapper by word
+;; (global-visual-line-mode)
+
 ;; show icons in visual-line-indicator
-(global-visual-line-mode)
 (setq visual-line-fringe-indicators '(nil right-curly-arrow))
 
 ;; saveaition cursor
@@ -352,6 +354,8 @@
 (add-hook 'text-mode-hook #'completion-preview-mode)
 
 
+;; line number enable
+(add-hook 'prog-mode 'display-line-numbers-mode)
 ;;; better output colors
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 ;;; org hooks
@@ -439,7 +443,7 @@
 
 ;; (global-set-key (kbd "M-n") #'forward-paragraph)
 ;; (global-set-key (kbd "M-p") #'backward-paragraph)
-(global-set-key (kbd "<f10>") #'global-display-line-numbers-mode)
+(global-set-key (kbd "<f10>") #'display-line-numbers-mode)
 (global-set-key (kbd "C-,") #'duplicate-line)
 (global-set-key (kbd "<f6>") #'font-lock-mode)
 
