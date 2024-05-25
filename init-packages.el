@@ -655,6 +655,10 @@
   :config
   (dirvish-override-dired-mode t))
 
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
 (use-package scroll-on-jump
   :custom
   (scroll-on-jump-curve 'linear)
