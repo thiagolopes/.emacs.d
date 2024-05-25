@@ -8,7 +8,7 @@
 ;; load theme
 (setopt greenized-theme-default-text-color t)
 (setopt greenized-theme-mixed-fonts t)
-(load-theme 'greenized t)
+;; (load-theme 'greenized t)
 ;; style add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
 

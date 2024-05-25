@@ -726,5 +726,10 @@
 	   :fixed-pitch-height 1.0)))
   (fontaine-set-preset 'iosvmata))
 
+
+(use-package gruber-darker-theme
+  :config
+  (load-theme 'gruber-darker t))
+
 (provide 'init-packages)
 ;;; init.el ends here
