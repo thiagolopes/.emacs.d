@@ -538,6 +538,7 @@
   (eglot-connect-timeout nil)
   (org-directory "~/org/")
   :config
+  (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
   (setopt eglot-report-progress nil)
   (fset #'jsonrpc--log-event #'ignore))
 (when (executable-find "emacs-lsp-booster")
@@ -725,7 +726,6 @@
 	   :fixed-pitch-family "Pragmasevka"
 	   :fixed-pitch-height 1.0)))
   (fontaine-set-preset 'iosvmata))
-
 
 (use-package gruber-darker-theme
   :config
