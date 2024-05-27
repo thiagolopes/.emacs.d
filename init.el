@@ -355,7 +355,7 @@
 
 
 ;; line number enable
-(add-hook 'prog-mode 'display-line-numbers-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 ;;; better output colors
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 ;;; org hooks
