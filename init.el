@@ -226,7 +226,7 @@
 (set-buffer-file-coding-system 'utf-8)
 
 ;; default browser
-(setopt browse-url-browser-function 'browse-url-generic)
+(setq browse-url-browser-function 'browse-url-default-browser)
 
 ;; modeline which function
 ;; (which-function-mode 1)
