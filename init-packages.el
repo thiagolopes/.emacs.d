@@ -629,6 +629,7 @@
   (shell-pop-restore-window-configuration t))
 
 (use-package doom-modeline
+  :disabled
   :custom
   (doom-modeline-major-mode-color-icon nil)
   (doom-modeline-buffer-file-name-style 'truncate-upto-root)
