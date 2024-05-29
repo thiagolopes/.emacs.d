@@ -413,6 +413,8 @@
   (set-emacs-frames-gtk "dark"))
 
 
+;; uncessary
+(global-unset-key (kbd "M-<down-mouse-1>"))
 ;;; better navegate end file
 (global-set-key (kbd "M-u") #'upcase-dwim)
 (global-set-key (kbd "M-l") #'downcase-dwim)

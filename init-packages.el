@@ -239,10 +239,12 @@
 
 ;; more cursor, mass editing
 (use-package multiple-cursors
-  :config
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+  :bind
+  ("C->" . 'mc/mark-next-like-this)
+  ("C-<" . 'mc/mark-previous-like-this)
+  ("C-c C-<" . 'mc/edit-lines)
+  ("C-c C->" . 'mc/mark-all-like-this)
+  ("M-<mouse-1>" . mc/add-cursor-on-click))
 
 (use-package projectile
   :custom
@@ -603,13 +605,6 @@
   (treesit-auto-install t)
   :config
   (global-treesit-auto-mode))
-
-;; (use-package siege-mode
-;;   :straight (siege-mode :repo "https://github.com/tslilc/siege-mode" :fetcher github)
-;;   :hook
-;;   (prog-mode . siege-mode)
-;;   :config
-;;   (siege-mode t))
 
 (use-package zeal-at-point
   :bind
