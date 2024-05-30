@@ -31,7 +31,7 @@
 (use-package i3wm-config-mode)
 (use-package lua-mode)
 (use-package markdown-mode)
-(use-package pdf-tools :defer 1)
+(use-package pdf-tools :defer t)
 (use-package web-mode)
 (use-package yaml-mode)
 
@@ -122,7 +122,6 @@
 
 ;; show helper command
 (use-package which-key
-  :ensure t
   :config
   (which-key-mode t))
 
@@ -145,7 +144,6 @@
 
 ;; ;; setup fonts
 (use-package unicode-fonts
-  :ensure t
   :config
   (unicode-fonts-setup))
 (use-package mixed-pitch
@@ -259,7 +257,6 @@
 
 ;; goto reference engine withtou LSP
 (use-package dumb-jump
-  :ensure t
   :init
   :custom
   (dumb-jump-default-project (concat user-emacs-directory "cache/jump"))
@@ -345,12 +342,10 @@
 
 ;; avoid trash in kill ring
 (use-package clean-kill-ring
-  :ensure t
   :config (clean-kill-ring-mode))
 
 ;; show usefull information at left on minibuffer
 (use-package marginalia
-  :ensure t
   :custom
   (marginalia-align 'left)
   :init
@@ -381,14 +376,12 @@
 
 ;; improve icomplete
 (use-package orderless
-  :ensure t
   :custom
   (completion-styles '(orderless flex))
   (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
 ;; minibuffer search candidate
 (use-package vertico
-  :ensure t
   :custom
   (vertico-mode t))
 
@@ -445,7 +438,6 @@
 
 ;; Blink mode line
 (use-package mode-line-bell
-  :ensure t
   :config
   (mode-line-bell-mode t))
 
@@ -463,7 +455,6 @@
 
 ;; Jump to char
 (use-package avy
-  :ensure t
   :custom
   (avy-background t)
   (avy-single-candidate-jump t)
@@ -536,7 +527,6 @@
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (use-package treesit-auto
-  :ensure t
   :custom
   (treesit-auto-install t)
   :config
@@ -576,7 +566,6 @@
 ;;   (doom-modeline-mode 1))
 
 (use-package server
-  :ensure t
   :config
   (unless (server-running-p)
     (server-start)))
@@ -590,12 +579,10 @@
 ;;   (dirvish-override-dired-mode t))
 
 (use-package yasnippet
-  :ensure t
   :init
   (yas-global-mode 1))
 
 (use-package scroll-on-jump
-  :ensure t
   :custom
   (scroll-on-jump-curve 'linear)
   :config
@@ -603,7 +590,6 @@
   (scroll-on-jump-advice-add backward-paragraph))
 
 (use-package fontaine
-  :ensure t
   :if (display-graphic-p)
   :config
   (setq fontaine-presets
@@ -632,7 +618,6 @@
   (fontaine-set-preset 'iosvmata))
 
 (use-package gruber-darker-theme
-  :ensure t
   :config
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
