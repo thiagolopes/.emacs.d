@@ -5,10 +5,14 @@
 (defvar comp-deferred-compliation)
 (add-hook 'after-init-hook #'garbage-collect t)
 
+;; please, maximize
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; quiet startup
+(setq inhibit-startup-message t)
+;; hopefully all themes we install are safe
+(setq custom-safe-themes t)
 ;; load theme
-(setopt greenized-theme-default-text-color t)
-(setopt greenized-theme-mixed-fonts t)
-;; (load-theme 'greenized t)
+(load-theme 'greenized t)
 ;; style add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
 

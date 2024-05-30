@@ -9,15 +9,12 @@
 (setopt user-full-name "Thiago Lopes")
 (setopt user-mail-address "thiagolopes@protonmail.com")
 
-;; TODO
-;; (set-window-buffer nil (current-buffer))
-
 ;; sanitaze
-(setopt x-select-enable-clipboard-manager nil)
-(setopt warning-minimum-level :emergency)
-(setopt require-final-newline t)
+;; (setq x-select-enable-clipboard-manager nil)
+(setq warning-minimum-level :emergency)
+(setq require-final-newline t)
 (defalias 'yes-or-no-p 'y-or-n-p)
-(setopt use-short-answers t)
+(setq use-short-answers t)
 
 ;; smart parens
 (electric-pair-mode 1)
@@ -28,119 +25,108 @@
 ;; show column number at modeline
 (column-number-mode t)
 
-;; sanity dired
-;;; suggest a target for moving/copying intelligently
-(setopt dired-dwim-target t)
-(setopt dired-hide-details-hide-symlink-targets nil)
-;; don't prompt to revert, just do it
-(setopt dired-auto-revert-buffer #'dired-buffer-stale-p)
-;; Always copy/delete recursively
-(setopt dired-recursive-copies 'always)
-(setopt dired-recursive-deletes 'top)
-;; Ask whether destination dirs should get created when copying/removing files.
-(setopt dired-create-destination-dirs 'ask)
-;; clean up dired buffers
-(setopt dired-kill-when-opening-new-dired-buffer t)
-(setopt dired-listing-switches "-alh")
+;; ;; sanity dired
+;; ;;; suggest a target for moving/copying intelligently
+;; (setopt dired-dwim-target t)
+;; (setopt dired-hide-details-hide-symlink-targets nil)
+;; ;; don't prompt to revert, just do it
+;; (setopt dired-auto-revert-buffer #'dired-buffer-stale-p)
+;; ;; Always copy/delete recursively
+;; (setopt dired-recursive-copies 'always)
+;; (setopt dired-recursive-deletes 'top)
+;; ;; Ask whether destination dirs should get created when copying/removing files.
+;; (setopt dired-create-destination-dirs 'ask)
+;; ;; clean up dired buffers
+;; (setopt dired-kill-when-opening-new-dired-buffer t)
+;; (setopt dired-listing-switches "-alh")
 
-;; Where to store image caches
-(setopt image-dired-dir (concat user-emacs-directory "image-dired/"))
-(setopt image-dired-db-file (concat image-dired-dir "db.el"))
-(setopt image-dired-gallery-dir (concat image-dired-dir "gallery/"))
-(setopt image-dired-temp-image-file (concat image-dired-dir "temp-image"))
-(setopt image-dired-temp-rotate-image-file (concat image-dired-dir "temp-rotate-image"))
-;; Screens are larger nowadays, we can afford slightly larger thumbnails
-(setopt image-dired-thumb-size 150)
+;; ;; Where to store image caches
+;; (setopt image-dired-dir (concat user-emacs-directory "image-dired/"))
+;; (setopt image-dired-db-file (concat image-dired-dir "db.el"))
+;; (setopt image-dired-gallery-dir (concat image-dired-dir "gallery/"))
+;; (setopt image-dired-temp-image-file (concat image-dired-dir "temp-image"))
+;; (setopt image-dired-temp-rotate-image-file (concat image-dired-dir "temp-rotate-image"))
+;; ;; Screens are larger nowadays, we can afford slightly larger thumbnails
+;; (setopt image-dired-thumb-size 150)
 
-;; TODO
-(setq site-run-file nil)
+;; (setq site-run-file nil)
 
-;; recursive
-(setopt enable-recursive-minibuffers t)
+;; ;; recursive
+(setq enable-recursive-minibuffers t)
 
-;; Show current key-sequence in minibuffer ala 'set showcmd' in vim. Any
-;; feedback after typing is better UX than no feedback at all.
-(setopt echo-keystrokes 0.02)
+;; ;; Don't resize the frames in steps; it looks weird, especially in tiling window
+;; ;; managers, where it can leave unseemly gaps.
+;; (setopt frame-resize-pixelwise t)
 
-;; Expand the minibuffer to fit multi-line text displayed in the echo-area. This
-;; doesn't look too great with direnv, however...
-(setopt resize-mini-windows 'grow-only)
+;; ;; never use dialog box
+(setq use-dialog-box nil)
 
-;; TODO
-;; (setopt frame-inhibit-implied-resize t)
-;; (setopt ediff-window-setup-function 'ediff-setup-windows-plain)
+;; ;; UX: Favor vertical splits over horizontal ones. Monitors are trending toward
+;; ;;   wide, rather than tall.
+;; (setopt split-width-threshold 160)
+;; (setopt split-height-threshold nil)
 
-;; Don't resize the frames in steps; it looks weird, especially in tiling window
-;; managers, where it can leave unseemly gaps.
-(setopt frame-resize-pixelwise t)
+;; ;; FIX: The native border "consumes" a pixel of the fringe on righter-most
+;; ;;   splits, `window-divider' does not. Available since Emacs 25.1.
+;; (setopt window-divider-default-places t)
+;; (setopt window-divider-default-bottom-width 1)
+;; (setopt window-divider-default-right-width 1)
+;; (add-hook 'prog-mode #'window-divider-mode)
 
-;; never use dialog box
-(setopt use-dialog-box nil)
+;; ;; Don't prompt for confirmation when we create a new file or buffer (assume the
+;; ;; user knows what they're doing).
+;; (require 'uniquify)
+;; (setopt confirm-nonexistent-file-or-buffer nil)
+;; (setopt uniquify-buffer-name-style 'forward)
 
-;; UX: Favor vertical splits over horizontal ones. Monitors are trending toward
-;;   wide, rather than tall.
-(setopt split-width-threshold 160)
-(setopt split-height-threshold nil)
+;; ;; middle-click paste at point, not at click
+;; (setopt mouse-yank-at-point t)
 
-;; FIX: The native border "consumes" a pixel of the fringe on righter-most
-;;   splits, `window-divider' does not. Available since Emacs 25.1.
-(setopt window-divider-default-places t)
-(setopt window-divider-default-bottom-width 1)
-(setopt window-divider-default-right-width 1)
-(add-hook 'prog-mode #'window-divider-mode)
-
-;; Don't prompt for confirmation when we create a new file or buffer (assume the
-;; user knows what they're doing).
-(require 'uniquify)
-(setopt confirm-nonexistent-file-or-buffer nil)
-(setopt uniquify-buffer-name-style 'forward)
-
-;; middle-click paste at point, not at click
-(setopt mouse-yank-at-point t)
-
-;; cursor config
+;; ;; cursor config
 (blink-cursor-mode 0)
-(setopt cursor-type 'box)
-(setopt cursor-in-non-selected-windows nil)
-(setopt blink-matching-paren nil)
-(setopt x-stretch-cursor nil)
+;; (setopt cursor-type 'box)
+;; (setopt cursor-in-non-selected-windows nil)
+;; (setq blink-matching-paren nil)
+;; (setopt x-stretch-cursor nil)
 
-;; avoid cursor recenter every scroll
-(setq scroll-margin 3)
-(setq scroll-conservatively 101)
-(setq scroll-up-aggressively 0.01)
-(setq scroll-down-aggressively 0.01)
-(setq scroll-preserve-screen-position t)
-(setq auto-window-vscroll nil)
-(setq text-scale-mode-step 1.05)
+;; ;; avoid cursor recenter every scroll
+;; (setq scroll-margin 3)
+;; (setq scroll-conservatively 101)
+;; (setq scroll-up-aggressively 0.01)
+;; (setq scroll-down-aggressively 0.01)
+;; (setq scroll-preserve-screen-position t)
+;; (setq auto-window-vscroll nil)
+;; (setq text-scale-mode-step 1.05)
 
-;; Explicitly define a width to reduce the cost of on-the-fly computation
-(setq-default display-line-numbers-width 3)
-(setq-default display-line-numbers-widen t)
-;; (add-hook 'prog-mode-hook #'display-line-number-mode)
-;; (add-hook 'text-mode-hook #'display-line-number-mode)
-;; (add-hook 'conf-mode-hook #'display-line-number-mode)
-;; (setopt display-line-numbers-type t) ;; disable line number as default
+(setq tab-always-indent 'complete)
 
-;; line wrapper by word
-;; (global-visual-line-mode)
+;; ;; Explicitly define a width to reduce the cost of on-the-fly computation
+;; (setq-default display-line-numbers-width 3)
+;; (setq-default display-line-numbers-widen t)
+;; ;; (add-hook 'prog-mode-hook #'display-line-number-mode)
+;; ;; (add-hook 'text-mode-hook #'display-line-number-mode)
+;; ;; (add-hook 'conf-mode-hook #'display-line-number-mode)
+;; ;; (setopt display-line-numbers-type t) ;; disable line number as default
 
-;; show icons in visual-line-indicator
-(setq visual-line-fringe-indicators '(nil right-curly-arrow))
+;; ;; line wrapper by word
+;; ;; (global-visual-line-mode)
 
-;; saveaition cursor
-(save-place-mode 1)
-(setopt save-place-file (concat user-emacs-directory "cache/places"))
+;; ;; show icons in visual-line-indicator
+;; (setq visual-line-fringe-indicators '(nil right-curly-arrow))
 
-;; setup dirs
-(setopt cache-dir (concat user-emacs-directory "/cache"))
-(setopt custom-file (concat user-emacs-directory "/custom.el"))
+;; ;; saveaition cursor
+;; (save-place-mode 1)
+;; (setopt save-place-file (concat user-emacs-directory "cache/places"))
+
+;; ;; setup dirs
+(setq cache-dir (concat user-emacs-directory "/cache"))
+(setq custom-file (concat user-emacs-directory "/custom.el"))
 
 ;; reload file if change
-(setopt load-prefer-newer t)
-(setopt auto-revert-avoid-polling t)
-(setopt auto-revert-interval 5)
-(setopt auto-revert-check-vc-info t)
+(setq load-prefer-newer t)
+(setq auto-revert-avoid-polling t)
+(setq auto-revert-interval 5)
+(setq auto-revert-check-vc-info t)
 (global-auto-revert-mode)
 
 ;; Made SHIFT+arrow to move to the next adjacent window in the specified direction
@@ -159,61 +145,58 @@
     (move-beginning-of-line 1)
     (forward-char column)))
 
-;; TODO
-(setopt isearch-lax-whitespace t)
-(setopt isearch-regexp-lax-whitespace t)
-(setopt search-whitespace-regexp "[ \t\r\n]+")
+;; ;; TODO
+;; (setopt isearch-lax-whitespace t)
+;; (setopt isearch-regexp-lax-whitespace t)
+;; (setopt search-whitespace-regexp "[ \t\r\n]+")
 
-;; Yes, I really want to quit.
-(setopt confirm-kill-emacs nil)
+;; ;; Yes, I really want to quit.
+;; (setopt confirm-kill-emacs nil)
 
-;; Yes, I really want compile
-(setopt compilation-ask-about-save nil)
+;; ;; Yes, I really want compile
+;; (setopt compilation-ask-about-save nil)
 
 ;; ctyle - change comentary to //
 (add-hook 'c-mode-hook '(lambda () (setopt comment-start "//"
 					   comment-end   "")))
 
-;; follow mode to split 1 file in to buffers
-(follow-mode 1)
+;; ;; follow mode to split 1 file in to buffers
+;; (follow-mode 1)
 
-;; copy-paste with ctrl c/v
-(cua-mode 0)
+;; ;; copy-paste with ctrl c/v
+;; (cua-mode 0)
 
-;; looks horrible
-;; treat camel-cased words as individual words.
-;; (add-hook 'prog-mode-hook 'subword-mode)
+;; ;; looks horrible
+;; ;; treat camel-cased words as individual words.
+;; ;; (add-hook 'prog-mode-hook 'subword-mode)
 
-;; don't assume sentences end with two spaces after a period.
-(setopt sentence-end-double-space nil)
+;; ;; don't assume sentences end with two spaces after a period.
+;; (setopt sentence-end-double-space nil)
 
 ;; handle very long lines without hurting emacs
-;; (global-so-long-mode)
+(global-so-long-mode)
 
 ;; backup setup
 ;;; don't clobber symlinks
-(setopt backup-by-copying t)
-(setopt backup-directory-alist '(("." . "~/.emacs.d/var/saves/")))
-(setopt delete-old-versions t)
-(setopt kept-new-versions 6)
-(setopt kept-old-versions 2)
-(setopt version-control t)
+(setq backup-by-copying t)
+(setq backup-directory-alist '(("." . "~/.emacs.d/var/saves/")))
+(setq delete-old-versions t)
+(setq kept-new-versions 6)
+(setq kept-old-versions 2)
+(setq version-control t)
 
 ;; overwrite text when selected, like we expect.
-(setopt delete-seleciton-mode t)
-;; quiet startup
-(setopt inhibit-startup-message t)
-;; hopefully all themes we install are safe
-(setopt custom-safe-themes t)
-;; when quiting emacs, just kill processes
-(setopt confirm-kill-processes nil)
-;; ask if local variables are safe once.
-(setopt enable-local-variables t)
+(setq delete-seleciton-mode t)
 
-;; show dir first in dired
-(require 'ls-lisp)
-(setopt ls-lisp-dirs-first t)
-(setopt ls-lisp-use-insert-directory-program nil)
+;; ;; when quiting emacs, just kill processes
+;; (setopt confirm-kill-processes nil)
+;; ;; ask if local variables are safe once.
+;; (setopt enable-local-variables t)
+
+;; ;; show dir first in dired
+;; (require 'ls-lisp)
+;; (setopt ls-lisp-dirs-first t)
+;; (setopt ls-lisp-use-insert-directory-program nil)
 
 ;; utf8, please
 (prefer-coding-system 'utf-8)
@@ -225,44 +208,49 @@
 (set-clipboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 
-;; default browser
+;; ;; default browser
 (setq browse-url-browser-function 'browse-url-default-browser)
 
-;; modeline which function
-;; (which-function-mode 1)
+;; ;; modeline which function
+;; ;; (which-function-mode 1)
 
-;; better underline
-(setopt x-underline-at-descent-line t)
+;; ;; better underline
+(setq x-underline-at-descent-line t)
 
-;; show parens
+;; ;; show parens
 (show-paren-mode t)
 
-;; enable fringe mode
+;; ;; enable fringe mode
 (fringe-mode)
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'left)
 
-;; Hippie-expand
-(hippie-expand t)
-(setopt hippie-expand-try-functions-list
-      '(try-expand-dabbrev
-	try-expand-dabbrev-all-buffers
-	;; try-expand-dabbrev-from-kill
-	;; try-expand-all-abbrevs
-	;; try-expand-list
-	;; try-expand-lien
-	try-complete-lisp-symbol-partially
-	try-complete-lisp-symbol
-	try-complete-file-name-partially
-	try-complete-file-name))
-(global-set-key [remap dabbrev-expand] 'hippie-expand)
+;; ;; Hippie-expand
+;; (hippie-expand t)
+;; (setopt hippie-expand-try-functions-list
+;;       '(try-expand-dabbrev
+;;	try-expand-dabbrev-all-buffers
+;;	;; try-expand-dabbrev-from-kill
+;;	;; try-expand-all-abbrevs
+;;	;; try-expand-list
+;;	;; try-expand-lien
+;;	try-complete-lisp-symbol-partially
+;;	try-complete-lisp-symbol
+;;	try-complete-file-name-partially
+;;	try-complete-file-name))
+;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-;; icomplete - old and good
+;; ;; m-x
+;; (ido-mode t)
+;; (fido-mode t)
+;; ;; icomplete - old and good
 (icomplete-mode t)
+(icomplete-vertical-mode t)
 
-;; enable read only
-(setopt view-read-only t)
+(savehist-mode t)
 
+;; ;; enable read only
+;; (setopt view-read-only t)
 ;; orgmode
 (setq org-todo-keywords
       '((sequence "TODO" "VERIFY" "|" "DONE" "STOPED")))
@@ -438,18 +426,18 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c p") 'find-file-at-point)
 (global-set-key (kbd "M-j") 'join-line)
+;;dired
+(global-set-key (kbd "C-x C-d") 'dired)
 
 ;; eshell pop
 (global-set-key (kbd "M-<f12>") '(lambda () (interactive) (term-pop 'eshell "*eshell*")))
 ;; (global-set-key (kbd "<f12>")   '(lambda () (interactive) (term-pop 'shell "*shell*")))
 
-;; (global-set-key (kbd "M-n") #'forward-paragraph)
-;; (global-set-key (kbd "M-p") #'backward-paragraph)
 (global-set-key (kbd "<f10>") #'display-line-numbers-mode)
 (global-set-key (kbd "C-,") #'duplicate-line)
 (global-set-key (kbd "<f6>") #'font-lock-mode)
 
-(load-file (expand-file-name "init-packages.el" user-emacs-directory))
+(load (expand-file-name "init-packages.el" user-emacs-directory))
 (require 'init-packages)
 
 (provide 'init)

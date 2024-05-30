@@ -2,40 +2,20 @@
 ;;; Commentaryp:
 ;;;  this package will run after early-init.el
 ;;; Code:
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-	(url-retrieve-synchronously
-	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	 'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-(setq vc-follow-symlinks 'ask) ; restore default
-(setq straight-use-package-by-default t)
-(setq straight-cache-autoloads t)
-(setq straight-vc-git-default-clone-depth 1)
-(setq straight-check-for-modifications '(find-when-checking))
-(setq package-enable-at-startup nil)
-(setq vc-follow-symlinks t)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/") t)
 
-;; setup use-package
-(require 'straight-x)
-(straight-use-package 'use-package)
-(require 'use-package)
-(setq use-package-verbose t)
-(setq use-package-compute-statistics nil)
-
+(unless package-archive-contents (package-refresh-contents))
+(package-initialize)
+(eval-when-compile
+  (require 'use-package))
 
-;; load .env shell
+;; ;; load .env shell
 (use-package exec-path-from-shell
   :config
   (exec-path-from-shell-initialize))
 
-;;icons
+;; ;;icons
 (use-package all-the-icons)
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
@@ -45,7 +25,7 @@
   :init
   (all-the-icons-completion-mode))
 
-;; extra modes
+;; ;; extra modes
 (use-package cmake-mode)
 (use-package i3wm-config-mode)
 (use-package lua-mode)
@@ -54,30 +34,45 @@
 (use-package web-mode)
 (use-package yaml-mode)
 
-;; themes
-(use-package doom-themes)
-(use-package solarized-theme
-  :custom (solarized-use-less-bold t))
+(use-package persist
+  :after server)
+(use-package persist-state
+  :after (persist, server)
+  :config
+  (persist-state-mode t))
 
-;; debuger
-(use-package realgud)
+;; This package automatically calculates and adjusts the default text size for
+;; the size and pixel pitch of the display.
+(use-package textsize
+  :init
+  (textsize-mode t)
+  :custom
+  (textsize-default-points 14))
 
-;; keyboard drive questions
-(use-package transient)
+;; ;; themes
+;; (use-package doom-themes)
+;; (use-package solarized-theme
+;;   :custom (solarized-use-less-bold t))
+
+;; ;; debuger
+;; (use-package realgud)
+
+;; ;; keyboard drive questions
+;; (use-package transient)
 
 ;; emacs gc
-(use-package gcmh
-  :config
-  (gcmh-mode 1))
+;; (use-package gcmh
+;;   :config
+;;   (gcmh-mode 1))
 
-;; remove minor modes from modeline - TODO remove after modeline settings
-(use-package minions
-  :config
-  (minions-mode))
+;; ;; remove minor modes from modeline - TODO remove after modeline settings
+;; (use-package minions
+;;   :config
+;;   (minions-mode))
 
-(use-package page-break-lines
-  :config
-  (global-page-break-lines-mode))
+;; (use-package page-break-lines
+;;   :config
+;;   (global-page-break-lines-mode))
 
 ;; edit by sudo
 (use-package sudo-edit)
@@ -131,61 +126,61 @@
   (cider-repl-display-help-banner nil)
   (ider-repl-pop-to-buffer-on-connect 'display-only))
 
-;; python
+;; ;; python
 (use-package pytest)
 (use-package virtualenvwrapper
   :config (venv-initialize-eshell))
 (use-package electric-operator
   :hook
   (python-mode . electric-operator-mode))
-(use-package highlight-indent-guides
-  :config
-  (defun my-highlighter (level responsive display)
-    (if (> 1 level)
-	nil
-      (highlight-indent-guides--highlighter-default level responsive display)))
-  (setq highlight-indent-guides-highlighter-function 'my-highlighter)
-  (setq highlight-indent-guides-responsive 'top)
-  :hook
-  (python-mode    . highlight-indent-guides-mode)
-  (python-ts-mode . highlight-indent-guides-mode))
+;; (use-package highlight-indent-guides
+;;   :config
+;;   (defun my-highlighter (level responsive display)
+;;     (if (> 1 level)
+;;	nil
+;;       (highlight-indent-guides--highlighter-default level responsive display)))
+;;   (setq highlight-indent-guides-highlighter-function 'my-highlighter)
+;;   (setq highlight-indent-guides-responsive 'top)
+;;   :hook
+;;   (python-mode    . highlight-indent-guides-mode)
+;;   (python-ts-mode . highlight-indent-guides-mode))
 
-;; organize cache files
+;; ;; organize cache files
 (use-package no-littering
   :custom
   (auto-save-file-name-transforms
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 ;; show helper command
-(use-package which-key
-  :custom
-  (which-key-allow-evil-operators t)
-  (which-key-show-remaining-keys t)
-  (which-key-sort-order 'which-key-prefix-then-key-order)
-  :config
-  (which-key-mode t)
-  (which-key-setup-minibuffer)
-  (set-face-attribute
-   'which-key-local-map-description-face nil :weight 'bold))
+(use-package which-key)
+  ;; :custom
+  ;; (which-key-allow-evil-operators t)
+  ;; (which-key-show-remaining-keys t)
+  ;; (which-key-sort-order 'which-key-prefix-then-key-order)
+  ;; :config
+  ;; (which-key-mode t)
+  ;; (which-key-setup-minibuffer)
+  ;; (set-face-attribute
+  ;;  'which-key-local-map-description-face nil :weight 'bold))
 
-(use-package undo-tree
-  :init
-  (global-undo-tree-mode)
-  :custom
-  (undo-tree-visualizer-diff t)
-  (undo-tree-auto-save-history t)
-  (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/"))))
-  (undo-tree-enable-undo-in-region t)
-  ;; Increase undo limits to avoid emacs prematurely truncating the undo
-  ;; history and corrupting the tree. This is larger than the undo-fu
-  ;; defaults because undo-tree trees consume exponentially more space,
-  ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
-  ;; syl20bnr/spacemacs#12110
-  (undo-limit 800000)            ; 800kb (default is 160kb)
-  (undo-strong-limit 12000000)   ; 12mb  (default is 240kb)
-  (ndo-outer-limit 128000000)) ; 128mb (default is 24mb))
+;; (use-package undo-tree
+;;   :init
+;;   (global-undo-tree-mode)
+;;   :custom
+;;   (undo-tree-visualizer-diff t)
+;;   (undo-tree-auto-save-history t)
+;;   (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/"))))
+;;   (undo-tree-enable-undo-in-region t)
+;;   ;; Increase undo limits to avoid emacs prematurely truncating the undo
+;;   ;; history and corrupting the tree. This is larger than the undo-fu
+;;   ;; defaults because undo-tree trees consume exponentially more space,
+;;   ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
+;;   ;; syl20bnr/spacemacs#12110
+;;   (undo-limit 800000)            ; 800kb (default is 160kb)
+;;   (undo-strong-limit 12000000)   ; 12mb  (default is 240kb)
+;;   (ndo-outer-limit 128000000)) ; 128mb (default is 24mb))
 
-;; setup fonts
+;; ;; setup fonts
 (use-package unicode-fonts
   :after persistent-soft
   :config
@@ -194,7 +189,7 @@
   :custom
   (mixed-pitch-set-height t))
 
-;; darker buffer where is not about edit text
+;; ;; darker buffer where is not about edit text
 (use-package solaire-mode
   :hook
   (change-major-mode . turn-on-solaire-mode)
@@ -205,10 +200,10 @@
   :config
   (solaire-global-mode +1))
 
-;; info (better man)
-(use-package info-colors
-  :hook
-  (Info-selection . info-colors-fontify-node))
+;; ;; info (better man)
+;; (use-package info-colors
+;;   :hook
+;;   (Info-selection . info-colors-fontify-node))
 
 (use-package expand-region
   :bind
@@ -220,22 +215,22 @@
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
 
-;; show flags
-(use-package hl-todo
-  :hook (prog-mode . hl-todo-mode)
-  :hook (org-mode  . hl-todo-mode)
-  :hook (yaml-mode . hl-todo-mode)
-  :custom
-  (hl-todo-highlight-punctuation ":")
-  (hl-todo-keyword-faces
-   '(("TODO" warning bold)
-     ("FIXME" error bold)
-     ("REVIEW" font-lock-keyword-face bold)
-     ("HACK" font-lock-constant-face bold)
-     ("DEPRECATED" font-lock-doc-face bold)
-     ("NOTE" success bold)
-     ("BUG" error bold)
-     ("XXX" font-lock-constant-face bold))))
+;; ;; show flags
+;; (use-package hl-todo
+;;   :hook (prog-mode . hl-todo-mode)
+;;   :hook (org-mode  . hl-todo-mode)
+;;   :hook (yaml-mode . hl-todo-mode)
+;;   :custom
+;;   (hl-todo-highlight-punctuation ":")
+;;   (hl-todo-keyword-faces
+;;    '(("TODO" warning bold)
+;;      ("FIXME" error bold)
+;;      ("REVIEW" font-lock-keyword-face bold)
+;;      ("HACK" font-lock-constant-face bold)
+;;      ("DEPRECATED" font-lock-doc-face bold)
+;;      ("NOTE" success bold)
+;;      ("BUG" error bold)
+;;      ("XXX" font-lock-constant-face bold))))
 
 ;; more cursor, mass editing
 (use-package multiple-cursors
@@ -246,27 +241,27 @@
   ("C-c C->" . 'mc/mark-all-like-this)
   ("M-<mouse-1>" . mc/add-cursor-on-click))
 
-(use-package projectile
-  :custom
-  (projectile-project-search-path '(("~/dev/" . 1) ("~/.emacs.d/" . 1)))
-  (projectile-globally-ignored-files '(".DS_Store" "TAGS")
-				     projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
-				     projectile-kill-buffers-filter 'kill-only-files)
-  :init
-  (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
-  (global-set-key [remap find-tag]         #'projectile-find-tag))
+;; (use-package projectile
+;;   :custom
+;;   (projectile-project-search-path '(("~/dev/" . 1) ("~/.emacs.d/" . 1)))
+;;   (projectile-globally-ignored-files '(".DS_Store" "TAGS")
+;;				     projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
+;;				     projectile-kill-buffers-filter 'kill-only-files)
+;;   :init
+;;   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
+;;   (global-set-key [remap find-tag]         #'projectile-find-tag))
 
-(use-package winner
-  :preface
-  (defvar winner-dont-bind-my-keys t) ; I'll bind keys myself
-  :hook
-  (dashboard-setup-startup . winner-mode)
-  :config
-  (winner-mode 1)
-  (appendq! winner-boring-buffers
-	    '("*Compile-Log*" "*inferior-lisp*" "*Fuzzy Completions*"
-	      "*Apropos*" "*Help*" "*cvs*" "*Buffer List*" "*Ibuffer*"
-	      "*esh command on file*")))
+;; (use-package winner
+;;   :preface
+;;   (defvar winner-dont-bind-my-keys t) ; I'll bind keys myself
+;;   :hook
+;;   (dashboard-setup-startup . winner-mode)
+;;   :config
+;;   (winner-mode 1)
+;;   (appendq! winner-boring-buffers
+;;	    '("*Compile-Log*" "*inferior-lisp*" "*Fuzzy Completions*"
+;;	      "*Apropos*" "*Help*" "*cvs*" "*Buffer List*" "*Ibuffer*"
+;;	      "*esh command on file*")))
 
 (use-package rainbow-delimiters
   :bind
@@ -276,37 +271,24 @@
   :custom
   (rainbow-delimiters-max-face-count 4))
 
-(use-package undo-fu-session
-  :custom
-  (undo-fu-session-directory (concat user-emacs-directory "cache/fu/undo-fu-session/"))
-  (undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
-  :config
-  (undo-fu-session-global-mode t)
-  (when (executable-find "zstd")
-    ;; There are other algorithms available, but zstd is the fastest, and speed
-    ;; is our priority within Emacs
-    (setq-default undo-fu-session-compression 'zst)))
+;; (use-package undo-fu-session
+;;   :custom
+;;   (undo-fu-session-directory (concat user-emacs-directory "cache/fu/undo-fu-session/"))
+;;   (undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
+;;   :config
+;;   (undo-fu-session-global-mode t)
+;;   (when (executable-find "zstd")
+;;     ;; There are other algorithms available, but zstd is the fastest, and speed
+;;     ;; is our priority within Emacs
+;;     (setq-default undo-fu-session-compression 'zst)))
 
-;; git!
+;; UUID
+(use-package uuidgen)
+
+;; ;; git!
 (use-package git-link)
 (use-package git-timemachine)
-(use-package magit
-  :custom
-  (magit-auto-revert-mode nil)  ; we do this ourselves further down
-  (transient-default-level 5)
-  (magit-diff-refine-hunk t) ; show granular diffs in selected hunk
-  ;; Don't autosave repo buffers. This is too magical, and saving can
-  ;; trigger a bunch of unwanted side-effects, like save hooks and
-  ;; formatters. Trust the user to know what they're doing.
-  (magit-save-repository-buffers nil)
-  ;; Don't display parent/related refs in commit buffers; they are rarely
-  ;; helpful and only add to runtime costs.
-  (magit-revision-insert-related-refs nil)
-  (transient-levels-file  (concat user-emacs-directory "transient/levels"))
-  (transient-values-file  (concat user-emacs-directory "transient/values"))
-  (transient-history-file (concat user-emacs-directory "transient/history"))
-  :hook
-  (magit-process-mode goto-address-mode))
+(use-package magit)
 
 ;; move blocks
 (use-package drag-stuff
@@ -316,22 +298,22 @@
    ("<M-left>" . drag-stuff-left)
    ("<M-right>". drag-stuff-right)))
 
-;; ;; goto reference engine withtou LSP
+;; goto reference engine withtou LSP
 (use-package dumb-jump
   :init
   :custom
   (dumb-jump-default-project (concat user-emacs-directory "cache/jump"))
-  (dumb-jump-prefer-searcher 'ag)
+  (dumb-jump-prefer-searcher 'rg)
   (dumb-jump-aggressive nil)
   (dumb-jump-selector 'ivy)
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
-;; remove *buffer-name* from first candites
-(use-package popwin
-  :config
-  (popwin-mode t))
+;; ;; remove *buffer-name* from first candites
+;; (use-package popwin
+;;   :config
+;;   (popwin-mode t))
 
 (use-package nvm
   :config
@@ -369,33 +351,37 @@
   (dolist (command '(scroll-up-command
 		     scroll-down-command
 		     recenter-top-bottom
+		     windmove-right
+		     windmove-left
+		     windmove-up
+		     windmove-down
 		     other-window
 		     ace-window))
     (advice-add command :after #'pulse-line)))
 
 ;; visual feedback on some operations
-(use-package volatile-highlights
-  :config
-  (volatile-highlights-mode t))
+;; (use-package volatile-highlights
+  ;; :config
+  ;; (volatile-highlights-mode t))
 
 ;; fancy welcome
-(use-package dashboard
-  :custom
-  (dashboard-set-navigator t)
-  (dashboard-projects-backend 'projectile)
-  (dashboard-show-shortcuts t)
-  (dashboard-items '((recents  . 15)
-		     (projects . 10)))
-  (dashboard-center-content t)
-  :config
-  (dashboard-setup-startup-hook))
+;; (use-package dashboard
+;;   :custom
+;;   (dashboard-set-navigator t)
+;;   (dashboard-projects-backend 'projectile)
+;;   (dashboard-show-shortcuts t)
+;;   (dashboard-items '((recents  . 15)
+;;		     (projects . 10)))
+;;   (dashboard-center-content t)
+;;   :config
+;;   (dashboard-setup-startup-hook))
 
 ;; save minibuffer historical
-(use-package savehist
-  :custom
-  (history-length 50)
-  :config
-  (savehist-mode))
+;; (use-package savehist
+;;   :custom
+;;   (history-length 50)
+;;   :config
+;;   (savehist-mode))
 
 ;; avoid trash in kill ring
 (use-package clean-kill-ring
@@ -410,48 +396,33 @@
 
 ;; better minibuffer
 (use-package consult
-  :config
-  (setq completion-in-region-function
-      (lambda (&rest args)
-	(apply (if vertico-mode
-		   #'consult-completion-in-region
-		 #'completion--in-region)
-	       args)))
-  (setq xref-show-xrefs-function #'consult-xref
-	xref-show-definitions-function #'consult-xref)
-  :hook
-  (completion-list-mode . consult-preview-at-point-mode)
   :bind
-  (("C-x 4 b" . consult-buffer-other-window)
-   ("C-x 5 b" . consult-buffer-other-frame)
-   ("C-x b"   . consult-buffer)
-   ("C-M-?"   . consult-find)
-   ("M-g i"   . consult-imenu)
-   ("M-?"     . consult-ripgrep)
+  (("C-x b"   . consult-buffer)
+   ("C-c f"   . consult-find)
+   ("C-c i"   . consult-imenu)
+   ("C-c r"   . consult-ripgrep)
    ("M-g g"   . consult-goto-line)
-   ("M-g M-g" . consult-goto-line)
-   ("M-y"     . consult-yank-pop)))
+   ("M-g M-g" . consult-goto-line)))
 
 ;; improve icomplete
 (use-package orderless
   :custom
-  (orderless-component-separator "[ &]")
   (completion-styles '(orderless flex))
   (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
 ;; ;; minibuffer search candidate
-(use-package vertico
-  :custom
-  (vertico-resize nil)
-  (vertico-count 12)
-  (vertico-cycle nil)
-  (read-file-name-completion-ignore-case t)
-  (read-buffer-completion-ignore-case t)
-  (completion-ignore-case t)
-  :config
-  (ido-mode 0)
-  (fido-mode 0)
-  (vertico-mode t))
+;; (use-package vertico
+;;   :custom
+;;   (vertico-resize nil)
+;;   (vertico-count 12)
+;;   (vertico-cycle nil)
+;;   (read-file-name-completion-ignore-case t)
+;;   (read-buffer-completion-ignore-case t)
+;;   (completion-ignore-case t)
+;;   :config
+;;   (ido-mode 0)
+;;   (fido-mode 0)
+;;   (vertico-mode t))
 
 ;; html genereta tags html>body
 (use-package emmet-mode
@@ -460,10 +431,10 @@
   (web-mode . emmet-mode))
 
 ;; better line moviment
-(use-package mwim
-  :config
-  (global-set-key (kbd "C-a") 'mwim-beginning)
-  (global-set-key (kbd "C-e") 'mwim-end))
+;; (use-package mwim
+;;   :config
+;;   (global-set-key (kbd "C-a") 'mwim-beginning)
+;;   (global-set-key (kbd "C-e") 'mwim-end))
 
 ;; show color hex with background color
 (use-package rainbow-mode
@@ -471,41 +442,44 @@
   (prog-mode . rainbow-mode))
 
 ;; better buffer list organizer
-(use-package bufler
-  :straight (bufler :fetcher github :repo "alphapapa/bufler.el"
-		    :files (:defaults (:exclude "helm-bufler.el")))
-  :bind (("C-x C-b" . bufler)))
+;; (use-package bufler
+;;   :straight (bufler :fetcher github :repo "alphapapa/bufler.el"
+;;		    :files (:defaults (:exclude "helm-bufler.el")))
+;;   :bind (("C-x C-b" . bufler)))
 
-(use-package fancy-compilation
-  :custom
-  (fancy-compilation-override-colors nil)
-  :config
-  (fancy-compilation-mode))
+;; (use-package fancy-compilation
+;;   :custom
+;;   (fancy-compilation-override-colors nil)
+;;   :config
+;;   (fancy-compilation-mode))
 
 ;; move open buffers
 (use-package ace-window
   :bind
   ("M-o" . ace-window))
 
+;; (use-package treesitter-context)
+;; https://github.com/zbelial/treesitter-context.el
+
 ;; tree sidebar
-(use-package dired-sidebar
-  :bind
-  ("<f9>" . dired-sidebar-toggle-sidebar)
-  :hook
-  (dired-sidebar-mode . (lambda ()
-			  (unless (file-remote-p default-directory)
-			    (auto-revert-mode))))
-  :config
-  (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
-  (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
-  :custom
-  (dired-sidebar-use-custom-modeline nil)
-  (dired-sidebar-subtree-line-prefix "__")
-  (dired-sidebar-should-follow-file t)
-  (dired-sidebar-refresh-on-project-switch t)
-  ;; (dired-sidebar-theme 'icons)
-  (dired-sidebar-theme 'vscode)
-  (dired-sidebar-use-custom-font t))
+;; (use-package dired-sidebar
+;;   :bind
+;;   ("<f9>" . dired-sidebar-toggle-sidebar)
+;;   :hook
+;;   (dired-sidebar-mode . (lambda ()
+;;			  (unless (file-remote-p default-directory)
+;;			    (auto-revert-mode))))
+;;   :config
+;;   (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
+;;   (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
+;;   :custom
+;;   (dired-sidebar-use-custom-modeline nil)
+;;   (dired-sidebar-subtree-line-prefix "__")
+;;   (dired-sidebar-should-follow-file t)
+;;   (dired-sidebar-refresh-on-project-switch t)
+;;   ;; (dired-sidebar-theme 'icons)
+;;   (dired-sidebar-theme 'vscode)
+;;   (dired-sidebar-use-custom-font t))
 
 ;; Blink mode line
 (use-package mode-line-bell
@@ -513,16 +487,16 @@
   (mode-line-bell-mode t))
 
 ;; Error ui
-(use-package flymake)
-(use-package sideline
-  :hook (flycheck-mode . sideline-mode)
-  :custom
-  (sideline-backends-right '(sideline-flycheck)))
-(use-package sideline-flymake
-  :hook (flymake-mode . sideline-mode)
-  :init
-  (setq sideline-flymake-display-mode 'point)
-  (setq sideline-backends-right '(sideline-flymake)))
+;; (use-package flymake)
+;; (use-package sideline
+;;   :hook (flycheck-mode . sideline-mode)
+;;   :custom
+;;   (sideline-backends-right '(sideline-flycheck)))
+;; (use-package sideline-flymake
+;;   :hook (flymake-mode . sideline-mode)
+;;   :init
+;;   (setq sideline-flymake-display-mode 'point)
+;;   (setq sideline-backends-right '(sideline-flymake)))
 
 ;; Jump to char
 (use-package avy
@@ -533,35 +507,32 @@
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
 ;; LSP
-(use-package eglot
-  :custom
-  (eglot-sync-connect nil)
-  (eglot-events-buffer-size 0)
-  (eglot-connect-timeout nil)
-  (org-directory "~/org/")
-  :config
-  (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
-  (setopt eglot-report-progress nil)
-  (fset #'jsonrpc--log-event #'ignore))
-(when (executable-find "emacs-lsp-booster")
-  (use-package eglot-booster
-    :straight (eglot-booster :fetcher github :repo "https://github.com/jdtsmith/eglot-booster"
-			     :files ("eglot-booster.el"))
-    :config (eglot-booster-mode)))
+;; (use-package eglot
+;;   :custom
+;;   (eglot-sync-connect nil)
+;;   (eglot-events-buffer-size 0)
+;;   (eglot-connect-timeout nil)
+;;   (org-directory "~/org/")
+;;   :config
+;;   (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
+;;   (setopt eglot-report-progress nil)
+;;   (fset #'jsonrpc--log-event #'ignore))
+;; (when (executable-find "emacs-lsp-booster")
+;;   (use-package eglot-booster
+;;     :straight (eglot-booster :fetcher github :repo "https://github.com/jdtsmith/eglot-booster"
+;;			     :files ("eglot-booster.el"))
+;;     :config (eglot-booster-mode)))
 
 ;; Overlay symbol!!
 (use-package symbol-overlay
   :custom
-  (symbol-overlay-idle-time 1.0)
+  (symbol-overlay-idle-time 0.8)
   (symbol-overlay-temp-highlight-single nil)
   :hook
   (prog-mode . symbol-overlay-mode))
 
 ;; show number color
-(use-package highlight-numbers
-  :disabled
-  :hook
-  (prog-mode . highlight-numbers-mode))
+(use-package highlight-numbers)
 
 ;; List of coletions
 (use-package embark
@@ -574,24 +545,24 @@
 	       '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
 		 nil
 		 (window-parameters (mode-line-format . none)))))
-(use-package embark-consult
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
+;; (use-package embark-consult
+;;   :hook
+;;   (embark-collect-mode . consult-preview-at-point-mode))
 
-(use-package xterm-color
-  :custom
-  (comint-output-filter-functions
-   (remove 'ansi-color-process-output comint-output-filter-functions))
-  :hook
-  (shell-mode . (lambda ()
-		  (font-lock-mode -1)
-		  (make-local-variable 'font-lock-function)
-		  (setq font-lock-function (lambda (_) nil))
-		  (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter nil t))))
+;; (use-package xterm-color
+;;   :custom
+;;   (comint-output-filter-functions
+;;    (remove 'ansi-color-process-output comint-output-filter-functions))
+;;   :hook
+;;   (shell-mode . (lambda ()
+;;		  (font-lock-mode -1)
+;;		  (make-local-variable 'font-lock-function)
+;;		  (setq font-lock-function (lambda (_) nil))
+;;		  (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter nil t))))
 
-(use-package hl-line+
-  :config
-  (toggle-hl-line-when-idle t))
+;; (use-package hl-line+
+;;   :config
+;;   (toggle-hl-line-when-idle t))
 
 ;; org mode
 (use-package org-modern
@@ -616,41 +587,41 @@
 (use-package vterm)
 (use-package shell-pop
   :custom
-  ;; (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+  (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
   (shell-pop-universal-key "<f12>")
   (shell-pop-window-size 30)
   (shell-pop-full-span t)
   (shell-pop-window-position "bottom")
   (shell-pop-restore-window-configuration t))
 
-(use-package doom-modeline
-  :disabled
-  :custom
-  (doom-modeline-major-mode-color-icon nil)
-  (doom-modeline-buffer-file-name-style 'truncate-upto-root)
-  (doom-modeline-buffer-modification-icon t)
-  (doom-modeline-time-icon t)
-  (doom-modeline-icon t)
-  (doom-modeline-highlight-modified-buffer-name t)
-  (doom-modeline-position-column-line-format '("(%l:%c)"))
-  (doom-modeline-enable-word-count t)
-  (doom-modeline-height 28)
-  (doom-modeline-buffer-encoding nil)
-  :init
-  (doom-modeline-mode 1))
+;; (use-package doom-modeline
+;;   :disabled
+;;   :custom
+;;   (doom-modeline-major-mode-color-icon nil)
+;;   (doom-modeline-buffer-file-name-style 'truncate-upto-root)
+;;   (doom-modeline-buffer-modification-icon t)
+;;   (doom-modeline-time-icon t)
+;;   (doom-modeline-icon t)
+;;   (doom-modeline-highlight-modified-buffer-name t)
+;;   (doom-modeline-position-column-line-format '("(%l:%c)"))
+;;   (doom-modeline-enable-word-count t)
+;;   (doom-modeline-height 28)
+;;   (doom-modeline-buffer-encoding nil)
+;;   :init
+;;   (doom-modeline-mode 1))
 
 (use-package server
   :config
   (unless (server-running-p)
     (server-start)))
 
-(use-package breadcrumb
-  :init
-  (breadcrumb-mode t))
+;; (use-package breadcrumb
+;;   :init
+;;   (breadcrumb-mode 0))
 
-(use-package dirvish
-  :config
-  (dirvish-override-dired-mode t))
+;; (use-package dirvish
+;;   :config
+;;   (dirvish-override-dired-mode t))
 
 (use-package yasnippet
   :config
@@ -661,12 +632,7 @@
   (scroll-on-jump-curve 'linear)
   :config
   (scroll-on-jump-advice-add forward-paragraph)
-  (scroll-on-jump-advice-add backward-paragraph)
-  (scroll-on-jump-advice-add scroll-up-command)
-  (scroll-on-jump-advice-add scroll-down-command)
-  (scroll-on-jump-advice-add end-of-buffer)
-  (scroll-on-jump-advice-add beginning-of-buffer)
-  (scroll-on-jump-advice-add cua-exchange-point-and-mark))
+  (scroll-on-jump-advice-add backward-paragraph))
 
 (use-package fontaine
   :if (display-graphic-p)
@@ -675,56 +641,30 @@
 	'((hack
 	   :default-family "Hack"
 	   :line-spacing 2
-	   :default-weight normal
-	   :default-height 110
-	   :bold-weight extrabold
-	   :fixed-pitch-family "Sans"
-	   :fixed-pitch-height 1.0)
+	   :bold-weight extrabold)
 	  (iosevka
 	   :default-family "Iosevka Comfy"
-	   :line-spacing 2
-	   :default-weight normal
-	   :default-height 120
-	   :bold-weight extrabold
-	   :fixed-pitch-family "Iosevka Comfy Duo"
-	   :fixed-pitch-height 1.0)
+	   :line-spacing 2)
 	  (cascadia
 	   :default-family "Cascadia Mono"
 	   :line-spacing 3
-	   :default-weight semilight
-	   :default-height 120
-	   :bold-weight extrabold
-	   :fixed-pitch-family "Cascadia Mono PL"
-	   :fixed-pitch-height 1.0)
+	   :default-weight semilight)
 	  (iosvmata
 	   :default-family "Iosvmata"
-	   :line-spacing 3
-	   :default-weight normal
-	   :default-height 120
-	   :bold-weight bold
-	   :fixed-pitch-family "Iosvmata"
-	   :fixed-pitch-height 1.0)
+	   :line-spacing 2)
 	  (nrk
 	   :default-family "NRK Mono"
-	   :default-width normal
-	   :line-spacing 2
-	   :default-weight normal
-	   :default-height 110
-	   :bold-weight bold
-	   :fixed-pitch-family "NRK Mono"
-	   :fixed-pitch-height 1.0)
+	   :line-spacing 2)
 	  (pragmasevka
 	   :default-family "Pragmasevka"
 	   :line-spacing 3
 	   :default-weight regular
-	   :default-height 130
-	   :bold-weight extrabold
-	   :fixed-pitch-family "Pragmasevka"
-	   :fixed-pitch-height 1.0)))
-  (fontaine-set-preset 'iosvmata))
+	   :bold-weight extrabold)
+  (fontaine-set-preset 'iosvmata))))
 
 (use-package gruber-darker-theme
   :config
+  (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
 
 (provide 'init-packages)
