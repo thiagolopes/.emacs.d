@@ -56,7 +56,8 @@
 
 ;; tooltip
 (use-package company
-  :hook (after-init . global-company-mode)
+  :hook
+  (after-init . global-company-mode)
   :custom
   (company-idle-delay nil)
   (company-minimum-prefix-length 1)
@@ -254,6 +255,7 @@
 
 (use-package popwin
   :custom
+  (popwin:popup-window-width 0.4)
   (popwin:popup-window-position 'right)
   :config
   (popwin-mode t))
@@ -449,12 +451,6 @@
   (treesit-auto-install t)
   :config
   (global-treesit-auto-mode))
-
-(use-package zeal-at-point
-  :bind
-  (("\C-cd" . zeal-at-point))
-  :straight (zeal-at-point :repo "jinzhu/zeal-at-point" :fetcher github
-			   :files ("zeal-at-point.el")))
 
 ;; libterm terminal
 (use-package vterm)

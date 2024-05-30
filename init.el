@@ -39,6 +39,9 @@
 ;; cursor config
 (blink-cursor-mode 0)
 
+;; disable /etc/emacs/site-start to run
+(setq site-run-file nil)
+
 ;; vertical candites
 (icomplete-mode t)
 (define-key icomplete-minibuffer-map (kbd "TAB") #'icomplete-force-complete)
@@ -70,8 +73,7 @@
 ;; (save-place-mode 1)
 ;; (setopt save-place-file (concat user-emacs-directory "cache/places"))
 
-;; ;; setup dirs
-(setq cache-dir (concat user-emacs-directory "/cache"))
+;; setup dirs
 (setq custom-file (concat user-emacs-directory "/custom.el"))
 
 ;; reload file if change
@@ -96,7 +98,7 @@
 ;; (setopt compilation-ask-about-save nil)
 
 ;; ctyle - change comentary to //
-(add-hook 'c-mode-hook '(lambda () (setopt comment-start "//"
+(add-hook 'c-mode-hook #'(lambda () (setopt comment-start "//"
 					   comment-end   "")))
 
 ;; ;; follow mode to split 1 file in to buffers
@@ -125,13 +127,13 @@
 (setq version-control t)
 
 ;; overwrite text when selected, like we expect.
-(setq delete-seleciton-mode t)
+;; (setq delete-seleciton-mode t)
 
 ;; when quiting emacs, just kill processes
 (setq confirm-kill-processes nil)
 (setq confirm-kill-emacs 'y-or-n-p)
 
-;; show dir first in dired
+;; ;; show dir first in dired
 (require 'ls-lisp)
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
@@ -146,7 +148,7 @@
 (set-clipboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 
-;; ;; default browser
+;; default browser
 (setq browse-url-browser-function 'browse-url-default-browser)
 
 ;; better underline
@@ -256,45 +258,41 @@
 ;;         mode-line-end-spaces))
 
 ;; set full file name on frame
-(setopt frame-title-format
+(setq frame-title-format
       (list '(buffer-file-name "%f" "%b")
 	'(:eval (format " - GNU Emacs %s" emacs-version))))
-(setopt icon-title-format frame-title-format)
+(setq icon-title-format frame-title-format)
+
 
 ;; Completion preview
-(when (not (fboundp 'completion-preview-mode))
-  (load "~/.emacs.d/completion-preview.el")
-  (require 'completion-preview))
+(load (expand-file-name "completion-preview.el" user-emacs-directory))
 (add-hook 'prog-mode-hook #'completion-preview-mode)
 (add-hook 'text-mode-hook #'completion-preview-mode)
+(require 'completion-preview)
 
 
 ;; modeline which function
-(add-hook 'prog-mode-hook which-function-mode)
-;; line wrapper by word
-(add-hook 'org-mode-hook 'visual-line-mode)
-(add-hook 'text-mode-hook 'visual-line-mode)
-;; line number enable
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-;;; better output colors
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
-;;; TODO
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+;; (add-hook 'prog-mode-hook which-function-mode)
+;; ;; line wrapper by word
+(add-hook 'text-mode-hook #'visual-line-mode)
+;; ;; line number enable
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 ;;; remove white spaces
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook #'whitespace-cleanup)
 
 
 ;; eshell pop
-(defun term-pop (fn name)
-  (if (not (get-buffer-window name))
-    (progn
-      (split-window-below 10)
-      ;; (other-window -1)
-      (switch-to-buffer (next-buffer))
-      (funcall fn))
-    (if (equal (buffer-name) name)
-    (delete-window)
-    (switch-to-buffer-other-window name))))
+;; (defun term-pop (fn name)
+;;   (if (not (get-buffer-window name))
+;;     (progn
+;;       (split-window-below 10)
+;;       ;; (other-window -1)
+;;       (switch-to-buffer (next-buffer))
+;;       (funcall fn))
+;;     (if (equal (buffer-name) name)
+;;     (delete-window)
+;;     (switch-to-buffer-other-window name))))
+
 
 ;; Imortal *scratch* !!
 (defun immortal-scratch ()
@@ -352,7 +350,7 @@
 (global-set-key (kbd "M-u") #'upcase-dwim)
 (global-set-key (kbd "M-l") #'downcase-dwim)
 (global-set-key (kbd "M-c") #'capitalize-dwim)
-;;; mouse moviment
+;; ;;; mouse moviment
 (global-set-key (kbd "<mouse-8>") #'previous-buffer)
 (global-set-key (kbd "<mouse-9>") #'next-buffer)
 ;;; text-scale
@@ -360,22 +358,22 @@
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C--") #'text-scale-decrease)
 
-;; add without shift
-(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
-(global-set-key (kbd "M-9") '(lambda () (interactive) (insert "(")))
-(global-set-key (kbd "M-0") '(lambda () (interactive) (insert ")")))
-(global-set-key (kbd "M-[") '(lambda () (interactive) (insert "{")))
-(global-set-key (kbd "M-]") '(lambda () (interactive) (insert "}")))
+;; ;; add without shift
+;; (global-set-key (kbd "M-3") #'(lambda () (interactive) (insert "#")))
+;; (global-set-key (kbd "M-9") #'(lambda () (interactive) (insert "(")))
+;; (global-set-key (kbd "M-0") #'(lambda () (interactive) (insert ")")))
+;; (global-set-key (kbd "M-[") #'(lambda () (interactive) (insert "{")))
+;; (global-set-key (kbd "M-]") #'(lambda () (interactive) (insert "}")))
 
 ;; better buffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c p") 'find-file-at-point)
-(global-set-key (kbd "M-j") 'join-line)
+(global-set-key (kbd "C-x C-b") #'ibuffer)
+(global-set-key (kbd "C-c p") #'find-file-at-point)
+(global-set-key (kbd "M-j") #'join-line)
 ;;dired
-(global-set-key (kbd "C-x C-d") 'dired)
+(global-set-key (kbd "C-x C-d") #'dired)
 
 ;; eshell pop
-(global-set-key (kbd "M-<f12>") '(lambda () (interactive) (term-pop 'eshell "*eshell*")))
+;; (global-set-key (kbd "M-<f12>") #'(lambda () (interactive) (term-pop 'eshell "*eshell*")))
 ;; (global-set-key (kbd "<f12>")   '(lambda () (interactive) (term-pop 'shell "*shell*")))
 
 (global-set-key (kbd "<f10>") #'display-line-numbers-mode)
@@ -383,7 +381,6 @@
 (global-set-key (kbd "<f6>") #'font-lock-mode)
 
 (load (expand-file-name "init-packages.el" user-emacs-directory))
-(require 'init-packages)
 
 (provide 'init)
 ;;; early-init.el ends here;
