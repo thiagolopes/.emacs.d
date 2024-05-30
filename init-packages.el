@@ -49,6 +49,8 @@
 (use-package textsize
   :init
   (textsize-mode t)
+  :hook
+  (after-init . textsize-fix-frame)
   :custom
   (textsize-default-points 15))
 
@@ -90,7 +92,7 @@
   :config
   (ctrlf-mode t)
   :custom
-  (ctrlf-auto-recenter nil)
+  (ctrlf-auto-recenter t)
   (ctrlf-alternate-search-style 'literal))
 
 ;; clojure
