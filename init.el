@@ -25,6 +25,7 @@
 ;; show column number at modeline
 (column-number-mode t)
 
+
 ;; ;; sanity dired
 ;; ;;; suggest a target for moving/copying intelligently
 ;; (setopt dired-dwim-target t)
@@ -388,6 +389,7 @@
 (add-hook 'after-init-hook 'load-persistent-scratch)
 (add-hook 'kill-emacs-hook 'save-persistent-scratch)
 (run-with-idle-timer 300 t 'save-persistent-scratch)
+(setq initial-major-mode 'org-mode)
 
 
 ;; Setup dark GTK theme if available only on X11

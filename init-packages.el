@@ -51,7 +51,7 @@
   :init
   (textsize-mode t)
   :custom
-  (textsize-default-points 14))
+  (textsize-default-points 15))
 
 (use-package page-break-lines
   :config
@@ -155,17 +155,17 @@
   :custom
   (mixed-pitch-set-height t))
 
-;; ;; darker buffer where is not about edit text
-(use-package solaire-mode
-  :ensure t
-  :hook
-  (change-major-mode . turn-on-solaire-mode)
-  (after-revert . turn-on-solaire-mode)
-  (ediff-prepare-buffer . solaire-mode)
-  :custom
-  (solaire-mode-auto-swap-bg t)
-  :config
-  (solaire-global-mode +1))
+;; darker buffer where is not about edit text
+;; (use-package solaire-mode
+;;   :ensure t
+;;   :hook
+;;   (change-major-mode . turn-on-solaire-mode)
+;;   (after-revert . turn-on-solaire-mode)
+;;   (ediff-prepare-buffer . solaire-mode)
+;;   :custom
+;;   (solaire-mode-auto-swap-bg t)
+;;   :config
+;;   (solaire-global-mode +1))
 
 (use-package expand-region
   :bind
@@ -612,23 +612,23 @@
 	   :line-spacing 3
 	   :default-weight semilight)
 	  (iosvmata
-	   :default-family "Iosvmata"
-	   :line-spacing 2)
+	   :default-family "Iosvmata")
+	   :line-spacing 3
 	  (nrk
 	   :default-family "NRK Mono"
-	   :line-spacing 2)
+	   :line-spacing 1)
 	  (pragmasevka
 	   :default-family "Pragmasevka"
 	   :line-spacing 3
 	   :default-weight regular
-	   :bold-weight extrabold)
-  (fontaine-set-preset 'iosvmata))))
+	   :bold-weight extrabold)))
+  :custom
+  (fontaine-set-preset 'iosvmata))
 
 (use-package gruber-darker-theme
   :ensure t
   :config
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
-
 (provide 'init-packages)
 ;;; init.el ends here
