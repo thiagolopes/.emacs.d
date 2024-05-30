@@ -240,9 +240,11 @@
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
-;; (use-package popwin
-  ;; :config
-  ;; (popwin-mode t))
+(use-package popwin
+  :custom
+  (popwin:popup-window-position 'right)
+  :config
+  (popwin-mode t))
 
 (use-package nvm
   :config
