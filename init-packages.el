@@ -3,16 +3,13 @@
 ;;;  this package will run after early-init.el
 ;;; Code:
 (require 'package)
-(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 (eval-and-compile
-  (setq ;; use-package-always-ensure t
+  (require 'use-package)
+  (setq use-package-always-ensure t
 	use-package-expand-minimally t))
+
 
 ;; ;; load .env shell
 (use-package exec-path-from-shell
@@ -361,7 +358,17 @@
 
 ;; better minibuffer
 (use-package consult
-  :ensure t
+  :config
+  (setq completion-in-region-function
+	(lambda (&rest args)
+	  (apply (if vertico-mode
+		     #'consult-completion-in-region
+		   #'completion--in-region)
+		 args)))
+  (setq xref-show-xrefs-function #'consult-xref
+	xref-show-definitions-function #'consult-xref)
+  :hook
+  (completion-list-mode . consult-preview-at-point-mode)
   :bind
   (("C-x b"   . consult-buffer)
    ("C-c f"   . consult-find)
@@ -612,8 +619,8 @@
 	   :line-spacing 3
 	   :default-weight semilight)
 	  (iosvmata
-	   :default-family "Iosvmata")
-	   :line-spacing 3
+	   :default-family "Iosvmata"
+	   :line-spacing 3)
 	  (nrk
 	   :default-family "NRK Mono"
 	   :line-spacing 1)
@@ -622,7 +629,6 @@
 	   :line-spacing 3
 	   :default-weight regular
 	   :bold-weight extrabold)))
-  :custom
   (fontaine-set-preset 'iosvmata))
 
 (use-package gruber-darker-theme
