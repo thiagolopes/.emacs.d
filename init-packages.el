@@ -52,6 +52,16 @@
   :custom
   (textsize-default-points 15))
 
+;; tooltip
+(use-package company
+  :hook (after-init . global-company-mode)
+  :custom
+  (company-idle-delay nil)
+  (company-minimum-prefix-length 1)
+  :config
+  (define-key company-mode-map (kbd "C-M-i") 'company-complete)
+  (define-key company-active-map (kbd "C-M-i") 'company-complete))
+
 (use-package page-break-lines
   :config
   (global-page-break-lines-mode))
@@ -329,12 +339,13 @@
 (use-package orderless
   :custom
   (completion-styles '(orderless flex))
-  (completion-category-overrides '((eglot (styles . (orderless flex))))))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 ;; minibuffer search candidate
-(use-package vertico
-  :custom
-  (vertico-mode t))
+;; (use-package vertico
+;;   :disabled
+;;   :config
+;;   (vertico-mode t))
 
 ;; html genereta tags html>body
 (use-package emmet-mode

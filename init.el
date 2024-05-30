@@ -6,9 +6,8 @@
   (message "Your Emacs is old. Please upgrade if possible."))
 
 ;;by
-(setopt user-full-name "Thiago Lopes")
-(setopt user-mail-address "thiagolopes@protonmail.com")
-
+(setq user-full-name "Thiago Lopes")
+(setq user-mail-address "thiagolopes@protonmail.com")
 ;; sanitaze
 ;; (setq x-select-enable-clipboard-manager nil)
 (setq warning-minimum-level :emergency)
@@ -25,70 +24,28 @@
 ;; show column number at modeline
 (column-number-mode t)
 
+;; dired always copy/delete recursively
+(setq dired-recursive-copies 'always)
 
-;; ;; sanity dired
-;; ;;; suggest a target for moving/copying intelligently
-;; (setopt dired-dwim-target t)
-;; (setopt dired-hide-details-hide-symlink-targets nil)
-;; ;; don't prompt to revert, just do it
-;; (setopt dired-auto-revert-buffer #'dired-buffer-stale-p)
-;; ;; Always copy/delete recursively
-;; (setopt dired-recursive-copies 'always)
-;; (setopt dired-recursive-deletes 'top)
-;; ;; Ask whether destination dirs should get created when copying/removing files.
-;; (setopt dired-create-destination-dirs 'ask)
-;; ;; clean up dired buffers
-;; (setopt dired-kill-when-opening-new-dired-buffer t)
-;; (setopt dired-listing-switches "-alh")
-
-;; ;; Where to store image caches
-;; (setopt image-dired-dir (concat user-emacs-directory "image-dired/"))
-;; (setopt image-dired-db-file (concat image-dired-dir "db.el"))
-;; (setopt image-dired-gallery-dir (concat image-dired-dir "gallery/"))
-;; (setopt image-dired-temp-image-file (concat image-dired-dir "temp-image"))
-;; (setopt image-dired-temp-rotate-image-file (concat image-dired-dir "temp-rotate-image"))
-;; ;; Screens are larger nowadays, we can afford slightly larger thumbnails
-;; (setopt image-dired-thumb-size 150)
-
-;; (setq site-run-file nil)
-
-;; ;; recursive
+;; recursive
 (setq enable-recursive-minibuffers t)
 
-;; ;; Don't resize the frames in steps; it looks weird, especially in tiling window
-;; ;; managers, where it can leave unseemly gaps.
-;; (setopt frame-resize-pixelwise t)
-
-;; ;; never use dialog box
+;; never use dialog box
 (setq use-dialog-box nil)
 
-;; ;; UX: Favor vertical splits over horizontal ones. Monitors are trending toward
-;; ;;   wide, rather than tall.
-;; (setopt split-width-threshold 160)
-;; (setopt split-height-threshold nil)
+;; middle-click paste at point, not at click
+(setq mouse-yank-at-point t)
 
-;; ;; FIX: The native border "consumes" a pixel of the fringe on righter-most
-;; ;;   splits, `window-divider' does not. Available since Emacs 25.1.
-;; (setopt window-divider-default-places t)
-;; (setopt window-divider-default-bottom-width 1)
-;; (setopt window-divider-default-right-width 1)
-;; (add-hook 'prog-mode #'window-divider-mode)
-
-;; ;; Don't prompt for confirmation when we create a new file or buffer (assume the
-;; ;; user knows what they're doing).
-;; (require 'uniquify)
-;; (setopt confirm-nonexistent-file-or-buffer nil)
-;; (setopt uniquify-buffer-name-style 'forward)
-
-;; ;; middle-click paste at point, not at click
-;; (setopt mouse-yank-at-point t)
-
-;; ;; cursor config
+;; cursor config
 (blink-cursor-mode 0)
-;; (setopt cursor-type 'box)
-;; (setopt cursor-in-non-selected-windows nil)
-;; (setq blink-matching-paren nil)
-;; (setopt x-stretch-cursor nil)
+
+;; vertical candites
+(icomplete-mode t)
+(define-key icomplete-minibuffer-map (kbd "TAB") #'icomplete-force-complete)
+(define-key icomplete-minibuffer-map (kbd "C-n") #'icomplete-forward-completions)
+(define-key icomplete-minibuffer-map (kbd "C-p") #'icomplete-backward-completions)
+(icomplete-vertical-mode t)
+(setq completion-auto-help nil)
 
 ;; ;; avoid cursor recenter every scroll
 ;; (setq scroll-margin 3)
@@ -101,19 +58,13 @@
 
 (setq tab-always-indent 'complete)
 
-;; ;; Explicitly define a width to reduce the cost of on-the-fly computation
+;; Explicitly define a width to reduce the cost of on-the-fly computation
 ;; (setq-default display-line-numbers-width 3)
 ;; (setq-default display-line-numbers-widen t)
-;; ;; (add-hook 'prog-mode-hook #'display-line-number-mode)
-;; ;; (add-hook 'text-mode-hook #'display-line-number-mode)
-;; ;; (add-hook 'conf-mode-hook #'display-line-number-mode)
-;; ;; (setopt display-line-numbers-type t) ;; disable line number as default
-
-;; ;; line wrapper by word
-;; ;; (global-visual-line-mode)
-
-;; ;; show icons in visual-line-indicator
-;; (setq visual-line-fringe-indicators '(nil right-curly-arrow))
+;; (add-hook 'prog-mode-hook #'display-line-number-mode)
+;; (add-hook 'text-mode-hook #'display-line-number-mode)
+;; (add-hook 'conf-mode-hook #'display-line-number-mode)
+;; (setopt display-line-numbers-type t) ;; disable line number as default
 
 ;; ;; saveaition cursor
 ;; (save-place-mode 1)
@@ -132,19 +83,6 @@
 
 ;; Made SHIFT+arrow to move to the next adjacent window in the specified direction
 (windmove-default-keybindings)
-
-;; Duplicate line - stolen from rexim
-(defun duplicate-line ()
-  "Duplicate current line"
-  (interactive)
-  (let ((column (- (point) (point-at-bol)))
-    (line (let ((s (thing-at-point 'line t)))
-	(if s (string-remove-suffix "\n" s) ""))))
-    (move-end-of-line 1)
-    (newline)
-    (insert line)
-    (move-beginning-of-line 1)
-    (forward-char column)))
 
 ;; ;; TODO
 ;; (setopt isearch-lax-whitespace t)
@@ -167,18 +105,18 @@
 ;; ;; copy-paste with ctrl c/v
 ;; (cua-mode 0)
 
-;; ;; looks horrible
-;; ;; treat camel-cased words as individual words.
-;; ;; (add-hook 'prog-mode-hook 'subword-mode)
+;; looks horrible
+;; treat camel-cased words as individual words.
+;; (add-hook 'prog-mode-hook 'subword-mode)
 
-;; ;; don't assume sentences end with two spaces after a period.
+;; don't assume sentences end with two spaces after a period.
 ;; (setopt sentence-end-double-space nil)
 
 ;; handle very long lines without hurting emacs
 (global-so-long-mode)
 
 ;; backup setup
-;;; don't clobber symlinks
+;; don't clobber symlinks
 (setq backup-by-copying t)
 (setq backup-directory-alist '(("." . "~/.emacs.d/var/saves/")))
 (setq delete-old-versions t)
@@ -189,15 +127,14 @@
 ;; overwrite text when selected, like we expect.
 (setq delete-seleciton-mode t)
 
-;; ;; when quiting emacs, just kill processes
-;; (setopt confirm-kill-processes nil)
-;; ;; ask if local variables are safe once.
-;; (setopt enable-local-variables t)
+;; when quiting emacs, just kill processes
+(setq confirm-kill-processes nil)
+(setq confirm-kill-emacs 'y-or-n-p)
 
-;; ;; show dir first in dired
-;; (require 'ls-lisp)
-;; (setopt ls-lisp-dirs-first t)
-;; (setopt ls-lisp-use-insert-directory-program nil)
+;; show dir first in dired
+(require 'ls-lisp)
+(setq ls-lisp-dirs-first t)
+(setq ls-lisp-use-insert-directory-program nil)
 
 ;; utf8, please
 (prefer-coding-system 'utf-8)
@@ -212,21 +149,19 @@
 ;; ;; default browser
 (setq browse-url-browser-function 'browse-url-default-browser)
 
-;; ;; modeline which function
-;; ;; (which-function-mode 1)
-
-;; ;; better underline
+;; better underline
 (setq x-underline-at-descent-line t)
 
-;; ;; show parens
+;; show parens
 (show-paren-mode t)
 
-;; ;; enable fringe mode
+;; enable fringe mode
 (fringe-mode)
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'left)
+(setq visual-line-fringe-indicators '(nil right-curly-arrow))
 
-;; ;; Hippie-expand
+;; Hippie-expand
 ;; (hippie-expand t)
 ;; (setopt hippie-expand-try-functions-list
 ;;       '(try-expand-dabbrev
@@ -241,19 +176,9 @@
 ;;	try-complete-file-name))
 ;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-;; ;; m-x
-;; (ido-mode t)
-;; (fido-mode t)
-;; ;; icomplete - old and good
-;; (icomplete-mode t)
-;; (icomplete-vertical-mode t)
-;; (setq completion-auto-help nil)
-
+;; save m-x history
 (savehist-mode t)
 
-;; ;; enable read only
-;; (setopt view-read-only t)
-;; orgmode
 (setq org-todo-keywords
       '((sequence "TODO" "VERIFY" "|" "DONE" "STOPED")))
 
@@ -344,12 +269,15 @@
 (add-hook 'text-mode-hook #'completion-preview-mode)
 
 
+;; modeline which function
+(add-hook 'prog-mode-hook which-function-mode)
+;; line wrapper by word
+(add-hook 'org-mode-hook 'visual-line-mode)
+(add-hook 'text-mode-hook 'visual-line-mode)
 ;; line number enable
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 ;;; better output colors
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
-;;; org hooks
-(add-hook 'org-mode-hook 'visual-line-mode)
 ;;; TODO
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 ;;; remove white spaces
@@ -390,6 +318,20 @@
 (add-hook 'kill-emacs-hook 'save-persistent-scratch)
 (run-with-idle-timer 300 t 'save-persistent-scratch)
 (setq initial-major-mode 'org-mode)
+
+
+;; Duplicate line - stolen from rexim
+(defun duplicate-line ()
+  "Duplicate current line"
+  (interactive)
+  (let ((column (- (point) (point-at-bol)))
+    (line (let ((s (thing-at-point 'line t)))
+	(if s (string-remove-suffix "\n" s) ""))))
+    (move-end-of-line 1)
+    (newline)
+    (insert line)
+    (move-beginning-of-line 1)
+    (forward-char column)))
 
 
 ;; Setup dark GTK theme if available only on X11
