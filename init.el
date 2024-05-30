@@ -246,6 +246,7 @@
 ;; ;; icomplete - old and good
 (icomplete-mode t)
 (icomplete-vertical-mode t)
+(setq completion-auto-help nil)
 
 (savehist-mode t)
 

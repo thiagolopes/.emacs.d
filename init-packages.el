@@ -401,6 +401,7 @@
    ("C-c f"   . consult-find)
    ("C-c i"   . consult-imenu)
    ("C-c r"   . consult-ripgrep)
+   ("M-y"     . consult-yank-pop)
    ("M-g g"   . consult-goto-line)
    ("M-g M-g" . consult-goto-line)))
 
