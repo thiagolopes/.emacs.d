@@ -86,8 +86,9 @@
   (custom-theme-set-faces
    'greenized
 
+
+
    ;; Default colors
-   ;; *****************************************************************************
    `(cursor                               ((t (:background ,punctuation))))
    `(default                              ((t (:foreground ,text :background ,background, :weight normal))))
    `(region                               ((t (:foreground nil :background ,selection :weight light))))
@@ -95,8 +96,9 @@
    `(linum                                ((t (:background ,background :foreground ,gutter-fg))))
    `(highlight                            ((t (:foreground ,highlight :background ,selection))))
 
-   ;; Font lock faces
-   ;; *****************************************************************************
+
+
+   ;; Font lock
    `(font-lock-constant-face              ((t (:foreground ,constants))))
    `(font-lock-variable-name-face         ((t (:foreground ,text))))
    `(font-lock-keyword-face               ((t (:foreground ,keywords :slant ,font-slant))))
@@ -122,8 +124,8 @@
    `(success                              ((t (:foreground ,green))))
    `(tooltip                              ((t (:foreground ,white :background ,line-fg))))
 
+
    ;; Plugins
-   ;; *****************************************************************************
    `(trailing-whitespace                  ((t (:foreground nil :background ,warning))))
    `(whitespace-trailing                  ((t (:background nil :foreground ,warning :inverse-video t))))
 
@@ -147,7 +149,7 @@
 
    ;; mode-line and powerline
    `(mode-line-inactive                   ((t (:background ,background :foreground ,highlight-line :box t))))
-   `(mode-line-buffer-id                  ((t (:foreground ,background :distant-foreground ,text :text ,text :weight bold))))
+   `(mode-line-buffer-id                  ((t (:foreground ,background :distant-foreground ,highlight-line :text ,text))))
    `(mode-line                            ((t (:inverse-video unspecified
 							      :underline unspecified
 							      :foreground ,background-darker-darker
@@ -330,8 +332,7 @@
   (add-to-list 'custom-theme-load-path
 	       (file-name-as-directory (file-name-directory load-file-name))))
 
-;; *****************************************************************************
-
+
 (provide-theme 'greenized)
 
 ;; Local Variables:

@@ -2,13 +2,17 @@
 ;;; Commentaryp:
 ;;;  this package will run after early-init.el
 ;;; Code:
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
-
-(unless package-archive-contents (package-refresh-contents))
+(require 'package)
+(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
-(eval-when-compile
-  (require 'use-package))
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-and-compile
+  (setq ;; use-package-always-ensure t
+	use-package-expand-minimally t))
 
 ;; ;; load .env shell
 (use-package exec-path-from-shell
@@ -25,7 +29,7 @@
   :init
   (all-the-icons-completion-mode))
 
-;; ;; extra modes
+;; extra modes
 (use-package cmake-mode)
 (use-package i3wm-config-mode)
 (use-package lua-mode)
@@ -49,30 +53,9 @@
   :custom
   (textsize-default-points 14))
 
-;; ;; themes
-;; (use-package doom-themes)
-;; (use-package solarized-theme
-;;   :custom (solarized-use-less-bold t))
-
-;; ;; debuger
-;; (use-package realgud)
-
-;; ;; keyboard drive questions
-;; (use-package transient)
-
-;; emacs gc
-;; (use-package gcmh
-;;   :config
-;;   (gcmh-mode 1))
-
-;; ;; remove minor modes from modeline - TODO remove after modeline settings
-;; (use-package minions
-;;   :config
-;;   (minions-mode))
-
-;; (use-package page-break-lines
-;;   :config
-;;   (global-page-break-lines-mode))
+(use-package page-break-lines
+  :config
+  (global-page-break-lines-mode))
 
 ;; edit by sudo
 (use-package sudo-edit)
@@ -133,17 +116,6 @@
 (use-package electric-operator
   :hook
   (python-mode . electric-operator-mode))
-;; (use-package highlight-indent-guides
-;;   :config
-;;   (defun my-highlighter (level responsive display)
-;;     (if (> 1 level)
-;;	nil
-;;       (highlight-indent-guides--highlighter-default level responsive display)))
-;;   (setq highlight-indent-guides-highlighter-function 'my-highlighter)
-;;   (setq highlight-indent-guides-responsive 'top)
-;;   :hook
-;;   (python-mode    . highlight-indent-guides-mode)
-;;   (python-ts-mode . highlight-indent-guides-mode))
 
 ;; ;; organize cache files
 (use-package no-littering
@@ -152,16 +124,10 @@
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 ;; show helper command
-(use-package which-key)
-  ;; :custom
-  ;; (which-key-allow-evil-operators t)
-  ;; (which-key-show-remaining-keys t)
-  ;; (which-key-sort-order 'which-key-prefix-then-key-order)
-  ;; :config
-  ;; (which-key-mode t)
-  ;; (which-key-setup-minibuffer)
-  ;; (set-face-attribute
-  ;;  'which-key-local-map-description-face nil :weight 'bold))
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode t))
 
 ;; (use-package undo-tree
 ;;   :init
@@ -182,7 +148,7 @@
 
 ;; ;; setup fonts
 (use-package unicode-fonts
-  :after persistent-soft
+  :ensure t
   :config
   (unicode-fonts-setup))
 (use-package mixed-pitch
@@ -191,6 +157,7 @@
 
 ;; ;; darker buffer where is not about edit text
 (use-package solaire-mode
+  :ensure t
   :hook
   (change-major-mode . turn-on-solaire-mode)
   (after-revert . turn-on-solaire-mode)
@@ -199,11 +166,6 @@
   (solaire-mode-auto-swap-bg t)
   :config
   (solaire-global-mode +1))
-
-;; ;; info (better man)
-;; (use-package info-colors
-;;   :hook
-;;   (Info-selection . info-colors-fontify-node))
 
 (use-package expand-region
   :bind
@@ -300,6 +262,7 @@
 
 ;; goto reference engine withtou LSP
 (use-package dumb-jump
+  :ensure t
   :init
   :custom
   (dumb-jump-default-project (concat user-emacs-directory "cache/jump"))
@@ -385,10 +348,12 @@
 
 ;; avoid trash in kill ring
 (use-package clean-kill-ring
+  :ensure t
   :config (clean-kill-ring-mode))
 
 ;; show usefull information at left on minibuffer
 (use-package marginalia
+  :ensure t
   :custom
   (marginalia-align 'left)
   :init
@@ -396,46 +361,35 @@
 
 ;; better minibuffer
 (use-package consult
+  :ensure t
   :bind
   (("C-x b"   . consult-buffer)
    ("C-c f"   . consult-find)
    ("C-c i"   . consult-imenu)
    ("C-c r"   . consult-ripgrep)
+   ("C-c l"   . consult-line-multi)
    ("M-y"     . consult-yank-pop)
    ("M-g g"   . consult-goto-line)
    ("M-g M-g" . consult-goto-line)))
 
 ;; improve icomplete
 (use-package orderless
+  :ensure t
   :custom
   (completion-styles '(orderless flex))
   (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
-;; ;; minibuffer search candidate
-;; (use-package vertico
-;;   :custom
-;;   (vertico-resize nil)
-;;   (vertico-count 12)
-;;   (vertico-cycle nil)
-;;   (read-file-name-completion-ignore-case t)
-;;   (read-buffer-completion-ignore-case t)
-;;   (completion-ignore-case t)
-;;   :config
-;;   (ido-mode 0)
-;;   (fido-mode 0)
-;;   (vertico-mode t))
+;; minibuffer search candidate
+(use-package vertico
+  :ensure t
+  :custom
+  (vertico-mode t))
 
 ;; html genereta tags html>body
 (use-package emmet-mode
   :after web-mode
   :hook
   (web-mode . emmet-mode))
-
-;; better line moviment
-;; (use-package mwim
-;;   :config
-;;   (global-set-key (kbd "C-a") 'mwim-beginning)
-;;   (global-set-key (kbd "C-e") 'mwim-end))
 
 ;; show color hex with background color
 (use-package rainbow-mode
@@ -484,6 +438,7 @@
 
 ;; Blink mode line
 (use-package mode-line-bell
+  :ensure t
   :config
   (mode-line-bell-mode t))
 
@@ -501,6 +456,7 @@
 
 ;; Jump to char
 (use-package avy
+  :ensure t
   :custom
   (avy-background t)
   (avy-single-candidate-jump t)
@@ -508,21 +464,19 @@
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
 ;; LSP
-;; (use-package eglot
-;;   :custom
-;;   (eglot-sync-connect nil)
-;;   (eglot-events-buffer-size 0)
-;;   (eglot-connect-timeout nil)
-;;   (org-directory "~/org/")
-;;   :config
-;;   (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
-;;   (setopt eglot-report-progress nil)
-;;   (fset #'jsonrpc--log-event #'ignore))
+(use-package eglot
+  :custom
+  (eglot-sync-connect t)
+  (eglot-connect-timeout 3)
+  (org-directory "~/org/")
+  :config
+  (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
+  (setq eglot-report-progress nil))
 ;; (when (executable-find "emacs-lsp-booster")
 ;;   (use-package eglot-booster
-;;     :straight (eglot-booster :fetcher github :repo "https://github.com/jdtsmith/eglot-booster"
-;;			     :files ("eglot-booster.el"))
-;;     :config (eglot-booster-mode)))
+;;     :ensure
+;;     :quelpa ((eglot-booster :fetcher github :repo "jdtsmith/eglot-booster/" :file "eglot-booster") :upgrade t))
+;;     :config (eglot-booster-mode))
 
 ;; Overlay symbol!!
 (use-package symbol-overlay
@@ -567,12 +521,15 @@
 
 ;; org mode
 (use-package org-modern
+  :hook
+  (org-mode . org-modern-mode)
   :config
   (with-eval-after-load 'org (global-org-modern-mode)))
 (use-package verb
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (use-package treesit-auto
+  :ensure t
   :custom
   (treesit-auto-install t)
   :config
@@ -612,6 +569,7 @@
 ;;   (doom-modeline-mode 1))
 
 (use-package server
+  :ensure t
   :config
   (unless (server-running-p)
     (server-start)))
@@ -625,10 +583,12 @@
 ;;   (dirvish-override-dired-mode t))
 
 (use-package yasnippet
-  :config
+  :ensure t
+  :init
   (yas-global-mode 1))
 
 (use-package scroll-on-jump
+  :ensure t
   :custom
   (scroll-on-jump-curve 'linear)
   :config
@@ -636,6 +596,7 @@
   (scroll-on-jump-advice-add backward-paragraph))
 
 (use-package fontaine
+  :ensure t
   :if (display-graphic-p)
   :config
   (setq fontaine-presets
@@ -664,6 +625,7 @@
   (fontaine-set-preset 'iosvmata))))
 
 (use-package gruber-darker-theme
+  :ensure t
   :config
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))

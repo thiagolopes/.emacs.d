@@ -91,9 +91,9 @@
 
 ;; ;; avoid cursor recenter every scroll
 ;; (setq scroll-margin 3)
-;; (setq scroll-conservatively 101)
-;; (setq scroll-up-aggressively 0.01)
-;; (setq scroll-down-aggressively 0.01)
+(setq scroll-conservatively 101)
+(setq scroll-up-aggressively 0.01)
+(setq scroll-down-aggressively 0.01)
 ;; (setq scroll-preserve-screen-position t)
 ;; (setq auto-window-vscroll nil)
 ;; (setq text-scale-mode-step 1.05)
@@ -244,9 +244,9 @@
 ;; (ido-mode t)
 ;; (fido-mode t)
 ;; ;; icomplete - old and good
-(icomplete-mode t)
-(icomplete-vertical-mode t)
-(setq completion-auto-help nil)
+;; (icomplete-mode t)
+;; (icomplete-vertical-mode t)
+;; (setq completion-auto-help nil)
 
 (savehist-mode t)
 
