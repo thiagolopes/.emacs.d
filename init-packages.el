@@ -11,13 +11,15 @@
 	use-package-expand-minimally t))
 
 
-;; ;; load .env shell
+;; load .env shell
 (use-package exec-path-from-shell
   :config
   (exec-path-from-shell-initialize))
 
-;; ;;icons
-(use-package all-the-icons)
+;; icons
+(use-package all-the-icons
+  :custom
+  (all-the-icons-scale-factor 0.9))
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
 (use-package all-the-icons-completion
@@ -125,24 +127,17 @@
   :config
   (which-key-mode t))
 
-;; (use-package undo-tree
-;;   :init
-;;   (global-undo-tree-mode)
-;;   :custom
-;;   (undo-tree-visualizer-diff t)
-;;   (undo-tree-auto-save-history t)
-;;   (undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "cache/fu/undo-tree-hist/"))))
-;;   (undo-tree-enable-undo-in-region t)
-;;   ;; Increase undo limits to avoid emacs prematurely truncating the undo
-;;   ;; history and corrupting the tree. This is larger than the undo-fu
-;;   ;; defaults because undo-tree trees consume exponentially more space,
-;;   ;; and then some when `undo-tree-enable-undo-in-region' is involved. See
-;;   ;; syl20bnr/spacemacs#12110
-;;   (undo-limit 800000)            ; 800kb (default is 160kb)
-;;   (undo-strong-limit 12000000)   ; 12mb  (default is 240kb)
-;;   (ndo-outer-limit 128000000)) ; 128mb (default is 24mb))
+;; undo tree visualization
+(use-package vundo)
+(use-package undo-fu-session
+  :config
+  (undo-fu-session-global-mode t)
+    (when (executable-find "zstd")
+    ;; There are other algorithms available, but zstd is the fastest, and speed
+    ;; is our priority within Emacs
+    (setq-default undo-fu-session-compression 'zst)))
 
-;; ;; setup fonts
+;; setup fonts
 (use-package unicode-fonts
   :config
   (unicode-fonts-setup))
@@ -172,22 +167,21 @@
   ("C-)" . sp-forward-slurp-sexp)
   ("C-(" . sp-forward-barf-sexp))
 
-;; ;; show flags
-;; (use-package hl-todo
-;;   :hook (prog-mode . hl-todo-mode)
-;;   :hook (org-mode  . hl-todo-mode)
-;;   :hook (yaml-mode . hl-todo-mode)
-;;   :custom
-;;   (hl-todo-highlight-punctuation ":")
-;;   (hl-todo-keyword-faces
-;;    '(("TODO" warning bold)
-;;      ("FIXME" error bold)
-;;      ("REVIEW" font-lock-keyword-face bold)
-;;      ("HACK" font-lock-constant-face bold)
-;;      ("DEPRECATED" font-lock-doc-face bold)
-;;      ("NOTE" success bold)
-;;      ("BUG" error bold)
-;;      ("XXX" font-lock-constant-face bold))))
+;; show flags
+(use-package hl-todo
+  :hook (prog-mode . hl-todo-mode)
+  :hook (org-mode  . hl-todo-mode)
+  :hook (yaml-mode . hl-todo-mode)
+  :custom
+  (hl-todo-keyword-faces
+   '(("TODO" warning bold)
+     ("FIXME" error bold)
+     ("REVIEW" font-lock-keyword-face bold)
+     ("HACK" font-lock-constant-face bold)
+     ("DEPRECATED" font-lock-doc-face bold)
+     ("NOTE" success bold)
+     ("BUG" error bold)
+     ("XXX" font-lock-constant-face bold))))
 
 ;; more cursor, mass editing
 (use-package multiple-cursors
@@ -197,16 +191,6 @@
   ("C-c C-<" . 'mc/edit-lines)
   ("C-c C->" . 'mc/mark-all-like-this)
   ("M-<mouse-1>" . mc/add-cursor-on-click))
-
-;; (use-package projectile
-;;   :custom
-;;   (projectile-project-search-path '(("~/dev/" . 1) ("~/.emacs.d/" . 1)))
-;;   (projectile-globally-ignored-files '(".DS_Store" "TAGS")
-;;				     projectile-globally-ignored-file-suffixes '(".elc" ".pyc" ".o")
-;;				     projectile-kill-buffers-filter 'kill-only-files)
-;;   :init
-;;   (global-set-key [remap evil-jump-to-tag] #'projectile-find-tag)
-;;   (global-set-key [remap find-tag]         #'projectile-find-tag))
 
 ;; (use-package winner
 ;;   :preface
@@ -227,17 +211,6 @@
   ;; (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   :custom
   (rainbow-delimiters-max-face-count 4))
-
-;; (use-package undo-fu-session
-;;   :custom
-;;   (undo-fu-session-directory (concat user-emacs-directory "cache/fu/undo-fu-session/"))
-;;   (undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
-;;   :config
-;;   (undo-fu-session-global-mode t)
-;;   (when (executable-find "zstd")
-;;     ;; There are other algorithms available, but zstd is the fastest, and speed
-;;     ;; is our priority within Emacs
-;;     (setq-default undo-fu-session-compression 'zst)))
 
 ;; UUID
 (use-package uuidgen)
@@ -267,10 +240,9 @@
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 
-;; ;; remove *buffer-name* from first candites
 ;; (use-package popwin
-;;   :config
-;;   (popwin-mode t))
+  ;; :config
+  ;; (popwin-mode t))
 
 (use-package nvm
   :config
@@ -294,9 +266,10 @@
   :config
   (require 'iedit))
 
-;;(use-package ace-popup-menu
-;;   :config
-;;   (ace-popup-menu-mode t))
+;; textual replacement of gui questions
+(use-package ace-popup-menu
+  :config
+  (ace-popup-menu-mode t))
 
 ;; pulsar cursor
 (use-package pulsar
@@ -315,30 +288,6 @@
 		     other-window
 		     ace-window))
     (advice-add command :after #'pulse-line)))
-
-;; visual feedback on some operations
-;; (use-package volatile-highlights
-  ;; :config
-  ;; (volatile-highlights-mode t))
-
-;; fancy welcome
-;; (use-package dashboard
-;;   :custom
-;;   (dashboard-set-navigator t)
-;;   (dashboard-projects-backend 'projectile)
-;;   (dashboard-show-shortcuts t)
-;;   (dashboard-items '((recents  . 15)
-;;		     (projects . 10)))
-;;   (dashboard-center-content t)
-;;   :config
-;;   (dashboard-setup-startup-hook))
-
-;; save minibuffer historical
-;; (use-package savehist
-;;   :custom
-;;   (history-length 50)
-;;   :config
-;;   (savehist-mode))
 
 ;; avoid trash in kill ring
 (use-package clean-kill-ring
@@ -396,12 +345,6 @@
   :hook
   (prog-mode . rainbow-mode))
 
-;; better buffer list organizer
-;; (use-package bufler
-;;   :straight (bufler :fetcher github :repo "alphapapa/bufler.el"
-;;		    :files (:defaults (:exclude "helm-bufler.el")))
-;;   :bind (("C-x C-b" . bufler)))
-
 ;; (use-package fancy-compilation
 ;;   :custom
 ;;   (fancy-compilation-override-colors nil)
@@ -412,29 +355,6 @@
 (use-package ace-window
   :bind
   ("M-o" . ace-window))
-
-;; (use-package treesitter-context)
-;; https://github.com/zbelial/treesitter-context.el
-
-;; tree sidebar
-;; (use-package dired-sidebar
-;;   :bind
-;;   ("<f9>" . dired-sidebar-toggle-sidebar)
-;;   :hook
-;;   (dired-sidebar-mode . (lambda ()
-;;			  (unless (file-remote-p default-directory)
-;;			    (auto-revert-mode))))
-;;   :config
-;;   (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
-;;   (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
-;;   :custom
-;;   (dired-sidebar-use-custom-modeline nil)
-;;   (dired-sidebar-subtree-line-prefix "__")
-;;   (dired-sidebar-should-follow-file t)
-;;   (dired-sidebar-refresh-on-project-switch t)
-;;   ;; (dired-sidebar-theme 'icons)
-;;   (dired-sidebar-theme 'vscode)
-;;   (dired-sidebar-use-custom-font t))
 
 ;; Blink mode line
 (use-package mode-line-bell
@@ -484,9 +404,6 @@
   :hook
   (prog-mode . symbol-overlay-mode))
 
-;; show number color
-(use-package highlight-numbers)
-
 ;; List of coletions
 (use-package embark
   :bind
@@ -498,20 +415,6 @@
 	       '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
 		 nil
 		 (window-parameters (mode-line-format . none)))))
-;; (use-package embark-consult
-;;   :hook
-;;   (embark-collect-mode . consult-preview-at-point-mode))
-
-;; (use-package xterm-color
-;;   :custom
-;;   (comint-output-filter-functions
-;;    (remove 'ansi-color-process-output comint-output-filter-functions))
-;;   :hook
-;;   (shell-mode . (lambda ()
-;;		  (font-lock-mode -1)
-;;		  (make-local-variable 'font-lock-function)
-;;		  (setq font-lock-function (lambda (_) nil))
-;;		  (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter nil t))))
 
 ;; (use-package hl-line+
 ;;   :config
@@ -549,34 +452,31 @@
   (shell-pop-window-position "bottom")
   (shell-pop-restore-window-configuration t))
 
-;; (use-package doom-modeline
-;;   :disabled
-;;   :custom
-;;   (doom-modeline-major-mode-color-icon nil)
-;;   (doom-modeline-buffer-file-name-style 'truncate-upto-root)
-;;   (doom-modeline-buffer-modification-icon t)
-;;   (doom-modeline-time-icon t)
-;;   (doom-modeline-icon t)
-;;   (doom-modeline-highlight-modified-buffer-name t)
-;;   (doom-modeline-position-column-line-format '("(%l:%c)"))
-;;   (doom-modeline-enable-word-count t)
-;;   (doom-modeline-height 28)
-;;   (doom-modeline-buffer-encoding nil)
-;;   :init
-;;   (doom-modeline-mode 1))
+(use-package doom-modeline
+  :disabled
+  :custom
+  (doom-modeline-major-mode-color-icon nil)
+  (doom-modeline-buffer-file-name-style 'truncate-upto-root)
+  (doom-modeline-buffer-modification-icon t)
+  (doom-modeline-time-icon t)
+  (doom-modeline-icon t)
+  (doom-modeline-highlight-modified-buffer-name t)
+  (doom-modeline-position-column-line-format '("(%l:%c)"))
+  (doom-modeline-enable-word-count t)
+  (doom-modeline-height 28)
+  (doom-modeline-buffer-encoding nil)
+  :init
+  (doom-modeline-mode 1))
 
 (use-package server
   :config
   (unless (server-running-p)
     (server-start)))
 
-;; (use-package breadcrumb
-;;   :init
-;;   (breadcrumb-mode 0))
-
-;; (use-package dirvish
-;;   :config
-;;   (dirvish-override-dired-mode t))
+(use-package breadcrumb
+  :disabled
+  :init
+  (breadcrumb-mode 0))
 
 (use-package yasnippet
   :init
@@ -621,5 +521,6 @@
   :config
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
+
 (provide 'init-packages)
 ;;; init.el ends here
