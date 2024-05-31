@@ -451,13 +451,6 @@
   :config
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
-;; eldoc
-(use-package eldoc-box
-  :config
-  (global-eldoc-mode 0)
-  :bind
-  ("M-h" . eldoc-box-help-at-point))
-
 ;; LSP
 (use-package eglot
   :preface (defun mp-eglot-eldoc ()
@@ -510,12 +503,6 @@
   (with-eval-after-load 'org (global-org-modern-mode)))
 (use-package verb
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
-
-(use-package treesit-auto
-  :custom
-  (treesit-auto-install t)
-  :config
-  (global-treesit-auto-mode))
 
 ;; libterm terminal
 (use-package vterm)

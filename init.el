@@ -16,6 +16,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-short-answers t)
 
+;; disable multiple eldoc
+(setq eldoc-echo-area-use-multiline-p nil)
+
 ;; save cursor position
 (require 'saveplace)
 (setq save-place t)
