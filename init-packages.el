@@ -451,6 +451,13 @@
   :config
   (global-set-key (kbd "M-z") 'avy-goto-word-1))
 
+;; eldoc
+(use-package eldoc-box
+  :config
+  (global-eldoc-mode 0)
+  :bind
+  ("M-h" . eldoc-box-help-at-point))
+
 ;; LSP
 (use-package eglot
   :preface (defun mp-eglot-eldoc ()

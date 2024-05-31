@@ -16,6 +16,11 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-short-answers t)
 
+;; save cursor position
+(require 'saveplace)
+(setq save-place t)
+(save-place-mode t)
+
 ;; smart parens
 (electric-pair-mode 1)
 
