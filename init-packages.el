@@ -399,10 +399,9 @@
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 ;; minibuffer search candidate
-;; (use-package vertico
-;;   :disabled
-;;   :config
-;;   (vertico-mode t))
+(use-package vertico
+  :config
+  (vertico-mode t))
 
 ;; html genereta tags html>body
 (use-package emmet-mode
