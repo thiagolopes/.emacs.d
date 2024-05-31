@@ -92,6 +92,11 @@
   :init
   (global-corfu-mode)
   (corfu-echo-mode t))
+(use-package corfu-terminal
+  :if (not (display-graphic-p))
+  :config
+  (corfu-terminal-mode t))
+
 (use-package cape
   :init
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
