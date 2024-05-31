@@ -10,10 +10,11 @@
 (setq user-mail-address "thiagolopes@protonmail.com")
 ;; sanitaze
 ;; (setq x-select-enable-clipboard-manager nil)
-(setq warning-minimum-level :emergency)
+(setq debug-on-error t)
 (setq require-final-newline t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-short-answers t)
+
 
 ;; smart parens
 (electric-pair-mode 1)
@@ -27,8 +28,8 @@
 ;; dired always copy/delete recursively
 (setq dired-recursive-copies 'always)
 
-;; recursive
-(setq enable-recursive-minibuffers t)
+;; recursive, allow M-x inside minibuffer
+(setq enable-recursive-minibuffers nil)
 
 ;; never use dialog box
 (setq use-dialog-box nil)
@@ -45,8 +46,6 @@
 ;; vertical candites
 (icomplete-mode t)
 (define-key icomplete-minibuffer-map (kbd "TAB") #'icomplete-force-complete)
-(define-key icomplete-minibuffer-map (kbd "C-n") #'icomplete-forward-completions)
-(define-key icomplete-minibuffer-map (kbd "C-p") #'icomplete-backward-completions)
 (icomplete-vertical-mode t)
 (setq completion-auto-help nil)
 
@@ -98,9 +97,8 @@
 ;; (setopt compilation-ask-about-save nil)
 
 ;; ctyle - change comentary to //
-(add-hook 'c-mode-hook #'(lambda () (setopt comment-start "//"
-					   comment-end   "")))
-
+(add-hook 'c-mode-hook #'(lambda () (setq comment-start "//"
+					  comment-end   "")))
 ;; ;; follow mode to split 1 file in to buffers
 ;; (follow-mode 1)
 
@@ -139,6 +137,8 @@
 (setq ls-lisp-use-insert-directory-program nil)
 
 ;; utf8, please
+
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -180,7 +180,20 @@
 
 ;; save m-x history
 (savehist-mode t)
+(setq savehist-save-minibuffer-history t)
+(setq savehist-additional-variables
+      '(search-ring
+	regexp-search-ring
+	extended-command-history
+	kill-ring
+	mark-ring
+	global-mark-ring
+	file-name-history
+	minibuffer-history
+	read-expression-history
+	command-history))
 
+;; org-mode
 (setq org-todo-keywords
       '((sequence "TODO" "VERIFY" "|" "DONE" "STOPED")))
 
@@ -315,7 +328,7 @@
 (add-hook 'after-init-hook 'load-persistent-scratch)
 (add-hook 'kill-emacs-hook 'save-persistent-scratch)
 (run-with-idle-timer 300 t 'save-persistent-scratch)
-(setq initial-major-mode 'org-mode)
+(setq initial-major-mode 'org-mode) ;; be org-mode
 
 
 ;; Duplicate line - stolen from rexim

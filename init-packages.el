@@ -10,23 +10,55 @@
   (setq use-package-always-ensure t
 	use-package-expand-minimally t))
 
+
 
 ;; load .env shell
 (use-package exec-path-from-shell
   :config
   (exec-path-from-shell-initialize))
 
+;; font/theme
+(use-package fontaine
+  :if (display-graphic-p)
+  :config
+  (setq fontaine-presets
+	'((hack
+	   :default-family "Hack"
+	   :line-spacing 2
+	   :bold-weight extrabold)
+	  (iosevka
+	   :default-family "Iosevka Comfy"
+	   :line-spacing 2)
+	  (cascadia
+	   :default-family "Cascadia Mono"
+	   :line-spacing 3
+	   :default-weight semilight)
+	  (iosvmata
+	   :default-family "Iosvmata"
+	   :line-spacing 3)
+	  (nrk
+	   :default-family "NRK Mono"
+	   :line-spacing 1)
+	  (pragmasevka
+	   :default-family "Pragmasevka"
+	   :line-spacing 3
+	   :default-weight regular
+	   :bold-weight extrabold)))
+  (fontaine-set-preset 'iosvmata))
+(use-package gruber-darker-theme
+  :config
+  (disable-theme 'greenized)
+  (load-theme 'gruber-darker t))
+
 ;; icons
 (use-package all-the-icons
-  :custom
-  (all-the-icons-scale-factor 0.9))
+  :custom (all-the-icons-scale-factor 0.9))
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
 (use-package all-the-icons-completion
   :after (marginalia all-the-icons)
   :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
-  :init
-  (all-the-icons-completion-mode))
+  :init (all-the-icons-completion-mode))
 
 ;; extra modes
 (use-package cmake-mode)
@@ -36,36 +68,53 @@
 (use-package pdf-tools :defer t)
 (use-package web-mode)
 (use-package yaml-mode)
+(use-package diminish
+  :config (diminish 'completion-preview-mode))
 
 (use-package persist
   :after server)
 (use-package persist-state
   :after (persist, server)
-  :config
-  (persist-state-mode t))
+  :config (persist-state-mode t))
 
 ;; This package automatically calculates and adjusts the default text size for
 ;; the size and pixel pitch of the display.
 (use-package textsize
-  :init
-  (textsize-mode t)
-  :hook
-  (after-init . textsize-fix-frame)
-  :custom
-  (textsize-default-points 15))
+  :init (textsize-mode t)
+  :hook (after-init . textsize-fix-frame)
+  :custom (textsize-default-points 15))
 
-;; tooltip
+;; tooltip and backends
+(use-package corfu
+  :custom (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-preview-current nil)    ;; Disable current candidate preview
+  (corfu-scroll-margin 15)        ;; Use scroll margin
+  :init
+  (global-corfu-mode)
+  (corfu-echo-mode t))
+(use-package cape
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block))
 (use-package company
+  :disabled
+  :bind (:map company-active-map
+	      ("<tab>" . company-complete-selection))
   :hook
   (after-init . global-company-mode)
   :custom
+  ;; (company-frontends '(company-pseudo-tooltip-frontend
+  ;;		       company-echo-metadata-frontend))
   (company-idle-delay nil)
   (company-minimum-prefix-length 1)
   :config
   (define-key company-mode-map (kbd "C-M-i") 'company-complete)
   (define-key company-active-map (kbd "C-M-i") 'company-complete))
 
+;; show vertical lines
 (use-package page-break-lines
+  :diminish
   :config
   (global-page-break-lines-mode))
 
@@ -74,6 +123,7 @@
 
 ;; save on focus loose
 (use-package super-save
+  :diminish
   :config
   (super-save-mode t))
 
@@ -137,6 +187,7 @@
 
 ;; show helper command
 (use-package which-key
+  :diminish
   :config
   (which-key-mode t))
 
@@ -318,26 +369,26 @@
 
 ;; better minibuffer
 (use-package consult
-  :config
-  (setq completion-in-region-function
-	(lambda (&rest args)
-	  (apply (if vertico-mode
-		     #'consult-completion-in-region
-		   #'completion--in-region)
-		 args)))
+  :config (setq completion-in-region-function
+		(lambda (&rest args)
+		  (apply (if vertico-mode
+			     #'consult-completion-in-region
+			   #'completion--in-region)
+			 args)))
   (setq xref-show-xrefs-function #'consult-xref
 	xref-show-definitions-function #'consult-xref)
-  :hook
-  (completion-list-mode . consult-preview-at-point-mode)
-  :bind
-  (("C-x b"   . consult-buffer)
-   ("C-c f"   . consult-find)
-   ("C-c i"   . consult-imenu)
-   ("C-c r"   . consult-ripgrep)
-   ("C-c l"   . consult-line-multi)
-   ("M-y"     . consult-yank-pop)
-   ("M-g g"   . consult-goto-line)
-   ("M-g M-g" . consult-goto-line)))
+  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :bind (("M-y"     . consult-yank-pop)
+	 ("C-x b"   . consult-buffer)
+	 ("C-c f"   . consult-find)
+	 ("C-c i"   . consult-imenu)
+	 ("C-c r"   . consult-ripgrep)
+	 ("C-c l"   . consult-line-multi)
+	 ("M-g g"   . consult-goto-line)
+	 ("M-g M-g" . consult-goto-line)
+	 :map consult-isearch-history-map
+	 ("C-p" #'consult-isearch-forward)
+	 ("C-n" #'consult-isearch-backward)))
 
 ;; improve icomplete
 (use-package orderless
@@ -359,6 +410,7 @@
 
 ;; show color hex with background color
 (use-package rainbow-mode
+  :diminish
   :hook
   (prog-mode . rainbow-mode))
 
@@ -400,6 +452,10 @@
 
 ;; LSP
 (use-package eglot
+  :preface (defun mp-eglot-eldoc ()
+	     (setq eldoc-documentation-strategy
+		   'eldoc-documentation-compose-eagerly))
+  :hook ((eglot-managed-mode . mp-eglot-eldoc))
   :custom
   (eglot-sync-connect t)
   (eglot-connect-timeout 3)
@@ -415,6 +471,7 @@
 
 ;; Overlay symbol!!
 (use-package symbol-overlay
+  :diminish
   :custom
   (symbol-overlay-idle-time 0.8)
   (symbol-overlay-temp-highlight-single nil)
@@ -499,39 +556,6 @@
   :config
   (scroll-on-jump-advice-add forward-paragraph)
   (scroll-on-jump-advice-add backward-paragraph))
-
-(use-package fontaine
-  :if (display-graphic-p)
-  :config
-  (setq fontaine-presets
-	'((hack
-	   :default-family "Hack"
-	   :line-spacing 2
-	   :bold-weight extrabold)
-	  (iosevka
-	   :default-family "Iosevka Comfy"
-	   :line-spacing 2)
-	  (cascadia
-	   :default-family "Cascadia Mono"
-	   :line-spacing 3
-	   :default-weight semilight)
-	  (iosvmata
-	   :default-family "Iosvmata"
-	   :line-spacing 3)
-	  (nrk
-	   :default-family "NRK Mono"
-	   :line-spacing 1)
-	  (pragmasevka
-	   :default-family "Pragmasevka"
-	   :line-spacing 3
-	   :default-weight regular
-	   :bold-weight extrabold)))
-  (fontaine-set-preset 'iosvmata))
-
-(use-package gruber-darker-theme
-  :config
-  (disable-theme 'greenized)
-  (load-theme 'gruber-darker t))
 
 (provide 'init-packages)
 ;;; init.el ends here
