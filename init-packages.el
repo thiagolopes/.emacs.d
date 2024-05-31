@@ -89,8 +89,8 @@
   :custom (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-preview-current nil)    ;; Disable current candidate preview
   (corfu-scroll-margin 15)        ;; Use scroll margin
-  :init
-  (global-corfu-mode)
+  :config
+  (global-corfu-mode t)
   (corfu-echo-mode t))
 (use-package corfu-terminal
   :if (not (display-graphic-p))
@@ -456,13 +456,24 @@
   :preface (defun mp-eglot-eldoc ()
 	     (setq eldoc-documentation-strategy
 		   'eldoc-documentation-compose-eagerly))
-  :hook ((eglot-managed-mode . mp-eglot-eldoc))
+  :hook ((eglot-managed-mode . mp-eglot-eldoc)
+	 (python-mode . eglot-ensure)
+	 (rust-mode . eglot-ensure)
+	 (js-mode . eglot-ensure)
+	 (go-mode . eglot-ensure)
+	 (ruby-mode . eglot-ensure)
+	 (c-mode . eglot-ensure)
+	 (c++-mode . eglot-ensure)
+	 (java-mode . eglot-ensure))
   :custom
+  (eglot-autoshutdown t)
   (eglot-sync-connect t)
-  (eglot-connect-timeout 3)
+  (eglot-connect-timeout 10)
   (org-directory "~/org/")
   :config
-  (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
+  (setq eglot-ignored-server-capabilities '(:inlayHintProvider
+					    :foldingRangeProvider
+					    :hoverProvider))
   (setq eglot-report-progress nil))
 ;; (when (executable-find "emacs-lsp-booster")
 ;;   (use-package eglot-booster
