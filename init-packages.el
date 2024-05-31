@@ -390,10 +390,7 @@
 	 ("C-c r"   . consult-ripgrep)
 	 ("C-c l"   . consult-line-multi)
 	 ("M-g g"   . consult-goto-line)
-	 ("M-g M-g" . consult-goto-line)
-	 :map consult-isearch-history-map
-	 ("C-p" #'consult-isearch-forward)
-	 ("C-n" #'consult-isearch-backward)))
+	 ("M-g M-g" . consult-goto-line)))
 
 ;; improve icomplete
 (use-package orderless
