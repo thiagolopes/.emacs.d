@@ -24,21 +24,16 @@
   (setq fontaine-presets
 	'((hack
 	   :default-family "Hack"
-	   :line-spacing 2
 	   :bold-weight extrabold)
 	  (iosevka
-	   :default-family "Iosevka Comfy"
-	   :line-spacing 2)
+	   :default-family "Iosevka Comfy")
 	  (cascadia
 	   :default-family "Cascadia Mono"
-	   :line-spacing 3
 	   :default-weight semilight)
 	  (iosvmata
-	   :default-family "Iosvmata"
-	   :line-spacing 3)
+	   :default-family "Iosvmata")
 	  (nrk
-	   :default-family "NRK Mono"
-	   :line-spacing 1)
+	   :default-family "NRK Mono")
 	  (pragmasevka
 	   :default-family "Pragmasevka"
 	   :line-spacing 3

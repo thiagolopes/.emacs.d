@@ -205,6 +205,9 @@
 (setq org-todo-keywords
       '((sequence "TODO" "VERIFY" "|" "DONE" "STOPED")))
 
+;; python use async in run-python
+(setq python-shell-interpreter-args "-i -m asyncio")
+
 ;; save desktop only window size, without questions - stolen from Xat
 ;; (defun desktop-file-modtime-reset ()
 ;;   "Reset `desktop-file-modtime' so the user is not bothered."
