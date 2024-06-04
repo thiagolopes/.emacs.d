@@ -403,7 +403,8 @@
 (global-set-key (kbd "C-,") #'duplicate-line)
 (global-set-key (kbd "<f6>") #'font-lock-mode)
 
-(load (expand-file-name "init-packages.el" user-emacs-directory))
+(when (display-graphic-p)
+      (load (expand-file-name "init-packages.el" user-emacs-directory)))
 
 (provide 'init)
 ;;; early-init.el ends here;
