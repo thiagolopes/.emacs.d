@@ -202,9 +202,6 @@
     (setq-default undo-fu-session-compression 'zst)))
 
 ;; setup fonts
-(use-package unicode-fonts
-  :config
-  (unicode-fonts-setup))
 (use-package mixed-pitch
   :custom
   (mixed-pitch-set-height t))
