@@ -55,7 +55,6 @@
 ;; (icomplete-mode t)
 ;; (define-key icomplete-minibuffer-map (kbd "TAB") #'icomplete-force-complete)
 ;; (icomplete-vertical-mode t)
-(setq completion-auto-help nil)
 
 ;; ;; avoid cursor recenter every scroll
 ;; (setq scroll-margin 3)
