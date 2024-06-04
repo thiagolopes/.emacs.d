@@ -12,6 +12,9 @@
 
 
 
+;;
+(use-package esup :defer t)
+
 ;; load .env shell
 (use-package exec-path-from-shell
   :config
@@ -56,13 +59,13 @@
   :init (all-the-icons-completion-mode))
 
 ;; extra modes
-(use-package cmake-mode)
-(use-package i3wm-config-mode)
-(use-package lua-mode)
-(use-package markdown-mode)
+(use-package cmake-mode :defer t)
+(use-package i3wm-config-mode :defer t)
+(use-package lua-mode :defer t)
+(use-package markdown-mode :defer t)
 (use-package pdf-tools :defer t)
-(use-package web-mode)
-(use-package yaml-mode)
+(use-package web-mode :defer t)
+(use-package yaml-mode :defer t)
 (use-package diminish
   :config (diminish 'completion-preview-mode))
 
@@ -119,7 +122,7 @@
   (global-page-break-lines-mode))
 
 ;; edit by sudo
-(use-package sudo-edit)
+(use-package sudo-edit :defer t)
 
 ;; save on focus loose
 (use-package super-save
@@ -148,6 +151,7 @@
 
 ;; clojure
 (use-package cider
+  :defer t
   :custom
   (nrepl-hide-special-buffers t)
   (nrepl-log-messages nil)
@@ -172,7 +176,8 @@
   (ider-repl-pop-to-buffer-on-connect 'display-only))
 
 ;; ;; python
-(use-package pytest)
+(use-package pytest
+  :defer t)
 (use-package virtualenvwrapper
   :config (venv-initialize-eshell))
 (use-package electric-operator
@@ -192,7 +197,7 @@
   (which-key-mode t))
 
 ;; undo tree visualization
-(use-package vundo)
+(use-package vundo :defer t)
 (use-package undo-fu-session
   :config
   (undo-fu-session-global-mode t)
@@ -274,12 +279,12 @@
   (rainbow-delimiters-max-face-count 4))
 
 ;; UUID
-(use-package uuidgen)
+(use-package uuidgen :defer t)
 
 ;; ;; git!
-(use-package git-link)
-(use-package git-timemachine)
-(use-package magit)
+(use-package git-link :defer t)
+(use-package git-timemachine :defer t)
+(use-package magit :defer t)
 
 ;; move blocks
 (use-package drag-stuff
@@ -505,11 +510,13 @@
   :config
   (with-eval-after-load 'org (global-org-modern-mode)))
 (use-package verb
+  :defer t
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 ;; libterm terminal
-(use-package vterm)
+(use-package vterm :defer t)
 (use-package shell-pop
+  :defer t
   :custom
   (shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
   (shell-pop-universal-key "<f12>")
@@ -533,11 +540,6 @@
   (doom-modeline-buffer-encoding nil)
   :init
   (doom-modeline-mode 1))
-
-(use-package server
-  :config
-  (unless (server-running-p)
-    (server-start)))
 
 (use-package breadcrumb
   :disabled
