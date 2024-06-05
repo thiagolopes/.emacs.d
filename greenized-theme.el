@@ -99,12 +99,12 @@
 
 
    ;; Font lock
-   `(font-lock-constant-face              ((t (:foreground ,constants))))
-   `(font-lock-variable-name-face         ((t (:foreground ,text))))
+   `(font-lock-constant-face              ((t (:inherit default))))
+   `(font-lock-variable-name-face         ((t (:inherit default))))
    `(font-lock-keyword-face               ((t (:foreground ,keywords :slant ,font-slant))))
-   `(font-lock-builtin-face               ((t (:foreground ,builtin  :slant ,font-slant))))
-   `(font-lock-comment-face               ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
-   `(font-lock-comment-delimiter-face     ((t (:foreground ,comments :height ,smaller :background ,background-darker))))
+   `(font-lock-builtin-face               ((t (:inherit default))))
+   `(font-lock-comment-face               ((t (:foreground ,comments))))
+   `(font-lock-comment-delimiter-face     ((t (:foreground ,comments))))
 
    `(font-lock-type-face                  ((t (:foreground ,punctuation))))
    `(font-lock-string-face                ((t (:foreground ,strings))))
@@ -245,12 +245,14 @@
    `(bm-persistent-face                   ((t (:background ,background-darker))))
 
 
-   `(show-paren-match                     ((t (:background nil
+   `(show-paren-match                     ((t (:background ,background-darker-darker
 							   :foreground ,white
 							   :bold t
 							   :inverse-video nil))))
    `(solaire-default-face                 ((t (:background ,background-darker-darker))))
-   `(symbol-overlay-default-face          ((t (:bold t))))
+
+   `(symbol-overlay-default-face          ((t (:bold t :background ,background-darker-darker))))
+
    `(whitespace-space                     ((t (:background ,background :foreground ,line-fg))))
 
    ;; Ido
