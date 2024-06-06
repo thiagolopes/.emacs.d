@@ -103,9 +103,18 @@
 ;; ;; Yes, I really want compile
 ;; (setopt compilation-ask-about-save nil)
 
-;; ctyle - change comentary to //
-(add-hook 'c-mode-hook #'(lambda () (setq comment-start "//"
-					  comment-end   "")))
+;; ctyle - change comentary to /
+(setq-default c-basic-offset 4
+	      c-default-style '((java-mode . "java")
+				(awk-mode . "awk")
+				(other . "bsd")))
+
+(add-hook 'c-mode-hook (lambda ()
+			 (interactive)
+			 (c-toggle-comment-style -1)))
+
+(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
+					comment-end   "")))
 ;; ;; follow mode to split 1 file in to buffers
 ;; (follow-mode 1)
 
