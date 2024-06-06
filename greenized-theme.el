@@ -36,13 +36,13 @@
 	   "#d3b58d"
 	 "#839496"))
 
-      (comments "#3fdf1f")
+      (strings "#3fdf1f")
+      (comments    "#0fdfaf")
       (punctuation "lightgreen")
       (keywords "#ffffff")
       (functions "#ffffff")
       ;; (variables "#c1d1e3")
       ;; (methods    "#c1d1e3")
-      (strings    "#0fdfaf")
       (constants "#c8d4ec")
       (macros "#8cde94")
       (numbers "#0fddcc")
