@@ -80,9 +80,6 @@
   (diminish 'completion-preview-mode)
   (diminish 'eldoc-mode))
 
-;; RSS feed
-(use-package elfeed :defer t)
-
 (use-package persist
   :after server)
 (use-package persist-state
@@ -570,6 +567,15 @@
   :config
   (scroll-on-jump-advice-add forward-paragraph)
   (scroll-on-jump-advice-add backward-paragraph))
+
+;; RSS feed
+(use-package elfeed :defer t
+  :custom
+  (elfeed-feeds
+   '(("https://www.redblobgames.com/blog/posts.xml" gamedev programming)
+     ("https://eev.ee/feeds/blog.atom.xml" gamedev)
+     ("http://feeds.feedburner.com/Blog-Slynyrd" gamedev art)
+     )))
 
 (provide 'init-packages)
 ;;; init.el ends here
