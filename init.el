@@ -153,8 +153,6 @@
 (setq ls-lisp-use-insert-directory-program nil)
 
 ;; utf8, please
-
-
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)

@@ -75,7 +75,9 @@
 (use-package web-mode :defer t)
 (use-package yaml-mode :defer t)
 (use-package diminish
-  :config (diminish 'completion-preview-mode))
+  :config
+  (diminish 'completion-preview-mode)
+  (diminish 'eldoc-mode))
 
 (use-package persist
   :after server)
@@ -183,12 +185,13 @@
   (cider-repl-display-help-banner nil)
   (ider-repl-pop-to-buffer-on-connect 'display-only))
 
-;; ;; python
+;; python
 (use-package pytest
   :defer t)
 (use-package virtualenvwrapper
   :config (venv-initialize-eshell))
 (use-package electric-operator
+  :diminish
   :hook
   (python-mode . electric-operator-mode))
 
