@@ -12,7 +12,15 @@
 
 
 
-;;
+;; navegation between line/end line
+(use-package mwim
+  :bind (("C-a" . mwim-beginning)
+	 ("C-e" . mwim-end)))
+
+;;makefile
+(use-package makefile-executor :defer t)
+
+;; debug startup
 (use-package esup :defer t)
 
 ;; load .env shell
