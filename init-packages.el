@@ -80,6 +80,9 @@
   (diminish 'completion-preview-mode)
   (diminish 'eldoc-mode))
 
+;; RSS feed
+(use-package elfeed :defer t)
+
 (use-package persist
   :after server)
 (use-package persist-state
