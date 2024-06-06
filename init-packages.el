@@ -576,6 +576,7 @@
      ("https://eev.ee/feeds/blog.atom.xml" gamedev)
      ("http://feeds.feedburner.com/Blog-Slynyrd" gamedev art)
      )))
+(use-package elfeed-org :after elfeed :defer t)
 
 (provide 'init-packages)
 ;;; init.el ends here
