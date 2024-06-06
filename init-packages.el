@@ -510,14 +510,13 @@
 		 nil
 		 (window-parameters (mode-line-format . none)))))
 
-;; (use-package hl-line+
-;;   :config
-;;   (toggle-hl-line-when-idle t))
-
 ;; org mode
 (use-package org-modern
   :hook
   (org-mode . org-modern-mode)
+  :custom
+  (org-modern-fold-stars
+   '(("▶" . "▼") ("▷▷" . "▽▽") ("⯈⯈⯈" . "⯆⯆⯆") ("▹▹▹▹" . "▿▿▿▿") ("▸▸▸▸▸" . "▾▾▾▾▾")))
   :config
   (with-eval-after-load 'org (global-org-modern-mode)))
 (use-package verb
