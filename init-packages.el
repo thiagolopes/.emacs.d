@@ -74,6 +74,7 @@
 (use-package pdf-tools :defer t)
 (use-package web-mode :defer t)
 (use-package yaml-mode :defer t)
+(use-package dockerfile-mode :defer t)
 (use-package diminish
   :config
   (diminish 'completion-preview-mode)
