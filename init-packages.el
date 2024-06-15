@@ -17,11 +17,13 @@
   :bind (("C-a" . mwim-beginning)
 	 ("C-e" . mwim-end)))
 
-;;makefile
-(use-package makefile-executor :defer t)
-
 ;; debug startup
 (use-package esup :defer t)
+
+;; better defaults
+(use-package crux
+  :bind
+  (("C-k" . crux-smart-kill-line)))
 
 ;; load .env shell
 (use-package exec-path-from-shell
@@ -56,6 +58,11 @@
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
 
+;; M-w
+(use-package easy-kill
+  :config
+  (global-set-key [remap kill-ring-save] 'easy-kill))
+
 ;; icons
 (use-package all-the-icons
   :custom (all-the-icons-scale-factor 0.9))
@@ -80,8 +87,7 @@
   (diminish 'completion-preview-mode)
   (diminish 'eldoc-mode))
 
-(use-package persist
-  :after server)
+(use-package persist :after server)
 (use-package persist-state
   :after (persist, server)
   :config (persist-state-mode t))
@@ -89,30 +95,31 @@
 ;; This package automatically calculates and adjusts the default text size for
 ;; the size and pixel pitch of the display.
 (use-package textsize
+  :disabled
   :init (textsize-mode t)
   :hook (after-init . textsize-fix-frame)
   :custom (textsize-default-points 15))
 
 ;; tooltip and backends
-(use-package corfu
-  :custom (corfu-separator ?\s)          ;; Orderless field separator
-  (corfu-preview-current nil)    ;; Disable current candidate preview
-  (corfu-scroll-margin 15)        ;; Use scroll margin
-  :config
-  (global-corfu-mode t)
-  (corfu-echo-mode t))
-(use-package corfu-terminal
-  :if (not (display-graphic-p))
-  :config
-  (corfu-terminal-mode t))
+;; (use-package corfu
+;;   :custom
+;;   (corfu-separator ?\s)          ;; Orderless field separator
+;;   (corfu-preview-current nil)    ;; Disable current candidate preview
+;;   (corfu-scroll-margin 15)        ;; Use scroll margin
+;;   :config
+;;   (global-corfu-mode t)
+;;   (corfu-echo-mode t))
+;; (use-package corfu-terminal
+;;   :if (not (display-graphic-p))
+;;   :config
+;;   (corfu-terminal-mode t))
 
-(use-package cape
-  :init
-  (add-hook 'completion-at-point-functions #'cape-dabbrev)
-  (add-hook 'completion-at-point-functions #'cape-file)
-  (add-hook 'completion-at-point-functions #'cape-elisp-block))
+;; (use-package cape
+;;   :init
+;;   (add-hook 'completion-at-point-functions #'cape-dabbrev)
+;;   (add-hook 'completion-at-point-functions #'cape-file)
+;;   (add-hook 'completion-at-point-functions #'cape-elisp-block))
 (use-package company
-  :disabled
   :bind (:map company-active-map
 	      ("<tab>" . company-complete-selection))
   :hook
