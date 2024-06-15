@@ -114,22 +114,23 @@
 ;;   :config
 ;;   (corfu-terminal-mode t))
 
-;; (use-package cape
-;;   :init
-;;   (add-hook 'completion-at-point-functions #'cape-dabbrev)
-;;   (add-hook 'completion-at-point-functions #'cape-file)
-;;   (add-hook 'completion-at-point-functions #'cape-elisp-block))
+(use-package cape
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block))
 (use-package company
   :bind (:map company-active-map
 	      ("<tab>" . company-complete-selection))
   :hook
   (after-init . global-company-mode)
   :custom
-  ;; (company-frontends '(company-pseudo-tooltip-frontend
-  ;;		       company-echo-metadata-frontend))
   (company-idle-delay nil)
   (company-minimum-prefix-length 1)
   :config
+  (setq-local completion-at-point-functions
+  (mapcar #'cape-company-to-capf
+    (list #'company-files #'company-keywords #'company-dabbrev)))
   (define-key company-mode-map (kbd "C-M-i") 'company-complete)
   (define-key company-active-map (kbd "C-M-i") 'company-complete))
 
