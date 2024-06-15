@@ -22,4 +22,6 @@
 (horizontal-scroll-bar-mode 0)
 (menu-bar-mode 0)
 
+(set-face-attribute 'default nil :height 140)
+
 (provide 'early-init)
