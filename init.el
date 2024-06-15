@@ -195,17 +195,6 @@
 ;; save m-x history
 (savehist-mode t)
 (setq savehist-save-minibuffer-history t)
-(setq savehist-additional-variables
-      '(search-ring
-	regexp-search-ring
-	extended-command-history
-	kill-ring
-	mark-ring
-	global-mark-ring
-	file-name-history
-	minibuffer-history
-	read-expression-history
-	command-history))
 
 ;; org-mode
 (setq org-todo-keywords
