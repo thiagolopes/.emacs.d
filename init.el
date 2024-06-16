@@ -10,8 +10,6 @@
 (setq user-mail-address "thiagolopes@protonmail.com")
 ;; sanitaze
 ;; (setq x-select-enable-clipboard-manager nil)
-(setq warning-minimum-level :emergency)
-(setq debug-on-error t)
 (setq require-final-newline t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq use-short-answers t)
