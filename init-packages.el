@@ -39,6 +39,8 @@
 	   :default-family "Hack"
 	   :bold-weight extrabold)
 	  (iosevka
+	   :default-family "Iosevka")
+	  (iosevka-confy
 	   :default-family "Iosevka Comfy")
 	  (cascadia
 	   :default-family "Cascadia Mono"
@@ -52,7 +54,7 @@
 	   :line-spacing 3
 	   :default-weight regular
 	   :bold-weight extrabold)))
-  (fontaine-set-preset 'iosvmata))
+  (fontaine-set-preset 'iosevka))
 (use-package gruber-darker-theme
   :config
   (disable-theme 'greenized)
