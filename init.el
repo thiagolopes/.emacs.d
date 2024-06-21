@@ -282,12 +282,11 @@
 	'(:eval (format " - GNU Emacs %s" emacs-version))))
 (setq icon-title-format frame-title-format)
 
-
 ;; Completion preview
-(load (expand-file-name "completion-preview.el" user-emacs-directory))
-(add-hook 'prog-mode-hook #'completion-preview-mode)
-(add-hook 'text-mode-hook #'completion-preview-mode)
-(require 'completion-preview)
+;; (load (expand-file-name "completion-preview.el" user-emacs-directory))
+;; (add-hook 'prog-mode-hook #'completion-preview-mode)
+;; (add-hook 'text-mode-hook #'completion-preview-mode)
+;; (require 'completion-preview)
 
 
 ;; modeline which function
