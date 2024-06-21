@@ -99,6 +99,9 @@
   :init
   (global-fancy-dabbrev-mode)
   :config
+  (setq dabbrev-case-distinction nil)
+  (setq dabbrev-case-fold-search t)
+  (setq dabbrev-case-replace nil)
   (global-set-key (kbd "TAB") 'fancy-dabbrev-expand-or-indent))
 
 (use-package company
@@ -451,9 +454,6 @@
 
 ;; LSP
 (use-package eglot
-  :preface (defun mp-eglot-eldoc ()
-	     (setq eldoc-documentation-strategy
-		   'eldoc-documentation-compose-eagerly))
   :hook ((eglot-managed-mode . mp-eglot-eldoc)
 	 (python-mode . eglot-ensure)
 	 (rust-mode . eglot-ensure)
@@ -466,10 +466,16 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-sync-connect t)
-  (eglot-connect-timeout 10)
+  (eglot-connect-timeout 3)
+  (eglot-events-buffer-size 0)
   (org-directory "~/org/")
   :config
   (setq eglot-ignored-server-capabilities '(:inlayHintProvider
+					    :documentHighlightProvider
+					    :documentFormattingProvider
+					    :documentRangeFormattingProvider
+					    :documentOnTypeFormattingProvider
+					    :colorProvider
 					    :foldingRangeProvider
 					    :hoverProvider))
   (setq eglot-report-progress nil))
@@ -483,7 +489,7 @@
 (use-package symbol-overlay
   :diminish
   :custom
-  (symbol-overlay-idle-time 0.8)
+  (symbol-overlay-idle-time 0.5)
   (symbol-overlay-temp-highlight-single nil)
   :hook
   (prog-mode . symbol-overlay-mode))
