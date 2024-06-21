@@ -191,8 +191,10 @@
 ;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 ;; save m-x history
-(savehist-mode t)
+(setq history-length t)
+(setq history-delete-duplicates t)
 (setq savehist-save-minibuffer-history t)
+(savehist-mode t)
 
 ;; org-mode
 (setq org-todo-keywords
