@@ -185,11 +185,11 @@
   :hook
   (python-mode . electric-operator-mode))
 
-;; ;; organize cache files
+;; organize cache files
 (use-package no-littering
-  :custom
-  (auto-save-file-name-transforms
-   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+  :config
+  (require 'no-littering)
+  (savehist-mode))
 
 ;; show helper command
 (use-package which-key
