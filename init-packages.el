@@ -89,50 +89,29 @@
   (diminish 'completion-preview-mode)
   (diminish 'eldoc-mode))
 
-(use-package persist :after server)
-(use-package persist-state
-  :after (persist, server)
-  :config (persist-state-mode t))
-
-;; This package automatically calculates and adjusts the default text size for
-;; the size and pixel pitch of the display.
-(use-package textsize
-  :disabled
-  :init (textsize-mode t)
-  :hook (after-init . textsize-fix-frame)
-  :custom (textsize-default-points 15))
-
-;; tooltip and backends
-;; (use-package corfu
-;;   :custom
-;;   (corfu-separator ?\s)          ;; Orderless field separator
-;;   (corfu-preview-current nil)    ;; Disable current candidate preview
-;;   (corfu-scroll-margin 15)        ;; Use scroll margin
-;;   :config
-;;   (global-corfu-mode t)
-;;   (corfu-echo-mode t))
-;; (use-package corfu-terminal
-;;   :if (not (display-graphic-p))
-;;   :config
-;;   (corfu-terminal-mode t))
-
 (use-package cape
   :init
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
   (add-hook 'completion-at-point-functions #'cape-file)
   (add-hook 'completion-at-point-functions #'cape-elisp-block))
+
+(use-package fancy-dabbrev
+  :init
+  (global-fancy-dabbrev-mode)
+  :config
+  (global-set-key (kbd "TAB") 'fancy-dabbrev-expand-or-indent))
+
 (use-package company
-  :bind (:map company-active-map
-	      ("<tab>" . company-complete-selection))
   :hook
   (after-init . global-company-mode)
   :custom
   (company-idle-delay nil)
   (company-minimum-prefix-length 1)
   :config
+  (add-to-list 'company-backends '(company-capf company-dabbrev))
   (setq-local completion-at-point-functions
-  (mapcar #'cape-company-to-capf
-    (list #'company-files #'company-keywords #'company-dabbrev)))
+	      (mapcar #'cape-company-to-capf
+		      (list #'company-files #'company-keywords #'company-dabbrev)))
   (define-key company-mode-map (kbd "C-M-i") 'company-complete)
   (define-key company-active-map (kbd "C-M-i") 'company-complete))
 
