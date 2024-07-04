@@ -468,7 +468,6 @@
   (eglot-sync-connect t)
   (eglot-connect-timeout 3)
   (eglot-events-buffer-size 0)
-  (org-directory "~/org/")
   :config
   (setq eglot-ignored-server-capabilities '(:inlayHintProvider
 					    :documentHighlightProvider

@@ -197,6 +197,7 @@
 (savehist-mode t)
 
 ;; org-mode
+(setq org-directory "~/org/")
 (setq org-todo-keywords
       '((sequence "TODO" "VERIFY" "|" "DONE" "STOPED")))
 
