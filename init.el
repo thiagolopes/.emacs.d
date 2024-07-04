@@ -15,7 +15,7 @@
 (setq use-short-answers t)
 
 ;; disable multiple eldoc
-(setq eldoc-echo-area-use-multiline-p nil)
+;; (setq eldoc-echo-area-use-multiline-p nill)
 
 ;; save cursor position
 (require 'saveplace)
