@@ -63,7 +63,7 @@
 ;; (setq auto-window-vscroll nil)
 ;; (setq text-scale-mode-step 1.05)
 
-(setq tab-always-indent 'complete)
+(setq tab-always-indent t)
 
 ;; Explicitly define a width to reduce the cost of on-the-fly computation
 ;; (setq-default display-line-numbers-width 3)
