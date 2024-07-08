@@ -454,8 +454,7 @@
 
 ;; LSP
 (use-package eglot
-  :hook ((eglot-managed-mode . mp-eglot-eldoc)
-	 (python-mode . eglot-ensure)
+  :hook ((python-mode . eglot-ensure)
 	 (rust-mode . eglot-ensure)
 	 (js-mode . eglot-ensure)
 	 (go-mode . eglot-ensure)
