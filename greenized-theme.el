@@ -99,10 +99,10 @@
 
 
    ;; Font lock
-   `(font-lock-constant-face              ((t (:inherit default))))
-   `(font-lock-variable-name-face         ((t (:inherit default))))
+   `(font-lock-constant-face              ((t (:foreground ,constants))))
+   `(font-lock-variable-name-face         ((t (:foreground ,text))))
    `(font-lock-keyword-face               ((t (:foreground ,keywords :slant ,font-slant))))
-   `(font-lock-builtin-face               ((t (:inherit default))))
+   `(font-lock-builtin-face               ((t (:foreground ,builtin  :slant ,font-slant))))
    `(font-lock-comment-face               ((t (:foreground ,comments))))
    `(font-lock-comment-delimiter-face     ((t (:foreground ,comments))))
 

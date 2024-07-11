@@ -64,6 +64,7 @@
 	   :bold-weight extrabold)))
   (fontaine-set-preset 'iosevka))
 (use-package gruber-darker-theme
+  :disabled
   :config
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
