@@ -468,26 +468,16 @@
 
 ;; LSP
 (use-package eglot
-  :hook ((python-mode . eglot-ensure)
-	 (rust-mode . eglot-ensure)
-	 (js-mode . eglot-ensure)
-	 (go-mode . eglot-ensure)
-	 (ruby-mode . eglot-ensure)
-	 (c-mode . eglot-ensure)
-	 (c++-mode . eglot-ensure)
-	 (java-mode . eglot-ensure))
+  :hook
+  (prog-mode-hook . eglot-ensure)
   :custom
+  (defalias 'start-lsp-server #'eglot)
   (eglot-autoshutdown t)
   (eglot-sync-connect t)
   (eglot-connect-timeout 3)
   (eglot-events-buffer-size 0)
   :config
   (setq eglot-ignored-server-capabilities '(:inlayHintProvider
-					    :documentHighlightProvider
-					    :documentFormattingProvider
-					    :documentRangeFormattingProvider
-					    :documentOnTypeFormattingProvider
-					    :colorProvider
 					    :foldingRangeProvider
 					    :hoverProvider))
   (setq eglot-report-progress nil))
