@@ -119,7 +119,13 @@
   (company-idle-delay nil)
   (company-minimum-prefix-length 1)
   :config
-  (add-to-list 'company-backends '(company-capf company-dabbrev))
+  (setq company-text-icons-add-background t)
+  (setq company-tooltip-align-annotations t)
+  (setq company-format-margin-function 'company-text-icons-margin)
+  (setq company-frontends
+	'(company-pseudo-tooltip-unless-just-one-frontend
+	  company-echo-strip-common-frontend
+	  company-preview-if-just-one-frontend))
   (setq-local completion-at-point-functions
 	      (mapcar #'cape-company-to-capf
 		      (list #'company-files #'company-keywords #'company-dabbrev)))
