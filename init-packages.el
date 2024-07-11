@@ -10,8 +10,16 @@
   (setq use-package-always-ensure t
 	use-package-expand-minimally t))
 
-
 
+;; package periodic update
+(use-package auto-package-update
+  :custom
+  (auto-package-update-interval 1)
+  (auto-package-update-delete-old-versions t)
+  :config
+  (package-refresh-contents :async)
+  (auto-package-update-maybe))
+
 ;; navegation between line/end line
 (use-package mwim
   :bind (("C-a" . mwim-beginning)
