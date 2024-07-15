@@ -95,6 +95,7 @@
 (use-package dockerfile-mode :defer t)
 (use-package diminish
   :config
+  (diminish 'fancy-dabbrev-mode)
   (diminish 'completion-preview-mode)
   (diminish 'eldoc-mode))
 
