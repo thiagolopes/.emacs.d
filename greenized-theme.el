@@ -36,8 +36,8 @@
 	   "#d3b58d"
 	 "#839496"))
 
-      (strings "#3fdf1f")
-      (comments    "#0fdfaf")
+      (comments "#3fdf1f")
+      (strings    "#0fdfaf")
       (punctuation "lightgreen")
       (keywords "#ffffff")
       (functions "#ffffff")
