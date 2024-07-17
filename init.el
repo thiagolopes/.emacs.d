@@ -73,6 +73,10 @@
 ;; (add-hook 'conf-mode-hook #'display-line-number-mode)
 ;; (setopt display-line-numbers-type t) ;; disable line number as default
 
+;; Line number scale equal
+(add-hook 'text-scale-mode-hook (lambda() (face-remap--remap-face 'line-number)))
+(add-hook 'text-scale-mode-hook (lambda() (face-remap--remap-face 'line-number-current-line)))
+
 ;; ;; saveaition cursor
 ;; (save-place-mode 1)
 ;; (setopt save-place-file (concat user-emacs-directory "cache/places"))
