@@ -23,14 +23,14 @@
   "Disable italic")
 
 ;; TODO add options to: italic off, comentary style off, modeline border off;
-(let ((background "#041818")
+(let ((background "#062626")
       (gutters    'background)
       (gutter-fg  'background)
       (gutters-active 'background)
       (builtin      "#c8d4ec")
       ;; (builtin      "#ffffff")
       ;; (selection  "#0000ff")
-      (selection  "#072828")
+      (selection  "#071510")
       (text
        (if greenized-theme-default-text-color
 	   "#d3b58d"
@@ -56,8 +56,8 @@
       (modeline "#d3b58d")
       (breadcrumb "#839496")
       (border-width '(2 . 2))
-      (background-darker "#031515")
-      (background-darker-darker "#021010")
+      (background-darker "#041e1e")
+      (background-darker-darker "#041a1a")
       (smaller 0.8)
 
       (font-slant
