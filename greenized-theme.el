@@ -131,8 +131,8 @@
 
    `(linum                                ((t (:foreground ,line-fg :background ,background))))
    `(linum-relative-current-face          ((t (:foreground ,white :background ,background))))
-   `(line-number                          ((t (:foreground ,line-fg :background ,background))))
-   `(line-number-current-line             ((t (:foreground ,white :background ,line-fg))))
+   `(line-number                          ((t (:inherit default :foreground ,line-fg :background ,background))))
+   `(line-number-current-line             ((t (:inherit line-number :foreground ,white :background ,line-fg))))
 
    ;; hl-line-mode
    `(hl-line                              ((t (:background ,highlight-line))))
