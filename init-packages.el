@@ -14,7 +14,7 @@
 ;; package periodic update
 (use-package auto-package-update
   :custom
-  (auto-package-update-interval 1)
+  (auto-package-update-interval 6)
   (auto-package-update-delete-old-versions t)
   :config
   (package-refresh-contents :async)
