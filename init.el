@@ -75,7 +75,7 @@
 
 ;; Line number scale equal
 (add-hook 'text-scale-mode-hook (lambda() (face-remap--remap-face 'line-number)))
-(add-hook 'text-scale-mode-hook (lambda() (face-remap--remap-face 'line-number-current-line)))
+;; (add-hook 'text-scale-mode-hook (lambda() (face-remap--remap-face 'line-number-current-line)))
 
 ;; ;; saveaition cursor
 ;; (save-place-mode 1)
