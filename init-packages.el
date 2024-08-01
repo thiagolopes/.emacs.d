@@ -68,6 +68,11 @@
   :config
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
+(use-package solarized-theme
+  :disabled
+  :config
+  (disable-theme 'greenized)
+  (load-theme 'solarized-dark))
 
 ;; M-w
 (use-package easy-kill
