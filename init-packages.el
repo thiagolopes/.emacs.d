@@ -73,6 +73,11 @@
   :config
   (disable-theme 'greenized)
   (load-theme 'solarized-dark))
+(use-package smart-mode-line
+  :config
+  (sml/setup)
+  (setq sml/theme 'respectful)
+  (smart-mode-line-enable 1))
 
 ;; M-w
 (use-package easy-kill
