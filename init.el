@@ -22,6 +22,9 @@
 (setq save-place t)
 (save-place-mode t)
 
+;; change default width
+(setq-default fill-column 100)
+
 ;; smart parens
 (electric-pair-mode 1)
 
@@ -353,6 +356,13 @@
     (insert line)
     (move-beginning-of-line 1)
     (forward-char column)))
+
+
+
+(defun ansi-colors-enable ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
 
 
 ;; Setup dark GTK theme if available only on X11
