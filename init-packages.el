@@ -62,14 +62,13 @@
 	   :line-spacing 3
 	   :default-weight regular
 	   :bold-weight extrabold)))
-  (fontaine-set-preset 'iosevka))
+  (fontaine-set-preset 'iosvmata))
 (use-package gruber-darker-theme
   :disabled
   :config
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
 (use-package solarized-theme
-  :disabled
   :config
   (disable-theme 'greenized)
   (load-theme 'solarized-dark))
