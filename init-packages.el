@@ -111,8 +111,6 @@
 (use-package dockerfile-mode :defer t)
 (use-package diminish
   :config
-  (diminish 'company-mode)
-  (diminish 'fancy-dabbrev-mode)
   (diminish 'completion-preview-mode)
   (diminish 'eldoc-mode))
 
@@ -123,6 +121,7 @@
   (add-hook 'completion-at-point-functions #'cape-elisp-block))
 
 (use-package fancy-dabbrev
+  :diminish
   :init
   (global-fancy-dabbrev-mode)
   :config
@@ -132,6 +131,7 @@
   ;; (global-set-key (kbd "TAB") 'fancy-dabbrev-expand-or-indent))
 
 (use-package company
+  :diminish
   :hook
   (after-init . global-company-mode)
   :custom
@@ -575,6 +575,7 @@
   (breadcrumb-mode 0))
 
 (use-package yasnippet
+  :diminish
   :init
   (yas-global-mode 1))
 
