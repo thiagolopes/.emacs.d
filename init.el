@@ -34,8 +34,10 @@
 ;; show column number at modeline
 (column-number-mode t)
 
+;; DIRED
 ;; dired always copy/delete recursively
 (setq dired-recursive-copies 'always)
+(setq dired-listing-switches "-alh")
 
 ;; recursive, allow M-x inside minibuffer
 (setq enable-recursive-minibuffers nil)

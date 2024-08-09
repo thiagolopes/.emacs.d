@@ -93,6 +93,13 @@
   :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
   :init (all-the-icons-completion-mode))
 
+;; dired
+(use-package dired-hide-dotfiles
+  :hook (dired-mode . dired-hide-dotfiles-mode)
+  :bind
+  (:map dired-mode-map
+	("h" . dired-hide-dotfiles-mode)))
+
 ;; extra modes
 (use-package cmake-mode :defer t)
 (use-package i3wm-config-mode :defer t)
