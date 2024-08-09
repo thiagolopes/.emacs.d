@@ -128,8 +128,8 @@
   :config
   (setq dabbrev-case-distinction nil)
   (setq dabbrev-case-fold-search t)
-  (setq dabbrev-case-replace nil)
-  (global-set-key (kbd "TAB") 'fancy-dabbrev-expand-or-indent))
+  (setq dabbrev-case-replace nil))
+  ;; (global-set-key (kbd "TAB") 'fancy-dabbrev-expand-or-indent))
 
 (use-package company
   :hook
