@@ -72,6 +72,10 @@
   :config
   (disable-theme 'greenized)
   (load-theme 'solarized-dark))
+(use-package modus-themes
+  :config
+  (disable-theme 'greenized)
+  (load-theme 'modus-vivendi))
 (use-package smart-mode-line
   :config
   (sml/setup)

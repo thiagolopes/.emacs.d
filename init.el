@@ -79,7 +79,7 @@
 ;; (setopt display-line-numbers-type t) ;; disable line number as default
 
 ;; Line number scale equal
-(add-hook 'text-scale-mode-hook (lambda() (face-remap--remap-face 'line-number)))
+;; (add-hook 'text-scale-mode-hook (lambda() (face-remap--remap-face 'line-number)))
 ;; (add-hook 'text-scale-mode-hook (lambda() (face-remap--remap-face 'line-number-current-line)))
 
 ;; ;; saveaition cursor
