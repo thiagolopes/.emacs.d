@@ -62,7 +62,7 @@
 	   :line-spacing 3
 	   :default-weight regular
 	   :bold-weight extrabold)))
-  (fontaine-set-preset 'iosvmata))
+  (fontaine-set-preset 'iosevka-confy))
 (use-package gruber-darker-theme
   :disabled
   :config
