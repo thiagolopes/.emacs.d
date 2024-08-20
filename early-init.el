@@ -9,7 +9,7 @@
 ;; please, maximize
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; quiet startup
-(setq inhibit-startup-message t)
+;; (setq inhibit-startup-message t)
 ;; hopefully all themes we install are safe
 (setq custom-safe-themes t)
 ;; load theme
