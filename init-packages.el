@@ -583,13 +583,6 @@
   :init
   (yas-global-mode 1))
 
-(use-package scroll-on-jump
-  :custom
-  (scroll-on-jump-curve 'linear)
-  :config
-  (scroll-on-jump-advice-add forward-paragraph)
-  (scroll-on-jump-advice-add backward-paragraph))
-
 ;; RSS feed
 (use-package elfeed :defer t
   :custom
