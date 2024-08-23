@@ -184,6 +184,9 @@
 (setq-default indicate-buffer-boundaries 'left)
 (setq visual-line-fringe-indicators '(nil right-curly-arrow))
 
+;; highlight current line
+(add-hook 'prog-mode-hook 'hl-line-mode)
+
 ;; Hippie-expand
 ;; (hippie-expand t)
 ;; (setopt hippie-expand-try-functions-list
