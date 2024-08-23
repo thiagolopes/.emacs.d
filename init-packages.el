@@ -260,14 +260,10 @@
   (which-key-mode t))
 
 ;; undo tree visualization
-(use-package vundo :defer t)
-(use-package undo-fu-session
+(use-package undohist
   :config
-  (undo-fu-session-global-mode t)
-    (when (executable-find "zstd")
-    ;; There are other algorithms available, but zstd is the fastest, and speed
-    ;; is our priority within Emacs
-    (setq-default undo-fu-session-compression 'zst)))
+  (undohist-initialize))
+(use-package vundo :defer t)
 
 ;; setup fonts
 (use-package mixed-pitch
