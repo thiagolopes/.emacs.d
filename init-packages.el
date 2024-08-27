@@ -262,7 +262,9 @@
 
 ;; undo tree visualization
 (use-package undohist
+  :after magit
   :config
+  (add-to-list 'undohist-ignored-files git-commit-filename-regexp)
   (undohist-initialize))
 (use-package vundo :defer t)
 
