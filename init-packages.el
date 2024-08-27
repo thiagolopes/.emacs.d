@@ -49,6 +49,7 @@
 	  (iosevka
 	   :default-family "Iosevka")
 	  (iosevka-confy
+	   :default-height 110
 	   :default-family "Iosevka Comfy")
 	  (cascadia
 	   :default-family "Cascadia Mono"
@@ -64,6 +65,7 @@
 	   :bold-weight extrabold)))
   (fontaine-set-preset 'iosevka-confy))
 (use-package gruber-darker-theme
+  :disabled
   :config
   (disable-theme 'greenized)
   (load-theme 'gruber-darker t))
@@ -73,7 +75,6 @@
   (disable-theme 'greenized)
   (load-theme 'solarized-dark))
 (use-package modus-themes
-  :disabled
   :config
   (setq modus-themes-italic-constructs t
 	modus-themes-bold-constructs t
@@ -81,20 +82,20 @@
 	modus-themes-variable-pitch-ui nil
 	modus-themes-custom-auto-reload t
 	modus-themes-disable-other-themes t)
-  (setq modus-themes-common-palette-overrides
-	'((border-mode-line-active bg-mode-line-active)
-	  (border-mode-line-inactive bg-mode-line-inactive)
-	  (name white)
-	  (bg-main "#181818")
-	  (fringe bg-main)
-	  (keyword yellow-warmer)
-	  (builtin keyword)
-	  (constant slate)
-	  (type constant)
-	  (string green-intense)
-	  (variable white)
-	  (fnname indigo)
-	  (comment rust)))
+  ;; (setq modus-themes-common-palette-overrides
+  ;;	'((border-mode-line-active bg-mode-line-active)
+  ;;	  (border-mode-line-inactive bg-mode-line-inactive)
+  ;;	  (name white)
+  ;;	  (bg-main "#181818")
+  ;;	  (fringe bg-main)
+  ;;	  (keyword yellow-warmer)
+  ;;	  (builtin keyword)
+  ;;	  (constant slate)
+  ;;	  (type constant)
+  ;;	  (string green-intense)
+  ;;	  (variable white)
+  ;;	  (fnname indigo)
+  ;;	  (comment rust)))
   (disable-theme 'greenized)
   (load-theme 'modus-vivendi))
 
