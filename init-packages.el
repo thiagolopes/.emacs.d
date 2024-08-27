@@ -283,6 +283,11 @@
 ;;   :config
 ;;   (solaire-global-mode +1))
 
+(use-package yafolding
+  :hook (prog-mode . yafolding-mode)
+  :config
+  (define-key yafolding-mode-map (kbd "<backtab>") 'yafolding-toggle-element))
+
 (use-package expand-region
   :bind
   ("M-@" . er/expand-region))
