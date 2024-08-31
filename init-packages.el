@@ -261,11 +261,11 @@
   (which-key-mode t))
 
 ;; undo tree visualization
-(use-package undohist
-  :after magit
+(use-package undo-fu
   :config
-  (add-to-list 'undohist-ignored-files git-commit-filename-regexp)
-  (undohist-initialize))
+  (global-unset-key (kbd "C-z"))
+  (global-set-key (kbd "C-z")   'undo-fu-only-undo)
+  (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
 (use-package vundo :defer t)
 
 ;; setup fonts
