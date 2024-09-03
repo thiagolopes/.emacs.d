@@ -49,7 +49,7 @@
 	  (iosevka
 	   :default-family "Iosevka")
 	  (iosevka-confy
-	   :default-height 110
+	   :default-height 130
 	   :default-family "Iosevka Comfy")
 	  (cascadia
 	   :default-family "Cascadia Mono"
@@ -60,10 +60,9 @@
 	   :default-family "NRK Mono")
 	  (pragmasevka
 	   :default-family "Pragmasevka"
-	   :line-spacing 3
-	   :default-weight regular
-	   :bold-weight extrabold)))
-  (fontaine-set-preset 'iosevka-confy))
+	   :default-height 130
+	   :default-weight regular)))
+  (fontaine-set-preset 'pragmasevka))
 (use-package gruber-darker-theme
   :disabled
   :config
