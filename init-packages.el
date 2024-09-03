@@ -95,8 +95,13 @@
   ;;	  (variable white)
   ;;	  (fnname indigo)
   ;;	  (comment rust)))
+
+  (setq modus-themes-common-palette-overrides
+	'((red-cooler green-intense)
+	  (constant yellow-intense)))
+
   (disable-theme 'greenized)
-  (load-theme 'modus-vivendi))
+  (load-theme 'modus-vivendi-tritanopia))
 
 (use-package smart-mode-line
   :config
@@ -343,8 +348,8 @@
 (use-package rainbow-delimiters
   :bind
   ("<f8>" . rainbow-delimiters-mode)
-  ;; :config
-  ;; (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   :custom
   (rainbow-delimiters-max-face-count 4))
 
