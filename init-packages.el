@@ -250,6 +250,10 @@
 ;; organize cache files
 (use-package no-littering
   :config
+  (setq no-littering-etc-directory
+	(expand-file-name "etc/" user-emacs-directory))
+  (setq no-littering-var-directory
+	(expand-file-name "var/" user-emacs-directory))
   (require 'no-littering)
   (savehist-mode))
 
