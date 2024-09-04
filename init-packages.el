@@ -60,6 +60,7 @@
 	   :default-family "NRK Mono")
 	  (pragmasevka
 	   :default-family "Pragmasevka"
+	   :variable-pitch-family "Hack"
 	   :default-height 130
 	   :default-weight regular)))
   (fontaine-set-preset 'pragmasevka))
@@ -78,9 +79,10 @@
   (setq modus-themes-italic-constructs t
 	modus-themes-bold-constructs t
 	modus-themes-mixed-fonts t
-	modus-themes-variable-pitch-ui nil
+	modus-themes-variable-pitch-ui t
 	modus-themes-custom-auto-reload t
 	modus-themes-disable-other-themes t)
+
   ;; (setq modus-themes-common-palette-overrides
   ;;	'((border-mode-line-active bg-mode-line-active)
   ;;	  (border-mode-line-inactive bg-mode-line-inactive)
@@ -97,7 +99,8 @@
   ;;	  (comment rust)))
 
   (setq modus-themes-common-palette-overrides
-	'((red-cooler green-intense)
+	'((bg-main "#111111")
+	  (red-cooler green-intense)
 	  (constant yellow-intense)))
 
   (disable-theme 'greenized)
