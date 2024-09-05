@@ -277,6 +277,10 @@
   (global-unset-key (kbd "C-z"))
   (global-set-key (kbd "C-z")   'undo-fu-only-undo)
   (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
+(use-package undo-fu-session
+  :after undo-fu
+  :config
+  (undo-fu-session-global-mode))
 (use-package vundo :defer t)
 
 ;; setup fonts
