@@ -142,6 +142,7 @@
 	("h" . dired-hide-dotfiles-mode)))
 
 ;; extra modes
+(use-package go-mode)
 (use-package cmake-mode :defer t)
 (use-package i3wm-config-mode :defer t)
 (use-package lua-mode :defer t)
