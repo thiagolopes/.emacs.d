@@ -100,8 +100,13 @@
 
   (setq modus-themes-common-palette-overrides
 	'((bg-main "#111111")
-	  (constant green-intense)
-	  (red-cooler yellow-intense)))
+	  (bg-line-number-inactive "#181818")
+	  (fringe "#181818")
+	  (name green-intense)
+	  (constant yellow-intense)
+	  (red-warmer green-intense)
+	  (red-cooler green-intense)
+	  (err "red")))
 
   (disable-theme 'greenized)
   (load-theme 'modus-vivendi-tritanopia))
