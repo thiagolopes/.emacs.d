@@ -102,11 +102,12 @@
 	'((bg-main "#111111")
 	  (bg-line-number-inactive "#181818")
 	  (fringe "#181818")
+	  (bg-mode-line-active bg-changed-faint)
+	  (border-mode-line-active bg-changed-refine)
 	  (name green-intense)
 	  (constant yellow-intense)
-	  (red-warmer green-intense)
-	  (red-cooler green-intense)
-	  (err "red")))
+	  (red-cooler green-intense)))
+
 
   (disable-theme 'greenized)
   (load-theme 'modus-vivendi-tritanopia))
