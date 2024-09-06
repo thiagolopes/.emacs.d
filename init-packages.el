@@ -105,7 +105,8 @@
 	  (bg-mode-line-active bg-changed-faint)
 	  (border-mode-line-active bg-changed-refine)
 	  (name green-intense)
-	  (constant yellow-intense)
+	  (constant magenta-intense)
+	  (builtin yellow-intense)
 	  (red-cooler green-intense)))
 
 
