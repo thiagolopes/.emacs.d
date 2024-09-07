@@ -179,10 +179,11 @@
 (show-paren-mode t)
 
 ;; enable fringe mode
-(fringe-mode)
-(setq-default indicate-empty-lines t)
-(setq-default indicate-buffer-boundaries 'left)
-(setq visual-line-fringe-indicators '(nil right-curly-arrow))
+(when (display-graphic-p)
+  (fringe-mode)
+  (setq-default indicate-empty-lines t)
+  (setq-default indicate-buffer-boundaries 'left)
+  (setq visual-line-fringe-indicators '(nil right-curly-arrow)))
 
 ;; highlight current line
 (add-hook 'prog-mode-hook 'hl-line-mode)
@@ -418,8 +419,7 @@
 (global-set-key (kbd "C-,") #'duplicate-line)
 (global-set-key (kbd "<f6>") #'font-lock-mode)
 
-(when (display-graphic-p)
-      (load (expand-file-name "init-packages.el" user-emacs-directory)))
+(load (expand-file-name "init-packages.el" user-emacs-directory))
 
 (provide 'init)
 ;;; early-init.el ends here;
