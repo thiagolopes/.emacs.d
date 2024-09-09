@@ -156,6 +156,10 @@
   (diminish 'completion-preview-mode)
   (diminish 'eldoc-mode))
 
+(use-package good-scroll
+  :config
+  (good-scroll-mode 1))
+
 (use-package cape
   :init
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
