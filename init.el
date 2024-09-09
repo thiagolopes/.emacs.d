@@ -138,6 +138,13 @@
 ;; handle very long lines without hurting emacs
 (global-so-long-mode)
 
+;; remove ui
+(when (display-graphic-p)
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0)
+  (horizontal-scroll-bar-mode 0)
+  (menu-bar-mode 0))
+
 ;; backup setup
 ;; don't clobber symlinks
 (setq backup-by-copying t)

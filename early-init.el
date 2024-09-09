@@ -18,13 +18,6 @@
 ;; style add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
 
-;; remove ui
-(when (display-graphic-p)
-  (tool-bar-mode 0)
-  (scroll-bar-mode 0)
-  (horizontal-scroll-bar-mode 0)
-  (menu-bar-mode 0))
-
 (set-face-attribute 'default nil :height 140)
 
 (provide 'early-init)
