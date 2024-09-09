@@ -203,6 +203,10 @@
 ;;	try-complete-file-name))
 ;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
+;; shell-command
+(setq read-process-output-max (* 64 1024 1024))
+(setq process-adaptive-read-buffering nil)
+
 ;; save m-x history
 (setq history-length t)
 (setq history-delete-duplicates t)
@@ -383,6 +387,9 @@
   (set-emacs-frames-gtk "dark"))
 
 
+;; shell command swap
+(global-set-key (kbd "M-!") #'async-shell-command)
+(global-set-key (kbd "M-&") #'shell-command)
 ;; uncessary
 (global-unset-key (kbd "M-<down-mouse-1>"))
 ;;; better navegate end file
