@@ -63,7 +63,9 @@
 	   :variable-pitch-family "Hack"
 	   :default-height 130
 	   :default-weight regular)))
-  (fontaine-set-preset 'pragmasevka))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'pragmasevka))
+  (fontaine-mode 1))
+
 (use-package gruber-darker-theme
   :disabled
   :config
@@ -99,16 +101,16 @@
   ;;	  (comment rust)))
 
   (setq modus-themes-common-palette-overrides
-	'((bg-main "#111111")
-	  (bg-line-number-inactive "#181818")
+	'((bg-main "#3F3F3F")
+	  (bg-line-number-inactive "#2B2B2B")
 	  (fringe "#181818")
-	  (bg-mode-line-active bg-changed-faint)
+	  (bg-mode-line-active bg-changed)
 	  (border-mode-line-active bg-changed-refine)
 	  (name green-intense)
+	  (bg-hl-line "#383838")
 	  (constant magenta-intense)
-	  (builtin yellow-intense)
-	  (red-cooler green-intense)))
-
+	  (builtin yellow)
+	  (red-cooler green)))
 
   (disable-theme 'greenized)
   (load-theme 'modus-vivendi-tritanopia))
