@@ -76,7 +76,11 @@
   :config
   (disable-theme 'greenized)
   (load-theme 'solarized-dark))
+(use-package doom-themes
+  :config
+  (load-theme 'doom-zenburn))
 (use-package modus-themes
+  :disabled
   :config
   (setq modus-themes-italic-constructs t
 	modus-themes-bold-constructs t
@@ -101,8 +105,8 @@
   ;;	  (comment rust)))
 
   (setq modus-themes-common-palette-overrides
-	'((bg-main "#3F3F3F")
-	  (bg-line-number-inactive "#2B2B2B")
+	'((bg-main "#2F2F2F")
+	  (bg-line-number-inactive "#3B3B3B")
 	  (fringe "#181818")
 	  (bg-mode-line-active bg-changed)
 	  (border-mode-line-active bg-changed-refine)
