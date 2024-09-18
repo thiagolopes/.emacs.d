@@ -341,6 +341,7 @@
   (hl-todo-keyword-faces
    '(("TODO" warning bold)
      ("FIXME" error bold)
+     ("DONE" keyword bold)
      ("REVIEW" font-lock-keyword-face bold)
      ("HACK" font-lock-constant-face bold)
      ("DEPRECATED" font-lock-doc-face bold)

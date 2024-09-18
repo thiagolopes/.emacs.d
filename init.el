@@ -60,8 +60,15 @@
 ;; (icomplete-vertical-mode t)
 
 ;; ;; avoid cursor recenter every scroll
-;; (setq scroll-margin 3)
-;; (setq scroll-conservatively 101)
+;; (setq scroll-margin 15)
+(setq redisplay-dont-pause            t) ;; Fully redraw the display before it processes queued input events.
+(setq next-screen-context-lines       2) ;; Number of lines of continuity to retain when scrolling by full screens
+(setq scroll-conservatively       10000) ;; only 'jump' when moving this far off the screen
+(setq scroll-step                     1) ;; Keyboard scroll one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; Don't accelerate scrolling
+(setq mouse-wheel-follow-mouse        t) ;; Scroll window under mouse
+(setq fast-but-imprecise-scrolling    t) ;; No (less) lag while scrolling lots.
+(setq auto-window-vscroll           nil) ;; Cursor move faster
 ;; (setq scroll-up-aggressively 0.01)
 ;; (setq scroll-down-aggressively 0.01)
 ;; (setq scroll-preserve-screen-position t)
