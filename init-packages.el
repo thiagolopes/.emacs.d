@@ -78,6 +78,7 @@
   (load-theme 'solarized-dark))
 (use-package doom-themes
   :config
+  (disable-theme 'greenized)
   (load-theme 'doom-zenburn))
 (use-package modus-themes
   :disabled
@@ -377,8 +378,8 @@
 (use-package rainbow-delimiters
   :bind
   ("<f8>" . rainbow-delimiters-mode)
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  :hook
+  (prog-mode . rainbow-delimiters-mode)
   :custom
   (rainbow-delimiters-max-face-count 4))
 
