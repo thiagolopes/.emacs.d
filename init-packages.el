@@ -38,6 +38,11 @@
   :config
   (exec-path-from-shell-initialize))
 
+;;
+(use-package gcmh
+  :config
+  (gcmh-mode 1))
+
 ;; font/theme
 (use-package fontaine
   :if (display-graphic-p)
