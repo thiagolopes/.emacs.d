@@ -148,9 +148,19 @@
 ;; remove ui
 (when (display-graphic-p)
   (tool-bar-mode 0)
-  (scroll-bar-mode 0)
+  ;; (scroll-bar-mode 1)
   (horizontal-scroll-bar-mode 0)
-  (menu-bar-mode 0))
+  (menu-bar-mode 0)
+
+  (defun update-scroll-bars ()
+    (interactive)
+    (mapc (lambda (win)
+	    (set-window-scroll-bars win nil))
+	  (window-list))
+    (set-window-scroll-bars (selected-window) 14 'right)
+    (set-window-scroll-bars (minibuffer-window) nil nil))
+  (add-hook 'window-configuration-change-hook 'update-scroll-bars)
+  (add-hook 'buffer-list-update-hook 'update-scroll-bars))
 
 ;; backup setup
 ;; don't clobber symlinks
