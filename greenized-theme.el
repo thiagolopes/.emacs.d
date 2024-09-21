@@ -168,6 +168,10 @@
    `(doom-modeline-bar                    ((t (:background ,text))))
    `(doom-modeline-bar-inactive           ((t (:background ,background))))
 
+   ;; sml
+   `(sml/global                         ((t (:foreground ,background))))
+   `(sml/modes                            ((t (:foreground ,strings))))
+
    ;; ace-window
    `(aw-leading-char-face                 ((t (:foreground ,red))))
 
