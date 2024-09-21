@@ -41,6 +41,9 @@
 
 ;; recursive, allow M-x inside minibuffer
 (setq enable-recursive-minibuffers nil)
+(add-hook 'minibuffer-setup-hook '(lambda()
+				    (set (make-local-variable 'face-remapping-alist)
+					 '((default :height 1.2)))))
 
 ;; never use dialog box
 (setq use-dialog-box nil)
