@@ -323,16 +323,16 @@
   (mixed-pitch-set-height t))
 
 ;; darker buffer where is not about edit text
-;; (use-package solaire-mode
-;;   :ensure t
-;;   :hook
-;;   (change-major-mode . turn-on-solaire-mode)
-;;   (after-revert . turn-on-solaire-mode)
-;;   (ediff-prepare-buffer . solaire-mode)
-;;   :custom
-;;   (solaire-mode-auto-swap-bg t)
-;;   :config
-;;   (solaire-global-mode +1))
+(use-package solaire-mode
+  :ensure t
+  :hook
+  (change-major-mode . turn-on-solaire-mode)
+  (after-revert . turn-on-solaire-mode)
+  (ediff-prepare-buffer . solaire-mode)
+  :custom
+  (solaire-mode-auto-swap-bg t)
+  :config
+  (solaire-global-mode +1))
 
 (use-package yafolding
   :hook (prog-mode . yafolding-mode)
