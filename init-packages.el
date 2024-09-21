@@ -7,8 +7,7 @@
 (package-initialize)
 (eval-and-compile
   (require 'use-package)
-  (setq use-package-always-ensure t
-	use-package-expand-minimally t))
+  (setq use-package-expand-minimally t))
 
 
 ;; package periodic update
@@ -89,6 +88,7 @@
   (disable-theme 'greenized)
   (load-theme 'solarized-dark))
 (use-package doom-themes
+  :ensure t
   :config
   (disable-theme 'greenized)
   (load-theme 'doom-one))
@@ -324,7 +324,6 @@
 
 ;; darker buffer where is not about edit text
 (use-package solaire-mode
-  :ensure t
   :hook
   (change-major-mode . turn-on-solaire-mode)
   (after-revert . turn-on-solaire-mode)
