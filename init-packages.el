@@ -48,7 +48,9 @@
   :if (display-graphic-p)
   :config
   (setq fontaine-presets
-	'((hack
+	'((regular
+	   :default-height 160)
+	  (hack
 	   :default-family "Hack"
 	   :bold-weight extrabold)
 	  (iosevka
@@ -63,12 +65,17 @@
 	   :default-family "Iosvmata")
 	  (nrk
 	   :default-family "NRK Mono")
+	  (gonerd
+	   :default-family "GoMono Nerd Font Mono")
+	  (iosevkanerd
+	   :default-family "Iosevka NF")
+	  (brainsnerd
+	   :default-family "JetBrainsMono NF")
 	  (pragmasevka
 	   :default-family "Pragmasevka"
-	   :variable-pitch-family "Hack"
-	   :default-height 130
-	   :default-weight regular)))
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'pragmasevka))
+	   :variable-pitch-family "Hack")
+	  ))
+  (fontaine-set-preset (or 'brainsnerd 'iosevkanerd 'regular))
   (fontaine-mode 1))
 
 (use-package gruber-darker-theme
@@ -84,7 +91,7 @@
 (use-package doom-themes
   :config
   (disable-theme 'greenized)
-  (load-theme 'doom-zenburn))
+  (load-theme 'doom-one))
 (use-package modus-themes
   :disabled
   :config
