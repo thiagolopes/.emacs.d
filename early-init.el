@@ -13,11 +13,10 @@
 ;; hopefully all themes we install are safe
 (setq custom-safe-themes t)
 ;; load theme
-(setq greenized-theme-mixed-fonts nil)
 (load-theme 'greenized t)
 ;; style add padding inside frames (windows)
 (add-to-list 'default-frame-alist '(internal-border-width . 2))
 
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 130)
 
 (provide 'early-init)

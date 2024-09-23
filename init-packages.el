@@ -47,9 +47,7 @@
   :if (display-graphic-p)
   :config
   (setq fontaine-presets
-	'((regular
-	   :default-height 160)
-	  (hack
+	'((hack
 	   :default-family "Hack"
 	   :bold-weight extrabold)
 	  (iosevka
@@ -77,60 +75,37 @@
   (fontaine-set-preset (or 'brainsnerd 'iosevkanerd 'regular))
   (fontaine-mode 1))
 
-(use-package gruber-darker-theme
-  :disabled
-  :config
-  (disable-theme 'greenized)
-  (load-theme 'gruber-darker t))
-(use-package solarized-theme
-  :disabled
-  :config
-  (disable-theme 'greenized)
-  (load-theme 'solarized-dark))
-(use-package doom-themes
-  :ensure t
-  :config
-  (disable-theme 'greenized)
-  (load-theme 'doom-one))
-(use-package modus-themes
-  :disabled
-  :config
-  (setq modus-themes-italic-constructs t
-	modus-themes-bold-constructs t
-	modus-themes-mixed-fonts t
-	modus-themes-variable-pitch-ui t
-	modus-themes-custom-auto-reload t
-	modus-themes-disable-other-themes t)
+(defmacro use-theme (pkg name &rest body)
+  `(use-package ,pkg
+     ,@body
+     :after solaire-mode
+     :config
+     (disable-theme 'greenized)
+     (load-theme ',name t)))
+     ;; (message (format "Theme %s applied" ',name))))
 
-  ;; (setq modus-themes-common-palette-overrides
-  ;;	'((border-mode-line-active bg-mode-line-active)
-  ;;	  (border-mode-line-inactive bg-mode-line-inactive)
-  ;;	  (name white)
-  ;;	  (bg-main "#181818")
-  ;;	  (fringe bg-main)
-  ;;	  (keyword yellow-warmer)
-  ;;	  (builtin keyword)
-  ;;	  (constant slate)
-  ;;	  (type constant)
-  ;;	  (string green-intense)
-  ;;	  (variable white)
-  ;;	  (fnname indigo)
-  ;;	  (comment rust)))
-
-  (setq modus-themes-common-palette-overrides
-	'((bg-main "#2F2F2F")
-	  (bg-line-number-inactive "#3B3B3B")
-	  (fringe "#181818")
-	  (bg-mode-line-active bg-changed)
-	  (border-mode-line-active bg-changed-refine)
-	  (name green-intense)
-	  (bg-hl-line "#383838")
-	  (constant magenta-intense)
-	  (builtin yellow)
-	  (red-cooler green)))
-
-  (disable-theme 'greenized)
-  (load-theme 'modus-vivendi-tritanopia))
+(use-theme doom-themes doom-one)
+(use-theme gruber-darker-theme gruber-darker :disabled)
+(use-theme solarized-theme solarized-dark :disabled)
+(use-theme modus-themes modus-vivendi-tritanopia :disabled
+  :custom
+  (modus-themes-italic-constructs t
+  (modus-themes-bold-constructs t)
+  (modus-themes-mixed-fonts t)
+  (modus-themes-variable-pitch-ui t)
+  (modus-themes-custom-auto-reload t)
+  (modus-themes-disable-other-themes t))
+  (modus-themes-common-palette-overrides
+   '((bg-main "#2F2F2F")
+     (bg-line-number-inactive "#3B3B3B")
+     (fringe "#181818")
+     (bg-mode-line-active bg-changed)
+     (border-mode-line-active bg-changed-refine)
+     (name green-intense)
+     (bg-hl-line "#383838")
+     (constant magenta-intense)
+     (builtin yellow)
+     (red-cooler green))))
 
 (use-package smart-mode-line
   :config
