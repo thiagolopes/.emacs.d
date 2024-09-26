@@ -39,6 +39,7 @@
 
 ;;
 (use-package gcmh
+  :diminish
   :config
   (gcmh-mode 1))
 
