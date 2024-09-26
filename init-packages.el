@@ -85,7 +85,7 @@
      (load-theme ',name t)))
      ;; (message (format "Theme %s applied" ',name))))
 
-(use-theme doom-themes doom-one)
+(use-theme doom-themes doom-zenburn)
 (use-theme gruber-darker-theme gruber-darker :disabled)
 (use-theme solarized-theme solarized-dark :disabled)
 (use-theme modus-themes modus-vivendi-tritanopia :disabled
