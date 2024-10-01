@@ -1,11 +1,25 @@
 (when (version< emacs-version "29.0")
   (message "Your Emacs is old. Please upgrade if possible."))
 
+(require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (when (file-exists-p custom-file)
   (load-file custom-file))
+
+(defun my-all-packages-p ()
+  (cl-loop for p in package-selected-packages
+	   when (not (package-installed-p p))
+	   do
+	   (cl-return nil)
+	   finally
+	   (cl-return t)))
+(unless (my-all-packages-p)
+  (package-refresh-contents)
+  (dolist (p package-selected-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
