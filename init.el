@@ -25,17 +25,32 @@
 (require 'uniquify)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-;; 3party
-(setq completion-styles '(orderless basic)
-      completion-category-overrides '((file (styles basic partial-completion))))
-(require 'orderless)
-(require 'no-littering)
-(mct-mode 1)
-(solaire-global-mode 1)
-(ctrlf-mode t)
-(undo-fu-session-global-mode 1)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
+;; 3party
+(use-package orderless
+  :init
+  (require 'orderless)
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+(use-package no-littering
+  :init
+  (require 'no-littering))
+(use-package mct
+  :init
+  (mct-mode 1))
+(use-package solaire-mode
+  :init
+  (solaire-global-mode 1))
+(use-package ctrlf
+  :init
+  (ctrlf-mode t))
+(use-package undo-fu-session
+  :init
+  (undo-fu-session-global-mode 1))
+(use-package rainbow-delimiters
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
 (use-package org-modern
   :hook
   (org-mode . org-modern-mode)
@@ -46,7 +61,6 @@
      ("⯈⯈⯈" . "⯆⯆⯆")
      ("▹▹▹▹" . "▿▿▿▿")
      ("▸▸▸▸▸" . "▾▾▾▾▾"))))
-
 (use-package consult
   :config (setq completion-in-region-function
 		(lambda (&rest args)
