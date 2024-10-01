@@ -8,6 +8,7 @@
 (when (file-exists-p custom-file)
   (load-file custom-file))
 
+;; TODO use dash https://github.com/magnars/dash.el
 (defun my-all-packages-p ()
   (cl-loop for p in package-selected-packages
 	   when (not (package-installed-p p))
@@ -49,6 +50,11 @@
 (global-set-key (kbd "C-,")     'duplicate-line)
 
 ;; 3party
+(mct-mode 1)
+(solaire-global-mode 1)
+(ctrlf-mode t)
+(undo-fu-session-global-mode 1)
+(venv-initialize-eshell)
 (use-package dumb-jump
   :custom
   (dumb-jump-prefer-searcher 'rg)
@@ -61,18 +67,6 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
-(use-package mct
-  :init
-  (mct-mode 1))
-(use-package solaire-mode
-  :init
-  (solaire-global-mode 1))
-(use-package ctrlf
-  :init
-  (ctrlf-mode t))
-(use-package undo-fu-session
-  :init
-  (undo-fu-session-global-mode 1))
 (use-package rainbow-delimiters
   :hook
   (prog-mode . rainbow-delimiters-mode))
@@ -100,5 +94,3 @@
 	 ("C-c l"   . consult-line-multi)
 	 ("M-g g"   . consult-goto-line)
 	 ("M-g M-g" . consult-goto-line)))
-(use-package virtualenvwrapper
-  :config (venv-initialize-eshell))
