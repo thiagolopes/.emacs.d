@@ -21,10 +21,18 @@
 (repeat-mode 1)
 (save-place-mode 1)
 (savehist-mode 1)
+(windmove-default-keybindings)
 
 (require 'uniquify)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-!")     'async-shell-command)
+(global-set-key (kbd "M-&")     'shell-command)
+(global-set-key (kbd "M-u")     'upcase-dwim)
+(global-set-key (kbd "M-l")     'downcase-dwim)
+(global-set-key (kbd "M-c")     'capitalize-dwim)
+(global-set-key (kbd "C-x C-d") 'dired)
+(global-set-key (kbd "C-,")     'duplicate-line)
 
 ;; 3party
 (use-package orderless
