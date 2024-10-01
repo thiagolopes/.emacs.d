@@ -35,15 +35,18 @@
 (global-set-key (kbd "C-,")     'duplicate-line)
 
 ;; 3party
+(use-package dumb-jump
+  :custom
+  (dumb-jump-prefer-searcher 'rg)
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
 (use-package orderless
   :init
   (require 'orderless)
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
-(use-package no-littering
-  :init
-  (require 'no-littering))
 (use-package mct
   :init
   (mct-mode 1))
@@ -70,12 +73,7 @@
      ("▹▹▹▹" . "▿▿▿▿")
      ("▸▸▸▸▸" . "▾▾▾▾▾"))))
 (use-package consult
-  :config (setq completion-in-region-function
-		(lambda (&rest args)
-		  (apply (if vertico-mode
-			     #'consult-completion-in-region
-			   #'completion--in-region)
-			 args)))
+  :init
   (setq xref-show-xrefs-function #'consult-xref
 	xref-show-definitions-function #'consult-xref)
   :hook (completion-list-mode . consult-preview-at-point-mode)
@@ -88,3 +86,5 @@
 	 ("C-c l"   . consult-line-multi)
 	 ("M-g g"   . consult-goto-line)
 	 ("M-g M-g" . consult-goto-line)))
+(use-package virtualenvwrapper
+  :config (venv-initialize-eshell))
