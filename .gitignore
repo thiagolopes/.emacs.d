@@ -6,7 +6,6 @@ cache/
 /network-security.data
 /.session
 /session.*
-/custom.el
 *.elc
 CVS
 .svn
