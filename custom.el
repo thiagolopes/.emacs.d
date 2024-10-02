@@ -10,7 +10,7 @@
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(package-selected-packages
-   '(virtualenvwrapper dumb-jump orderless mct consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
+   '(no-littering mode-line-bell company virtualenvwrapper dumb-jump orderless mct consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
  '(require-final-newline t)
  '(undo-limit 67108864)
  '(undo-strong-limit 100663296)
