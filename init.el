@@ -8,19 +8,19 @@
 (when (file-exists-p custom-file)
   (load-file custom-file))
 
-;; TODO use dash https://github.com/magnars/dash.el
-(defun my-all-packages-p ()
-  (cl-loop for p in package-selected-packages
-	   when (not (package-installed-p p))
-	   do
-	   (cl-return nil)
-	   finally
-	   (cl-return t)))
-(unless (my-all-packages-p)
-  (package-refresh-contents)
-  (dolist (p package-selected-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+(defun my-pckgs-not-installed ()
+  (when (not (package-installed-p 'dash))
+    (package-install 'dash))
+  (require 'dash)
+  (-filter
+   (-not #'package-installed-p)
+   package-selected-packages))
+
+(let ((packages-not-installed (my-pckgs-not-installed)))
+  (when packages-not-installed
+    (-map #'package-install packages-not-installed)
+    (restart-emacs) ;; OVERKILL
+    ))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
