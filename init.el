@@ -55,12 +55,15 @@
 (ctrlf-mode t)
 (undo-fu-session-global-mode 1)
 (venv-initialize-eshell)
+(require 'no-littering)
+(use-package mode-line-bell
+  :config
+  (mode-line-bell-mode))
 (use-package dumb-jump
   :custom
   (dumb-jump-prefer-searcher 'rg)
   :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-  (add-hook 'dumb-jump-after-jump-hook #'better-jumper-set-jump))
+  (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
 (use-package orderless
   :init
   (require 'orderless)
@@ -82,9 +85,10 @@
      ("▸▸▸▸▸" . "▾▾▾▾▾"))))
 (use-package consult
   :init
-  (setq xref-show-xrefs-function #'consult-xref
-	xref-show-definitions-function #'consult-xref)
-  :hook (completion-list-mode . consult-preview-at-point-mode)
+  (setq xref-show-xrefs-function 'consult-xref
+	xref-show-definitions-function 'consult-xref)
+  :hook
+  (completion-list-mode . consult-preview-at-point-mode)
   :bind (("M-y"     . consult-yank-pop)
 	 ("C-x b"   . consult-buffer)
 	 ("C-c m"   . consult-global-mark)
@@ -94,3 +98,16 @@
 	 ("C-c l"   . consult-line-multi)
 	 ("M-g g"   . consult-goto-line)
 	 ("M-g M-g" . consult-goto-line)))
+(use-package company
+  :hook
+  (prog-mode . company-mode)
+  :config
+  (setq company-format-margin-function nil)
+  (global-set-key (kbd "M-/") 'company-complete-tooltip-row)
+  (setq company-frontends '(company-pseudo-tooltip-frontend
+                            company-echo-metadata-frontend))
+  ;; disable orderless
+  (define-advice company-capf
+    (:around (orig-fun &rest args) set-completion-styles)
+  (let ((completion-styles '(basic partial-completion)))
+    (apply orig-fun args))))
