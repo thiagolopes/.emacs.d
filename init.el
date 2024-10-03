@@ -72,7 +72,7 @@
   (completion-category-overrides
       '((command (styles basic orderless+initialism))
         (symbol (styles basic orderless+initialism))
-        (file (styles basic orderless+initialism))
+        (file (styles basic partial-completion))
         (variable (styles basic orderless+initialism)))))
 (use-package rainbow-delimiters
   :hook
