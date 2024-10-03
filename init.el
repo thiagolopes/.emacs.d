@@ -76,6 +76,7 @@
 (use-package org-modern
   :hook
   (org-mode . org-modern-mode)
+  (org-mode . visual-line-mode)
   :custom
   (org-modern-fold-stars
    '(("▶" . "▼")
