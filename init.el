@@ -69,7 +69,11 @@
   (require 'orderless)
   :custom
   (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (completion-category-overrides
+      '((command (styles basic orderless+initialism))
+        (symbol (styles basic orderless+initialism))
+        (file (styles basic orderless+initialism))
+        (variable (styles basic orderless+initialism)))))
 (use-package rainbow-delimiters
   :hook
   (prog-mode . rainbow-delimiters-mode))
