@@ -104,6 +104,7 @@
 	 ("M-g g"   . consult-goto-line)
 	 ("M-g M-g" . consult-goto-line)))
 (use-package company
+  :diminish
   :hook
   (prog-mode . company-mode)
   :config
