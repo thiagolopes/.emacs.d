@@ -7,11 +7,15 @@
  '(custom-enabled-themes '(zenburn))
  '(custom-safe-themes
    '("09b833239444ac3230f591e35e3c28a4d78f1556b107bafe0eb32b5977204d93" default))
+ '(eglot-autoshutdown t)
+ '(eglot-ignored-server-capabilities
+   '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
+ '(eglot-menu-string "lsp")
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(package-selected-packages
-   '(markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump orderless mct consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
+   '(diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump orderless mct consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
  '(require-final-newline t)
  '(undo-limit 67108864)
  '(undo-strong-limit 100663296)
