@@ -31,7 +31,7 @@
 (blink-cursor-mode -1)
 
 (column-number-mode 1)
-(global-display-line-numbers-mode 1)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (context-menu-mode 1)
 (repeat-mode 1)
 (save-place-mode 1)
