@@ -81,18 +81,18 @@
 (use-package consult
   :init
   (setq xref-show-xrefs-function 'consult-xref
-	xref-show-definitions-function 'consult-xref)
+        xref-show-definitions-function 'consult-xref)
   :hook
   (completion-list-mode . consult-preview-at-point-mode)
   :bind (("M-y"     . consult-yank-pop)
-	 ("C-x b"   . consult-buffer)
-	 ("C-c m"   . consult-global-mark)
-	 ("C-c f"   . consult-find)
-	 ("C-c i"   . consult-imenu)
-	 ("C-c r"   . consult-ripgrep)
-	 ("C-c l"   . consult-line-multi)
-	 ("M-g g"   . consult-goto-line)
-	 ("M-g M-g" . consult-goto-line)))
+         ("C-x b"   . consult-buffer)
+         ("C-c m"   . consult-global-mark)
+         ("C-c f"   . consult-find)
+         ("C-c i"   . consult-imenu)
+         ("C-c r"   . consult-ripgrep)
+         ("C-c l"   . consult-line-multi)
+         ("M-g g"   . consult-goto-line)
+         ("M-g M-g" . consult-goto-line)))
 (use-package company
   :diminish
   :hook
