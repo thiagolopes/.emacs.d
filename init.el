@@ -56,6 +56,7 @@
 (ctrlf-mode t)
 (undo-fu-session-global-mode 1)
 (venv-initialize-eshell)
+(global-set-key [remap goto-line] 'goto-line-preview)
 (require 'no-littering)
 (use-package mode-line-bell
   :config
