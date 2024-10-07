@@ -16,7 +16,7 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump orderless mct consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
+   '(goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump orderless mct consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
  '(require-final-newline t)
  '(undo-limit 67108864)
  '(undo-strong-limit 100663296)
