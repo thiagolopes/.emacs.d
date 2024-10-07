@@ -34,6 +34,7 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (context-menu-mode 1)
 (repeat-mode 1)
+(winner-mode 1)
 (save-place-mode 1)
 (savehist-mode 1)
 (windmove-default-keybindings)
