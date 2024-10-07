@@ -51,10 +51,6 @@
 (global-set-key (kbd "C-,")     'duplicate-line)
 
 ;; 3party
-(mct-mode 1)
-(solaire-global-mode 1)
-(ctrlf-mode t)
-(undo-fu-session-global-mode 1)
 (venv-initialize-eshell)
 (global-set-key [remap goto-line] 'goto-line-preview)
 (global-set-key (kbd "C-x /")     'goto-last-change)
