@@ -51,7 +51,6 @@
 (global-set-key (kbd "C-,")     'duplicate-line)
 
 ;; 3party
-(venv-initialize-eshell)
 (global-set-key [remap goto-line] 'goto-line-preview)
 (global-set-key (kbd "C-x /")     'goto-last-change)
 (require 'no-littering)
