@@ -38,7 +38,7 @@
 (save-place-mode 1)
 (savehist-mode 1)
 (windmove-default-keybindings)
-(icomplete-mode 1)
+(fido-mode 1)
 
 (require 'uniquify)
 

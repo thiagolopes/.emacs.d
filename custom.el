@@ -13,7 +13,6 @@
  '(eglot-ignored-server-capabilities
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
  '(eglot-menu-string "lsp")
- '(icomplete-show-matches-on-no-input t)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
