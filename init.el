@@ -38,6 +38,8 @@
 (save-place-mode 1)
 (savehist-mode 1)
 (windmove-default-keybindings)
+(icomplete-mode)
+(setq completion-styles '(flex partial-completion substring basic))
 
 (require 'uniquify)
 
@@ -62,16 +64,6 @@
   (dumb-jump-prefer-searcher 'rg)
   :config
   (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
-(use-package orderless
-  :init
-  (require 'orderless)
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides
-      '((command (styles basic orderless+initialism))
-        (symbol (styles basic orderless+initialism))
-        (file (styles basic partial-completion))
-        (variable (styles basic orderless+initialism)))))
 (use-package rainbow-delimiters
   :hook
   (prog-mode . rainbow-delimiters-mode))
@@ -109,9 +101,4 @@
   (setq company-format-margin-function nil)
   (global-set-key (kbd "M-/") 'company-complete-tooltip-row)
   (setq company-frontends '(company-pseudo-tooltip-frontend
-                            company-echo-metadata-frontend))
-  ;; disable orderless
-  (define-advice company-capf
-    (:around (orig-fun &rest args) set-completion-styles)
-  (let ((completion-styles '(basic partial-completion)))
-    (apply orig-fun args))))
+                            company-echo-metadata-frontend)))

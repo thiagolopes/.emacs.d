@@ -16,10 +16,8 @@
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
- '(mct-minimum-input 2)
- '(mct-mode t)
  '(package-selected-packages
-   '(goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump orderless mct consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
+   '(vertico goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
  '(require-final-newline t)
  '(solaire-global-mode t)
  '(undo-fu-session-global-mode t)
