@@ -39,6 +39,7 @@
 (savehist-mode 1)
 (windmove-default-keybindings)
 (fido-mode 1)
+(add-hook 'before-save-hook 'whitespace-cleanup nil t)
 
 (require 'uniquify)
 
