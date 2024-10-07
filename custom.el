@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(backup-by-copying t)
+ '(completion-styles '(flex partial-completion substring basic))
  '(ctrlf-mode t)
  '(custom-enabled-themes '(zenburn))
  '(custom-safe-themes
@@ -12,6 +13,7 @@
  '(eglot-ignored-server-capabilities
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
  '(eglot-menu-string "lsp")
+ '(icomplete-show-matches-on-no-input t)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)

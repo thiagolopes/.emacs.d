@@ -38,8 +38,7 @@
 (save-place-mode 1)
 (savehist-mode 1)
 (windmove-default-keybindings)
-(icomplete-mode)
-(setq completion-styles '(flex partial-completion substring basic))
+(icomplete-mode 1)
 
 (require 'uniquify)
 
