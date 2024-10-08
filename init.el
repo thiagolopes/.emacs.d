@@ -102,3 +102,5 @@
   (global-set-key (kbd "M-/") 'company-complete-tooltip-row)
   (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend)))
+(use-package fancy-compilation
+  :commands (fancy-compilation-mode))
