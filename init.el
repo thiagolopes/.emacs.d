@@ -104,3 +104,10 @@
                             company-echo-metadata-frontend)))
 (use-package fancy-compilation
   :commands (fancy-compilation-mode))
+(use-package multiple-cursors
+  :bind
+  ("C->" . 'mc/mark-next-like-this)
+  ("C-<" . 'mc/mark-previous-like-this)
+  ("C-c C-<" . 'mc/edit-lines)
+  ("C-c C->" . 'mc/mark-all-like-this))
+
