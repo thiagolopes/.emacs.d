@@ -114,3 +114,6 @@
 (use-package expand-region
   :bind
   ("M-@" . er/expand-region))
+(use-package mwim
+  :bind (("C-a" . mwim-beginning)
+	 ("C-e" . mwim-end)))
