@@ -112,4 +112,6 @@
   ("C-<" . 'mc/mark-previous-like-this)
   ("C-c C-<" . 'mc/edit-lines)
   ("C-c C->" . 'mc/mark-all-like-this))
-
+(use-package expand-region
+  :bind
+  ("M-@" . er/expand-region))
