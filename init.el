@@ -39,6 +39,7 @@
 (savehist-mode 1)
 (windmove-default-keybindings)
 (fido-mode 1)
+(delete-selection-mode 1)
 (add-hook 'before-save-hook 'whitespace-cleanup nil t)
 
 (require 'uniquify)
@@ -53,6 +54,7 @@
 (global-set-key (kbd "C-,")     'duplicate-line)
 
 ;; 3party
+(hungry-keyboard global-map)
 (global-set-key [remap goto-line] 'goto-line-preview)
 (global-set-key (kbd "C-x /")     'goto-last-change)
 (require 'no-littering)
