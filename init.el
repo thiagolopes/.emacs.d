@@ -42,6 +42,14 @@
 (delete-selection-mode 1)
 (add-hook 'before-save-hook 'whitespace-cleanup nil t)
 
+(let ((temporary-file-directory (expand-file-name
+                                 (convert-standard-filename "backup/")
+                                 user-emacs-directory)))
+  (setq backup-directory-alist
+        `((".*" . ,temporary-file-directory)))
+  (setq auto-save-file-name-transforms
+        `((".*" ,temporary-file-directory t))))
+
 (require 'uniquify)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)

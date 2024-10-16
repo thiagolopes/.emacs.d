@@ -1,5 +1,6 @@
 irony/
 cache/
+/backup
 /url/cache
 /.emacs.desktop
 /auto-save-list
