@@ -52,6 +52,7 @@
 (global-set-key (kbd "M-c")     'capitalize-dwim)
 (global-set-key (kbd "C-x C-d") 'dired)
 (global-set-key (kbd "C-,")     'duplicate-line)
+(global-set-key (kbd "<f9>")    'compile)
 
 ;; 3party
 (global-set-key [remap goto-line] 'goto-line-preview)
