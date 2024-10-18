@@ -42,9 +42,12 @@
 (delete-selection-mode 1)
 (add-hook 'before-save-hook 'whitespace-cleanup nil t)
 
+;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
 (let ((temporary-file-directory (expand-file-name
                                  (convert-standard-filename "backup/")
                                  user-emacs-directory)))
+  (unless (file-exists-p temporary-file-directory)
+    (make-directory temporary-file-directory))
   (setq backup-directory-alist
         `((".*" . ,temporary-file-directory)))
   (setq auto-save-file-name-transforms
