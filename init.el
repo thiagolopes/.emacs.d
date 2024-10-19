@@ -131,6 +131,8 @@
 	 ("C-e" . mwim-end)))
 (use-package hledger-mode
   :mode ("\\.journal\\'" . hledger-mode)
+  :bind (:map hledger-mode-map
+              ("<f9>" . hledger-run-command))
   :config
   (add-to-list 'company-backends 'hledger-company)
   (add-hook 'hledger-mode-hook (lambda () (company-mode))))
