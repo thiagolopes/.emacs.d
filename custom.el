@@ -6,9 +6,9 @@
  '(backup-by-copying t)
  '(completion-styles '(flex partial-completion substring basic))
  '(ctrlf-mode t)
- '(custom-enabled-themes '(zenburn))
+ '(custom-enabled-themes '(cobalt))
  '(custom-safe-themes
-   '("09b833239444ac3230f591e35e3c28a4d78f1556b107bafe0eb32b5977204d93" default))
+   '("09b833239444ac3230f591e35e3c28a4d78f1556b107bafe0eb32b5977204d93" "922433780626773dad4b849e5857a88108e5588bca6c165364095407029c5dbf" "3d9df5511048d0815b1ccc2204cc739117c1a458be92fb26c03451149a1b1c11" default))
  '(eglot-autoshutdown t)
  '(eglot-ignored-server-capabilities
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
