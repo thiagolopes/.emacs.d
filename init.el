@@ -129,3 +129,8 @@
 (use-package mwim
   :bind (("C-a" . mwim-beginning)
 	 ("C-e" . mwim-end)))
+(use-package hledger-mode
+  :mode ("\\.journal\\'" . hledger-mode)
+  :config
+  (add-to-list 'company-backends 'hledger-company)
+  (add-hook 'hledger-mode-hook (lambda () (company-mode))))
