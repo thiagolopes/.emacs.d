@@ -33,8 +33,8 @@
       (selection  "#071510")
       (text
        (if greenized-theme-default-text-color
-	   "#d3b58d"
-	 "#839496"))
+           "#d3b58d"
+         "#839496"))
 
       (comments "#3fdf1f")
       (strings    "#0fdfaf")
@@ -61,12 +61,13 @@
       (md-fg "#888888")
       (md-bg "#111111")
       (md-text "#126367")
+      (whitespace-fg "#0a3e3e")
       (smaller 0.8)
 
       (font-slant
        (if greenized-theme-mixed-fonts
-	   'italic
-	 'normal))
+           'italic
+         'normal))
 
       ;; Solarized colors
       (yellow "#b58900")
@@ -120,6 +121,9 @@
    ;; Minibuffer
    `(minibuffer-prompt                    ((t (:foreground ,comments))))
 
+   ;; Whitespace
+   `(whitespace-space                     ((t (:foreground ,whitespace-fg))))
+
    ;; Error, Warning, Info, Success
    `(error                                ((t (:foreground ,red))))
    `(warning                              ((t (:foreground ,yellow))))
@@ -146,17 +150,17 @@
 
    ;; which-func
    `(which-func                           ((t (:inverse-video unspecified
-							      :underline unspecified
-							      :foreground ,background
-							      :weight normal))))
+                                                              :underline unspecified
+                                                              :foreground ,background
+                                                              :weight normal))))
 
    ;; mode-line and powerline
    `(mode-line-inactive                   ((t (:background ,background :foreground ,highlight-line :box t))))
    `(mode-line-buffer-id                  ((t (:foreground ,md-text :distant-foreground ,highlight-line :text ,text))))
    `(mode-line                            ((t (:inverse-video unspecified
-							      :underline unspecified
-							      :foreground ,md-fg
-							      :background ,md-bg))))
+                                                              :underline unspecified
+                                                              :foreground ,md-fg
+                                                              :background ,md-bg))))
    `(powerline-active1                    ((t (:background ,text :foreground ,background))))
    `(powerline-active2                    ((t (:background ,text :foreground ,background))))
    `(powerline-inactive1                  ((t (:background ,background :foreground ,text))))
@@ -206,46 +210,46 @@
    `(flycheck-error
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,red)
-		   :foreground unspecified
-		   :background unspecified
-		   :inherit unspecified))
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
       (t (:foreground ,red :weight normal :underline t))))
    `(flycheck-warning
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,yellow)
-		   :foreground unspecified
-		   :background unspecified
-		   :inherit unspecified))
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
       (t (:forground ,yellow :weight normal :underline t))))
    `(flycheck-info
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,green)
-		   :foreground unspecified
-		   :background unspecified
-		   :inherit unspecified))
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
       (t (:forground ,green :weight normal :underline t))))
 
    ;; Flymake
    `(flymake-error
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,red)
-		   :foreground unspecified
-		   :background unspecified
-		   :inherit unspecified))
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
       (t (:foreground ,red :weight normal :underline t))))
    `(flymake-warning
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,yellow)
-		   :foreground unspecified
-		   :background unspecified
-		   :inherit unspecified))
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
       (t (:forground ,yellow :weight normal :underline t))))
    `(flymake-note
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,green)
-		   :foreground unspecified
-		   :background unspecified
-		   :inherit unspecified))
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
       (t (:forground ,green :weight normal :underline t))))
 
    ;; bm
@@ -253,9 +257,9 @@
 
 
    `(show-paren-match                     ((t (:background ,background-darker-darker
-							   :foreground ,white
-							   :bold t
-							   :inverse-video nil))))
+                                                           :foreground ,white
+                                                           :bold t
+                                                           :inverse-video nil))))
    `(solaire-default-face                 ((t (:background ,background-darker-darker))))
 
    `(symbol-overlay-default-face          ((t (:bold t :background ,background-darker-darker))))
@@ -339,7 +343,7 @@
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
   (add-to-list 'custom-theme-load-path
-	       (file-name-as-directory (file-name-directory load-file-name))))
+               (file-name-as-directory (file-name-directory load-file-name))))
 
 
 (provide-theme 'greenized)

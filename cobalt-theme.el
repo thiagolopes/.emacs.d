@@ -70,6 +70,7 @@
  '(ido-only-match ((t (:foreground "#42D915"))))
  '(mumamo-background-chunk-major ((t (:background nil))))
  '(mumamo-background-chunk-submode1 ((t (:background nil))))
+ '(whitespace-space ((t  (:foreground "#0c2e56"))))
  '(underline ((nil (:underline nil)))))
 
 ;;;###autoload
