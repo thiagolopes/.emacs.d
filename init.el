@@ -138,6 +138,7 @@
   (add-to-list 'company-backends 'hledger-company)
   (add-hook 'hledger-mode-hook (lambda () (company-mode))))
 (use-package company-posframe
+  :diminish
   :after company
   :init
   (company-posframe-mode 1))
