@@ -6,6 +6,8 @@
  '(backup-by-copying t)
  '(completion-styles '(flex partial-completion substring basic))
  '(ctrlf-mode t)
+ '(custom-buffer-indent 4)
+ '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(cobalt))
  '(custom-safe-themes
    '("d168ba4452bb127973d2c92ab453fe6e70e7fa733d63d7cd32eb9ed8ae1ec8cd" default))
