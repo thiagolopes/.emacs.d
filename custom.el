@@ -29,6 +29,7 @@
  '(undo-limit 67108864)
  '(undo-strong-limit 100663296)
  '(use-dialog-box nil)
+ '(use-short-answers t)
  '(user-mail-address "thiagolopes@protonmail.com")
  '(whitespace-style
    '(face spaces empty tabs newline trailing space-mark tab-mark))
