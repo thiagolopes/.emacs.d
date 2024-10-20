@@ -19,7 +19,7 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(rainbow-mode hledger-mode mwim expand-region hungry-delete uuidgen multiple-cursors fancy-compilation goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
+   '(company-posframe rainbow-mode hledger-mode mwim expand-region hungry-delete uuidgen multiple-cursors fancy-compilation goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
  '(require-final-newline t)
  '(solaire-global-mode t)
  '(undo-fu-session-global-mode t)
@@ -27,6 +27,8 @@
  '(undo-strong-limit 100663296)
  '(use-dialog-box nil)
  '(user-mail-address "thiagolopes@protonmail.com")
+ '(whitespace-style
+   '(face spaces empty tabs newline trailing space-mark tab-mark))
  '(x-underline-at-descent-line t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
