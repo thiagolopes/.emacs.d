@@ -8,7 +8,7 @@
  '(ctrlf-mode t)
  '(custom-enabled-themes '(cobalt))
  '(custom-safe-themes
-   '("77821a026dc2667b5e9867b411803f42bdae66275ca9d377cc83c050b5751294" default))
+   '("d168ba4452bb127973d2c92ab453fe6e70e7fa733d63d7cd32eb9ed8ae1ec8cd" default))
  '(eglot-autoshutdown t)
  '(eglot-ignored-server-capabilities
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))

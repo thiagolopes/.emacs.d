@@ -32,7 +32,7 @@
 (custom-theme-set-faces
  'cobalt
 
- '(default ((t (:background "#09223F" :foreground "#F8F8F8"))))
+ '(default ((t (:background "#001b33" :foreground "#F8F8F8"))))
  '(cursor ((t (:background "#A7A7A7"))))
  '(border ((t (:foreground "black"))))
 
@@ -52,6 +52,7 @@
  '(font-lock-variable-name-face ((t (:foreground "#CCCCCC"))))
  '(font-lock-warning-face ((t (:foreground "Pink"))))
  '(hl-line ((t (:background "#00162A"))))
+ '(line-number ((t (:foreground "#0065bf" :background "#000d1a"))))
  '(linum ((t (:background "#111111" :foreground "#888888"
                           :underline nil))))
  '(gui-element ((t (:background "#303030" :foreground "black"))))
@@ -70,9 +71,9 @@
  '(ido-only-match ((t (:foreground "#42D915"))))
  '(mumamo-background-chunk-major ((t (:background nil))))
  '(mumamo-background-chunk-submode1 ((t (:background nil))))
- '(whitespace-space ((t  (:foreground "#0c2e56"))))
+ '(whitespace-space ((t  (:foreground "#002a4f"))))
  '(solaire-default-face ((t (:background "#071b32"))))
- '(fringe ((t (:background "#071b32"))))
+ '(fringe ((t (:background "#000d1a"))))
  '(underline ((nil (:underline nil)))))
 
 ;;;###autoload
