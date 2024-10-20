@@ -71,6 +71,8 @@
  '(mumamo-background-chunk-major ((t (:background nil))))
  '(mumamo-background-chunk-submode1 ((t (:background nil))))
  '(whitespace-space ((t  (:foreground "#0c2e56"))))
+ '(solaire-default-face ((t (:background "#071b32"))))
+ '(fringe ((t (:background "#071b32"))))
  '(underline ((nil (:underline nil)))))
 
 ;;;###autoload
