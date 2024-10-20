@@ -13,6 +13,7 @@
  '(eglot-ignored-server-capabilities
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
  '(eglot-menu-string "lsp")
+ '(fancy-compilation-mode t)
  '(hledger-currency-string "R$")
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
