@@ -79,8 +79,8 @@
   :config
   (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
 (use-package rainbow-delimiters
-  :hook
-  (prog-mode . rainbow-delimiters-mode))
+  :bind
+  ("<f5>" . rainbow-delimiters-mode))
 (use-package org-modern
   :hook
   (org-mode . org-modern-mode)
