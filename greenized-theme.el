@@ -21,6 +21,8 @@
   "Enable secundary mood")
 (defvar greenized-theme-mixed-fonts t
   "Disable italic")
+(defvar greenized-theme-style-font nil
+  "Style font")
 
 ;; TODO add options to: italic off, comentary style off, modeline border off;
 (let ((background "#062626")
@@ -105,7 +107,13 @@
    ;; Font lock
    `(font-lock-constant-face              ((t (:foreground ,constants))))
    `(font-lock-variable-name-face         ((t (:foreground ,text))))
-   `(font-lock-keyword-face               ((t (:foreground ,keywords :slant ,font-slant))))
+   (if greenized-theme-style-font
+       `(font-lock-keyword-face ((t (:foreground ,keywords :slant ,font-slant))))
+     `(font-lock-keyword-face ((t (:foreground ,keywords)))))
+   (if greenized-theme-style-font
+       `(font-lock-builtin-face ((t (:foreground ,builtin :slant ,font-slant))))
+     `(font-lock-builtin-face ((t (:foreground ,builtin)))))
+
    `(font-lock-builtin-face               ((t (:foreground ,builtin  :slant ,font-slant))))
    `(font-lock-comment-face               ((t (:foreground ,comments))))
    `(font-lock-comment-delimiter-face     ((t (:foreground ,comments))))
