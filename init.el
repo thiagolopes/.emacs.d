@@ -116,8 +116,6 @@
   (global-set-key (kbd "M-/") 'company-complete-tooltip-row)
   (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend)))
-(use-package fancy-compilation
-  :commands (fancy-compilation-mode))
 (use-package multiple-cursors
   :bind
   ("C->" . 'mc/mark-next-like-this)
