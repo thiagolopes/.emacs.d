@@ -19,6 +19,7 @@
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
  '(eglot-menu-string "lsp")
  '(fancy-compilation-mode t)
+ '(global-auto-revert-mode t)
  '(hledger-currency-string "R$")
  '(ibuffer-expert t)
  '(indent-tabs-mode nil)
