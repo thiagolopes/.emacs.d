@@ -93,9 +93,6 @@
      ("▹▹▹▹" . "▿▿▿▿")
      ("▸▸▸▸▸" . "▾▾▾▾▾"))))
 (use-package consult
-  :init
-  (setq xref-show-xrefs-function 'consult-xref
-        xref-show-definitions-function 'consult-xref)
   :hook
   (completion-list-mode . consult-preview-at-point-mode)
   :bind (("M-y"     . consult-yank-pop)
@@ -111,11 +108,8 @@
   :diminish
   :hook
   (prog-mode . company-mode)
-  :config
-  (setq company-format-margin-function nil)
-  (global-set-key (kbd "M-/") 'company-complete-tooltip-row)
-  (setq company-frontends '(company-pseudo-tooltip-frontend
-                            company-echo-metadata-frontend)))
+  :bind
+  ("M-/" . company-complete-tooltip-row))
 (use-package multiple-cursors
   :bind
   ("C->" . 'mc/mark-next-like-this)

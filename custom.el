@@ -4,6 +4,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(backup-by-copying t)
+ '(company-format-margin-function nil)
+ '(company-frontends
+   '(company-pseudo-tooltip-frontend company-echo-metadata-frontend))
  '(completion-styles '(flex partial-completion substring basic))
  '(ctrlf-mode t)
  '(custom-buffer-indent 4)
@@ -17,6 +20,7 @@
  '(eglot-menu-string "lsp")
  '(fancy-compilation-mode t)
  '(hledger-currency-string "R$")
+ '(ibuffer-expert t)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
@@ -33,7 +37,9 @@
  '(user-mail-address "thiagolopes@protonmail.com")
  '(whitespace-style
    '(face spaces empty tabs newline trailing space-mark tab-mark))
- '(x-underline-at-descent-line t))
+ '(x-underline-at-descent-line t)
+ '(xref-show-definitions-function 'consult-xref)
+ '(xref-show-xrefs-function 'consult-xref))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
