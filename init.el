@@ -42,6 +42,7 @@
 (delete-selection-mode 1)
 (add-hook 'before-save-hook 'whitespace-cleanup nil t)
 (add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'prog-mode-hook (lambda () (setq indent-tabs-mode nil)))
 
 ;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
 (let ((temporary-file-directory (expand-file-name
