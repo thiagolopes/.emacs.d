@@ -77,6 +77,7 @@
   :custom
   (dumb-jump-prefer-searcher 'rg)
   :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
 (use-package rainbow-delimiters
   :bind
