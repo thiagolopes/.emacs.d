@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(backup-by-copying t)
+ '(c-basic-offset 8)
  '(company-format-margin-function nil)
  '(company-frontends
    '(company-pseudo-tooltip-frontend company-echo-metadata-frontend))
