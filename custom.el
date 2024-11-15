@@ -17,6 +17,7 @@
    '("d168ba4452bb127973d2c92ab453fe6e70e7fa733d63d7cd32eb9ed8ae1ec8cd" default))
  '(dired-listing-switches "-alh")
  '(eglot-autoshutdown t)
+ '(eglot-extend-to-xref t)
  '(eglot-ignored-server-capabilities
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
  '(eglot-menu-string "lsp")
