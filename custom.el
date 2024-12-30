@@ -29,6 +29,7 @@
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
+ '(line-spacing 0.1)
  '(package-selected-packages
    '(git-timemachine sudo-edit git-link company-posframe rainbow-mode hledger-mode mwim expand-region hungry-delete uuidgen multiple-cursors fancy-compilation goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
  '(require-final-newline t)
@@ -49,4 +50,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 180 :family "AnonymiceProNerdFont")))))
+ '(default ((t (:height 160 :family "Monaspace Neon")))))
