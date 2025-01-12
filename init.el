@@ -137,3 +137,6 @@
   :after company
   :init
   (company-posframe-mode 1))
+(use-package highlight-numbers
+  :config
+  (add-hook 'prog-mode-hook 'highlight-numbers-mode))
