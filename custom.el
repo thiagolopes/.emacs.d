@@ -14,7 +14,7 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(cobalt))
  '(custom-safe-themes
-   '("d168ba4452bb127973d2c92ab453fe6e70e7fa733d63d7cd32eb9ed8ae1ec8cd" default))
+   '("377b8e4353d4dae350d88439e57afc17159aabf90d2eec5d60b0476b999e3f65" default))
  '(dired-listing-switches "-alh")
  '(eglot-autoshutdown t)
  '(eglot-extend-to-xref t)
