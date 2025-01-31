@@ -140,14 +140,3 @@
 (use-package highlight-numbers
   :config
   (add-hook 'prog-mode-hook 'highlight-numbers-mode))
-
-(use-package popper
-  :init
-  (setq popper-reference-buffers
-        '("\\*Messages\\*"
-          "Output\\*$"
-          "\\*Async Shell Command\\*"
-          help-mode
-          compilation-mode))
-  (popper-mode +1)
-  (popper-echo-mode +1))
