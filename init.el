@@ -140,3 +140,6 @@
 (use-package highlight-numbers
   :config
   (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+(use-package popwin
+  :init
+  (popwin-mode 1))
