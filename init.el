@@ -38,7 +38,7 @@
 (save-place-mode 1)
 (savehist-mode 1)
 (windmove-default-keybindings)
-(fido-mode 1)
+;; (fido-mode 1)
 (delete-selection-mode 1)
 (add-hook 'before-save-hook 'whitespace-cleanup nil t)
 (add-hook 'prog-mode-hook 'whitespace-mode)
@@ -143,10 +143,15 @@
 (use-package popwin
   :init
   (popwin-mode 1))
-
 (use-package helpful
   :bind
   ("C-h f" . helpful-callable)
   ("C-h v" . helpful-variable)
   ("C-h k" . helpful-key)
   ("C-h x" . helpful-command))
+(use-package vertico
+  :init
+  (vertico-mode 1))
+(use-package marginalia
+  :init
+  (marginalia-mode 1))
