@@ -25,10 +25,13 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (fringe-mode 10)
-(tool-bar-mode -1)
+(tool-bar-mode 1)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
 (blink-cursor-mode -1)
+
+(set-window-scroll-bars (minibuffer-window) nil nil)
+(scroll-bar-mode 1)
+
 
 (column-number-mode 1)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
