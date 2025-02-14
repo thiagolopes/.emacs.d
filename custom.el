@@ -14,7 +14,7 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(cobalt))
  '(custom-safe-themes
-   '("7720293ea39ad556b206dcf02f281d6928839ee3b967b77058d52b6e71cce38e" default))
+   '("c230e79b42f11bf7526618c12f3e1cd1a4d669dab4c70e22ad90eb445f67d9b0" default))
  '(dired-listing-switches "-alh")
  '(eglot-autoshutdown t)
  '(eglot-extend-to-xref t)
@@ -22,6 +22,7 @@
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
  '(eglot-menu-string "lsp")
  '(fancy-compilation-mode t)
+ '(fringe-mode '(nil . 0) nil (fringe))
  '(global-auto-revert-mode t)
  '(global-hl-line-mode t)
  '(hledger-currency-string "R$")
@@ -40,6 +41,7 @@
  '(use-dialog-box nil)
  '(use-short-answers t)
  '(user-mail-address "thiagolopes@protonmail.com")
+ '(visual-line-fringe-indicators '(nil nil))
  '(whitespace-style
    '(face spaces empty tabs newline trailing space-mark tab-mark))
  '(x-underline-at-descent-line t)

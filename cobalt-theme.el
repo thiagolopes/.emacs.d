@@ -54,8 +54,7 @@
  '(font-lock-warning-face ((t (:foreground "Pink"))))
  '(hl-line ((t (:background "#00162A"))))
  '(line-number ((t (:foreground "#0065bf" :background "#000d1a"))))
- '(linum ((t (:background "#111111" :foreground "#888888"
-                          :underline nil))))
+ '(linum ((t (:background "#111111" :foreground "#888888" :underline nil))))
  '(gui-element ((t (:background "#303030" :foreground "black"))))
  '(region ((t (:background "#444444"))))
  '(highlight ((t (:background "#003b70"))))
@@ -73,7 +72,7 @@
  '(mumamo-background-chunk-major ((t (:background nil))))
  '(mumamo-background-chunk-submode1 ((t (:background nil))))
  '(whitespace-space ((t  (:foreground "#002a4f"))))
- '(solaire-default-face ((t (:background "#071b32"))))
+ '(solaire-default-face ((t (:background "#000d1a"))))
  '(fringe ((t (:background "#000d1a"))))
  '(underline ((nil (:underline nil)))))
 
