@@ -31,7 +31,7 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(bm marginalia vertico helpful popwin cmake-mode highlight-numbers git-timemachine sudo-edit git-link company-posframe rainbow-mode hledger-mode mwim expand-region hungry-delete uuidgen multiple-cursors fancy-compilation goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
+   '(marginalia vertico helpful popwin cmake-mode highlight-numbers git-timemachine sudo-edit git-link company-posframe rainbow-mode hledger-mode mwim expand-region hungry-delete uuidgen multiple-cursors fancy-compilation goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
  '(require-final-newline t)
  '(solaire-global-mode t)
  '(undo-fu-session-global-mode t)

@@ -158,11 +158,3 @@
 (use-package marginalia
   :init
   (marginalia-mode 1))
-(use-package bm
-  :init
-  (setq bm-restore-repository-on-load t)
-  :config
-  (setq bm-cycle-all-buffers t)
-  :bind (("<f2>" . bm-next)
-         ("S-<f2>" . bm-previous)
-         ("C-<f2>" . bm-toggle)))
