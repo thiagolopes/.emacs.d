@@ -158,3 +158,9 @@
 (use-package marginalia
   :init
   (marginalia-mode 1))
+(use-package treemacs
+  :config
+  (treemacs-follow-mode t)
+  (treemacs-fringe-indicator-mode 'always)
+  :bind
+  ("C-c t" . treemacs))
