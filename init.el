@@ -29,7 +29,7 @@
 (menu-bar-mode -1)
 (blink-cursor-mode -1)
 
-(set-window-scroll-bars (minibuffer-window) nil nil)
+(set-window-scroll-bars (minibuffer-window) nil nil nil nil 1)
 (scroll-bar-mode 1)
 
 
