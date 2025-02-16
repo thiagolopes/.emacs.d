@@ -22,7 +22,7 @@
    '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
  '(eglot-menu-string "lsp")
  '(fancy-compilation-mode t)
- '(fringe-mode '(nil . 0) nil (fringe))
+ '(fringe-mode 10 nil (fringe))
  '(global-auto-revert-mode t)
  '(global-hl-line-mode t)
  '(hledger-currency-string "R$")
