@@ -108,12 +108,6 @@
          ("C-c l"   . consult-line-multi)
          ("M-g g"   . consult-goto-line)
          ("M-g M-g" . consult-goto-line)))
-(use-package company
-  :diminish
-  :hook
-  (prog-mode . company-mode)
-  :bind
-  ("M-/" . company-complete-tooltip-row))
 (use-package multiple-cursors
   :bind
   ("C->" . 'mc/mark-next-like-this)
@@ -131,15 +125,8 @@
   :bind (:map hledger-mode-map
               ("<f9>" . hledger-run-command))
   :config
-  (add-to-list 'company-backends 'hledger-company)
   (add-hook 'hledger-mode-hook (lambda ()
-                                 (company-mode)
                                  (whitespace-mode))))
-(use-package company-posframe
-  :diminish
-  :after company
-  :init
-  (company-posframe-mode 1))
 (use-package highlight-numbers
   :config
   (add-hook 'prog-mode-hook 'highlight-numbers-mode))
@@ -164,3 +151,21 @@
   (treemacs-fringe-indicator-mode 'always)
   :bind
   ("C-c t" . treemacs))
+(use-package corfu
+  :bind (:map corfu-map
+              ("C-n" . corfu-next)
+              ("C-p" . corfu-previous)
+              ("<escape>" . corfu-quit)
+              ("<return>" . corfu-insert)
+              ("M-d" . corfu-show-documentation)
+              ("M-l" . corfu-show-location)))
+(use-package dabbrev
+  ;; Swap M-/ and C-M-/
+  :bind (("M-/" . dabbrev-completion)
+         ("C-M-/" . dabbrev-expand))
+  :config
+  (add-to-list 'dabbrev-ignored-buffer-regexps "\\` ")
+  ;; Since 29.1, use `dabbrev-ignored-buffer-regexps' on older.
+  (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
