@@ -41,6 +41,7 @@
  '(scroll-preserve-screen-position t)
  '(scroll-step 1)
  '(solaire-global-mode t)
+ '(transient-mark-mode nil)
  '(undo-fu-session-global-mode t)
  '(undo-limit 67108864)
  '(undo-strong-limit 100663296)
