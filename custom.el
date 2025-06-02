@@ -16,6 +16,7 @@
  '(custom-safe-themes
    '("e72e267b6037f0b99804a3b9167675147841a7b64798ca1d9db8ee4c9bd22e75"
      default))
+ '(dabbrev-case-replace nil)
  '(dired-listing-switches "-alh")
  '(eglot-autoshutdown t)
  '(eglot-extend-to-xref t)
