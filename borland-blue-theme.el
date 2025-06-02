@@ -68,6 +68,8 @@
  '(erc-action-face ((t (:foreground "LightGrey"))))
  '(erc-button ((t (:foreground "cyan" :underline t))))
  '(whitespace-space ((t (:foreground "DarkSlateBlue"))))
+ '(whitespace-tab ((t (:foreground "DarkSlateBlue" :background "MidnightBlue"))))
+ '(whitespace-trailing ((t (:foreground "DarkSlateBlue" :background "MidnightBlue"))))
  '(default ((t (:family "default" :foundry "default" :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "gold" :background "MidnightBlue" :stipple nil :inherit nil)))))
 
 (provide-theme 'borland-blue)

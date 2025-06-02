@@ -14,8 +14,7 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(borland-blue))
  '(custom-safe-themes
-   '("c273c9d168586ce4a79c639e05faaa11d8180c1cc00f58ca3cea1c4293d6fc67"
-     "c230e79b42f11bf7526618c12f3e1cd1a4d669dab4c70e22ad90eb445f67d9b0"
+   '("e72e267b6037f0b99804a3b9167675147841a7b64798ca1d9db8ee4c9bd22e75"
      default))
  '(dired-listing-switches "-alh")
  '(eglot-autoshutdown t)
