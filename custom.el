@@ -12,14 +12,19 @@
  '(ctrlf-mode t)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
- '(custom-enabled-themes '(cobalt))
+ '(custom-enabled-themes '(borland-blue))
  '(custom-safe-themes
-   '("c230e79b42f11bf7526618c12f3e1cd1a4d669dab4c70e22ad90eb445f67d9b0" default))
+   '("c273c9d168586ce4a79c639e05faaa11d8180c1cc00f58ca3cea1c4293d6fc67"
+     "c230e79b42f11bf7526618c12f3e1cd1a4d669dab4c70e22ad90eb445f67d9b0"
+     default))
  '(dired-listing-switches "-alh")
  '(eglot-autoshutdown t)
  '(eglot-extend-to-xref t)
  '(eglot-ignored-server-capabilities
-   '(:documentHighlightProvider :codeLensProvider :documentFormattingProvider :documentOnTypeFormattingProvider :foldingRangeProvider))
+   '(:documentHighlightProvider :codeLensProvider
+                                :documentFormattingProvider
+                                :documentOnTypeFormattingProvider
+                                :foldingRangeProvider))
  '(eglot-menu-string "lsp")
  '(fancy-compilation-mode t)
  '(fringe-mode 10 nil (fringe))
@@ -33,7 +38,16 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(orderless corfu treemacs marginalia vertico helpful popwin cmake-mode highlight-numbers git-timemachine sudo-edit git-link company-posframe rainbow-mode hledger-mode mwim expand-region hungry-delete uuidgen multiple-cursors fancy-compilation goto-last-change goto-line-preview diminish markdown-mode no-littering mode-line-bell company virtualenvwrapper dumb-jump consult solaire-mode ctrlf dockerfile-mode lua-mode rust-mode yaml-mode undo-fu undo-fu-session vundo rainbow-delimiters org-modern magit zenburn-theme))
+   '(orderless corfu treemacs marginalia vertico helpful popwin
+               cmake-mode highlight-numbers git-timemachine sudo-edit
+               git-link company-posframe rainbow-mode hledger-mode
+               mwim expand-region hungry-delete uuidgen
+               multiple-cursors fancy-compilation goto-last-change
+               goto-line-preview diminish markdown-mode no-littering
+               mode-line-bell company virtualenvwrapper dumb-jump
+               consult solaire-mode ctrlf dockerfile-mode lua-mode
+               rust-mode yaml-mode undo-fu undo-fu-session vundo
+               rainbow-delimiters org-modern magit zenburn-theme))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(require-final-newline t)
@@ -59,4 +73,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 160 :family "Iosevka")))))
+ '(default ((t (:height 140 :family "Iosevka")))))
