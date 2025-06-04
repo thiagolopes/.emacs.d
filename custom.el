@@ -3,6 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(amx-mode t)
  '(backup-by-copying t)
  '(c-basic-offset 8)
  '(company-format-margin-function nil)
@@ -38,16 +39,15 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(orderless corfu treemacs marginalia vertico helpful popwin
-               cmake-mode highlight-numbers git-timemachine sudo-edit
-               git-link company-posframe rainbow-mode hledger-mode
-               mwim expand-region hungry-delete uuidgen
-               multiple-cursors fancy-compilation goto-last-change
-               goto-line-preview diminish markdown-mode no-littering
-               mode-line-bell company virtualenvwrapper dumb-jump
-               consult solaire-mode ctrlf dockerfile-mode lua-mode
-               rust-mode yaml-mode undo-fu undo-fu-session vundo
-               rainbow-delimiters org-modern magit zenburn-theme))
+   '(amx cmake-mode company company-posframe consult corfu ctrlf diminish
+         dockerfile-mode dumb-jump expand-region fancy-compilation
+         git-link git-timemachine goto-last-change goto-line-preview
+         helpful highlight-numbers hledger-mode hungry-delete lua-mode
+         magit marginalia markdown-mode mode-line-bell
+         multiple-cursors mwim no-littering orderless org-modern
+         popwin rainbow-delimiters rainbow-mode rust-mode solaire-mode
+         sudo-edit treemacs undo-fu undo-fu-session uuidgen vertico
+         virtualenvwrapper vundo yaml-mode zenburn-theme))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(require-final-newline t)
