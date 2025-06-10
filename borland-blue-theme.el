@@ -70,6 +70,6 @@
  '(whitespace-space ((t (:foreground "DarkSlateBlue"))))
  '(whitespace-tab ((t (:foreground "DarkSlateBlue" :background "MidnightBlue"))))
  '(whitespace-trailing ((t (:foreground "DarkSlateBlue" :background "MidnightBlue"))))
- '(default ((t (:family "default" :foundry "default" :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "gold" :background "MidnightBlue" :stipple nil :inherit nil)))))
+ '(default ((t (:family "default" :foundry "default" :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "gold" :background "blue4" :stipple nil :inherit nil)))))
 
 (provide-theme 'borland-blue)

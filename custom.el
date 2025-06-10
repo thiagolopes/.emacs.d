@@ -15,7 +15,8 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(borland-blue))
  '(custom-safe-themes
-   '("e72e267b6037f0b99804a3b9167675147841a7b64798ca1d9db8ee4c9bd22e75"
+   '("22b4712cfab34515ac43d9e378e050cc47093b99f6badf5fccaddd5b4752fcb1"
+     "e72e267b6037f0b99804a3b9167675147841a7b64798ca1d9db8ee4c9bd22e75"
      default))
  '(dabbrev-case-replace nil)
  '(dired-listing-switches "-alh")
@@ -73,4 +74,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Iosevka")))))
+ '(default ((t (:height 140 :family "Iosevka")))))
