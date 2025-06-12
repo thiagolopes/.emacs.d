@@ -15,8 +15,7 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(borland-blue))
  '(custom-safe-themes
-   '("22b4712cfab34515ac43d9e378e050cc47093b99f6badf5fccaddd5b4752fcb1"
-     "e72e267b6037f0b99804a3b9167675147841a7b64798ca1d9db8ee4c9bd22e75"
+   '("e72e267b6037f0b99804a3b9167675147841a7b64798ca1d9db8ee4c9bd22e75"
      default))
  '(dabbrev-case-replace nil)
  '(dired-listing-switches "-alh")
