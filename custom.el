@@ -5,6 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(amx-mode t)
  '(backup-by-copying t)
+ '(before-save-hook '(whitespace-cleanup))
  '(c-basic-offset 8)
  '(company-format-margin-function nil)
  '(company-frontends
@@ -48,6 +49,8 @@
          popwin rainbow-delimiters rainbow-mode rust-mode solaire-mode
          sudo-edit treemacs undo-fu undo-fu-session uuidgen vertico
          virtualenvwrapper vundo yaml-mode zenburn-theme))
+ '(prog-mode-hook
+   '(highlight-numbers-mode display-line-numbers-mode))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(require-final-newline t)

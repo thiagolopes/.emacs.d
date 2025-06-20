@@ -34,7 +34,6 @@
 
 
 (column-number-mode 1)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (context-menu-mode 1)
 (repeat-mode 1)
 (winner-mode 1)
@@ -43,8 +42,6 @@
 (windmove-default-keybindings)
 ;; (fido-mode 1)
 (delete-selection-mode 1)
-(add-hook 'before-save-hook 'whitespace-cleanup nil t)
-(add-hook 'prog-mode-hook 'whitespace-mode)
 
 ;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
 (let ((temporary-file-directory (expand-file-name
