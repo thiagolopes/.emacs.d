@@ -70,18 +70,22 @@
 (global-set-key [remap goto-line] 'goto-line-preview)
 (global-set-key (kbd "C-x /")     'goto-last-change)
 (require 'no-littering)
+
 (use-package mode-line-bell
   :config
   (mode-line-bell-mode))
+
 (use-package dumb-jump
   :custom
   (dumb-jump-prefer-searcher 'rg)
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
+
 (use-package rainbow-delimiters
   :bind
   ("<f5>" . rainbow-delimiters-mode))
+
 (use-package org-modern
   :hook
   (org-mode . org-modern-mode)
@@ -93,6 +97,7 @@
      ("⯈⯈⯈" . "⯆⯆⯆")
      ("▹▹▹▹" . "▿▿▿▿")
      ("▸▸▸▸▸" . "▾▾▾▾▾"))))
+
 (use-package consult
   :hook
   (completion-list-mode . consult-preview-at-point-mode)
@@ -105,18 +110,22 @@
          ("C-c l"   . consult-line-multi)
          ("M-g g"   . consult-goto-line)
          ("M-g M-g" . consult-goto-line)))
+
 (use-package multiple-cursors
   :bind
   ("C->" . 'mc/mark-next-like-this)
   ("C-<" . 'mc/mark-previous-like-this)
   ("C-c C-<" . 'mc/edit-lines)
   ("C-c C->" . 'mc/mark-all-like-this))
+
 (use-package expand-region
   :bind
   ("M-@" . er/expand-region))
+
 (use-package mwim
   :bind (("C-a" . mwim-beginning)
          ("C-e" . mwim-end)))
+
 (use-package hledger-mode
   :mode ("\\.journal\\'" . hledger-mode)
   :bind (:map hledger-mode-map
@@ -124,31 +133,42 @@
   :config
   (add-hook 'hledger-mode-hook (lambda ()
                                  (whitespace-mode))))
+
 (use-package highlight-numbers
   :config
   (add-hook 'prog-mode-hook 'highlight-numbers-mode))
+
 (use-package popwin
   :init
   (popwin-mode 1))
+
 (use-package helpful
   :bind
   ("C-h f" . helpful-callable)
   ("C-h v" . helpful-variable)
   ("C-h k" . helpful-key)
   ("C-h x" . helpful-command))
+
 (use-package vertico
   :init
   (vertico-mode 1))
+
 (use-package marginalia
   :init
   (marginalia-mode 1))
+
 (use-package treemacs
   :config
   (treemacs-follow-mode t)
   (treemacs-fringe-indicator-mode 'always)
   :bind
   ("C-c t" . treemacs))
+
 (use-package corfu
+  :init
+  (global-corfu-mode)
+  :custom
+  (corfu-auto t)
   :bind (:map corfu-map
               ("C-n" . corfu-next)
               ("C-p" . corfu-previous)
@@ -156,6 +176,7 @@
               ("<return>" . corfu-insert)
               ("M-d" . corfu-show-documentation)
               ("M-l" . corfu-show-location)))
+
 (use-package dabbrev
   ;; Swap M-/ and C-M-/
   :bind (("M-/" . dabbrev-completion)
@@ -166,8 +187,13 @@
   (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
   (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
   (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
-(use-package orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package kind-icon
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package elpy
+  :hook
+  (elpy-mode . (lambda () (highlight-indentation-mode -1)))
+  :init
+  (elpy-enable))

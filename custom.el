@@ -10,7 +10,7 @@
  '(company-format-margin-function nil)
  '(company-frontends
    '(company-pseudo-tooltip-frontend company-echo-metadata-frontend))
- '(completion-styles '(flex partial-completion substring basic))
+ '(completion-styles '(hotfuzz basic))
  '(ctrlf-mode t)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
