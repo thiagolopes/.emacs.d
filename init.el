@@ -158,8 +158,15 @@
   (marginalia-mode 1))
 
 (use-package treemacs
+  :custom
+  (treemacs-position 'right)
+  (treemacs-deferred-git-apply-delay 5)
   :config
+  (treemacs-fringe-indicator-mode 'only-when-focused)
   (treemacs-follow-mode t)
+  (treemacs-git-mode 'simple)
+  (treemacs-tag-follow-mode t)
+  (treemacs-project-follow-mode t)
   (treemacs-fringe-indicator-mode 'always)
   :bind
   ("C-c t" . treemacs))
