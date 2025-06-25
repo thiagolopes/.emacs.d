@@ -167,7 +167,6 @@
   (treemacs-git-mode 'simple)
   (treemacs-tag-follow-mode t)
   (treemacs-project-follow-mode t)
-  (treemacs-fringe-indicator-mode 'always)
   :bind
   ("C-c t" . treemacs))
 
