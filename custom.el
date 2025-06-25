@@ -39,6 +39,11 @@
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
+ '(modus-themes-bold-constructs t)
+ '(modus-themes-italic-constructs nil)
+ '(modus-themes-mixed-fonts t)
+ '(modus-themes-prompts '(italic light))
+ '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
    '(amx cmake-mode company company-posframe consult corfu ctrlf diminish
          dockerfile-mode dumb-jump expand-region fancy-compilation
@@ -76,4 +81,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 140 :family "Iosevka")))))
+ '(default ((t (:height 140 :family "Iosevka"))))
+ '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
+ '(variable-pitch ((t (:height 130 :family "Iosevka")))))
+
