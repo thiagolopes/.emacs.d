@@ -105,6 +105,7 @@
   :hook
   (completion-list-mode . consult-preview-at-point-mode)
   :bind (("M-y"     . consult-yank-pop)
+         ("C-s"     . consult-line)
          ("C-x b"   . consult-buffer)
          ("C-c m"   . consult-global-mark)
          ("C-c f"   . consult-find)

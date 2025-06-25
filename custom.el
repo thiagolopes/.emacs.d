@@ -11,7 +11,6 @@
  '(company-frontends
    '(company-pseudo-tooltip-frontend company-echo-metadata-frontend))
  '(completion-styles '(hotfuzz basic))
- '(ctrlf-mode t)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(modus-vivendi))
@@ -49,7 +48,7 @@
  '(modus-themes-prompts '(italic light))
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
-   '(amx cmake-mode company company-posframe consult corfu ctrlf
+   '(amx cmake-mode company company-posframe consult corfu
          diminish dockerfile-mode dumb-jump expand-region
          fancy-compilation git-link git-timemachine goto-last-change
          goto-line-preview helpful highlight-numbers hledger-mode
