@@ -197,9 +197,3 @@
 (use-package kind-icon
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-
-(use-package elpy
-  :hook
-  (elpy-mode . (lambda () (highlight-indentation-mode -1)))
-  :init
-  (elpy-enable))
