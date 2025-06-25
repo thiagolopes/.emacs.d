@@ -32,7 +32,6 @@
  '(fringe-mode 10 nil (fringe))
  '(global-auto-revert-mode t)
  '(global-corfu-mode t)
- '(global-hl-line-mode t)
  '(hledger-currency-string "R$")
  '(ibuffer-expert t)
  '(indent-tabs-mode nil)
