@@ -78,9 +78,7 @@
  '(visual-line-fringe-indicators '(nil nil))
  '(whitespace-style
    '(face spaces empty tabs newline trailing space-mark tab-mark))
- '(x-underline-at-descent-line t)
- '(xref-show-definitions-function 'consult-xref)
- '(xref-show-xrefs-function 'consult-xref))
+ '(x-underline-at-descent-line t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

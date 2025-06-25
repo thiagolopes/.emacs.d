@@ -99,6 +99,9 @@
      ("▸▸▸▸▸" . "▾▾▾▾▾"))))
 
 (use-package consult
+  :custom
+  (xref-show-definitions-function #'consult-xref)
+  (xref-show-xrefs-function #'consult-xref)
   :hook
   (completion-list-mode . consult-preview-at-point-mode)
   :bind (("M-y"     . consult-yank-pop)
