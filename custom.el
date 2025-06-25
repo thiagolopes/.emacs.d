@@ -14,7 +14,7 @@
  '(ctrlf-mode t)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
- '(custom-enabled-themes '(borland-blue))
+ '(custom-enabled-themes '(modus-vivendi))
  '(custom-safe-themes
    '("41cf93de3b55f223a55e84eae054ef24269a17d374e8446d4f9113c4cb3f3d1a"
      default))
