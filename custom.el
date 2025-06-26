@@ -61,6 +61,7 @@
  '(prog-mode-hook '(display-line-numbers-mode))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
+ '(recentf-mode t)
  '(require-final-newline t)
  '(scroll-margin 1)
  '(scroll-preserve-screen-position t)

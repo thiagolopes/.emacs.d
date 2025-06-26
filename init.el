@@ -107,6 +107,7 @@
   :bind (("M-y"     . consult-yank-pop)
          ("C-s"     . consult-line)
          ("C-x b"   . consult-buffer)
+         ("C-c p"   . consult-project-buffer)
          ("C-c m"   . consult-global-mark)
          ("C-c f"   . consult-find)
          ("C-c i"   . consult-imenu)
