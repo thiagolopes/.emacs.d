@@ -105,7 +105,6 @@
   :hook
   (completion-list-mode . consult-preview-at-point-mode)
   :bind (("M-y"     . consult-yank-pop)
-         ("C-s"     . consult-line)
          ("C-x b"   . consult-buffer)
          ("C-c p"   . consult-project-buffer)
          ("C-c m"   . consult-global-mark)
@@ -202,3 +201,10 @@
 (use-package kind-icon
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package ctrlf
+  :bind ("M-s" . ctrlf-forward-symbol-at-point)
+  :custom
+  (ctrlf-default-search-style 'fuzzy)
+  :init
+  (ctrlf-mode +1))

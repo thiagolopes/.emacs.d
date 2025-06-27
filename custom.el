@@ -48,16 +48,15 @@
  '(modus-themes-prompts '(italic light))
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
-   '(amx cmake-mode company company-posframe consult corfu
-         diminish dockerfile-mode dumb-jump expand-region
-         fancy-compilation git-link git-timemachine goto-last-change
-         goto-line-preview helpful highlight-numbers hledger-mode
-         hotfuzz hungry-delete kind-icon lua-mode magit marginalia
-         markdown-mode mode-line-bell multiple-cursors mwim no-littering
-         org-modern popwin rainbow-delimiters rainbow-mode
-         rust-mode sudo-edit treemacs undo-fu
-         undo-fu-session uuidgen vertico virtualenvwrapper vundo
-         yaml-mode zenburn-theme))
+   '(amx cmake-mode company company-posframe consult corfu ctrlf diminish
+         dockerfile-mode dumb-jump expand-region fancy-compilation
+         git-link git-timemachine goto-last-change goto-line-preview
+         helpful highlight-numbers hledger-mode hotfuzz hungry-delete
+         kind-icon lua-mode magit marginalia markdown-mode
+         mode-line-bell multiple-cursors mwim no-littering org-modern
+         popwin rainbow-delimiters rainbow-mode rust-mode sudo-edit
+         treemacs undo-fu undo-fu-session uuidgen vertico
+         virtualenvwrapper vundo yaml-mode zenburn-theme))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
