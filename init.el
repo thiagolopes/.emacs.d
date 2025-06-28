@@ -108,7 +108,7 @@
   :bind (("M-y"     . consult-yank-pop)
          ("C-x b"   . consult-buffer)
          ("C-c p"   . consult-project-buffer)
-         ("C-c m"   . consult-global-mark)
+         ("C-c m"   . consult-mark)
          ("C-c f"   . consult-find)
          ("C-c i"   . consult-imenu)
          ("C-c r"   . consult-ripgrep)
@@ -177,7 +177,7 @@
 
 (use-package corfu
   :init
-  (global-corfu-mode)
+  (global-corfu-mode t)
   :custom
   (corfu-auto t)
   :bind (:map corfu-map
