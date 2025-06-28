@@ -15,7 +15,8 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(modus-vivendi))
  '(custom-safe-themes
-   '("41cf93de3b55f223a55e84eae054ef24269a17d374e8446d4f9113c4cb3f3d1a"
+   '("77f281064ea1c8b14938866e21c4e51e4168e05db98863bd7430f1352cab294a"
+     "41cf93de3b55f223a55e84eae054ef24269a17d374e8446d4f9113c4cb3f3d1a"
      default))
  '(dabbrev-case-replace nil)
  '(dired-listing-switches "-alh")
@@ -71,10 +72,11 @@
          git-link git-timemachine goto-last-change goto-line-preview
          helpful highlight-numbers hledger-mode hotfuzz hungry-delete
          kind-icon lua-mode magit marginalia markdown-mode
-         mode-line-bell multiple-cursors mwim no-littering org-modern
-         popwin rainbow-delimiters rainbow-mode rust-mode sudo-edit
-         treemacs undo-fu undo-fu-session uuidgen vertico
-         virtualenvwrapper vundo yaml-mode zenburn-theme))
+         mode-line-bell modus-themes multiple-cursors mwim
+         no-littering org-modern popwin rainbow-delimiters
+         rainbow-mode rust-mode sudo-edit telephone-line treemacs
+         undo-fu undo-fu-session uuidgen vertico virtualenvwrapper
+         vundo yaml-mode zenburn-theme))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
