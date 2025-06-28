@@ -72,8 +72,8 @@
          helpful highlight-numbers hledger-mode hotfuzz hungry-delete
          kind-icon lua-mode magit marginalia markdown-mode
          mode-line-bell multiple-cursors mwim no-littering org-modern
-         popwin rainbow-delimiters rainbow-mode rust-mode spaceline
-         sudo-edit treemacs undo-fu undo-fu-session uuidgen vertico
+         popwin rainbow-delimiters rainbow-mode rust-mode sudo-edit
+         treemacs undo-fu undo-fu-session uuidgen vertico
          virtualenvwrapper vundo yaml-mode zenburn-theme))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(read-buffer-completion-ignore-case t)
