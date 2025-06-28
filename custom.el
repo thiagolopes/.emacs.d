@@ -87,4 +87,4 @@
  '(default ((t (:height 140 :family "Iosevka"))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
- '(variable-pitch ((t (:family "Noto Serif")))))
+ '(variable-pitch ((t (:family "Source Serif Pro")))))

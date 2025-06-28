@@ -206,6 +206,7 @@
 (use-package ctrlf
   :bind ("M-s" . ctrlf-forward-symbol-at-point)
   :custom
-  (ctrlf-default-search-style 'fuzzy)
+  (ctrlf-alternate-search-style 'literal)
+  (ctrlf-default-search-style 'regexp)
   :init
   (ctrlf-mode +1))
