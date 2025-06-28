@@ -15,7 +15,8 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(modus-vivendi))
  '(custom-safe-themes
-   '("77f281064ea1c8b14938866e21c4e51e4168e05db98863bd7430f1352cab294a"
+   '("20692ee369ff5ad4ccdf912d6f44f87ca6ec45ee67a607bcb256a86867348b6d"
+     "77f281064ea1c8b14938866e21c4e51e4168e05db98863bd7430f1352cab294a"
      "41cf93de3b55f223a55e84eae054ef24269a17d374e8446d4f9113c4cb3f3d1a"
      default))
  '(dabbrev-case-replace nil)
@@ -100,6 +101,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 140 :family "Iosevka"))))
+ '(magit-diff-lines-boundary ((t (:extend t :background "gray50"))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
  '(variable-pitch ((t (:family "Source Serif Pro")))))
