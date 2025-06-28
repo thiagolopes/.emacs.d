@@ -90,6 +90,7 @@
   :hook
   (org-mode . org-modern-mode)
   (org-mode . visual-line-mode)
+  (org-mode . variable-pitch-mode)
   :custom
   (org-modern-fold-stars
    '(("▶" . "▼")

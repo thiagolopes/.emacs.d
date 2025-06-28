@@ -37,6 +37,7 @@
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
+ '(line-spacing 0.2)
  '(modus-themes-bold-constructs t)
  '(modus-themes-common-palette-overrides
    '((bg-mode-line-active bg-blue-intense) (fg-mode-line-active fg-main)
@@ -86,4 +87,4 @@
  '(default ((t (:height 140 :family "Iosevka"))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
- '(variable-pitch ((t (:height 130 :family "Iosevka")))))
+ '(variable-pitch ((t (:family "Noto Serif")))))
