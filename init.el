@@ -210,3 +210,7 @@
   (ctrlf-default-search-style 'regexp)
   :init
   (ctrlf-mode +1))
+
+(use-package spaceline
+  :init
+  (spaceline-spacemacs-theme))

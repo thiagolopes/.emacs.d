@@ -40,46 +40,25 @@
  '(line-spacing 0.2)
  '(modus-themes-bold-constructs t)
  '(modus-themes-common-palette-overrides
-   '((builtin magenta)
-     (comment yellow-faint)
-     (constant magenta-cooler)
-     (docstring green-faint)
-     (docmarkup magenta-faint)
-     (fnname magenta-warmer)
-     (keyword cyan)
-     (preprocessor cyan-cooler)
-     (string green-cooler)
-     (type magenta-cooler)
-     (variable blue-warmer)
-     (rx-construct magenta-warmer)
-     (rx-backslash blue-cooler)
-
-     (bg-paren-match unspecified)
-     (fg-paren-match red-intense)
-
-     (fg-prompt cyan)
-     (bg-prompt bg-cyan-nuanced)
-     (bg-mode-line-active bg-lavender)
+   '((builtin magenta) (comment yellow-faint) (constant magenta-cooler)
+     (docstring green-faint) (docmarkup magenta-faint)
+     (fnname magenta-warmer) (keyword cyan) (preprocessor cyan-cooler)
+     (string green-cooler) (type magenta-cooler)
+     (variable blue-warmer) (rx-construct magenta-warmer)
+     (rx-backslash blue-cooler) (bg-paren-match unspecified)
+     (fg-paren-match red-intense) (fg-prompt cyan)
+     (bg-prompt bg-cyan-nuanced) (bg-mode-line-active bg-lavender)
      (fg-mode-line-active fg-main)
      (border-mode-line-active bg-magenta-intense)
-     (fg-mode-line-active fg-main)
-
-     (bg-hover bg-yellow-intense)
-
+     (fg-mode-line-active fg-main) (bg-hover bg-yellow-intense)
      (underline-err yellow-intense)
      (underline-warning magenta-intense)
-     (underline-note green-intense)
-
-     (fg-line-number-inactive "gray50")
+     (underline-note green-intense) (fg-line-number-inactive "gray50")
      (fg-line-number-active red-cooler)
      (bg-line-number-inactive unspecified)
-     (bg-line-number-active unspecified)
-
-     (fg-added           blue)
-     (fg-added-intense   blue-intense)
-     (fg-changed         magenta-cooler)
-     (fg-changed-intense magenta-intense)
-     (fg-removed         yellow-warmer)
+     (bg-line-number-active unspecified) (fg-added blue)
+     (fg-added-intense blue-intense) (fg-changed magenta-cooler)
+     (fg-changed-intense magenta-intense) (fg-removed yellow-warmer)
      (fg-removed-intense yellow-intense)))
  '(modus-themes-completions '((matches italic) (selection) (t)))
  '(modus-themes-italic-constructs nil)
@@ -93,8 +72,8 @@
          helpful highlight-numbers hledger-mode hotfuzz hungry-delete
          kind-icon lua-mode magit marginalia markdown-mode
          mode-line-bell multiple-cursors mwim no-littering org-modern
-         popwin rainbow-delimiters rainbow-mode rust-mode sudo-edit
-         treemacs undo-fu undo-fu-session uuidgen vertico
+         popwin rainbow-delimiters rainbow-mode rust-mode spaceline
+         sudo-edit treemacs undo-fu undo-fu-session uuidgen vertico
          virtualenvwrapper vundo yaml-mode zenburn-theme))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(read-buffer-completion-ignore-case t)
