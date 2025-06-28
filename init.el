@@ -178,13 +178,17 @@
 (use-package corfu
   :init
   (global-corfu-mode t)
+  :config
+  ;; Option 1: Unbind RET completely
+  (keymap-unset corfu-map "RET")
   :custom
   (corfu-auto t)
+  (corfu-preselect 'directory)
   :bind (:map corfu-map
               ("C-n" . corfu-next)
               ("C-p" . corfu-previous)
               ("<escape>" . corfu-quit)
-              ("<return>" . corfu-insert)
+              ;; ("<return>" . corfu-insert)
               ("M-d" . corfu-show-documentation)
               ("M-l" . corfu-show-location)))
 
