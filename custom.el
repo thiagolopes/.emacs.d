@@ -43,7 +43,7 @@
    '((bg-mode-line-active bg-blue-intense) (fg-mode-line-active fg-main)
      (border-mode-line-active blue-intense) (bg-region bg-ochre)
      (fg-region unspecified)))
- '(modus-themes-completions '((matches italic) (selection italic) (t italic)))
+ '(modus-themes-completions '((matches italic) (selection) (t)))
  '(modus-themes-italic-constructs nil)
  '(modus-themes-mixed-fonts t)
  '(modus-themes-prompts '(italic light))
