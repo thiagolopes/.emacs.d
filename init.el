@@ -217,6 +217,8 @@
 (use-package corfu
   :init
   (global-corfu-mode t)
+  (corfu-history-mode)
+  (corfu-popupinfo-mode)
   :config
   ;; Option 1: Unbind RET completely
   (keymap-unset corfu-map "RET")

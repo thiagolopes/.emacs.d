@@ -102,6 +102,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 140 :family "Iosevka"))))
+ '(corfu-default ((t (:inherit default))))
  '(magit-diff-lines-boundary ((t (:extend t :background "gray50"))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
