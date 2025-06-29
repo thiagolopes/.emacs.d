@@ -63,10 +63,10 @@
      (fg-added-intense blue-intense) (fg-changed magenta-cooler)
      (fg-changed-intense magenta-intense) (fg-removed yellow-warmer)
      (fg-removed-intense yellow-intense)))
- '(modus-themes-completions '((matches italic) (selection) (t)))
+ '(modus-themes-completions '((matches bold italic)))
  '(modus-themes-italic-constructs nil)
  '(modus-themes-mixed-fonts t)
- '(modus-themes-prompts '(italic light))
+ '(modus-themes-prompts '(italic bold))
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
    '(amx cmake-mode company company-posframe consult corfu ctrlf diminish
