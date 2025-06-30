@@ -41,6 +41,12 @@
 (windmove-default-keybindings)
 (delete-selection-mode 1)
 (show-paren-mode 1)
+(prefer-coding-system 'utf-8)
+(global-auto-revert-mode 1)
+
+;; default size
+(add-to-list 'default-frame-alist '(height . 35))
+(add-to-list 'default-frame-alist '(width . 160))
 
 ;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
 (let ((temporary-file-directory (expand-file-name
@@ -55,15 +61,20 @@
 
 (require 'uniquify)
 
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "M-!")     'async-shell-command)
-(global-set-key (kbd "M-&")     'shell-command)
-(global-set-key (kbd "M-u")     'upcase-dwim)
-(global-set-key (kbd "M-l")     'downcase-dwim)
-(global-set-key (kbd "M-c")     'capitalize-dwim)
-(global-set-key (kbd "C-x C-d") 'dired)
-(global-set-key (kbd "C-,")     'duplicate-line)
-(global-set-key (kbd "<f9>")    'project-compile)
+(global-set-key (kbd "C-x k")       'kill-current-buffer)
+(global-set-key (kbd "C-x C-b")     'ibuffer)
+(global-set-key (kbd "M-!")         'async-shell-command)
+(global-set-key (kbd "M-&")         'shell-command)
+(global-set-key (kbd "M-u")         'upcase-dwim)
+(global-set-key (kbd "M-l")         'downcase-dwim)
+(global-set-key (kbd "M-c")         'capitalize-dwim)
+(global-set-key (kbd "C-x C-d")     'dired)
+(global-set-key (kbd "C-,")         'duplicate-line)
+(global-set-key (kbd "<f9>")        'project-compile)
+(global-set-key (kbd "S-C-<left>")  'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>")  'shrink-window)
+(global-set-key (kbd "S-C-<up>")    'enlarge-window)
 
 ;; 3party
 (global-set-key [remap goto-line] 'goto-line-preview)
