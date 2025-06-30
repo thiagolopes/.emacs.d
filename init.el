@@ -39,8 +39,16 @@
 (save-place-mode 1)
 (savehist-mode 1)
 (windmove-default-keybindings)
-;; (fido-mode 1)
 (delete-selection-mode 1)
+(show-paren-mode 1)
+
+;; https://stackoverflow.com/questions/34846531/show-parentheses-when-inside-them-emacs
+(define-advice show-paren-function (:around (fn) fix)
+  "Highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+        (t (save-excursion
+             (ignore-errors (backward-up-list))
+             (funcall fn)))))
 
 ;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
 (let ((temporary-file-directory (expand-file-name
