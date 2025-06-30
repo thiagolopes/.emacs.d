@@ -41,6 +41,7 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(line-spacing 0.2)
+ '(mode-line-position '("@%l/%c ") t)
  '(modus-themes-bold-constructs t)
  '(modus-themes-common-palette-overrides
    '((builtin magenta) (comment yellow-faint) (constant magenta-cooler)
@@ -77,8 +78,8 @@
          mode-line-bell modus-themes multiple-cursors mwim
          no-littering org-modern popwin rainbow-delimiters
          rainbow-mode rust-mode sudo-edit telephone-line treemacs
-         undo-fu undo-fu-session uuidgen vertico virtualenvwrapper
-         vundo yaml-mode zenburn-theme))
+         treesit-auto undo-fu undo-fu-session uuidgen vertico
+         virtualenvwrapper vundo yaml-mode zenburn-theme))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
@@ -95,8 +96,7 @@
  '(visual-line-fringe-indicators '(nil nil))
  '(whitespace-style
    '(face spaces empty tabs newline trailing space-mark tab-mark))
- '(x-underline-at-descent-line t)
- '(mode-line-position '("@%l/%c ")))
+ '(x-underline-at-descent-line t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
