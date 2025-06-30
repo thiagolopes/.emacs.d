@@ -255,3 +255,15 @@
   (ctrlf-default-search-style 'regexp)
   :init
   (ctrlf-mode +1))
+
+(use-package visual-fill-column
+  :custom
+  (visual-fill-column-center-text t)
+  (visual-fill-column-width 90)
+  :hook
+  (org-mode . (lambda ()
+                (setq-local whitespace-style '(face newline-mark))
+                (setq-local whitespace-display-mappings
+                            '((newline-mark ?\n [?↵ ?\n])))
+                (whitespace-mode 1)))
+  (org-mode . visual-fill-column-mode))
