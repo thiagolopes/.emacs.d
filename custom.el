@@ -81,7 +81,8 @@
          no-littering org-modern popwin rainbow-delimiters
          rainbow-mode rust-mode sudo-edit telephone-line treemacs
          treesit-auto undo-fu undo-fu-session uuidgen vertico
-         virtualenvwrapper vundo yaml-mode zenburn-theme))
+         virtualenvwrapper visual-fill-column vundo yaml-mode
+         zenburn-theme))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)
  '(read-buffer-completion-ignore-case t)
