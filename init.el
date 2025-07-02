@@ -85,7 +85,7 @@
           mode-line-modified
           mode-line-remote
           mode-line-window-dedicated)
-         display (min-width (6.0)))
+         display (min-width (2.0)))
         mode-line-frame-identification
         mode-line-buffer-identification
         "   "
