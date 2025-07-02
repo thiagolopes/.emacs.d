@@ -7,7 +7,7 @@
  '(backup-by-copying t)
  '(before-save-hook '(whitespace-cleanup))
  '(c-basic-offset 8)
- '(c-ts-mode-indent-offset 'c-basic-offset)
+ '(c-ts-mode-indent-offset 8)
  '(company-format-margin-function nil)
  '(company-frontends
    '(company-pseudo-tooltip-frontend company-echo-metadata-frontend))
