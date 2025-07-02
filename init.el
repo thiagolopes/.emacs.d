@@ -24,13 +24,14 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; this disable scroll on minibuffer
+;; (set-window-scroll-bars (minibuffer-window) nil nil nil nil 1)
+
 (fringe-mode 10)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (blink-cursor-mode -1)
-
-(set-window-scroll-bars (minibuffer-window) nil nil nil nil 1)
-(scroll-bar-mode 1)
+(scroll-bar-mode -1)
 
 (column-number-mode 1)
 (context-menu-mode 1)
@@ -75,6 +76,28 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>")  'shrink-window)
 (global-set-key (kbd "S-C-<up>")    'enlarge-window)
+
+(setq-default mode-line-format
+      '("%e" mode-line-front-space
+        (:propertize
+         ("" mode-line-mule-info
+          mode-line-client
+          mode-line-modified
+          mode-line-remote
+          mode-line-window-dedicated)
+         display (min-width (6.0)))
+        mode-line-frame-identification
+        mode-line-buffer-identification
+        "   "
+        mode-line-position
+        "   ("(project-mode-line project-mode-line-format)")"
+        "    /"(vc-mode vc-mode)"/ "
+        "  "
+        mode-line-modes mode-line-misc-info
+        mode-line-end-spaces
+        mode-line-format-right-align
+        "["mode-line-percent-position"]       "
+        ))
 
 ;; 3party
 (global-set-key [remap goto-line] 'goto-line-preview)
