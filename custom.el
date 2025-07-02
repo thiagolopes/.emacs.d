@@ -7,6 +7,7 @@
  '(backup-by-copying t)
  '(before-save-hook '(whitespace-cleanup))
  '(c-basic-offset 8)
+ '(c-ts-mode-indent-offset 'c-basic-offset)
  '(company-format-margin-function nil)
  '(company-frontends
    '(company-pseudo-tooltip-frontend company-echo-metadata-frontend))
@@ -41,6 +42,7 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(line-spacing 0.2)
+ '(marginalia-align 'center)
  '(mode-line-position '("@%l/%c ") t)
  '(modus-themes-bold-constructs t)
  '(modus-themes-common-palette-overrides
@@ -81,6 +83,7 @@
          treesit-auto undo-fu undo-fu-session uuidgen vertico
          virtualenvwrapper vundo yaml-mode zenburn-theme))
  '(prog-mode-hook '(display-line-numbers-mode))
+ '(project-mode-line t)
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(recentf-mode t)
