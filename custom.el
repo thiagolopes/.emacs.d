@@ -88,6 +88,8 @@
  '(read-file-name-completion-ignore-case t)
  '(recentf-mode t)
  '(require-final-newline t)
+ '(scroll-conservatively 101)
+ '(scroll-step 1)
  '(transient-mark-mode nil)
  '(treemacs-fringe-indicator-mode 'only-when-focused nil nil "Customized with use-package treemacs")
  '(undo-fu-session-global-mode t)
