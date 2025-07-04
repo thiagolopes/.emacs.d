@@ -270,5 +270,6 @@
   :custom
   (treesit-auto-install t)
   :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
+  (add-to-list 'warning-suppress-types '(treesit))
+  (treesit-auto-add-to-auto-mode-alist nil)
   (global-treesit-auto-mode))
