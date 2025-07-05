@@ -114,6 +114,7 @@
  '(default ((t (:height 120 :family "FiraCode"))))
  '(corfu-default ((t (:inherit default))))
  '(magit-diff-lines-boundary ((t (:extend t :background "gray50"))))
+ '(mc/cursor-bar-face ((t (:background "chartreuse" :foreground "#ffffff" :height 1))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
  '(variable-pitch ((t (:family "Adwaita Sans")))))
