@@ -76,12 +76,12 @@
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
    '(amx cmake-mode company company-posframe consult corfu ctrlf diminish
-         dockerfile-mode dumb-jump expand-region fancy-compilation
-         git-link git-timemachine goto-last-change goto-line-preview
-         helpful highlight-numbers hledger-mode hotfuzz hungry-delete
-         kind-icon lua-mode magit marginalia markdown-mode
-         mode-line-bell modus-themes multiple-cursors mwim
-         no-littering org-modern popwin rainbow-delimiters
+         dockerfile-mode dumb-jump expand-region expreg
+         fancy-compilation git-link git-timemachine goto-last-change
+         goto-line-preview helpful highlight-numbers hledger-mode
+         hotfuzz hungry-delete kind-icon lua-mode magit marginalia
+         markdown-mode mode-line-bell modus-themes multiple-cursors
+         mwim no-littering org-modern popwin rainbow-delimiters
          rainbow-mode rust-mode sudo-edit telephone-line treemacs
          treesit-auto undo-fu undo-fu-session uuidgen vertico
          virtualenvwrapper visual-fill-column vundo yaml-mode
