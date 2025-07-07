@@ -88,11 +88,9 @@
          display (min-width (2.0)))
         mode-line-frame-identification
         mode-line-buffer-identification
-        "   "
-        mode-line-position
         (:eval
          (when-let ((project (project-current)))
-           '("   ("
+           '(" ("
              (project-mode-line project-mode-line-format)
              "  /"
              (vc-mode vc-mode)
@@ -100,7 +98,8 @@
         mode-line-modes mode-line-misc-info
         mode-line-end-spaces
         mode-line-format-right-align
-        "["mode-line-percent-position"]       "
+        mode-line-position
+        "    ["mode-line-percent-position"]     "
         ))
 
 ;; 3party
