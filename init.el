@@ -275,3 +275,7 @@
 
 (use-package expreg
   :bind ("M-@" . expreg-expand))
+
+(use-package rg
+  :init
+  (rg-enable-default-bindings))

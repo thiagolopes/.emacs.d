@@ -46,7 +46,7 @@
  '(inhibit-startup-screen t)
  '(line-spacing 0.4)
  '(marginalia-align 'center)
- '(mode-line-position '("@%l/%c ") t)
+ '(mode-line-position '("@%l:%c ") t)
  '(modus-themes-bold-constructs t)
  '(modus-themes-common-palette-overrides
    '((cursor "white") (builtin magenta) (comment yellow-faint)
