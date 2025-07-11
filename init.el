@@ -33,17 +33,7 @@
 (blink-cursor-mode -1)
 (scroll-bar-mode -1)
 
-(column-number-mode 1)
-(context-menu-mode 1)
-(repeat-mode 1)
-(winner-mode 1)
-(save-place-mode 1)
-(savehist-mode 1)
-(windmove-default-keybindings)
-(delete-selection-mode 1)
-(show-paren-mode 1)
 (prefer-coding-system 'utf-8)
-(global-auto-revert-mode 1)
 
 ;; default size
 (add-to-list 'default-frame-alist '(height . 35))
@@ -114,6 +104,7 @@
 (use-package dumb-jump
   :custom
   (dumb-jump-prefer-searcher 'rg)
+  (xref-show-definitions-function #'xref-show-definitions-completing-read)
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
@@ -137,7 +128,7 @@
 
 (use-package consult
   :custom
-  (xref-show-definitions-function #'consult-xref)
+  ;; (xref-show-definitions-function #'consult-xref)
   (xref-show-xrefs-function #'consult-xref)
   :hook
   (completion-list-mode . consult-preview-at-point-mode)

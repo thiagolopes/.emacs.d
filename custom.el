@@ -10,10 +10,12 @@
  '(blink-cursor-mode t)
  '(c-basic-offset 8)
  '(c-ts-mode-indent-offset 8)
+ '(column-number-mode t)
  '(company-format-margin-function nil)
  '(company-frontends
    '(company-pseudo-tooltip-frontend company-echo-metadata-frontend))
  '(completion-styles '(hotfuzz basic))
+ '(context-menu-mode t)
  '(cursor-type 'bar)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
@@ -24,6 +26,7 @@
      "41cf93de3b55f223a55e84eae054ef24269a17d374e8446d4f9113c4cb3f3d1a"
      default))
  '(dabbrev-case-replace nil)
+ '(delete-selection-mode t)
  '(dired-listing-switches "-alh")
  '(eglot-autoshutdown t)
  '(eglot-extend-to-xref t)
@@ -91,9 +94,13 @@
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(recentf-mode t)
+ '(repeat-mode t)
  '(require-final-newline t)
+ '(save-place-mode t)
+ '(savehist-mode t)
  '(scroll-conservatively 101)
  '(scroll-step 1)
+ '(show-paren-mode t)
  '(transient-mark-mode nil)
  '(treemacs-fringe-indicator-mode 'only-when-focused nil nil "Customized with use-package treemacs")
  '(undo-fu-session-global-mode t)
@@ -105,6 +112,8 @@
  '(visual-line-fringe-indicators '(nil nil))
  '(whitespace-style
    '(face spaces empty tabs newline trailing space-mark tab-mark))
+ '(windmove-default-keybindings)
+ '(winner-mode t)
  '(x-underline-at-descent-line t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
