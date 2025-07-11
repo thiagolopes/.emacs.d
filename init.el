@@ -279,3 +279,9 @@
 (use-package rg
   :init
   (rg-enable-default-bindings))
+
+(use-package buffer-name-relative
+  :init (buffer-name-relative-mode))
+
+(provide 'init)
+;;; init.el ends here
