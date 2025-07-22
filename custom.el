@@ -5,6 +5,9 @@
  ;; If there is more than one, they won't work right.
  '(amx-mode t)
  '(backup-by-copying t)
+ '(beacon-blink-when-focused t)
+ '(beacon-color 0.2)
+ '(beacon-mode t)
  '(before-save-hook '(whitespace-cleanup))
  '(blink-cursor-blinks 0)
  '(blink-cursor-mode t)
@@ -78,17 +81,18 @@
  '(modus-themes-prompts '(italic bold))
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
-   '(amx buffer-name-relative cmake-mode company company-posframe consult
-         corfu ctrlf diminish dockerfile-mode dumb-jump expand-region
-         expreg fancy-compilation git-link git-timemachine
-         goto-last-change goto-line-preview helpful highlight-numbers
-         hledger-mode hotfuzz hungry-delete kind-icon lua-mode magit
-         marginalia markdown-mode mode-line-bell modus-themes
-         multiple-cursors mwim no-littering org-modern popwin
-         rainbow-delimiters rainbow-mode rust-mode sudo-edit
-         telephone-line treemacs treesit-auto undo-fu undo-fu-session
-         uuidgen vertico virtualenvwrapper visual-fill-column vundo
-         yaml-mode zenburn-theme))
+   '(amx beacon buffer-name-relative cmake-mode company company-posframe
+         consult corfu ctrlf diminish dockerfile-mode dumb-jump
+         expand-region expreg fancy-compilation git-link
+         git-timemachine goto-last-change goto-line-preview helpful
+         highlight-numbers hledger-mode hotfuzz hungry-delete
+         kind-icon lua-mode magit marginalia markdown-mode
+         mode-line-bell modus-themes multiple-cursors mwim
+         no-littering org-modern popwin rainbow-delimiters
+         rainbow-mode rust-mode sudo-edit telephone-line treemacs
+         treesit-auto undo-fu undo-fu-session uuidgen vertico
+         virtualenvwrapper visual-fill-column vundo yaml-mode
+         zenburn-theme))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)
  '(read-buffer-completion-ignore-case t)
@@ -112,7 +116,7 @@
  '(visual-line-fringe-indicators '(nil nil))
  '(whitespace-style
    '(face spaces empty tabs newline trailing space-mark tab-mark))
- '(windmove-default-keybindings)
+ '(windmove-default-keybindings t)
  '(winner-mode t)
  '(x-underline-at-descent-line t))
 (custom-set-faces
