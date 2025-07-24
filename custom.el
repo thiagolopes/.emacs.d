@@ -50,7 +50,7 @@
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
- '(line-spacing 0.4)
+ '(line-spacing 0.2)
  '(marginalia-align 'center)
  '(mode-line-position '("@%l:%c ") t)
  '(modus-themes-bold-constructs t)
@@ -124,7 +124,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "FiraCode"))))
+ '(default ((t (:height 130 :family "Atkinson Hyperlegible Mono"))))
  '(corfu-default ((t (:inherit default))))
  '(magit-diff-lines-boundary ((t (:extend t :background "gray50"))))
  '(mc/cursor-bar-face ((t (:background "chartreuse" :foreground "#ffffff" :height 1))))
