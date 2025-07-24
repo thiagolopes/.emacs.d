@@ -67,6 +67,10 @@
 (global-set-key (kbd "S-C-<down>")  'shrink-window)
 (global-set-key (kbd "S-C-<up>")    'enlarge-window)
 
+;; dired
+(put 'dired-find-alternate-file 'disabled nil)
+
+;; mode-line
 (setq-default mode-line-format
       '("%e" mode-line-front-space
         (:propertize
