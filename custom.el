@@ -44,6 +44,7 @@
  '(global-auto-revert-mode t)
  '(global-corfu-mode t)
  '(global-so-long-mode t)
+ '(global-visual-line-mode t)
  '(hledger-currency-string "R$")
  '(ibuffer-expert t)
  '(indent-tabs-mode nil)
