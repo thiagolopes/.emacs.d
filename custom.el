@@ -11,8 +11,8 @@
  '(before-save-hook '(whitespace-cleanup))
  '(blink-cursor-blinks 0)
  '(blink-cursor-mode t)
- '(c-basic-offset 8)
- '(c-ts-mode-indent-offset 8)
+ '(c-basic-offset 4)
+ '(c-ts-mode-indent-offset 4)
  '(column-number-mode t)
  '(company-format-margin-function nil)
  '(company-frontends
