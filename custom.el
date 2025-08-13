@@ -54,7 +54,7 @@
  '(line-spacing 0.2)
  '(marginalia-align 'center)
  '(mode-line-position '("@%l:%c ") t)
- '(modus-themes-bold-constructs t)
+ '(modus-themes-bold-constructs nil)
  '(modus-themes-common-palette-overrides
    '((cursor magenta-warmer) (builtin magenta) (comment yellow-faint)
      (constant magenta-cooler) (docstring green-faint)
