@@ -22,11 +22,10 @@
  '(cursor-type 'bar)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
- '(custom-enabled-themes '(modus-vivendi))
+ '(custom-enabled-themes '(cobalt))
  '(custom-safe-themes
-   '("20692ee369ff5ad4ccdf912d6f44f87ca6ec45ee67a607bcb256a86867348b6d"
-     "77f281064ea1c8b14938866e21c4e51e4168e05db98863bd7430f1352cab294a"
-     "41cf93de3b55f223a55e84eae054ef24269a17d374e8446d4f9113c4cb3f3d1a"
+   '("393f7fbf52d3452049e2f4f2c8feef740ca0e8194316e66d9491622b4641bf0f"
+     "20692ee369ff5ad4ccdf912d6f44f87ca6ec45ee67a607bcb256a86867348b6d"
      default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
@@ -125,10 +124,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 130 :family "Atkinson Hyperlegible Mono"))))
+ '(default ((t (:height 130 :family "Roboto Mono"))))
  '(corfu-default ((t (:inherit default))))
  '(magit-diff-lines-boundary ((t (:extend t :background "gray50"))))
  '(mc/cursor-bar-face ((t (:background "chartreuse" :foreground "#ffffff" :height 1))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
- '(variable-pitch ((t (:family "Adwaita Sans")))))
+ '(variable-pitch ((t (:family "Roboto")))))
