@@ -278,5 +278,8 @@
 (use-package buffer-name-relative
   :init (buffer-name-relative-mode))
 
+(use-package exec-path-from-shell
+  :init (exec-path-from-shell-initialize))
+
 (provide 'init)
 ;;; init.el ends here
