@@ -24,8 +24,7 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(cobalt))
  '(custom-safe-themes
-   '("393f7fbf52d3452049e2f4f2c8feef740ca0e8194316e66d9491622b4641bf0f"
-     "20692ee369ff5ad4ccdf912d6f44f87ca6ec45ee67a607bcb256a86867348b6d"
+   '("c5ffe3ad8e6cc68a12808529dc89927941a86618c8d8817613c9fa1b5cb707f5"
      default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
