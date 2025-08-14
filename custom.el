@@ -125,6 +125,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 130 :family "Roboto Mono"))))
+ '(line-number ((t (:inherit default :height 0.8))))
  '(corfu-default ((t (:inherit default))))
  '(magit-diff-lines-boundary ((t (:extend t :background "gray50"))))
  '(mc/cursor-bar-face ((t (:background "chartreuse" :foreground "#ffffff" :height 1))))
