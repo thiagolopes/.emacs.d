@@ -78,7 +78,7 @@
           hotfuzz hungry-delete magit marginalia markdown-mode
           mode-line-bell modus-themes move-dup multiple-cursors mwim
           nerd-icons-completion nerd-icons-corfu nerd-icons-dired
-          nerd-icons-ibuffer no-littering page-break-lines popwin
+          nerd-icons-ibuffer no-littering nvm page-break-lines popwin
           rainbow-delimiters rg super-save treemacs
           treemacs-nerd-icons treesit-auto))
  '(prog-mode-hook '(display-line-numbers-mode))
