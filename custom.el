@@ -80,7 +80,8 @@
           nerd-icons-completion nerd-icons-corfu nerd-icons-dired
           nerd-icons-ibuffer no-littering nvm page-break-lines popwin
           rainbow-delimiters rg super-save treemacs
-          treemacs-nerd-icons treesit-auto))
+          treemacs-nerd-icons treesit-auto undo-fu undo-fu-session
+          vundo))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)
  '(read-buffer-completion-ignore-case t)

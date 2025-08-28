@@ -433,9 +433,9 @@
    ((t :inherit default
        :foreground "black"
        :style 'line)))
-  :bind ("<f8>". flyover-mode)
+  :bind
+  ("<f8>". flyover-mode)
   :config
-  (setq flyover-checkers '(flymake))
   (setq flyover-use-theme-colors t))
 
 (use-package page-break-lines
