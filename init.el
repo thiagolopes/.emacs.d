@@ -414,29 +414,12 @@
 (use-package flyover
   :diminish "[ Overlay Errors]"
   :custom-face
-  ;; (flyover-error
-  ;;  ((t :background "#453246"
-  ;;      :foreground "#EA8FAA"
-  ;;      :height 0.9
-  ;;      :weight normal)))
-  ;; (flyover-warning
-  ;;  ((t :background "#331100"
-  ;;      :foreground "#DCA561"
-  ;;      :height 0.9
-  ;;      :weight normal)))
-  ;; (flyover-info
-  ;;  ((t :background "#374243"
-  ;;      :foreground "#a8e3a9"
-  ;;      :height 0.9
-  ;;      :weight normal)))
   (flyover-marker
    ((t :inherit default
        :foreground "black"
        :style 'line)))
   :bind
-  ("<f8>". flyover-mode)
-  :config
-  (setq flyover-use-theme-colors t))
+  ("<f8>". flyover-mode))
 
 (use-package page-break-lines
   :diminish
