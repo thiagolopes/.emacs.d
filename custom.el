@@ -29,7 +29,6 @@
  '(eglot-ignored-server-capabilities
    '(:codeLensProvider :documentOnTypeFormattingProvider
                        :foldingRangeProvider))
- '(fancy-compilation-mode t)
  '(global-auto-revert-mode t)
  '(global-corfu-mode t)
  '(global-so-long-mode t)
@@ -72,7 +71,7 @@
  '(package-selected-packages
    '(anzu buffer-name-relative cmake-mode consult corfu-terminal diminish
           dockerfile-mode dumb-jump eglot exec-path-from-shell
-          expand-region expreg fancy-compilation flycheck flyover
+          expand-region expreg flycheck flyover
           git-link git-timemachine goto-last-change goto-line-preview
           gruber-darker-theme helpful highlight-numbers hledger-mode
           hotfuzz hungry-delete magit marginalia markdown-mode
