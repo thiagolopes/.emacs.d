@@ -49,6 +49,10 @@
 (blink-cursor-mode -1)
 (scroll-bar-mode   -1)
 
+(setq frame-title-format
+      (list '(buffer-file-name "%f" "%b")
+            '(:eval (format " - GNU Emacs %s" emacs-version))))
+
 (when scroll-bar-mode
   ;; this disable scroll on minibuffer
   (message "[config] scroll bar enabled and configured")
