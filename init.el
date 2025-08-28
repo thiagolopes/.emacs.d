@@ -173,6 +173,15 @@
 (global-set-key [remap goto-line] 'goto-line-preview)
 (global-set-key (kbd "C-x /")     'goto-last-change)
 
+(use-package jinx
+  :diminish "  "
+  ;; this is a commentary in English, this is a error: banama
+  ;; esse comentário em é em português, isso é um erro: banama
+  :config
+  (setq jinx-languages "en pt_BR")
+  :hook
+  (emacs-startup . global-jinx-mode))
+
 (use-package mode-line-bell
   :config
   (mode-line-bell-mode))
@@ -184,6 +193,10 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
+
+
+(use-package rainbow-mode
+  :diminish "  ")
 
 (use-package rainbow-delimiters
   :diminish " "
