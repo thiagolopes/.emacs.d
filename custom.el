@@ -72,16 +72,16 @@
  '(package-selected-packages
    '(anzu buffer-name-relative cmake-mode consult corfu-terminal diminish
           dockerfile-mode dumb-jump eglot exec-path-from-shell
-          expand-region expreg fancy-compilation flyover git-link
-          git-timemachine goto-last-change goto-line-preview
+          expand-region expreg fancy-compilation flycheck flyover
+          git-link git-timemachine goto-last-change goto-line-preview
           gruber-darker-theme helpful highlight-numbers hledger-mode
           hotfuzz hungry-delete magit marginalia markdown-mode
           mode-line-bell modus-themes move-dup multiple-cursors mwim
           nerd-icons-completion nerd-icons-corfu nerd-icons-dired
           nerd-icons-ibuffer no-littering nvm page-break-lines popwin
-          rainbow-delimiters rg super-save treemacs
-          treemacs-nerd-icons treesit-auto undo-fu undo-fu-session
-          vundo))
+          rainbow-delimiters rg sideline sideline-flymake super-save
+          treemacs treemacs-nerd-icons treesit-auto undo-fu
+          undo-fu-session vundo))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)
  '(read-buffer-completion-ignore-case t)
