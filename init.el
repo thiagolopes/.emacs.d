@@ -436,9 +436,30 @@
 
 (use-package gruber-darker-theme
   :custom-face
-  (success ((t :foreground "#73c936")))
+  (note    ((t :foreground "#73c936")))
   (warning ((t :foreground "#ffdd33")))
-  (error ((t :foreground "#c73c3f")))
+  (error   ((t :foreground "#c73c3f")))
+  (flymake-error
+   ((((supports :underline (:style wave)))
+     (:underline (:style wave :color "#c73c3f")
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
+    (t (:foreground "#c73c3f" :weight bold :underline t))))
+  (flymake-warning
+     ((((supports :underline (:style wave)))
+       (:underline (:style wave :color "#ffdd33")
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
+      (t (:forground "#ffdd33" :weight bold :underline t))))
+  (flymake-note
+     ((((supports :underline (:style wave)))
+       (:underline (:style wave :color "#73c936")
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
+      (t (:forground "#73c936" :weight bold :underline t))))
   (mode-line-inactive ((t :background "#181818")))
   (mode-line-buffer-id ((t :background nil))))
 
