@@ -436,30 +436,42 @@
 
 (use-package gruber-darker-theme
   :custom-face
+  ;; (rainbow-delimiters-depth-1-face ((t (:foreground "#AE81FF"))))
+  ;; (rainbow-delimiters-depth-2-face ((t (:foreground "#66D9EF"))))
+  ;; (rainbow-delimiters-depth-3-face ((t (:foreground "#A6E22E"))))
+  ;; (rainbow-delimiters-depth-4-face ((t (:foreground "#E6DB74"))))
+  ;; (rainbow-delimiters-depth-5-face ((t (:foreground "#FD971F"))))
+  ;; (rainbow-delimiters-depth-6-face ((t (:foreground "#F92672"))))
+  ;; (rainbow-delimiters-depth-7-face ((t (:foreground "#AE81FF"))))
+  ;; (rainbow-delimiters-depth-8-face ((t (:foreground "#66D9EF"))))
+  ;; (rainbow-delimiters-depth-9-face ((t (:foreground "#A6E22E"))))
+  ;; (rainbow-delimiters-depth-10-face ((t (:foreground "#E6DB74"))))
+  ;; (rainbow-delimiters-depth-11-face ((t (:foreground "#FD971F"))))
+  ;; (rainbow-delimiters-depth-12-face ((t (:foreground "#F92672"))))
   (note    ((t :foreground "#73c936")))
   (warning ((t :foreground "#ffdd33")))
   (error   ((t :foreground "#c73c3f")))
   (flymake-error
    ((((supports :underline (:style wave)))
      (:underline (:style wave :color "#c73c3f")
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
+                 :foreground unspecified
+                 :background unspecified
+                 :inherit unspecified))
     (t (:foreground "#c73c3f" :weight bold :underline t))))
   (flymake-warning
-     ((((supports :underline (:style wave)))
-       (:underline (:style wave :color "#ffdd33")
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
-      (t (:forground "#ffdd33" :weight bold :underline t))))
+   ((((supports :underline (:style wave)))
+     (:underline (:style wave :color "#ffdd33")
+                 :foreground unspecified
+                 :background unspecified
+                 :inherit unspecified))
+    (t (:forground "#ffdd33" :weight bold :underline t))))
   (flymake-note
-     ((((supports :underline (:style wave)))
-       (:underline (:style wave :color "#73c936")
-                   :foreground unspecified
-                   :background unspecified
-                   :inherit unspecified))
-      (t (:forground "#73c936" :weight bold :underline t))))
+   ((((supports :underline (:style wave)))
+     (:underline (:style wave :color "#73c936")
+                 :foreground unspecified
+                 :background unspecified
+                 :inherit unspecified))
+    (t (:forground "#73c936" :weight bold :underline t))))
   (mode-line-inactive ((t :background "#181818")))
   (mode-line-buffer-id ((t :background nil))))
 
