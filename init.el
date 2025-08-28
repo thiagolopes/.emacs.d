@@ -132,9 +132,16 @@
 (save-place-mode t)
 (recentf-mode t)
 (fido-vertical-mode t)
-(add-hook 'icomplete-minibuffer-setup-hook
-          (lambda () (setq truncate-lines t)))
+
 ;; (windmove-default-keybindings) ;; investigate, error on startup
+
+(use-package icomplete
+  :hook
+  (icomplete-minibuffer-setup . (lambda () (setq truncate-lines t))))
+
+(use-package ansi-color
+  :hook
+  (compilation-filter . ansi-color-compilation-filter))
 
 (use-package eldoc
   :init
