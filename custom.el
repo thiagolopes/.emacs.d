@@ -71,8 +71,8 @@
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
    '(anzu buffer-name-relative cmake-mode consult corfu-terminal diminish
-          dockerfile-mode dumb-jump exec-path-from-shell expand-region
-          expreg fancy-compilation flycheck flyover git-link
+          dockerfile-mode dumb-jump eglot exec-path-from-shell
+          expand-region expreg fancy-compilation flyover git-link
           git-timemachine goto-last-change goto-line-preview
           gruber-darker-theme helpful highlight-numbers hledger-mode
           hotfuzz hungry-delete magit marginalia markdown-mode

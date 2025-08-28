@@ -133,10 +133,20 @@
 ;; (windmove-default-keybindings) ;; investigate, error on startup
 
 (use-package eldoc
+  :init
+  (global-eldoc-mode t)
   :diminish
   :custom
   (eldoc-echo-area-use-multiline-p t)
   (eldoc-documentation-compose 'eldoc-documentation-compose-eagerly))
+
+(use-package flymake
+  :custom
+  (flymake-mode-line-lighter " ")
+  (flymake-indicator-type 'margins)
+  (flymake-margin-indicator-position 'right-margin)
+  :hook
+  (prog-mode . flymake-mode))
 
 (use-package completion-preview
   :diminish
@@ -146,13 +156,6 @@
 ;; 3party
 (global-set-key [remap goto-line] 'goto-line-preview)
 (global-set-key (kbd "C-x /")     'goto-last-change)
-
-(use-package flycheck
-  :custom
-  (flycheck-mode-line-prefix " ")
-  (flycheck-indication-mode 'right-margin)
-  :hook
-  (after-init . global-flycheck-mode))
 
 (use-package mode-line-bell
   :config
@@ -250,13 +253,14 @@
   (marginalia-mode t))
 
 (use-package treemacs
+  :config
+  (treemacs-follow-mode t)
+  (treemacs-tag-follow-mode t)
+  (treemacs-project-follow-mode t)
   :custom
   (treemacs-position 'right)
   (treemacs-deferred-git-apply-delay 5)
-  (treemacs-follow-mode t)
   (treemacs-git-mode 'simple)
-  (treemacs-tag-follow-mode t)
-  (treemacs-project-follow-mode t)
   :bind
   ("C-c t" . treemacs))
 
@@ -431,7 +435,7 @@
        :style 'line)))
   :bind ("<f8>". flyover-mode)
   :config
-  ;; (setq flycheck-mode-line)
+  (setq flyover-checkers '(flymake))
   (setq flyover-use-theme-colors t))
 
 (use-package page-break-lines
