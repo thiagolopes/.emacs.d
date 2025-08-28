@@ -163,7 +163,7 @@
                                                               :weight normal))))
 
    ;; mode-line and powerline
-   `(mode-line-inactive                   ((t (:background ,background :foreground ,highlight-line :box t))))
+   `(mode-line-inactive                   ((t (:background ,background :foreground ,md-fg))))
    `(mode-line-buffer-id                  ((t (:foreground ,md-text :distant-foreground ,highlight-line :text ,text))))
    `(mode-line                            ((t (:inverse-video unspecified
                                                               :underline unspecified
@@ -264,8 +264,8 @@
    `(bm-persistent-face                   ((t (:background ,background-darker))))
 
 
-   `(show-paren-match                     ((t (:background ,background-darker-darker
-                                                           :foreground ,white
+   `(show-paren-match                     ((t (:background ,strings
+                                                           :foreground ,black
                                                            :bold t
                                                            :inverse-video nil))))
    `(solaire-default-face                 ((t (:background ,background-darker-darker))))
