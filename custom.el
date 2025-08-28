@@ -1,30 +1,25 @@
+(message "[config] starting custom.el")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(amx-mode t)
  '(backup-by-copying t)
- '(beacon-blink-when-focused t)
- '(beacon-color 0.2)
- '(beacon-mode t)
  '(before-save-hook '(whitespace-cleanup))
  '(blink-cursor-blinks 0)
  '(blink-cursor-mode t)
  '(c-basic-offset 4)
  '(c-ts-mode-indent-offset 4)
  '(column-number-mode t)
- '(company-format-margin-function nil)
- '(company-frontends
-   '(company-pseudo-tooltip-frontend company-echo-metadata-frontend))
- '(completion-styles '(hotfuzz basic))
+ '(completion-auto-help nil)
  '(context-menu-mode t)
- '(cursor-type 'bar)
+ '(cursor-type 'box)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
- '(custom-enabled-themes '(cobalt))
+ '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("c5ffe3ad8e6cc68a12808529dc89927941a86618c8d8817613c9fa1b5cb707f5"
+   '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd"
      default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
@@ -32,25 +27,20 @@
  '(eglot-autoshutdown t)
  '(eglot-extend-to-xref t)
  '(eglot-ignored-server-capabilities
-   '(:documentHighlightProvider :codeLensProvider
-                                :documentFormattingProvider
-                                :documentOnTypeFormattingProvider
-                                :foldingRangeProvider))
- '(eglot-menu-string "lsp")
+   '(:codeLensProvider :documentOnTypeFormattingProvider
+                       :foldingRangeProvider))
  '(fancy-compilation-mode t)
- '(fringe-mode 10 nil (fringe))
  '(global-auto-revert-mode t)
  '(global-corfu-mode t)
  '(global-so-long-mode t)
- '(global-visual-line-mode t)
+ '(global-visual-line-mode nil)
  '(hledger-currency-string "R$")
  '(ibuffer-expert t)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
- '(line-spacing 0.2)
- '(marginalia-align 'center)
+ '(kill-ring-max 400)
  '(mode-line-position '("@%l:%c ") t)
  '(modus-themes-bold-constructs nil)
  '(modus-themes-common-palette-overrides
@@ -77,35 +67,31 @@
  '(modus-themes-completions '((matches bold italic)))
  '(modus-themes-italic-constructs nil)
  '(modus-themes-mixed-fonts t)
- '(modus-themes-prompts '(italic bold))
+ '(modus-themes-prompts '(bold))
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
-   '(amx beacon buffer-name-relative cmake-mode company company-posframe
-         consult corfu ctrlf diminish dockerfile-mode dumb-jump
-         exec-path-from-shell expand-region expreg fancy-compilation
-         git-link git-timemachine goto-last-change goto-line-preview
-         helpful highlight-numbers hledger-mode hotfuzz hungry-delete
-         kind-icon lua-mode magit marginalia markdown-mode
-         mode-line-bell modus-themes multiple-cursors mwim
-         no-littering org-modern popwin rainbow-delimiters
-         rainbow-mode rust-mode sudo-edit telephone-line treemacs
-         treesit-auto undo-fu undo-fu-session uuidgen vertico
-         virtualenvwrapper visual-fill-column vundo yaml-mode
-         zenburn-theme))
+   '(anzu buffer-name-relative cmake-mode consult corfu-terminal diminish
+          dockerfile-mode dumb-jump exec-path-from-shell expand-region
+          expreg fancy-compilation flycheck flyover git-link
+          git-timemachine goto-last-change goto-line-preview
+          gruber-darker-theme helpful highlight-numbers hledger-mode
+          hotfuzz hungry-delete magit marginalia markdown-mode
+          mode-line-bell modus-themes move-dup multiple-cursors mwim
+          nerd-icons-completion nerd-icons-corfu nerd-icons-dired
+          nerd-icons-ibuffer no-littering page-break-lines popwin
+          rainbow-delimiters rg super-save treemacs
+          treemacs-nerd-icons treesit-auto))
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
- '(recentf-mode t)
  '(repeat-mode t)
  '(require-final-newline t)
- '(save-place-mode t)
- '(savehist-mode t)
- '(scroll-conservatively 101)
- '(scroll-step 1)
+ '(safe-local-variable-values
+   '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))
+     (checkdoc-minor-mode . t)))
  '(show-paren-mode t)
  '(transient-mark-mode nil)
- '(treemacs-fringe-indicator-mode 'only-when-focused nil nil "Customized with use-package treemacs")
  '(undo-fu-session-global-mode t)
  '(undo-limit 67108864)
  '(undo-strong-limit 100663296)
@@ -123,11 +109,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 130 :family "Roboto Mono"))))
- '(line-number ((t (:inherit default :height 0.8))))
- '(corfu-default ((t (:inherit default))))
- '(magit-diff-lines-boundary ((t (:extend t :background "gray50"))))
- '(mc/cursor-bar-face ((t (:background "chartreuse" :foreground "#ffffff" :height 1))))
+ '(default ((t (:height 140 :family "Commit Mono"))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
  '(variable-pitch ((t (:family "Roboto")))))
+
+(message "[config] finisehd custom.el")
