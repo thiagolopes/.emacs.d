@@ -413,6 +413,8 @@
 
 (use-package flyover
   :diminish "[ Overlay Errors]"
+  :custom
+  (flyover-use-theme-colors t)
   :custom-face
   (flyover-marker
    ((t :inherit default
@@ -430,6 +432,9 @@
 
 (use-package gruber-darker-theme
   :custom-face
+  (success ((t :foreground "#73c936")))
+  (warning ((t :foreground "#ffdd33")))
+  (error ((t :foreground "#c73c3f")))
   (mode-line-inactive ((t :background "#181818")))
   (mode-line-buffer-id ((t :background nil))))
 
