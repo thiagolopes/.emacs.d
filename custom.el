@@ -79,7 +79,7 @@
           mode-line-bell modus-themes move-dup multiple-cursors mwim
           nerd-icons-completion nerd-icons-corfu nerd-icons-dired
           nerd-icons-ibuffer no-littering nvm page-break-lines popwin
-          rainbow-delimiters rg sideline sideline-flymake super-save
+          rainbow-delimiters rg super-save
           treemacs treemacs-nerd-icons treesit-auto undo-fu
           undo-fu-session vundo))
  '(prog-mode-hook '(display-line-numbers-mode))
