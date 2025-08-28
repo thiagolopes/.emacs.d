@@ -439,10 +439,11 @@
   (setq flyover-use-theme-colors t))
 
 (use-package page-break-lines
+  :diminish
   :custom
   (page-break-lines-max-width 79)
   :config
-  (page-break-lines-mode))
+  (global-page-break-lines-mode t))
 
 (use-package gruber-darker-theme
   :custom-face
