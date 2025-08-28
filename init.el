@@ -77,6 +77,7 @@
 
 (require 'uniquify)
 
+(global-set-key (kbd "M-o")         'other-window)
 (global-set-key (kbd "C-x k")       'kill-current-buffer) ;; kill without ask
 (global-set-key (kbd "C-c k")       'kill-buffer)
 (global-set-key (kbd "C-x C-b")     'ibuffer)             ;; visualize all buffers on menu
@@ -87,7 +88,11 @@
 (global-set-key (kbd "M-c")         'capitalize-dwim)
 (global-set-key (kbd "C-x C-d")     'dired)
 (global-set-key (kbd "C-,")         'duplicate-line)
-(global-set-key (kbd "<f9>")        'project-compile)
+(global-set-key (kbd "<f9>")        (lambda ()
+                                      (interactive)
+                                      (if (project-current)
+                                          (project-compile)
+                                        (call-interactively #'compile))))
 (global-set-key (kbd "S-C-<left>")  'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>")  'shrink-window)
