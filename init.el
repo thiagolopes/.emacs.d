@@ -216,6 +216,10 @@
      ("▹▹▹▹" . "▿▿▿▿")
      ("▸▸▸▸▸" . "▾▾▾▾▾"))))
 
+(use-package org-appear
+  :hook
+  (org-mode . org-appear-mode))
+
 (use-package consult
   ;; :custom
   ;; (completion-in-region-function #'consult-completion-in-region)
