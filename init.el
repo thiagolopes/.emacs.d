@@ -176,9 +176,9 @@
 (use-package jinx
   :diminish "  "
   ;; this is a commentary in English, this is a error: banama
-  ;; esse comentário em é em português, isso é um erro: banama
-  :config
-  (setq jinx-languages "en pt_BR")
+  ;; este é um comentário em português, isso é um erro: banama
+  :custom
+  (jinx-languages "en pt_BR")
   :hook
   (emacs-startup . global-jinx-mode))
 
@@ -193,7 +193,6 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
-
 
 (use-package rainbow-mode
   :diminish "  ")
@@ -320,6 +319,16 @@
   :after corfu
   :init
   (corfu-terminal-mode))
+
+(use-package cape
+  :init
+  (add-hook 'completion-at-point-functions #'cape-keyword)
+  (add-hook 'completion-at-point-functions #'cape-abbrev)
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  (add-hook 'completion-at-point-functions #'cape-dict)
+  (add-hook 'completion-at-point-functions #'cape-history))
 
 (use-package anzu
   :diminish
