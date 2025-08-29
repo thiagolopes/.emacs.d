@@ -12,6 +12,7 @@
 (setq *is-a-mac* (eq system-type 'darwin))
 (setq *is-a-linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
 
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
@@ -25,6 +26,7 @@
 (when (file-exists-p custom-file)
   (load-file custom-file))
 
+
 (eval-and-compile
   (defun list-missing-pckgs ()
     "List all missing packages."
@@ -41,6 +43,7 @@
       ;; OVERKILL REACTION
       (restart-emacs))))
 
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (fringe-mode        0) ;; in pixel
@@ -64,6 +67,7 @@
 (add-to-list 'default-frame-alist '(height . 35))
 (add-to-list 'default-frame-alist '(width . 160))
 
+
 ;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
 (let ((temporary-file-directory (expand-file-name
                                  (convert-standard-filename "backup/")
@@ -75,8 +79,7 @@
   (setq auto-save-file-name-transforms
         `((".*" ,temporary-file-directory t))))
 
-(require 'uniquify)
-
+
 (global-set-key (kbd "M-o")         'other-window)
 (global-set-key (kbd "C-x k")       'kill-current-buffer) ;; kill without ask
 (global-set-key (kbd "C-c k")       'kill-buffer)
@@ -98,9 +101,11 @@
 (global-set-key (kbd "S-C-<down>")  'shrink-window)
 (global-set-key (kbd "S-C-<up>")    'enlarge-window)
 
+
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
 
+
 ;; mode-line
 (setq-default mode-line-format
               '("%e" mode-line-front-space
@@ -132,7 +137,7 @@
                 mode-line-position
                 "    ["mode-line-percent-position"]     "
                 ))
-
+
 (savehist-mode t)
 (save-place-mode t)
 (recentf-mode t)
@@ -140,6 +145,7 @@
 
 ;; (windmove-default-keybindings) ;; investigate, error on startup
 
+
 (use-package icomplete
   :hook
   (icomplete-minibuffer-setup . (lambda () (setq truncate-lines t))))
@@ -169,6 +175,8 @@
   :config
   (global-completion-preview-mode t))
 
+(require 'uniquify)
+
 ;; 3party
 (global-set-key [remap goto-line] 'goto-line-preview)
 (global-set-key (kbd "C-x /")     'goto-last-change)
@@ -199,7 +207,7 @@
 
 (use-package rainbow-delimiters
   :diminish " "
-  :hook (prog-mode . rainbow-delimiters-mode)
+  :hook (prog-modGe . rainbow-delimiters-mode)
   :bind
   ("<f5>" . rainbow-delimiters-mode))
 
@@ -208,6 +216,7 @@
   (org-mode . org-modern-mode)
   (org-mode . visual-line-mode)
   (org-mode . variable-pitch-mode)
+  (org-mode . auto-fill-mode)
   :custom
   (org-modern-fold-stars
    '(("▶" . "▼")
@@ -430,6 +439,7 @@
   ;; TODO update to python use prism-whitespace-mode
   ("<f7>" . prism-mode))
 
+
 (use-package nerd-icons)
 (use-package nerd-icons-dired
   :after nerd-icons
@@ -452,6 +462,7 @@
   :after (corfu nerd-icons)
   :config
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
 
 (use-package flyover
   :diminish "[ Overlay Errors]"
@@ -512,6 +523,12 @@
     (t (:forground "#73c936" :weight bold :underline t))))
   (mode-line-inactive ((t :background "#181818")))
   (mode-line-buffer-id ((t :background nil))))
+
+(use-package vundo
+  :custom
+  (vundo-window-max-height 5)
+  (vundo-glyph-alist vundo-unicode-symbols)
+  :bind ("C-x C-/". vundo))
 
 (provide 'init)
 ;;; init.el ends here
