@@ -119,18 +119,18 @@
                 mode-line-frame-identification
                 ;; from https://github.com/grolongo/nerd-icons-mode-line/blob/master/nerd-icons-mode-line.el#L50
                 (:propertize
-                 (:eval (with-current-buffer (current-buffer) (nerd-icons-icon-for-buffer)))
+                 (:eval
+                  (with-current-buffer (current-buffer)
+                    (nerd-icons-icon-for-buffer)))
                  display (raise 0.1))
                 " "
                 mode-line-buffer-identification
-                " "
                 (:eval
                  (when-let ((project (project-current)))
-                   '("("
-                     (project-mode-line project-mode-line-format)
-                     (when vc-mode)
-                     ")")))
-                "   "
+                   '((project-mode-line project-mode-line-format)
+                     (when vc-mode
+                       (vc-mode vc-mode)))))
+                " "
                 mode-line-modes mode-line-misc-info
                 mode-line-end-spaces
                 mode-line-format-right-align
