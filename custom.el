@@ -73,16 +73,16 @@
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
    '(anzu buffer-name-relative cape cmake-mode consult corfu-terminal
-          diminish dockerfile-mode dumb-jump eglot
-          exec-path-from-shell expand-region expreg flycheck flyover
-          git-link git-timemachine goto-last-change goto-line-preview
-          gruber-darker-theme guess-language helpful highlight-numbers
-          hledger-mode hotfuzz hungry-delete jinx magit marginalia
-          markdown-mode mode-line-bell modus-themes move-dup
-          multiple-cursors mwim nerd-icons-completion nerd-icons-corfu
-          nerd-icons-dired nerd-icons-ibuffer no-littering nvm
-          org-appear org-modern page-break-lines popwin
-          rainbow-delimiters rg sudo-edit super-save treemacs
+          diminish dockerfile-mode dumb-jump eglot embark
+          embark-consult exec-path-from-shell expand-region expreg
+          flycheck flyover git-link git-timemachine goto-last-change
+          goto-line-preview gruber-darker-theme guess-language helpful
+          highlight-numbers hledger-mode hotfuzz hungry-delete jinx
+          magit marginalia markdown-mode mode-line-bell modus-themes
+          move-dup multiple-cursors mwim nerd-icons-completion
+          nerd-icons-corfu nerd-icons-dired nerd-icons-ibuffer
+          no-littering nvm org-appear org-modern page-break-lines
+          popwin rainbow-delimiters rg sudo-edit super-save treemacs
           treemacs-nerd-icons treesit-auto undo-fu undo-fu-session
           visual-fill-column vundo))
  '(prog-mode-hook '(display-line-numbers-mode))

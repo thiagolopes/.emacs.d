@@ -530,5 +530,18 @@
   (vundo-glyph-alist vundo-unicode-symbols)
   :bind ("C-x C-/". vundo))
 
+
+(use-package embark
+  :config
+  (setq embark-verbose-indicator-display-action '(display-buffer-at-bottom
+                                                  (window-height . fit-window-to-buffer)))
+  :bind
+  (("C-." . embark-act)
+   ("M-." . embark-dwim)))
+(use-package embark-consult
+  :after consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
 (provide 'init)
 ;;; init.el ends here
