@@ -103,6 +103,8 @@
  '(use-short-answers t)
  '(user-mail-address "thiagolopes@protonmail.com")
  '(visual-line-fringe-indicators '(nil nil))
+ '(which-key-mode t)
+ '(which-key-show-early-on-C-h t)
  '(whitespace-style
    '(face spaces empty tabs newline trailing space-mark tab-mark))
  '(windmove-default-keybindings t)
