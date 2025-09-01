@@ -82,7 +82,7 @@
           multiple-cursors mwim nerd-icons-completion nerd-icons-corfu
           nerd-icons-dired nerd-icons-ibuffer no-littering nvm
           org-appear org-modern page-break-lines popwin
-          rainbow-delimiters rg super-save treemacs
+          rainbow-delimiters rg sudo-edit super-save treemacs
           treemacs-nerd-icons treesit-auto undo-fu undo-fu-session
           visual-fill-column vundo))
  '(prog-mode-hook '(display-line-numbers-mode))
