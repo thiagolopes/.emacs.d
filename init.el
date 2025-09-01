@@ -175,6 +175,8 @@
   :config
   (global-completion-preview-mode t))
 
+(use-package which-key :diminish)
+
 (require 'uniquify)
 
 ;; 3party
@@ -529,7 +531,6 @@
   (vundo-window-max-height 5)
   (vundo-glyph-alist vundo-unicode-symbols)
   :bind ("C-x C-/". vundo))
-
 
 (use-package embark
   :config
