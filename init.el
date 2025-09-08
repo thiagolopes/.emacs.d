@@ -146,6 +146,13 @@
 ;; (windmove-default-keybindings) ;; investigate, error on startup
 
 
+
+(when *is-a-mac*
+  (setq mac-control-modifier 'control)
+  (setq mac-command-modifier 'meta)
+  (setq mac-right-option-modifier 'control))
+
+
 (use-package icomplete
   :hook
   (icomplete-minibuffer-setup . (lambda () (setq truncate-lines t))))
