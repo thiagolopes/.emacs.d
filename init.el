@@ -148,6 +148,12 @@
 
 
 (when *is-a-mac*
+  ;; do not resize on scroll
+  ;; https://xenodium.com/hey-mouse-dont-mess-with-my-emacs-font-size
+  (global-set-key (kbd "<pinch>") 'ignore)
+  (global-set-key (kbd "<C-wheel-up>") 'ignore)
+  (global-set-key (kbd "<C-wheel-down>") 'ignore)
+
   (setq mac-control-modifier 'control)
   (setq mac-command-modifier 'meta)
   (setq mac-right-option-modifier 'control))
