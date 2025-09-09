@@ -46,7 +46,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(fringe-mode        0) ;; in pixel
+(fringe-mode        20) ;; in pixel
 (tool-bar-mode     -1)
 (menu-bar-mode     -1)
 (blink-cursor-mode -1)
