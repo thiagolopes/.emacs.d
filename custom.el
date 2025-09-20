@@ -85,7 +85,7 @@
           no-littering nvm org-appear org-modern page-break-lines
           popwin rainbow-delimiters rainbow-mode rg sudo-edit
           super-save treemacs treemacs-nerd-icons treesit-auto undo-fu
-          undo-fu-session visual-fill-column vundo))
+          undo-fu-session visual-fill-column vundo web-mode))
  '(pixel-scroll-precision-mode t)
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)

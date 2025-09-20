@@ -568,5 +568,8 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+(use-package web-mode
+  :mode ("\\.html\\'" . web-mode))
+
 (provide 'init)
 ;;; init.el ends here
