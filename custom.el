@@ -105,6 +105,7 @@
  '(use-short-answers t)
  '(user-mail-address "thiagolopes@protonmail.com")
  '(visual-line-fringe-indicators '(nil nil))
+ '(which-key-idle-delay 1.5)
  '(which-key-mode t)
  '(which-key-show-early-on-C-h t)
  '(whitespace-style
