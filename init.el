@@ -230,7 +230,7 @@
   :hook
   (org-mode . org-modern-mode)
   (org-mode . visual-line-mode)
-  (org-mode . variable-pitch-mode)
+  ;; (org-mode . variable-pitch-mode)
   (org-mode . auto-fill-mode)
   :custom
   (org-modern-fold-stars
@@ -373,6 +373,7 @@
   (global-anzu-mode))
 
 (use-package visual-fill-column
+  :disabled
   :custom
   (visual-fill-column-center-text t)
   (visual-fill-column-width 90)
