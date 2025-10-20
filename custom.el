@@ -85,7 +85,7 @@
           no-littering nvm ob-mongo org-appear org-modern
           page-break-lines popwin rainbow-delimiters rainbow-mode rg
           sudo-edit super-save treemacs treemacs-nerd-icons
-          treesit-auto undo-fu undo-fu-session visual-fill-column
+          treesit-auto undo-fu undo-fu-session verb visual-fill-column
           vundo web-mode zig-mode))
  '(pixel-scroll-precision-mode t)
  '(prog-mode-hook '(display-line-numbers-mode))
@@ -119,7 +119,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 140 :family "Commit Mono"))))
+ '(default ((t (:height 160 :family "Iosevka"))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
  '(variable-pitch ((t (:family "Roboto")))))

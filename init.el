@@ -232,6 +232,7 @@
   (org-mode . visual-line-mode)
   ;; (org-mode . variable-pitch-mode)
   (org-mode . auto-fill-mode)
+  (org-mode . verb-mode)
   :custom
   (org-modern-fold-stars
    '(("▶" . "▼")
