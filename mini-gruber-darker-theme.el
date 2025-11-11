@@ -95,7 +95,7 @@
                        :foreground gruber-darker-bg+2))))
    `(cursor ((t (:background ,gruber-darker-yellow))))
    `(default ((t ,(list :foreground gruber-darker-fg
-                        :background gruber-darker-black))))
+                        :background gruber-darker-bg-1))))
    `(fringe ((t ,(list :background nil
                        :foreground gruber-darker-bg+2))))
    `(vertical-border ((t ,(list :foreground gruber-darker-bg+2))))
@@ -184,7 +184,7 @@
    `(font-lock-doc-face ((t (:foreground ,gruber-darker-green))))
    `(font-lock-doc-string-face ((t (:foreground ,gruber-darker-green))))
    `(font-lock-function-name-face ((t (:foreground ,gruber-darker-niagara))))
-   `(font-lock-keyword-face ((t (:foreground ,gruber-darker-yellow :bold t))))
+   `(font-lock-keyword-face ((t (:foreground ,gruber-darker-white :italic t))))
    `(font-lock-preprocessor-face ((t (:foreground ,gruber-darker-quartz))))
    `(font-lock-reference-face ((t (:foreground ,gruber-darker-quartz))))
    `(font-lock-string-face ((t (:foreground ,gruber-darker-green))))
