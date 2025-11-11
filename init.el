@@ -387,8 +387,6 @@
   (org-mode . visual-fill-column-mode))
 
 (use-package treesit-auto
-  :mode (("\\.ts\\'" . typescript-ts-mode)
-         ("\\.tsx\\'" . tsx-ts-mode))
   :custom
   (treesit-auto-install t)
   :config
