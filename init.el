@@ -386,14 +386,6 @@
                 (whitespace-mode 1)))
   (org-mode . visual-fill-column-mode))
 
-(use-package treesit-auto
-  :custom
-  (treesit-auto-install t)
-  :config
-  (add-to-list 'warning-suppress-types '(treesit))
-  (treesit-auto-add-to-auto-mode-alist nil)
-  (global-treesit-auto-mode))
-
 (use-package expreg
   :bind ("M-@" . expreg-expand))
 
