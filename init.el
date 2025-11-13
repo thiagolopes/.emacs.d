@@ -158,6 +158,13 @@
   (setq mac-command-modifier 'meta)
   (setq mac-right-option-modifier 'control))
 
+(defun kill-all-buffers ()
+  "Kill all open buffers."
+  (interactive)
+  (dolist (buf (buffer-list))
+    (unless (string= (buffer-name buf) "*scratch*")
+      (kill-buffer buf))))
+
 
 (use-package icomplete
   :hook
