@@ -20,9 +20,9 @@
  '(cursor-type 'box)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
- '(custom-enabled-themes '(gruber-darker))
+ '(custom-enabled-themes '(mini-gruber-darker))
  '(custom-safe-themes
-   '("01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd"
+   '("3b176d05c2c5951cd1833c9360f4a94d5391b3535bc606867deb38e3ad1e325b"
      default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
