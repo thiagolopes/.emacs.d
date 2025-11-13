@@ -95,7 +95,7 @@
                        :foreground gruber-darker-bg+2))))
    `(cursor ((t (:background ,gruber-darker-yellow))))
    `(default ((t ,(list :foreground gruber-darker-fg
-                        :background gruber-darker-bg-1))))
+                        :background gruber-darker-bg))))
    `(fringe ((t ,(list :background nil
                        :foreground gruber-darker-bg+2))))
    `(vertical-border ((t ,(list :foreground gruber-darker-bg+2))))
@@ -189,7 +189,8 @@
    `(font-lock-reference-face ((t (:foreground ,gruber-darker-quartz))))
    `(font-lock-string-face ((t (:foreground ,gruber-darker-green))))
    `(font-lock-type-face ((t (:foreground ,gruber-darker-quartz))))
-   `(font-lock-variable-name-face ((t (:foreground ,gruber-darker-fg+1))))
+   `(font-lock-variable-name-face ((t (:foreground ,gruber-darker-yellow))))
+   `(font-lock-variable-use-face ((t (:foreground ,gruber-darker-yellow))))
    `(font-lock-warning-face ((t (:foreground ,gruber-darker-red))))
 
    ;; number
@@ -307,7 +308,7 @@
                           :foreground gruber-darker-white))))
    `(mode-line-buffer-id ((t ,(list :background gruber-darker-bg+1
                                     :foreground gruber-darker-white))))
-   `(mode-line-inactive ((t ,(list :background gruber-darker-bg+1
+   `(mode-line-inactive ((t ,(list :background gruber-darker-black
                                    :foreground gruber-darker-quartz))))
 
    ;; Neo Dir
