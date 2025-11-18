@@ -85,8 +85,8 @@
           no-littering nvm ob-mongo org-appear org-modern
           page-break-lines popwin rainbow-delimiters rainbow-mode rg
           sudo-edit super-save treemacs treemacs-nerd-icons
-          treesit-auto undo-fu undo-fu-session verb visual-fill-column
-          vundo web-mode zig-mode))
+          typescript-mode undo-fu undo-fu-session uuidgen verb
+          visual-fill-column vundo web-mode zig-mode))
  '(pixel-scroll-precision-mode t)
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)
