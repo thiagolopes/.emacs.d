@@ -413,6 +413,20 @@
    `(orderless-match-face-1 ((t (:foreground ,gruber-darker-green))))
    `(orderless-match-face-2 ((t (:foreground ,gruber-darker-brown))))
    `(orderless-match-face-3 ((t (:foreground ,gruber-darker-quartz))))
+
+   ;; rainbow
+   `(rainbow-delimiters-depth-12-face ((t (:foreground "#37706b"))))
+   `(rainbow-delimiters-depth-11-face ((t (:foreground "##3f7f79"))))
+   `(rainbow-delimiters-depth-10-face ((t (:foreground "#478e87"))))
+   `(rainbow-delimiters-depth-9-face ((t (:foreground "#4f9d95"))))
+   `(rainbow-delimiters-depth-8-face ((t (:foreground "#57aca3"))))
+   `(rainbow-delimiters-depth-7-face ((t (:foreground "#5fbbb1"))))
+   `(rainbow-delimiters-depth-6-face ((t (:foreground "#67cabe"))))
+   `(rainbow-delimiters-depth-5-face ((t (:foreground "#6fd9cc"))))
+   `(rainbow-delimiters-depth-4-face ((t (:foreground "#77e8da"))))
+   `(rainbow-delimiters-depth-3-face ((t (:foreground "#80f7e8"))))
+   `(rainbow-delimiters-depth-2-face ((t (:foreground "#99faf0"))))
+   `(rainbow-delimiters-depth-1-face ((t (:foreground "#b2fcf6"))))
    ))
 
 ;;;###autoload
