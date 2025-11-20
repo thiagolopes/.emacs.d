@@ -229,7 +229,7 @@
 
 (use-package rainbow-delimiters
   :diminish " "
-  :hook (prog-modGe . rainbow-delimiters-mode)
+  :hook (prog-mode . rainbow-delimiters-mode)
   :bind
   ("<f5>" . rainbow-delimiters-mode))
 
