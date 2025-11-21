@@ -86,7 +86,7 @@
           page-break-lines popwin rainbow-delimiters rainbow-mode rg
           sudo-edit super-save treemacs treemacs-nerd-icons
           typescript-mode undo-fu undo-fu-session uuidgen verb
-          visual-fill-column vundo web-mode zig-mode))
+          visual-fill-column vundo web-mode yafolding zig-mode))
  '(pixel-scroll-precision-mode t)
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)
