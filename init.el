@@ -570,5 +570,8 @@
 (use-package web-mode
   :mode ("\\.html\\'" . web-mode))
 
+(use-package yafolding
+  :hook (prog-mode . yafolding-mode))
+
 (provide 'init)
 ;;; init.el ends here
