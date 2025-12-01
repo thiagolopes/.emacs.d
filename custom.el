@@ -22,7 +22,7 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(mini-gruber-darker))
  '(custom-safe-themes
-   '("9111b904c469caf20ad26f870c689e46c444c081204cf236fc9dc4be49772f06"
+   '("f83dfff83a951461157d73ceb8e27e8de7e5191ae995fe4dded4a71736002eda"
      default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
@@ -84,7 +84,7 @@
           nerd-icons-corfu nerd-icons-dired nerd-icons-ibuffer
           no-littering nvm ob-mongo org-appear org-modern
           page-break-lines popwin rainbow-delimiters rainbow-mode rg
-          sudo-edit super-save treemacs treemacs-nerd-icons
+          smartscan sudo-edit super-save treemacs treemacs-nerd-icons
           typescript-mode undo-fu undo-fu-session uuidgen verb
           visual-fill-column vundo web-mode yafolding zig-mode))
  '(pixel-scroll-precision-mode t)
