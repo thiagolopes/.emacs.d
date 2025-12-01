@@ -573,5 +573,12 @@
 (use-package yafolding
   :hook (prog-mode . yafolding-mode))
 
+(use-package smartscan
+  :hook (prog-mode . smartscan-mode))
+
+(use-package verb
+  :custom
+  (verb-auto-kill-response-buffers t))
+
 (provide 'init)
 ;;; init.el ends here
