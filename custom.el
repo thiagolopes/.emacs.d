@@ -21,9 +21,6 @@
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(mini-gruber-darker))
- '(custom-safe-themes
-   '("f83dfff83a951461157d73ceb8e27e8de7e5191ae995fe4dded4a71736002eda"
-     default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
  '(dired-listing-switches "-alh")
@@ -86,7 +83,8 @@
           page-break-lines popwin rainbow-delimiters rainbow-mode rg
           smartscan sudo-edit super-save treemacs treemacs-nerd-icons
           typescript-mode undo-fu undo-fu-session uuidgen verb
-          visual-fill-column vundo web-mode yafolding zig-mode))
+          visual-fill-column vundo web-mode yafolding yaml-mode
+          zig-mode))
  '(pixel-scroll-precision-mode t)
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)

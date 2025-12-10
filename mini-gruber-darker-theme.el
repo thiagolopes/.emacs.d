@@ -34,6 +34,7 @@
 ;; variant of the Gruber Dark theme for BBEdit by John Gruber. Adapted
 ;; for deftheme and extended by Alexey Kutepov a.k.a. rexim.
 
+(require 'color)
 
 (deftheme mini-gruber-darker
   "Mini version of Gruber Darker color theme for Emacs 24")
@@ -62,7 +63,7 @@
       (gruber-darker-niagara-1 "#565f73")
       (gruber-darker-niagara   "#96a6c8")
       (gruber-darker-wisteria  "#9e95c7")
-      (gruber-darker-magenta  "#d063c4")
+      (gruber-darker-magenta   "#FD5FF0")
       )
   (custom-theme-set-variables
    'mini-gruber-darker
@@ -415,18 +416,18 @@
    `(orderless-match-face-3 ((t (:foreground ,gruber-darker-quartz))))
 
    ;; rainbow
-   `(rainbow-delimiters-depth-12-face ((t (:foreground "#37706b"))))
-   `(rainbow-delimiters-depth-11-face ((t (:foreground "##3f7f79"))))
-   `(rainbow-delimiters-depth-10-face ((t (:foreground "#478e87"))))
-   `(rainbow-delimiters-depth-9-face ((t (:foreground "#4f9d95"))))
-   `(rainbow-delimiters-depth-8-face ((t (:foreground "#57aca3"))))
-   `(rainbow-delimiters-depth-7-face ((t (:foreground "#5fbbb1"))))
-   `(rainbow-delimiters-depth-6-face ((t (:foreground "#67cabe"))))
-   `(rainbow-delimiters-depth-5-face ((t (:foreground "#6fd9cc"))))
-   `(rainbow-delimiters-depth-4-face ((t (:foreground "#77e8da"))))
-   `(rainbow-delimiters-depth-3-face ((t (:foreground "#80f7e8"))))
-   `(rainbow-delimiters-depth-2-face ((t (:foreground "#99faf0"))))
-   `(rainbow-delimiters-depth-1-face ((t (:foreground "#b2fcf6"))))
+   `(rainbow-delimiters-depth-1-face  ((t (:foreground "#AE81FF"))))
+   `(rainbow-delimiters-depth-2-face  ((t (:foreground "#BA93FF"))))
+   `(rainbow-delimiters-depth-3-face  ((t (:foreground "#C6A6FF"))))
+   `(rainbow-delimiters-depth-4-face  ((t (:foreground "#D2B8FF"))))
+   `(rainbow-delimiters-depth-5-face  ((t (:foreground "#DEC9FF"))))
+   `(rainbow-delimiters-depth-6-face  ((t (:foreground "#E9DAFF"))))
+   `(rainbow-delimiters-depth-7-face  ((t (:foreground "#A273E6"))))
+   `(rainbow-delimiters-depth-8-face  ((t (:foreground "#8F66CC"))))
+   `(rainbow-delimiters-depth-9-face  ((t (:foreground "#7D5AB3"))))
+   `(rainbow-delimiters-depth-10-face ((t (:foreground "#6C4F9A"))))
+   `(rainbow-delimiters-depth-11-face ((t (:foreground "#5C457F"))))
+   `(rainbow-delimiters-depth-12-face ((t (:foreground "#4E3B66"))))
    ))
 
 ;;;###autoload
