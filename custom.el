@@ -12,7 +12,6 @@
  '(c-basic-offset 4)
  '(c-ts-mode-indent-offset 4)
  '(column-number-mode t)
- ;; '(compilation-auto-jump-to-first-error t)
  '(compilation-max-output-line-length nil)
  '(compilation-scroll-output t)
  '(completion-auto-help nil)
@@ -21,6 +20,9 @@
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(mini-gruber-darker))
+ '(custom-safe-themes
+   '("528afc3f315d027203094dd6fecebff062e14e91333087e7328aa395cef2d253"
+     default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
  '(dired-listing-switches "-alh")
