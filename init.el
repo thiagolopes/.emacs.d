@@ -165,6 +165,9 @@
     (unless (string= (buffer-name buf) "*scratch*")
       (kill-buffer buf))))
 
+(defun bool-to-int (bool)
+  (if bool 1 0))
+
 
 (use-package icomplete
   :hook
@@ -228,10 +231,27 @@
   :diminish "  ")
 
 (use-package rainbow-delimiters
+  :init
+  (setq global-rainbow-delimiters-active t)
+  (defun global-rainbow-delimiters-mode () (interactive)
+
+         (setq global-rainbow-delimiters-active (not global-rainbow-delimiters-active))
+
+         (dolist (buffer (buffer-list))
+           (with-current-buffer buffer
+               (rainbow-delimiters-mode (bool-to-int global-rainbow-delimiters-active))))
+
+         (if global-rainbow-delimiters-active
+             (progn
+               (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+               (message "Global Rainbow Delimiters: [ON]"))
+           (progn
+             (remove-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+             (message "Global Rainbow Delimiters: [OFF]"))))
   :diminish " "
   :hook (prog-mode . rainbow-delimiters-mode)
   :bind
-  ("<f5>" . rainbow-delimiters-mode))
+  ("<f5>" . global-rainbow-delimiters-mode))
 
 (use-package org-modern
   :hook
