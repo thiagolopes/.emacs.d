@@ -596,7 +596,11 @@
   (prog-mode . eglot-ensure)
   :custom
   (eglot-autoshutdown t)
-  (eglot-extend-to-xref t))
+  (eglot-extend-to-xref t)
+  (eglot-ignored-server-capabilities '(:codeLensProvider
+                                       :documentOnTypeFormattingProvider
+                                       :foldingRangeProvider
+                                       :inlayHintProvider)))
 
 (use-package deno-ts-mode
   :after eglot

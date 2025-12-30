@@ -27,13 +27,7 @@
  '(delete-selection-mode t)
  '(dired-listing-switches "-alh")
  '(display-line-numbers-width 4)
- '(eglot-autoshutdown t)
- '(eglot-extend-to-xref t)
- '(eglot-ignored-server-capabilities
-   '(:codeLensProvider :documentOnTypeFormattingProvider
-                       :foldingRangeProvider))
  '(global-auto-revert-mode t)
- '(global-corfu-mode t)
  '(global-so-long-mode t)
  '(global-visual-line-mode nil)
  '(hledger-currency-string "R$")
