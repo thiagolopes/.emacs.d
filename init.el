@@ -143,7 +143,9 @@
 (recentf-mode t)
 (fido-vertical-mode t)
 
-;; (windmove-default-keybindings) ;; investigate, error on startup
+(use-package windmove
+  :config
+  (windmove-default-keybindings))
 
 
 
