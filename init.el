@@ -49,7 +49,6 @@
 (fringe-mode        20) ;; in pixel
 (tool-bar-mode     -1)
 (menu-bar-mode     -1)
-(blink-cursor-mode -1)
 (scroll-bar-mode   -1)
 
 (setq frame-title-format
@@ -591,6 +590,18 @@
 
 (use-package web-mode
   :mode ("\\.html\\'" . web-mode))
+
+(use-package eglot
+  :hook
+  (prog-mode . eglot-ensure)
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-extend-to-xref t))
+
+(use-package deno-ts-mode
+  :after eglot
+  :config
+  (put 'deno-ts-mode 'eglot-language-id "typescript"))
 
 (use-package yafolding
   :hook (prog-mode . yafolding-mode))
