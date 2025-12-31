@@ -619,12 +619,10 @@
 
 (use-package diff-hl
   :config
-  (let* ((height (frame-char-height))
-         (width 2)
-         (ones (1- (expt 2 width)))
-         (bits (make-vector height ones)))
-    (define-fringe-bitmap 'my-diff-hl-bitmap bits height width))
-  (setq diff-hl-fringe-bmp-function (lambda (type pos) 'my-diff-hl-bitmap))
+  (let* ((width 2)
+         (bitmap (vector (1- (expt 2 width)))))
+    (define-fringe-bitmap 'my:diff-hl-bitmap bitmap 1 width '(top t)))
+  (setq diff-hl-fringe-bmp-function (lambda (type pos) 'my:diff-hl-bitmap))
   (global-diff-hl-mode)
   (diff-hl-dired-mode t)
   (diff-hl-flydiff-mode t))

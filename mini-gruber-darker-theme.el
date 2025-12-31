@@ -137,6 +137,8 @@
    `(custom-state ((t (:foreground ,gruber-darker-green))))
 
    ;; Diff
+   `(diff-hl-change ((t (:foreground "blue3"))))
+
    `(diff-removed ((t ,(list :foreground gruber-darker-red+1
                              :background nil))))
    `(diff-added ((t ,(list :foreground gruber-darker-green

@@ -21,7 +21,7 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(mini-gruber-darker))
  '(custom-safe-themes
-   '("528afc3f315d027203094dd6fecebff062e14e91333087e7328aa395cef2d253"
+   '("e91804ce09a9d06d69ff407c5c77e6224fd65537c6394b72d2b7a241d6c8a48b"
      default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
