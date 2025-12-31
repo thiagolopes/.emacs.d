@@ -67,8 +67,8 @@
  '(modus-themes-variable-pitch-ui t)
  '(package-selected-packages
    '(anzu buffer-name-relative cape cmake-mode consult corfu-terminal
-          deno-ts-mode diminish dockerfile-mode dumb-jump ef-themes
-          eglot embark embark-consult exec-path-from-shell
+          deno-ts-mode diff-hl diminish dockerfile-mode dumb-jump
+          ef-themes eglot embark embark-consult exec-path-from-shell
           expand-region expreg flycheck flyover git-link
           git-timemachine goto-last-change goto-line-preview
           gruber-darker-theme guess-language helpful highlight-numbers
