@@ -1,8 +1,12 @@
 ;;; mini-gruber-darker-theme.el --- Gruber Darker color theme for Emacs 24.
 
-;; Copyright (C) 2016-2025 Thiago Lopes (TLPS)
+;; Copyright (C) 2025-2026 Thiago Lopes a.k.a TLP
 ;; Copyright (C) 2013-2016 Alexey Kutepov a.k.a rexim
 ;; Copyright (C) 2009-2010 Jason R. Blevins
+
+;; Author: Thiago Lopes <thiagolopes@pm.me>
+;; URL: https://github.com/thiagolopes/.emacs.d/blob/master/mini-gruber-darker-theme.el
+;; Version: 1.0
 
 ;; Author: Alexey Kutepov <reximkut@gmail.com>
 ;; URL: http://github.com/rexim/gruber-darker-theme
@@ -30,9 +34,10 @@
 
 ;;; Commentary:
 ;;
-;; Gruber Darker color theme for Emacs by Jason Blevins. A darker
+;; Mini Gruber Darker color theme for Emacs by Jason Blevins. A darker
 ;; variant of the Gruber Dark theme for BBEdit by John Gruber. Adapted
-;; for deftheme and extended by Alexey Kutepov a.k.a. rexim.
+;; for deftheme and extended by Alexey Kutepov a.k.a. rexim. Adapted
+;; with ideas at tonsky.me/blog/syntax-highlighting/ by Thiago Lopes a.k.a TPL
 
 (require 'color)
 
@@ -321,9 +326,14 @@
    `(org-agenda-structure ((t (:foreground ,gruber-darker-niagara))))
    `(org-column ((t (:background ,gruber-darker-bg-1))))
    `(org-column-title ((t (:background ,gruber-darker-bg-1 :underline t :weight bold))))
-   `(org-done ((t (:foreground ,gruber-darker-green))))
-   `(org-todo ((t (:foreground ,gruber-darker-red-1))))
+   `(org-done ((t (:foreground ,gruber-darker-green :bold t))))
+   `(org-todo ((t (:foreground ,gruber-darker-red-1 :bolt t))))
    `(org-upcoming-deadline ((t (:foreground ,gruber-darker-yellow))))
+   `(org-code ((t ,(list :foreground gruber-darker-green
+                          :background gruber-darker-bg+1))))
+   `(org-block ((t ,(list :foreground gruber-darker-fg
+                          :background gruber-darker-bg+1))))
+   `(org-level-3 ((t (:foreground ,gruber-darker-fg))))
 
    ;; Search
    `(isearch ((t ,(list :foreground gruber-darker-black

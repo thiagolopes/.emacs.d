@@ -21,7 +21,7 @@
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(mini-gruber-darker))
  '(custom-safe-themes
-   '("e91804ce09a9d06d69ff407c5c77e6224fd65537c6394b72d2b7a241d6c8a48b"
+   '("c367abce514e565931e4a8aea75c2598500e94e50f7bd1032eab7822243ec308"
      default))
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
@@ -112,7 +112,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 160 :family "Iosevka"))))
+ '(default ((t (:height 160 :family "Iosevka" :weight light))))
  '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
  '(region ((t :extend nil)))
  '(variable-pitch ((t (:family "Roboto")))))

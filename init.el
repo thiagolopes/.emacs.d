@@ -262,6 +262,7 @@
   (org-mode . auto-fill-mode)
   (org-mode . verb-mode)
   :custom
+  (org-hide-emphasis-markers t)
   (org-modern-fold-stars
    '(("▶" . "▼")
      ("▷▷" . "▽▽")
