@@ -28,6 +28,7 @@
  '(dired-listing-switches "-alh")
  '(display-line-numbers-width 4)
  '(ediff-diff-options "-w")
+ '(ediff-keep-variants nil)
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(global-auto-revert-mode t)
