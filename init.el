@@ -149,14 +149,11 @@
                 "    ["mode-line-percent-position"]     "
                 ))
 
+
 (savehist-mode t)
 (save-place-mode t)
 (recentf-mode t)
 (fido-vertical-mode t)
-
-(use-package windmove
-  :config
-  (windmove-default-keybindings))
 
 
 
@@ -182,6 +179,10 @@
   (if bool 1 0))
 
 
+(use-package windmove
+  :config
+  (windmove-default-keybindings))
+
 (use-package icomplete
   :hook
   (icomplete-minibuffer-setup . (lambda () (setq truncate-lines t))))
