@@ -20,9 +20,7 @@
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
  '(custom-enabled-themes '(mini-gruber-darker))
- '(custom-safe-themes
-   '("c367abce514e565931e4a8aea75c2598500e94e50f7bd1032eab7822243ec308"
-     default))
+ '(custom-safe-themes t)
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
  '(dired-dwim-target t)
