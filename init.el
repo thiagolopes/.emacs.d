@@ -633,6 +633,7 @@
 
 (use-package diff-hl
   :config
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   (let* ((width 2)
          (bitmap (vector (1- (expt 2 width)))))
     (define-fringe-bitmap 'my:diff-hl-bitmap bitmap 1 width '(top t)))
