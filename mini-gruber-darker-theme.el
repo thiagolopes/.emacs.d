@@ -192,7 +192,7 @@
    `(font-lock-doc-face ((t (:foreground ,gruber-darker-green))))
    `(font-lock-doc-string-face ((t (:foreground ,gruber-darker-green))))
    `(font-lock-function-name-face ((t (:foreground ,gruber-darker-niagara))))
-   `(font-lock-keyword-face ((t (:foreground ,gruber-darker-white :bold t))))
+   `(font-lock-keyword-face ((t (:foreground ,gruber-darker-white))))
    `(font-lock-preprocessor-face ((t (:foreground ,gruber-darker-quartz))))
    `(font-lock-reference-face ((t (:foreground ,gruber-darker-quartz))))
    `(font-lock-string-face ((t (:foreground ,gruber-darker-green))))
