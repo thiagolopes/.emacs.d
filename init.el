@@ -642,5 +642,10 @@
   (diff-hl-dired-mode t)
   (diff-hl-flydiff-mode t))
 
+(use-package pdf-tools
+  :config
+  (setq pdf-view-display-size 'fit-page)
+  (add-hook 'pdf-view-mode-hook #'pdf-view-roll-minor-mode))
+
 (provide 'init)
 ;;; init.el ends here
