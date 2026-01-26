@@ -68,6 +68,7 @@
  '(modus-themes-mixed-fonts t)
  '(modus-themes-prompts '(bold))
  '(modus-themes-variable-pitch-ui t)
+ '(org-export-backends '(ascii html icalendar latex man md odt texinfo))
  '(package-selected-packages
    '(anzu buffer-name-relative cape cmake-mode consult corfu-terminal
           deno-ts-mode diff-hl diminish dockerfile-mode dumb-jump
