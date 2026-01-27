@@ -603,8 +603,8 @@
   (setq embark-verbose-indicator-display-action '(display-buffer-at-bottom
                                                   (window-height . fit-window-to-buffer)))
   :bind
-  (("C-." . embark-act)
-   ("M-." . embark-dwim)))
+  ;; ("M-." . embark-dwim)
+  ("C-." . embark-act))
 (use-package embark-consult
   :after consult
   :hook
