@@ -80,9 +80,9 @@
           markdown-mode mode-line-bell modus-themes move-dup
           multiple-cursors mwim nerd-icons-completion nerd-icons-corfu
           nerd-icons-dired nerd-icons-ibuffer no-littering nvm
-          ob-mongo org-appear org-modern page-break-lines pdf-tools
-          popwin rainbow-delimiters rainbow-mode rg smartscan
-          sudo-edit super-save treemacs treemacs-nerd-icons
+          ob-mongo org-appear org-download org-modern page-break-lines
+          pdf-tools popwin rainbow-delimiters rainbow-mode rg
+          smartscan sudo-edit super-save treemacs treemacs-nerd-icons
           typescript-mode undo-fu undo-fu-session uuidgen verb
           visual-fill-column vundo web-mode yafolding yaml-mode
           zig-mode))
