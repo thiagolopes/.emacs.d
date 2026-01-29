@@ -268,6 +268,7 @@
   ("<f5>" . global-rainbow-delimiters-mode))
 
 (use-package org-modern
+  :defer t
   :hook
   (org-mode . org-modern-mode)
   (org-mode . visual-line-mode)
@@ -450,6 +451,8 @@
 ;;   :init (buffer-name-relative-mode))
 
 (use-package exec-path-from-shell
+  :custom
+  (exec-path-from-shell-arguments '("-l"))
   :init (exec-path-from-shell-initialize))
 
 (use-package super-save
@@ -636,6 +639,7 @@
   :hook (prog-mode . smartscan-mode))
 
 (use-package verb
+  :after org-mode
   :custom
   (verb-auto-kill-response-buffers t))
 
@@ -651,6 +655,8 @@
   (diff-hl-flydiff-mode t))
 
 (use-package pdf-tools
+  :defer t
+  :mode  ("\\.pdf\\'" . pdf-view-mode)
   :config
   (setq pdf-view-display-size 'fit-page)
   (add-hook 'pdf-view-mode-hook #'pdf-view-roll-minor-mode))
