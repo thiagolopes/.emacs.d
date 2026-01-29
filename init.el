@@ -623,6 +623,7 @@
   (eglot-autoshutdown t)
   (eglot-extend-to-xref t)
   (eglot-ignored-server-capabilities '(:codeLensProvider
+                                       :hoverProvider
                                        :documentOnTypeFormattingProvider
                                        :foldingRangeProvider
                                        :inlayHintProvider)))

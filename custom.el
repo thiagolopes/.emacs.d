@@ -119,9 +119,6 @@
  ;; If there is more than one, they won't work right.
  (if *is-a-mac*
      '(default ((t (:height 210 :family "Iosevka" :weight light))))
-   '(default ((t (:height 160 :family "Consolas")))))
- '(modus-themes-ui-variable-pitch ((t (:inherit variable-pitch))) t)
- '(region ((t :extend nil)))
- '(variable-pitch ((t (:family "Roboto")))))
+   '(default ((t (:height 180 :family "Iosevka"))))))
 
 (message "[config] finisehd custom.el")
