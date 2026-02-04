@@ -76,13 +76,14 @@
           expand-region expreg flycheck flyover git-link
           git-timemachine goto-last-change goto-line-preview
           gruber-darker-theme guess-language helpful highlight-numbers
-          hledger-mode hotfuzz hungry-delete jinx magit marginalia
-          markdown-mode mode-line-bell modus-themes move-dup
-          multiple-cursors mwim nerd-icons-completion nerd-icons-corfu
-          nerd-icons-dired nerd-icons-ibuffer no-littering nvm
-          ob-mongo org-appear org-download org-modern page-break-lines
-          pdf-tools popwin rainbow-delimiters rainbow-mode rg
-          smartscan sudo-edit super-save treemacs treemacs-nerd-icons
+          hl-todo hledger-mode hotfuzz hungry-delete jinx magit
+          marginalia markdown-mode mode-line-bell modus-themes
+          move-dup multiple-cursors mwim nerd-icons-completion
+          nerd-icons-corfu nerd-icons-dired nerd-icons-ibuffer
+          no-littering nvm ob-mongo org-appear org-download org-modern
+          page-break-lines pdf-tools popwin purp-theme
+          rainbow-delimiters rainbow-mode rg smartscan srcery-theme
+          sudo-edit super-save treemacs treemacs-nerd-icons
           typescript-mode undo-fu undo-fu-session uuidgen verb
           visual-fill-column vundo web-mode yafolding yaml-mode
           zig-mode))

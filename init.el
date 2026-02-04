@@ -660,5 +660,9 @@
   (setq pdf-view-display-size 'fit-page)
   (add-hook 'pdf-view-mode-hook #'pdf-view-roll-minor-mode))
 
+(use-package hl-todo
+  :hook
+  (prog-mode . hl-todo-mode))
+
 (provide 'init)
 ;;; init.el ends here
