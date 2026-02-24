@@ -643,6 +643,8 @@
   (verb-auto-kill-response-buffers t))
 
 (use-package diff-hl
+  :custom-face
+  (diff-hl-change ((t (:background nil))))
   :config
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   (let* ((width 2)
