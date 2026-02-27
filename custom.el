@@ -68,6 +68,7 @@
  '(modus-themes-mixed-fonts t)
  '(modus-themes-prompts '(bold))
  '(modus-themes-variable-pitch-ui t)
+ '(mouse-wheel-scroll-amount '(1 ((shift) . 1)))
  '(org-export-backends '(ascii html icalendar latex man md odt texinfo))
  '(package-selected-packages
    '(anzu buffer-name-relative cape cmake-mode consult corfu-terminal
@@ -88,6 +89,7 @@
           visual-fill-column vundo web-mode yafolding yaml-mode
           zig-mode))
  '(pixel-scroll-precision-mode t)
+ '(pixel-scroll-precision-mode nil)
  '(prog-mode-hook '(display-line-numbers-mode))
  '(project-mode-line t)
  '(read-buffer-completion-ignore-case t)
@@ -97,6 +99,9 @@
  '(safe-local-variable-values
    '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))
      (checkdoc-minor-mode . t)))
+ '(scroll-conservatively 1000)
+ '(scroll-margin 15)
+ '(scroll-preserve-screen-position t)
  '(show-paren-mode t)
  '(transient-mark-mode nil)
  '(undo-fu-session-global-mode t)
