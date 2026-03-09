@@ -19,7 +19,7 @@
  '(cursor-type 'box)
  '(custom-buffer-indent 4)
  '(custom-buffer-sort-alphabetically t)
- '(custom-enabled-themes '(mini-gruber-darker))
+ '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes t)
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
@@ -123,8 +123,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- (if *is-a-mac*
-     '(default ((t (:height 210 :family "Iosevka" :weight light))))
-   '(default ((t (:height 180 :family "Iosevka"))))))
+ '(default ((t (:height 180 :family "Iosevka")))))
 
 (message "[config] finisehd custom.el")
