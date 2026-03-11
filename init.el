@@ -46,10 +46,18 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(fringe-mode        20) ;; in pixel
-(tool-bar-mode     -1)
-(menu-bar-mode     -1)
-(scroll-bar-mode   -1)
+(fringe-mode          20) ;; in pixel
+(tool-bar-mode        -1)
+(menu-bar-mode        -1)
+(scroll-bar-mode      -1)
+(tooltip-mode         -1)
+(save-place-mode       1)
+(recentf-mode          1)
+(savehist-mode         1)
+(electric-pair-mode    1)
+(fido-vertical-mode    1)
+(delete-selection-mode 1)
+(global-hl-line-mode   1)
 
 (setq frame-title-format
       (list '(buffer-file-name "%f" "%b")
@@ -148,12 +156,6 @@
                 mode-line-position
                 "    ["mode-line-percent-position"]     "
                 ))
-
-
-(savehist-mode t)
-(save-place-mode t)
-(recentf-mode t)
-(fido-vertical-mode t)
 
 
 

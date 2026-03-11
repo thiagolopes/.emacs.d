@@ -24,6 +24,7 @@
  '(dabbrev-case-replace nil)
  '(delete-selection-mode t)
  '(dired-dwim-target t)
+ '(dired-kill-when-opening-new-dired-buffer t)
  '(dired-listing-switches "-alh")
  '(display-line-numbers-width 4)
  '(ediff-diff-options "-w")
