@@ -71,24 +71,6 @@
  '(modus-themes-variable-pitch-ui t)
  '(mouse-wheel-scroll-amount '(1 ((shift) . 1)))
  '(org-export-backends '(ascii html icalendar latex man md odt texinfo))
- '(package-selected-packages
-   '(anzu buffer-name-relative cape cmake-mode consult corfu-terminal
-          deno-ts-mode diff-hl diminish dockerfile-mode dumb-jump
-          ef-themes eglot embark embark-consult exec-path-from-shell
-          expand-region expreg flycheck flyover git-link
-          git-timemachine goto-last-change goto-line-preview
-          gruber-darker-theme guess-language helpful highlight-numbers
-          hl-todo hledger-mode hotfuzz hungry-delete jinx magit
-          marginalia markdown-mode mode-line-bell modus-themes
-          move-dup multiple-cursors mwim nerd-icons-completion
-          nerd-icons-corfu nerd-icons-dired nerd-icons-ibuffer
-          no-littering nvm ob-mongo org-appear org-download org-modern
-          page-break-lines pdf-tools popwin purp-theme
-          rainbow-delimiters rainbow-mode rg smartscan srcery-theme
-          sudo-edit super-save treemacs treemacs-nerd-icons
-          typescript-mode undo-fu undo-fu-session uuidgen verb
-          visual-fill-column vundo web-mode yafolding yaml-mode
-          zig-mode))
  '(pixel-scroll-precision-mode t)
  '(pixel-scroll-precision-mode nil)
  '(prog-mode-hook '(display-line-numbers-mode))

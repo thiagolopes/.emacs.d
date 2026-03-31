@@ -14,34 +14,124 @@
 
 
 (require 'package)
+;; TODO deal to worker without internet for some reason, emergencial mode.
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-;; TODO deal to worker without internet for some reason, emergencial mode.
-;; 3th lib 'no-littering' is not optional
-(when (not (package-installed-p 'no-littering))
-  (package-install 'no-littering))
-(require 'no-littering)
+(setq package-selected-packages
+      '(
+        anzu
+        buffer-name-relative
+        cape
+        consult
+        corfu-terminal
+        diff-hl
+        diminish
+        dumb-jump
+        eglot
+        embark
+        embark-consult
+        exec-path-from-shell
+        expand-region
+        expreg
+        flycheck
+        flyover
+        git-link
+        git-timemachine
+        goto-last-change
+        goto-line-preview
+        guess-language
+        helpful
+        highlight-numbers
+        hl-todo
+        hotfuzz
+        hungry-delete
+        jinx
+        magit
+        marginalia
+        mode-line-bell
+        move-dup
+        multiple-cursors
+        mwim
+        nerd-icons-completion
+        nerd-icons-corfu
+        nerd-icons-dired
+        nerd-icons-ibuffer
+        no-littering
+        nvm
+        ob-mongo
+        org-appear
+        org-download
+        org-modern
+        page-break-lines
+        pdf-tools
+        persistent-scratch
+        popwin
+        rainbow-delimiters
+        rainbow-mode
+        rg
+        smartscan
+        sudo-edit
+        super-save
+        treemacs
+        treemacs-nerd-icons
+        undo-fu
+        undo-fu-session
+        uuidgen
+        verb
+        visual-fill-column
+        vundo
+        yafolding
+
+        ;; Themes
+        ef-themes
+        gruber-darker-theme
+        modus-themes
+        purp-theme
+        srcery-theme
+
+        ;; File Modes
+        cmake-mode
+        deno-ts-mode
+        dockerfile-mode
+        go-mode
+        hledger-mode
+        markdown-mode
+        svelte-mode
+        typescript-mode
+        web-mode
+        yaml-mode
+        zig-mode
+        )
+      )
+
+(eval-and-compile
+  (progn
+    ;; 3th lib 'no-littering' is required
+    (when (not (package-installed-p 'no-littering))
+      (package-install 'no-littering))
+    (require 'no-littering)
+
+    (defun list-missing-pckgs ()
+      "List all missing packages."
+      (when (not (package-installed-p 'dash))
+        (package-install 'dash))
+      (require 'dash)
+      (-filter
+       (-not #'package-installed-p)
+       package-selected-packages))
+
+    ;; install
+    (let ((packages-not-installed (list-missing-pckgs)))
+      (when packages-not-installed
+        (-each packages-not-installed #'package-install)
+        ;; OVERKILL REACTION
+        (restart-emacs)))))
+
+
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (when (file-exists-p custom-file)
   (load-file custom-file))
-
-
-(eval-and-compile
-  (defun list-missing-pckgs ()
-    "List all missing packages."
-    (when (not (package-installed-p 'dash))
-      (package-install 'dash))
-    (require 'dash)
-    (-filter
-     (-not #'package-installed-p)
-     package-selected-packages))
-
-  (let ((packages-not-installed (list-missing-pckgs)))
-    (when packages-not-installed
-      (-each packages-not-installed #'package-install)
-      ;; OVERKILL REACTION
-      (restart-emacs))))
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
