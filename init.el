@@ -829,6 +829,9 @@
 
 (use-package diff-hl
   :custom-face
+  (diff-hl-delete ((t (:inherit nil))))
+  (diff-hl-insert ((t (:inherit nil))))
+  (diff-hl-update ((t (:inherit nil))))
   (diff-hl-change ((t (:background nil))))
   :config
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
