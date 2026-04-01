@@ -59,6 +59,7 @@
         no-littering
         nvm
         ob-mongo
+        orderless
         org-appear
         org-download
         org-modern
@@ -207,9 +208,14 @@
 
 ;; Theme + Font
 (set-face-attribute 'default nil
-                    :height 160
-                    :family "Iosevka")
+                    :height 160)
 (load-theme 'gruber-darker)
+
+;;From documentation
+;;   Sizes: 6x12, 8x14, 8x16, 10x18, 10x20, 11x22, 12x24, 14x28 and 16x32.
+;;   Weights: normal and bold (except for 6x12), plus CRT VGA-bold for 8x14 and 8x16.")
+(setq terminus-fonts-sizes
+      (list (* 6 12) (* 8 14) (* 8 16) (* 10 8) (* 10 20) (* 11 22) (* 12 24) (* 14 28) (* 16 32)))
 
 
 ;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
@@ -340,12 +346,12 @@
   (compilation-filter . ansi-color-compilation-filter))
 
 (use-package eldoc
-  :init
-  (global-eldoc-mode t)
   :diminish
-  :custom
-  (eldoc-echo-area-use-multiline-p t)
-  (eldoc-documentation-compose 'eldoc-documentation-compose-eagerly))
+  :init
+  (setq eldoc-idle-delay 0
+        eldoc-echo-area-use-multiline-p t
+        eldoc-documentation-compose 'eldoc-documentation-compose)
+  (global-eldoc-mode t))
 
 (use-package flymake
   :custom
@@ -366,7 +372,7 @@
         which-key-show-early-on-C-h t)
   (which-key-mode t))
 
-(use-package dabbrev
+(use-package dabbrev :diminish
   :init
   (setq dabbrev-case-replace nil))
 
@@ -862,6 +868,11 @@
         modus-themes-mixed-fonts t
         modus-themes-prompts '(bold)
         modus-themes-variable-pitch-ui t))
+
+(use-package orderless
+  :custom
+  (completion-category-overrides '((file (styles partial-completion))))
+  (completion-styles '(orderless basic partial-completion)))
 
 (provide 'init)
 ;;; init.el ends here
