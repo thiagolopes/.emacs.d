@@ -143,7 +143,7 @@
 (global-so-long-mode     1)
 (global-visual-line-mode 0)
 (menu-bar-mode          -1)
-(pixel-scroll-precision-mode 1)
+(pixel-scroll-precision-mode 0)
 (recentf-mode            1)
 (repeat-mode             1)
 (save-place-mode         1)
