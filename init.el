@@ -9,15 +9,15 @@
   (message "Your Emacs is old for this config. Please upgrade if possible."))
 
 ;; identify the system
-(setq *is-a-mac* (eq system-type 'darwin))
-(setq *is-a-linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
+(setq-default *is-a-mac* (eq system-type 'darwin))
+(setq-default *is-a-linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
 
 
 (require 'package)
 ;; TODO deal to worker without internet for some reason, emergencial mode.
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-(setq package-selected-packages
+(setq-default package-selected-packages
       '(
         anzu
         buffer-name-relative
@@ -128,30 +128,68 @@
         (restart-emacs)))))
 
 
-
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(when (file-exists-p custom-file)
-  (load-file custom-file))
-
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(fringe-mode          20) ;; in pixel
-(tool-bar-mode        -1)
-(menu-bar-mode        -1)
-(scroll-bar-mode      -1)
-(tooltip-mode         -1)
-(save-place-mode       1)
-(recentf-mode          1)
-(savehist-mode         1)
-(electric-pair-mode    1)
-(fido-vertical-mode    1)
-(delete-selection-mode 1)
-(global-hl-line-mode   1)
+(blink-cursor-mode       1)
+(column-number-mode      1)
+(context-menu-mode       1)
+(delete-selection-mode   0)
+(delete-selection-mode   1)
+(electric-pair-mode      1)
+(fido-vertical-mode      1)
+(fringe-mode            20) ;; in pixel
+(global-auto-revert-mode 1)
+(global-hl-line-mode     1)
+(global-so-long-mode     1)
+(global-visual-line-mode 0)
+(menu-bar-mode          -1)
+(pixel-scroll-precision-mode 1)
+(recentf-mode            1)
+(repeat-mode             1)
+(save-place-mode         1)
+(savehist-mode           1)
+(scroll-bar-mode        -1)
+(show-paren-mode         1)
+(tool-bar-mode          -1)
+(tooltip-mode           -1)
+(transient-mark-mode     0)
+(transient-mark-mode     0)
+(winner-mode             1)
 
-(setq frame-title-format
-      (list '(buffer-file-name "%f" "%b")
-            '(:eval (format " - GNU Emacs %s" emacs-version))))
+(setq-default
+ backup-by-copying t
+ blink-cursor-blinks 0
+ compilation-max-output-line-length nil
+ compilation-scroll-output t
+ completion-auto-help nil
+ cursor-type 'box
+ custom-buffer-indent 4
+ custom-buffer-sort-alphabetically t
+ custom-safe-themes t
+ display-line-numbers-width 4
+ ibuffer-expert t
+ indent-tabs-mode nil
+ indicate-buffer-boundaries 'left
+ indicate-empty-lines t
+ inhibit-startup-screen t
+ kill-ring-max 400
+ project-mode-line t
+ read-buffer-completion-ignore-case t
+ read-file-name-completion-ignore-case t
+ require-final-newline t
+ scroll-conservatively 1000
+ scroll-margin 15
+ scroll-preserve-screen-position t
+ use-dialog-box nil
+ use-short-answers t
+ user-mail-address "thiagolopes@protonmail.com"
+ visual-line-fringe-indicators '(nil nil)
+ x-underline-at-descent-line t
+)
+
+(setq-default frame-title-format
+              (list '(buffer-file-name "%f" "%b")
+                    '(:eval (format " - GNU Emacs %s" emacs-version))))
 
 (when scroll-bar-mode
   ;; this disable scroll on minibuffer
@@ -160,9 +198,18 @@
 
 (prefer-coding-system 'utf-8)
 
-;; default size
+;; Default Window Size
 (add-to-list 'default-frame-alist '(height . 35))
 (add-to-list 'default-frame-alist '(width . 160))
+
+;; Mouse
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
+;; Theme + Font
+(set-face-attribute 'default nil
+                    :height 160
+                    :family "Iosevka")
+(load-theme 'gruber-darker)
 
 
 ;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
@@ -187,6 +234,11 @@
                     (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
 (defun add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'ediff-copy-both-to-C))
 (add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
+(setq-default
+ ediff-diff-options "-w"
+ ediff-keep-variants nil
+ ediff-split-window-function 'split-window-horizontally
+ ediff-window-setup-function 'ediff-setup-windows-plain)
 
 
 (global-set-key (kbd "M-o")         'other-window)
@@ -213,6 +265,9 @@
 
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
+(setq-default dired-dwim-target t
+              dired-kill-when-opening-new-dired-buffer t
+              dired-listing-switches "-alh")
 
 
 ;; mode-line
@@ -268,6 +323,7 @@
       (kill-buffer buf))))
 
 (defun bool-to-int (bool)
+  "BOOL -> INT"
   (if bool 1 0))
 
 
@@ -304,10 +360,38 @@
   :config
   (global-completion-preview-mode t))
 
-(use-package which-key :diminish)
+(use-package which-key :diminish
+  :init
+  (setq which-key-idle-delay 1.5
+        which-key-show-early-on-C-h t)
+  (which-key-mode t))
+
+(use-package dabbrev
+  :init
+  (setq dabbrev-case-replace nil))
+
+(use-package whitespace-mode
+  :init
+  (setq whitespace-style '(face spaces empty tabs newline trailing space-mark tab-mark))
+  :hook
+  (before-save . whitespace-cleanup))
 
 (require 'uniquify)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
 
+
+(setq-default c-basic-offset 4
+              c-ts-mode-indent-offset 4)
+
+
+
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load-file custom-file))
+
+
+
 ;; 3party
 (global-set-key [remap goto-line] 'goto-line-preview)
 (global-set-key (kbd "C-x /")     'goto-last-change)
@@ -430,6 +514,8 @@
          ("C-e" . mwim-end)))
 
 (use-package hledger-mode
+  :init
+  (setq hledger-currency-string "R$")
   :mode ("\\.journal\\'" . hledger-mode)
   :bind (:map hledger-mode-map
               ("<f9>" . hledger-run-command))
@@ -685,6 +771,13 @@
   (mode-line-inactive ((t :background "#181818")))
   (mode-line-buffer-id ((t :background nil))))
 
+
+(use-package undo-fu
+  :init
+  (setq undo-limit 67108864
+        undo-strong-limit 100663296)
+  (undo-fu-session-global-mode t))
+
 (use-package vundo
   :custom
   (vundo-window-max-height 5)
@@ -757,6 +850,15 @@
 (use-package hl-todo
   :hook
   (prog-mode . hl-todo-mode))
+
+(use-package modus-themes
+  :init
+  (setq modus-themes-bold-constructs nil
+        modus-themes-completions '((matches bold italic))
+        modus-themes-italic-constructs nil
+        modus-themes-mixed-fonts t
+        modus-themes-prompts '(bold)
+        modus-themes-variable-pitch-ui t))
 
 (provide 'init)
 ;;; init.el ends here
