@@ -128,6 +128,7 @@
         ;; OVERKILL REACTION
         (restart-emacs)))))
 
+(setq use-package-hook-name-suffix nil)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -339,11 +340,11 @@
 
 (use-package icomplete
   :hook
-  (icomplete-minibuffer-setup . (lambda () (setq truncate-lines t))))
+  (icomplete-minibuffer-setup-hook . (lambda () (setq truncate-lines t))))
 
 (use-package ansi-color
   :hook
-  (compilation-filter . ansi-color-compilation-filter))
+  (compilation-filter-hook . ansi-color-compilation-filter))
 
 (use-package eldoc
   :diminish
@@ -359,7 +360,7 @@
   (flymake-indicator-type 'margins)
   (flymake-margin-indicator-position 'right-margin)
   :hook
-  (prog-mode . flymake-mode))
+  (prog-mode-hook . flymake-mode))
 
 (use-package completion-preview
   :diminish
@@ -380,7 +381,7 @@
   :init
   (setq whitespace-style '(face spaces empty tabs newline trailing space-mark tab-mark))
   :hook
-  (before-save . whitespace-cleanup))
+  (before-save-hook . whitespace-cleanup))
 
 (require 'uniquify)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -409,7 +410,7 @@
   :custom
   (jinx-languages "en pt_BR")
   :hook
-  (emacs-startup . global-jinx-mode))
+  (emacs-startup-hook . global-jinx-mode))
 
 (use-package mode-line-bell
   :config
@@ -445,18 +446,18 @@
              (remove-hook 'prog-mode-hook 'rainbow-delimiters-mode)
              (message "Global Rainbow Delimiters: [OFF]"))))
   :diminish " "
-  :hook (prog-mode . rainbow-delimiters-mode)
+  :hook (prog-mode-hook . rainbow-delimiters-mode)
   :bind
   ("<f5>" . global-rainbow-delimiters-mode))
 
 (use-package org-modern
   :defer t
   :hook
-  (org-mode . org-modern-mode)
-  (org-mode . visual-line-mode)
-  ;; (org-mode . variable-pitch-mode)
-  (org-mode . auto-fill-mode)
-  (org-mode . verb-mode)
+  (org-mode-hook . org-modern-mode)
+  (org-mode-hook . visual-line-mode)
+  ;; (org-mode-hook . variable-pitch-mode)
+  (org-mode-hook . auto-fill-mode)
+  (org-mode-hook . verb-mode)
   :custom
   (org-auto-align-tags nil)
   (org-tags-column 0)
@@ -476,7 +477,7 @@
 
 (use-package org-appear
   :hook
-  (org-mode . org-appear-mode))
+  (org-mode-hook . org-appear-mode))
 
 (use-package consult
   :config
@@ -612,7 +613,7 @@
   (visual-fill-column-center-text t)
   (visual-fill-column-width 90)
   :hook
-  (org-mode . (lambda ()
+  (org-mode-hook . (lambda ()
                 (setq-local whitespace-style '(face newline-mark))
                 (setq-local whitespace-display-mappings
                             '((newline-mark ?\n [?↵ ?\n])))
@@ -697,14 +698,14 @@
 (use-package nerd-icons-dired
   :after nerd-icons
   :hook
-  (dired-mode . nerd-icons-dired-mode))
+  (dired-mode-hook . nerd-icons-dired-mode))
 (use-package treemacs-nerd-icons
   :after (nerd-icons treemacs)
   :config
   (treemacs-load-theme "nerd-icons"))
 (use-package nerd-icons-ibuffer
   :after nerd-icons
-  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+  :hook (ibuffer-mode-hook . nerd-icons-ibuffer-mode))
 (use-package nerd-icons-completion
   :after marginalia
   :after nerd-icons
@@ -800,14 +801,14 @@
 (use-package embark-consult
   :after consult
   :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
+  (embark-collect-mode-hook . consult-preview-at-point-mode))
 
 (use-package web-mode
   :mode ("\\.html\\'" . web-mode))
 
 (use-package eglot
   :hook
-  (prog-mode . eglot-ensure)
+  (prog-mode-hook . eglot-ensure)
   :custom
   (eglot-autoshutdown t)
   (eglot-extend-to-xref t)
@@ -823,10 +824,10 @@
   (put 'deno-ts-mode 'eglot-language-id "typescript"))
 
 (use-package yafolding
-  :hook (prog-mode . yafolding-mode))
+  :hook (prog-mode-hook . yafolding-mode))
 
 (use-package smartscan
-  :hook (prog-mode . smartscan-mode))
+  :hook (prog-mode-hook . smartscan-mode))
 
 (use-package verb
   :after org-mode
@@ -858,7 +859,7 @@
 
 (use-package hl-todo
   :hook
-  (prog-mode . hl-todo-mode))
+  (prog-mode-hook . hl-todo-mode))
 
 (use-package modus-themes
   :init
