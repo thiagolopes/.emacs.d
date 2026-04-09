@@ -455,8 +455,9 @@
   :hook
   (org-mode-hook . org-modern-mode)
   (org-mode-hook . visual-line-mode)
+  (org-mode-hook . org-indent-mode)
+  (org-mode-hook . org-num-mode)
   ;; (org-mode-hook . variable-pitch-mode)
-  (org-mode-hook . auto-fill-mode)
   (org-mode-hook . verb-mode)
   :custom
   (org-auto-align-tags nil)
@@ -468,6 +469,13 @@
   (org-pretty-entities t)
   (org-agenda-tags-column 0)
   (org-ellipsis "…")
+  (org-log-done 'time)
+  (org-fontify-done-headline t)
+  (org-fontify-quote-and-verse-blocks t)
+  (org-src-fontify-natively t)
+  (org-src-tab-acts-natively t)
+  (org-edit-src-content-indentation 0)
+  (org-src-preserve-indentation t)
   (org-modern-fold-stars
    '(("▶" . "▼")
      ("▷▷" . "▽▽")
