@@ -208,8 +208,8 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; Theme + Font
-(set-face-attribute 'default nil
-                    :height 160)
+(custom-set-faces
+ '(default ((t (:height 160)))))
 (load-theme 'gruber-darker)
 
 ;;From documentation
@@ -450,32 +450,12 @@
   :bind
   ("<f5>" . global-rainbow-delimiters-mode))
 
-(use-package org-modern
-  :defer t
+(use-package org-mode
   :hook
   (org-mode-hook . org-modern-mode)
   (org-mode-hook . visual-line-mode)
-  (org-mode-hook . org-indent-mode)
-  (org-mode-hook . org-num-mode)
-  ;; (org-mode-hook . variable-pitch-mode)
   (org-mode-hook . verb-mode)
   :custom
-  (org-auto-align-tags nil)
-  (org-tags-column 0)
-  (org-catch-invisible-edits 'show-and-error)
-  (org-special-ctrl-a/e t)
-  (org-insert-heading-respect-content t)
-  (org-hide-emphasis-markers t)
-  (org-pretty-entities t)
-  (org-agenda-tags-column 0)
-  (org-ellipsis "…")
-  (org-log-done 'time)
-  (org-fontify-done-headline t)
-  (org-fontify-quote-and-verse-blocks t)
-  (org-src-fontify-natively t)
-  (org-src-tab-acts-natively t)
-  (org-edit-src-content-indentation 0)
-  (org-src-preserve-indentation t)
   (org-modern-fold-stars
    '(("▶" . "▼")
      ("▷▷" . "▽▽")
