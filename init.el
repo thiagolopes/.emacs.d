@@ -154,8 +154,7 @@
 (show-paren-mode         1)
 (tool-bar-mode          -1)
 (tooltip-mode           -1)
-(transient-mark-mode     0)
-(transient-mark-mode     0)
+(transient-mark-mode     1)
 (winner-mode             1)
 
 (setq-default
@@ -168,7 +167,7 @@
  custom-buffer-indent 4
  custom-buffer-sort-alphabetically t
  custom-safe-themes t
- display-line-numbers-width 4
+ display-line-numbers-width 3
  ibuffer-expert t
  indent-tabs-mode nil
  indicate-buffer-boundaries 'left
