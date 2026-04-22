@@ -181,6 +181,7 @@
  scroll-conservatively 1000
  scroll-margin 15
  scroll-preserve-screen-position t
+ truncate-lines nil
  use-dialog-box nil
  use-short-answers t
  user-mail-address "thiagolopes@protonmail.com"
