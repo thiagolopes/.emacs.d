@@ -27,6 +27,7 @@
         diff-hl
         diminish
         dumb-jump
+        doom-modeline
         eglot
         embark
         embark-consult
