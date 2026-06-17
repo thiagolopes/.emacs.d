@@ -19,6 +19,7 @@
 
 (setq-default package-selected-packages
       '(
+        i3wm-config-mode
         anzu
         buffer-name-relative
         cape
@@ -36,6 +37,7 @@
         expreg
         flycheck
         flyover
+        fish-mode
         git-link
         git-timemachine
         goto-last-change
@@ -71,6 +73,7 @@
         rainbow-delimiters
         rainbow-mode
         rg
+        rust-mode
         smartscan
         sudo-edit
         super-save
