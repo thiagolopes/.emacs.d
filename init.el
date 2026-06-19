@@ -16,6 +16,8 @@
 (require 'package)
 ;; TODO deal to worker without internet for some reason, emergencial mode.
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Remove change package-selected-packages when package-install
+(advice-add 'package--save-selected-packages :override #'ignore)
 
 (setq-default package-selected-packages
       '(
@@ -24,6 +26,7 @@
         buffer-name-relative
         cape
         consult
+        corfu
         corfu-terminal
         diff-hl
         diminish
@@ -75,6 +78,7 @@
         rg
         rust-mode
         smartscan
+        standard-themes
         sudo-edit
         super-save
         treemacs
@@ -579,7 +583,8 @@
               ("M-l" . corfu-show-location)))
 
 (use-package corfu-terminal
-  :if 'display-graphical-p
+  :if (version< emacs-version "31")
+  :if (not (display-graphic-p))
   :after corfu
   :init
   (corfu-terminal-mode))
