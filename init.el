@@ -872,5 +872,19 @@
   (completion-category-overrides '((file (styles partial-completion))))
   (completion-styles '(orderless basic partial-completion)))
 
+(use-package ef-themes
+  :custom
+  ;; pretty colors from valignatev
+  (ef-dream-palette-overrides
+   '((bg-main "#131015")
+     (bg-hl-line "#232224")
+     (fg-mode-line "#f2ddcf")
+     (bg-mode-line "#472b00")
+     (yellow-cooler "#ff9f0a")
+     (bg-hl-line "#2e1a3a")
+     (bg-hl-line "#352102")
+     (bg-hl-line "#3b393e")
+     (bg-mode-line "#5E4527"))))
+
 (provide 'init)
 ;;; init.el ends here
