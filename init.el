@@ -286,6 +286,7 @@
 
 
 ;; mode-line
+(setq mode-line-percent-position '(-5 "[%p]"))
 (setq-default mode-line-format
               '("%e" mode-line-front-space
                 (:propertize
@@ -314,7 +315,6 @@
                 mode-line-end-spaces
                 mode-line-format-right-align
                 mode-line-position
-                "    ["mode-line-percent-position"]     "
                 ))
 
 
