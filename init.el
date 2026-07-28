@@ -187,7 +187,7 @@
  read-file-name-completion-ignore-case t
  require-final-newline t
  scroll-conservatively 1000
- scroll-margin 15
+ scroll-margin 1
  scroll-preserve-screen-position t
  truncate-lines nil
  use-dialog-box nil
@@ -195,6 +195,7 @@
  user-mail-address "thiagolopes@protonmail.com"
  visual-line-fringe-indicators '(nil nil)
  x-underline-at-descent-line t
+ window-combination-resize t
 )
 
 (setq-default frame-title-format
@@ -286,36 +287,68 @@
 
 
 ;; mode-line
-(setq mode-line-percent-position '(-5 "[%p]"))
-(setq-default mode-line-format
-              '("%e" mode-line-front-space
-                (:propertize
-                 ("" mode-line-mule-info
-                  mode-line-client
-                  mode-line-modified
-                  mode-line-remote
-                  mode-line-window-dedicated)
-                 display (min-width (2.0)))
-                mode-line-frame-identification
-                ;; from https://github.com/grolongo/nerd-icons-mode-line/blob/master/nerd-icons-mode-line.el#L50
-                (:propertize
-                 (:eval
-                  (with-current-buffer (current-buffer)
-                    (nerd-icons-icon-for-buffer)))
-                 display (raise 0.1))
-                " "
-                mode-line-buffer-identification
-                (:eval
-                 (when-let ((project (project-current)))
-                   '((project-mode-line project-mode-line-format)
-                     (when vc-mode
-                       (vc-mode vc-mode)))))
-                " "
-                mode-line-modes mode-line-misc-info
-                mode-line-end-spaces
-                mode-line-format-right-align
-                mode-line-position
-                ))
+;; (setq mode-line-percent-position '(-5 "[%p]"))
+;; (setq-default mode-line-format
+;;                '("%e" mode-line-front-space
+;;                  (:propertize
+;;                   ("" mode-line-mule-info
+;;                    mode-line-client
+;;                    mode-line-modified
+;;                    mode-line-remote
+;;                    mode-line-window-dedicated)
+;;                   display (min-width (2.0)))
+;;                  mode-line-frame-identification
+;;                  ;; from https://github.com/grolongo/nerd-icons-mode-line/blob/master/nerd-icons-mode-line.el#L50
+;;                  (:propertize
+;;                   (:eval
+;;                    (with-current-buffer (current-buffer)
+;;                      (nerd-icons-icon-for-buffer)))
+;;                   display (raise 0.1))
+;;                  " "
+;;                  mode-line-buffer-identification
+;;                  (:eval
+;;                   (when-let ((project (project-current)))
+;;                     '((project-mode-line project-mode-line-format)
+;;                       (when vc-mode
+;;                         (vc-mode vc-mode)))))
+;;                  " "
+;;                  mode-line-modes
+;;                  mode-line-misc-info
+;;                  mode-line-end-spaces
+;;                  mode-line-format-right-align
+;;                  mode-line-position
+;;                  ))
+(setopt mode-line-format
+        (list " "
+              'mode-line-mule-info 'mode-line-modified 'mode-line-client 'mode-line-frame-remote
+              'mode-line-frame-identification
+              ""
+
+              '(:eval (abbreviate-file-name default-directory))
+              mode-line-buffer-identification
+              "  ["
+              '(line-number-mode "L%l|")
+              '(column-number-mode "C%c|")
+              '(-3 "%p")
+              "]"
+
+              'global-mode-string
+
+              'mode-line-format-right-align
+
+              "   %[("
+              '(:propertize
+                  (:eval
+                   (with-current-buffer (current-buffer)
+                     (nerd-icons-icon-for-buffer)))
+                  display (raise 0.1))
+              'mode-line-process
+              'minor-mode-alist
+              "%n"
+              ")%] "
+              '(which-function-mode ("" which-func-format "--"))
+              " "
+              ))
 
 
 
@@ -878,13 +911,13 @@
   (ef-dream-palette-overrides
    '((bg-main "#131015")
      (bg-hl-line "#232224")
-     (fg-mode-line "#f2ddcf")
-     (bg-mode-line "#472b00")
+     (fg-mode-line-active "#f2ddcf")
+     (bg-mode-line-active "#472b00")
      (yellow-cooler "#ff9f0a")
      (bg-hl-line "#2e1a3a")
      (bg-hl-line "#352102")
      (bg-hl-line "#3b393e")
-     (bg-mode-line "#5E4527"))))
+     (bg-mode-line-inactive "#5E4527"))))
 
 (provide 'init)
 ;;; init.el ends here
