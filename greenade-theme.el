@@ -1,4 +1,4 @@
-;;; greenad-theme.el --- Green Theme -*- lexical-binding: t; -*-
+;;; greenade-theme.el --- Green Theme -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;;     Inspired by Jonathan Blow theme
 ;;;
