@@ -319,17 +319,18 @@
 ;;                  mode-line-position
 ;;                  ))
 (setopt mode-line-format
-        (list " "
+        (list ""
               'mode-line-mule-info 'mode-line-modified 'mode-line-client 'mode-line-frame-remote
               'mode-line-frame-identification
               ""
 
               '(:eval (abbreviate-file-name default-directory))
               mode-line-buffer-identification
-              "  ["
+              "["
               '(line-number-mode "L%l|")
               '(column-number-mode "C%c|")
               '(-3 "%p")
+              "|%I"
               "]"
 
               'global-mode-string
@@ -342,11 +343,14 @@
                    (with-current-buffer (current-buffer)
                      (nerd-icons-icon-for-buffer)))
                   display (raise 0.1))
+              "["
+               'mode-name
+              "]"
               'mode-line-process
               'minor-mode-alist
               "%n"
               ")%] "
-              '(which-function-mode ("" which-func-format "--"))
+              '(which-function-mode ("" which-func-format))
               " "
               ))
 
