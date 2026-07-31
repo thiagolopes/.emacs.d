@@ -1,8 +1,8 @@
 ;;; greenade-theme.el --- Green Theme -*- lexical-binding: t; -*-
-;;; Commentary:
+;;; commentary:
 ;;;     Inspired by Jonathan Blow theme
 ;;;
-;;; by TLP
+;;; by TLP (Thiago Lopes)
 ;;; credits: modus-themes
 
 (require 'modus-themes)
@@ -72,3 +72,5 @@
  'standard-dark-palette
  'greenade-palette
  'greenade-custom-faces)
+
+;;; greenade-theme.el ends here
