@@ -12,11 +12,14 @@
 (setq-default *is-a-mac* (eq system-type 'darwin))
 (setq-default *is-a-linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
 
+(setopt user-full-name "Thiago Lopes"
+	user-mail-address "thiagolopes@protonmail.com")
+
 
 (require 'package)
 ;; TODO deal to worker without internet for some reason, emergencial mode.
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Remove change package-selected-packages when package-install
+;; Do not change package-selected-packages (custom.el) when package-install
 (advice-add 'package--save-selected-packages :override #'ignore)
 
 (setq-default package-selected-packages
@@ -110,6 +113,7 @@
         web-mode
         yaml-mode
         zig-mode
+        zzz-to-char
         )
       )
 
@@ -136,36 +140,35 @@
         ;; OVERKILL REACTION
         (restart-emacs)))))
 
-(setq use-package-hook-name-suffix nil)
+(setopt use-package-hook-name-suffix nil)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (blink-cursor-mode       1)
 (column-number-mode      1)
-(context-menu-mode       1)
-(delete-selection-mode   0)
+(context-menu-mode       1) ;; enable menu with mouse right click
 (delete-selection-mode   1)
-(electric-pair-mode      1)
+(electric-pair-mode      0) ;; auto close pairs
 (fido-vertical-mode      1)
-(fringe-mode            20) ;; in pixel
+(fringe-mode      '(8 . 0)) ;; in pixel
 (global-auto-revert-mode 1)
-(global-hl-line-mode     1)
+(global-hl-line-mode     0)
 (global-so-long-mode     1)
-(global-visual-line-mode 0)
+(global-visual-line-mode 0) ;; wraps words long lines
 (menu-bar-mode          -1)
 (pixel-scroll-precision-mode 0)
 (recentf-mode            1)
 (repeat-mode             1)
 (save-place-mode         1)
 (savehist-mode           1)
-(scroll-bar-mode        -1)
+(scroll-bar-mode         1) ;; i like it
 (show-paren-mode         1)
 (tool-bar-mode          -1)
 (tooltip-mode           -1)
 (transient-mark-mode     1)
-(winner-mode             1)
+(winner-mode             1) ;; C-c layout navigate
 
-(setq-default
+(setopt
  backup-by-copying t
  blink-cursor-blinks 0
  compilation-max-output-line-length nil
@@ -175,12 +178,13 @@
  custom-buffer-indent 4
  custom-buffer-sort-alphabetically t
  custom-safe-themes t
- display-line-numbers-width 3
+ display-line-numbers-width 4
  ibuffer-expert t
- indent-tabs-mode nil
+ indent-tabs-mode t
  indicate-buffer-boundaries 'left
  indicate-empty-lines t
  inhibit-startup-screen t
+ line-spacing 1
  kill-ring-max 400
  project-mode-line t
  read-buffer-completion-ignore-case t
@@ -192,13 +196,12 @@
  truncate-lines nil
  use-dialog-box nil
  use-short-answers t
- user-mail-address "thiagolopes@protonmail.com"
  visual-line-fringe-indicators '(nil nil)
  x-underline-at-descent-line t
- window-combination-resize t
+ window-combination-resize t ;; resize windows
 )
 
-(setq-default frame-title-format
+(setopt frame-title-format
               (list '(buffer-file-name "%f" "%b")
                     '(:eval (format " - GNU Emacs %s" emacs-version))))
 
@@ -281,9 +284,9 @@
 
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
-(setq-default dired-dwim-target t
-              dired-kill-when-opening-new-dired-buffer t
-              dired-listing-switches "-alh")
+(setopt dired-dwim-target t
+        dired-kill-when-opening-new-dired-buffer t
+        dired-listing-switches "-alh")
 
 
 ;; mode-line
@@ -319,7 +322,7 @@
 ;;                  mode-line-position
 ;;                  ))
 (setopt mode-line-format
-        (list ""
+        (list " "
               'mode-line-mule-info 'mode-line-modified 'mode-line-client 'mode-line-frame-remote
               'mode-line-frame-identification
               ""
@@ -913,15 +916,29 @@
   :custom
   ;; pretty colors from valignatev
   (ef-dream-palette-overrides
-   '((bg-main "#131015")
-     (bg-hl-line "#232224")
-     (fg-mode-line-active "#f2ddcf")
-     (bg-mode-line-active "#472b00")
-     (yellow-cooler "#ff9f0a")
-     (bg-hl-line "#2e1a3a")
-     (bg-hl-line "#352102")
-     (bg-hl-line "#3b393e")
-     (bg-mode-line-inactive "#5E4527"))))
+   '((bg-main			"#131015")
+     (bg-hl-line		"#232224")
+     (fg-mode-line-active	"#f2ddcf")
+     (bg-mode-line-active	"#472b00")
+     (yellow-cooler		"#ff9f0a")
+     (bg-hl-line		"#2e1a3a")
+     (bg-hl-line		"#352102")
+     (bg-hl-line		"#3b393e")
+     (bg-mode-line-inactive	"#5E4527"))))
+
+(use-package zzz-to-char
+  :bind
+  ("M-z" . zzz-to-char))
+
+(use-package standard-themes
+  :custom
+  (standard-dark-palette-overrides
+   (append '((bg-main			"#101010")
+             (bg-dim			"#282828")
+             (bg-mode-line-active	"#622486")
+             (string			"#ff7f24")
+             (comment			"#dfb08f")
+             ))))
 
 (provide 'init)
 ;;; init.el ends here
