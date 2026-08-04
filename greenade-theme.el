@@ -21,6 +21,7 @@
          (builtin "white")
          (string "#0fdfaf")
          (comment "#3fdf1f")
+         (docstring "#3fdf1f")
          (constant fg-main)
          (fnname "white")
          (fnname-call fg-main)
