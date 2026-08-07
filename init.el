@@ -183,7 +183,7 @@
  indent-tabs-mode t
  indicate-buffer-boundaries 'left
  indicate-empty-lines t
- inhibit-startup-screen t
+ ;; inhibit-startup-screen t
  line-spacing 1
  kill-ring-max 400
  project-mode-line t
@@ -199,7 +199,11 @@
  visual-line-fringe-indicators '(nil nil)
  x-underline-at-descent-line t
  window-combination-resize t ;; resize windows
-)
+ )
+
+(add-hook 'emacs-startup-hook '(lambda () (progn
+					    (split-window-right)
+					    (switch-to-buffer "*scratch*"))))
 
 (setopt frame-title-format
               (list '(buffer-file-name "%f" "%b")
@@ -403,6 +407,7 @@
   (global-eldoc-mode t))
 
 (use-package flymake
+  :disabled
   :custom
   (flymake-mode-line-lighter " ")
   (flymake-indicator-type 'margins)
@@ -755,7 +760,17 @@
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 
+(use-package flycheck
+  :hook ((after-init-hook . global-flycheck-mode)
+         (after-init-hook . global-flycheck-annotate-mode))
+  :config
+  (global-flycheck-eglot-mode 1)
+  (setopt flycheck-mode-line-prefix " ")
+  :bind
+  ("<f8>". global-flycheck-annotate-mode))
+
 (use-package flyover
+  :disabled
   :diminish "[ Overlay Errors]"
   :custom
   (flyover-use-theme-colors t)
