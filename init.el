@@ -168,6 +168,11 @@
 (transient-mark-mode     1)
 (winner-mode             1) ;; C-c layout navigate
 
+;; disable on terminal
+(add-hook 'emacs-startup-hook
+	  '(lambda () (when (not (display-graphic-p))
+			(menu-bar-mode 0))))
+
 (setopt
  backup-by-copying t
  blink-cursor-blinks 0
