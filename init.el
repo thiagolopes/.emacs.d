@@ -5,8 +5,8 @@
 (message "[config] start init.el")
 (add-hook 'after-init-hook (lambda () (message "[config] finish init.el")))
 
-(when (version< emacs-version "29.0")
-  (message "Your Emacs is old for this config. Please upgrade if possible."))
+(when (version< emacs-version "31.1")
+  (message (format "Min version is < %s. Please upgrade." emacs-version)))
 
 ;; identify the system
 (setq-default *is-a-mac* (eq system-type 'darwin))
@@ -22,100 +22,99 @@
 ;; Do not change package-selected-packages (custom.el) when package-install
 (advice-add 'package--save-selected-packages :override #'ignore)
 
-(setq-default package-selected-packages
-      '(
-        i3wm-config-mode
-        anzu
-        buffer-name-relative
-        cape
-        consult
-        corfu
-        corfu-terminal
-        diff-hl
-        diminish
-        dumb-jump
-        doom-modeline
-        eglot
-        embark
-        embark-consult
-        exec-path-from-shell
-        expand-region
-        expreg
-        flycheck
-        flyover
-        fish-mode
-        git-link
-        git-timemachine
-        goto-last-change
-        goto-line-preview
-        guess-language
-        helpful
-        highlight-numbers
-        hl-todo
-        hotfuzz
-        hungry-delete
-        jinx
-        magit
-        marginalia
-        mode-line-bell
-        move-dup
-        multiple-cursors
-        mwim
-        nerd-icons-completion
-        nerd-icons-corfu
-        nerd-icons-dired
-        nerd-icons-ibuffer
-        no-littering
-        nvm
-        ob-mongo
-        orderless
-        org-appear
-        org-download
-        org-modern
-        page-break-lines
-        pdf-tools
-        persistent-scratch
-        popwin
-        rainbow-delimiters
-        rainbow-mode
-        rg
-        rust-mode
-        smartscan
-        standard-themes
-        sudo-edit
-        super-save
-        treemacs
-        treemacs-nerd-icons
-        undo-fu
-        undo-fu-session
-        uuidgen
-        verb
-        visual-fill-column
-        vundo
-        yafolding
+(setq-default
+ package-selected-packages
+ '(i3wm-config-mode
+   anzu
+   buffer-name-relative
+   cape
+   consult
+   corfu
+   corfu-terminal
+   diff-hl
+   diminish
+   dumb-jump
+   doom-modeline
+   eglot
+   embark
+   embark-consult
+   exec-path-from-shell
+   expand-region
+   expreg
+   flycheck
+   flyover
+   fish-mode
+   git-link
+   git-timemachine
+   goto-last-change
+   goto-line-preview
+   guess-language
+   helpful
+   highlight-numbers
+   hl-todo
+   hotfuzz
+   hungry-delete
+   jinx
+   magit
+   marginalia
+   mode-line-bell
+   move-dup
+   multiple-cursors
+   mwim
+   nerd-icons-completion
+   nerd-icons-corfu
+   nerd-icons-dired
+   nerd-icons-ibuffer
+   no-littering
+   nvm
+   ob-mongo
+   orderless
+   org-appear
+   org-download
+   org-modern
+   page-break-lines
+   pdf-tools
+   persistent-scratch
+   popwin
+   rainbow-delimiters
+   rainbow-mode
+   rg
+   rust-mode
+   smartscan
+   standard-themes
+   sudo-edit
+   super-save
+   treemacs
+   treemacs-nerd-icons
+   undo-fu
+   undo-fu-session
+   uuidgen
+   verb
+   visual-fill-column
+   vundo
+   yafolding
 
-        ;; Themes
-        ef-themes
-        gruber-darker-theme
-        modus-themes
-        purp-theme
-        srcery-theme
+   ;; Themes
+   ef-themes
+   gruber-darker-theme
+   modus-themes
+   purp-theme
+   srcery-theme
 
-        ;; File Modes
-        cmake-mode
-        deno-ts-mode
-        dockerfile-mode
-        go-mode
-        hledger-mode
-        markdown-mode
-        svelte-mode
-        typescript-mode
-        web-mode
-        yaml-mode
-        zig-mode
-        zzz-to-char
-        )
-      )
+   ;; File Modes
+   cmake-mode
+   deno-ts-mode
+   dockerfile-mode
+   go-mode
+   hledger-mode
+   markdown-mode
+   svelte-mode
+   typescript-mode
+   web-mode
+   yaml-mode
+   zig-mode
+   zzz-to-char
+   ))
 
 (eval-and-compile
   (progn
@@ -150,7 +149,7 @@
 (delete-selection-mode   1)
 (electric-pair-mode      0) ;; auto close pairs
 (fido-vertical-mode      1)
-(fringe-mode      '(8 . 0)) ;; in pixel
+(fringe-mode            10) ;; in pixel
 (global-auto-revert-mode 1)
 (global-hl-line-mode     0)
 (global-so-long-mode     1)
@@ -206,13 +205,13 @@
  window-combination-resize t ;; resize windows
  )
 
-(add-hook 'emacs-startup-hook '(lambda () (progn
+(add-hook 'emacs-startup-hook #'(lambda () (progn
 					    (split-window-right)
 					    (switch-to-buffer "*scratch*"))))
 
 (setopt frame-title-format
-              (list '(buffer-file-name "%f" "%b")
-                    '(:eval (format " - GNU Emacs %s" emacs-version))))
+        (list '(:eval (format "GNU Emacs %s - " emacs-version))
+              '(buffer-file-name "%f" "%b")))
 
 (when scroll-bar-mode
   ;; this disable scroll on minibuffer
@@ -299,72 +298,41 @@
 
 
 ;; mode-line
-;; (setq mode-line-percent-position '(-5 "[%p]"))
-;; (setq-default mode-line-format
-;;                '("%e" mode-line-front-space
-;;                  (:propertize
-;;                   ("" mode-line-mule-info
-;;                    mode-line-client
-;;                    mode-line-modified
-;;                    mode-line-remote
-;;                    mode-line-window-dedicated)
-;;                   display (min-width (2.0)))
-;;                  mode-line-frame-identification
-;;                  ;; from https://github.com/grolongo/nerd-icons-mode-line/blob/master/nerd-icons-mode-line.el#L50
-;;                  (:propertize
-;;                   (:eval
-;;                    (with-current-buffer (current-buffer)
-;;                      (nerd-icons-icon-for-buffer)))
-;;                   display (raise 0.1))
-;;                  " "
-;;                  mode-line-buffer-identification
-;;                  (:eval
-;;                   (when-let ((project (project-current)))
-;;                     '((project-mode-line project-mode-line-format)
-;;                       (when vc-mode
-;;                         (vc-mode vc-mode)))))
-;;                  " "
-;;                  mode-line-modes
-;;                  mode-line-misc-info
-;;                  mode-line-end-spaces
-;;                  mode-line-format-right-align
-;;                  mode-line-position
-;;                  ))
-(setopt mode-line-format
-        (list " "
-              'mode-line-mule-info 'mode-line-modified 'mode-line-client 'mode-line-frame-remote
-              'mode-line-frame-identification
-              ""
+;; (setopt mode-line-format
+;;         (list " "
+;; 	      'mode-line-mule-info 'mode-line-modified 'mode-line-client 'mode-line-frame-remote
+;; 	      'mode-line-frame-identification
+;; 	      ""
 
-              '(:eval (abbreviate-file-name default-directory))
-              mode-line-buffer-identification
-              "["
-              '(line-number-mode "L%l|")
-              '(column-number-mode "C%c|")
-              '(-3 "%p")
-              "|%I"
-              "]"
+;; 	      '(:eval (abbreviate-file-name default-directory))
+;; 	      mode-line-buffer-identification
+;; 	      "["
+;; 	      '(line-number-mode "L%l|")
+;; 	      '(column-number-mode "C%c|")
+;; 	      '(-3 "%p")
+;; 	      "|%I"
+;; 	      "]"
 
-              'global-mode-string
+;; 	      'global-mode-string
 
-              'mode-line-format-right-align
+;; 	      'mode-line-format-right-align
 
-              "   %[("
-              '(:propertize
-                  (:eval
-                   (with-current-buffer (current-buffer)
-                     (nerd-icons-icon-for-buffer)))
-                  display (raise 0.1))
-              "["
-               'mode-name
-              "]"
-              'mode-line-process
-              'minor-mode-alist
-              "%n"
-              ")%] "
-              '(which-function-mode ("" which-func-format))
-              " "
-              ))
+;; 	      "   %[("
+;; 	      '(:propertize
+;;                 (:eval
+;;                  (with-current-buffer (current-buffer)
+;;                    (nerd-icons-icon-for-buffer)))
+;;                 display (raise 0.1))
+;; 	      "["
+;; 	      'mode-name
+;; 	      "]"
+;; 	      'mode-line-process
+;; 	      'minor-mode-alist
+;; 	      "%n"
+;; 	      ")%] "
+;; 	      '(which-function-mode ("" which-func-format))
+;; 	      " "
+;; 	      ))
 
 
 
@@ -668,7 +636,8 @@
   (org-mode . visual-fill-column-mode))
 
 (use-package expreg
-  :bind ("M-@" . expreg-expand))
+  :bind (("M-@" . expreg-expand)
+	 ("M-C-@" . expreg-contract)))
 
 (use-package rg
   :ensure-system-package rg
@@ -691,6 +660,7 @@
   (super-save-mode t))
 
 (use-package symbol-overlay
+  :disabled
   :bind
   ("<f6>" . symbol-overlay-put))
 
@@ -864,8 +834,6 @@
   :mode ("\\.html\\'" . web-mode))
 
 (use-package eglot
-  :hook
-  (prog-mode-hook . eglot-ensure)
   :custom
   (eglot-autoshutdown t)
   (eglot-extend-to-xref t)
@@ -876,6 +844,7 @@
                                        :inlayHintProvider)))
 
 (use-package deno-ts-mode
+  :disabled
   :after eglot
   :config
   (put 'deno-ts-mode 'eglot-language-id "typescript"))
@@ -884,6 +853,7 @@
   :hook (prog-mode-hook . yafolding-mode))
 
 (use-package smartscan
+  :disabled
   :hook (prog-mode-hook . smartscan-mode))
 
 (use-package verb
