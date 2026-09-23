@@ -201,6 +201,7 @@
  scroll-margin 1
  scroll-preserve-screen-position t
  truncate-lines nil
+ treesit-enabled-modes t
  use-dialog-box nil
  use-short-answers t
  visual-line-fringe-indicators '(nil nil)
@@ -349,9 +350,9 @@
   (global-set-key (kbd "<C-wheel-up>") 'ignore)
   (global-set-key (kbd "<C-wheel-down>") 'ignore)
 
-  (setq mac-control-modifier 'control)
-  (setq mac-command-modifier 'meta)
-  (setq mac-right-option-modifier 'control))
+  (setq-default mac-control-modifier 'control)
+  (setq-default mac-command-modifier 'meta)
+  (setq-default mac-right-option-modifier 'control))
 
 (defun kill-all-buffers ()
   "Kill all open buffers."
@@ -746,6 +747,7 @@
          (after-init-hook . global-flycheck-annotate-mode))
   :config
   (global-flycheck-eglot-mode 1)
+  (setopt flycheck-annotate-current-line-style 'eol)
   (setopt flycheck-mode-line-prefix " ")
   :bind
   ("<f8>". global-flycheck-annotate-mode))
