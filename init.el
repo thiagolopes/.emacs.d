@@ -1,6 +1,7 @@
 ;;; init.el --- Main file      -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; basic Emacs configuration, by thiagolopes
+;;; Code:
 
 (message "[config] start init.el")
 (add-hook 'after-init-hook (lambda () (message "[config] finish init.el")))
@@ -15,6 +16,7 @@
 (setopt user-full-name "Thiago Lopes"
 	user-mail-address "thiagolopes@protonmail.com")
 
+(defvar runs-only-once nil)
 
 (require 'package)
 ;; TODO deal to worker without internet for some reason, emergencial mode.
@@ -169,8 +171,8 @@
 
 ;; disable on terminal
 (add-hook 'emacs-startup-hook
-	  '(lambda () (when (not (display-graphic-p))
-			(menu-bar-mode 0))))
+	  (lambda () (when (not (display-graphic-p))
+		       (menu-bar-mode 0))))
 
 (setopt
  backup-by-copying t
@@ -205,9 +207,10 @@
  window-combination-resize t ;; resize windows
  )
 
-(add-hook 'emacs-startup-hook #'(lambda () (progn
-					    (split-window-right)
-					    (switch-to-buffer "*scratch*"))))
+(add-hook 'emacs-startup-hook (lambda ()
+				(progn
+				  (split-window-right)
+				  (switch-to-buffer "*scratch*"))))
 
 (setopt frame-title-format
         (list '(:eval (format "GNU Emacs %s - " emacs-version))
@@ -228,9 +231,11 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; Theme + Font
-(custom-set-faces
- '(default ((t (:height 160)))))
-(load-theme 'gruber-darker)
+(unless runs-only-once
+  (setq runs-only-once t)
+  (custom-set-faces
+   '(default ((t (:height 160)))))
+  (load-theme 'gruber-darker))
 
 ;;From documentation
 ;;   Sizes: 6x12, 8x14, 8x16, 10x18, 10x20, 11x22, 12x24, 14x28 and 16x32.
@@ -280,8 +285,8 @@
 (global-set-key (kbd "C-x C-d")     'dired)
 (global-set-key (kbd "C-,")         'duplicate-line)
 (global-set-key (kbd "<f9>")        (lambda ()
-                                      (interactive)
-                                      (if (project-current)
+				      (interactive)
+				      (if (project-current)
                                           (project-compile)
                                         (call-interactively #'compile))))
 (global-set-key (kbd "S-C-<left>")  'shrink-window-horizontally)
@@ -355,7 +360,7 @@
       (kill-buffer buf))))
 
 (defun bool-to-int (bool)
-  "BOOL -> INT"
+  "BOOL -> INT."
   (if bool 1 0))
 
 
