@@ -185,12 +185,13 @@
  custom-buffer-sort-alphabetically t
  custom-safe-themes t
  display-line-numbers-width 4
+ enable-recursive-minibuffers t
  ibuffer-expert t
  indent-tabs-mode t
  indicate-buffer-boundaries 'left
  indicate-empty-lines t
  ;; inhibit-startup-screen t
- line-spacing 1
+ ;; line-spacing .15
  kill-ring-max 400
  project-mode-line t
  read-buffer-completion-ignore-case t
