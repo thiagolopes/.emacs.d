@@ -74,6 +74,7 @@
    org-appear
    org-download
    org-modern
+   org-roam
    page-break-lines
    pdf-tools
    persistent-scratch
@@ -236,7 +237,7 @@
 (unless runs-only-once
   (setq runs-only-once t)
   (custom-set-faces
-   '(default ((t (:height 160)))))
+   '(default ((t (:height 120)))))
   (load-theme 'gruber-darker))
 
 ;;From documentation
@@ -246,7 +247,7 @@
       (list (* 6 12) (* 8 14) (* 8 16) (* 10 8) (* 10 20) (* 11 22) (* 12 24) (* 14 28) (* 16 32)))
 
 
-;; use .emacs.d/backup to store backup, WARNING storing senvitive data.
+;; use .emacs.d/backup to store backup, WARNING storing sensitive data.
 (let ((temporary-file-directory (expand-file-name
                                  (convert-standard-filename "backup/")
                                  user-emacs-directory)))
