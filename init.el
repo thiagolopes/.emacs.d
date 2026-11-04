@@ -158,13 +158,6 @@
 (no-litterize "lock-files/" lock-file-name-transforms)
 (no-litterize "backups/" backup-directory-alist)
 
-;; ;; Font size
-;; (custom-set-faces '(default ((t (:height 100)))))
-
-;; ;; Default Window Size
-;; (add-to-list 'default-frame-alist '(height . 40))
-;; (add-to-list 'default-frame-alist '(width . 180))
-
 (global-set-key (kbd "C-x C-d")  'dired)
 (global-set-key (kbd "C-x C-b")  'ibuffer)
 (global-set-key (kbd "M-!")      'async-shell-command)
