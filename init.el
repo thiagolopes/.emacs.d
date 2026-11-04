@@ -3,6 +3,7 @@
 ;;; basic Emacs configuration, by thiagolopes
 ;;; Code:
 
+
 (message "[config] start init.el")
 (add-hook 'after-init-hook (lambda () (message "[config] finish init.el")))
 
@@ -10,339 +11,13 @@
   (message (format "Min version is < %s. Please upgrade." emacs-version)))
 
 ;; identify the system
-(setq-default *is-a-mac* (eq system-type 'darwin))
-(setq-default *is-a-linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
+(setq-local *is-a-mac* (eq system-type 'darwin))
+(setq-local *is-a-linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
 
 (setopt user-full-name "Thiago Lopes"
 	user-mail-address "thiagolopes@protonmail.com")
-
-(defvar runs-only-once nil)
 
-(require 'package)
-;; TODO deal to worker without internet for some reason, emergencial mode.
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Do not change package-selected-packages (custom.el) when package-install
-(advice-add 'package--save-selected-packages :override #'ignore)
-
-(setq-default
- package-selected-packages
- '(i3wm-config-mode
-   anzu
-   buffer-name-relative
-   cape
-   consult
-   corfu
-   corfu-terminal
-   diff-hl
-   diminish
-   dumb-jump
-   doom-modeline
-   eglot
-   embark
-   embark-consult
-   exec-path-from-shell
-   expand-region
-   expreg
-   flycheck
-   flyover
-   fish-mode
-   git-link
-   git-timemachine
-   goto-last-change
-   goto-line-preview
-   guess-language
-   helpful
-   highlight-numbers
-   hl-todo
-   hotfuzz
-   hungry-delete
-   jinx
-   magit
-   marginalia
-   mode-line-bell
-   move-dup
-   multiple-cursors
-   mwim
-   nerd-icons-completion
-   nerd-icons-corfu
-   nerd-icons-dired
-   nerd-icons-ibuffer
-   no-littering
-   nvm
-   ob-mongo
-   orderless
-   org-appear
-   org-download
-   org-modern
-   org-roam
-   page-break-lines
-   pdf-tools
-   persistent-scratch
-   popwin
-   rainbow-delimiters
-   rainbow-mode
-   rg
-   rust-mode
-   smartscan
-   standard-themes
-   sudo-edit
-   super-save
-   treemacs
-   treemacs-nerd-icons
-   undo-fu
-   undo-fu-session
-   uuidgen
-   verb
-   visual-fill-column
-   vundo
-   yafolding
-
-   ;; Themes
-   ef-themes
-   gruber-darker-theme
-   modus-themes
-   purp-theme
-   srcery-theme
-
-   ;; File Modes
-   cmake-mode
-   deno-ts-mode
-   dockerfile-mode
-   go-mode
-   hledger-mode
-   markdown-mode
-   svelte-mode
-   typescript-mode
-   web-mode
-   yaml-mode
-   zig-mode
-   zzz-to-char
-   ))
-
-(eval-and-compile
-  (progn
-    ;; 3th lib 'no-littering' is required
-    (when (not (package-installed-p 'no-littering))
-      (package-install 'no-littering))
-    (require 'no-littering)
-
-    (defun list-missing-pckgs ()
-      "List all missing packages."
-      (when (not (package-installed-p 'dash))
-        (package-install 'dash))
-      (require 'dash)
-      (-filter
-       (-not #'package-installed-p)
-       package-selected-packages))
-
-    ;; install
-    (let ((packages-not-installed (list-missing-pckgs)))
-      (when packages-not-installed
-        (-each packages-not-installed #'package-install)
-        ;; OVERKILL REACTION
-        (restart-emacs)))))
-
-(setopt use-package-hook-name-suffix nil)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-(blink-cursor-mode       1)
-(column-number-mode      1)
-(context-menu-mode       1) ;; enable menu with mouse right click
-(delete-selection-mode   1)
-(electric-pair-mode      0) ;; auto close pairs
-(fido-vertical-mode      1)
-(fringe-mode            10) ;; in pixel
-(global-auto-revert-mode 1)
-(global-hl-line-mode     0)
-(global-so-long-mode     1)
-(global-visual-line-mode 0) ;; wraps words long lines
-(menu-bar-mode          -1)
-(pixel-scroll-precision-mode 0)
-(recentf-mode            1)
-(repeat-mode             1)
-(save-place-mode         1)
-(savehist-mode           1)
-(scroll-bar-mode         1) ;; i like it
-(show-paren-mode         1)
-(tool-bar-mode          -1)
-(tooltip-mode           -1)
-(transient-mark-mode     1)
-(winner-mode             1) ;; C-c layout navigate
-
-;; disable on terminal
-(add-hook 'emacs-startup-hook
-	  (lambda () (when (not (display-graphic-p))
-		       (menu-bar-mode 0))))
-
-(setopt
- backup-by-copying t
- blink-cursor-blinks 0
- compilation-max-output-line-length nil
- compilation-scroll-output t
- completion-auto-help nil
- cursor-type 'box
- custom-buffer-indent 4
- custom-buffer-sort-alphabetically t
- custom-safe-themes t
- display-line-numbers-width 4
- enable-recursive-minibuffers t
- ibuffer-expert t
- indent-tabs-mode t
- indicate-buffer-boundaries 'left
- indicate-empty-lines t
- ;; inhibit-startup-screen t
- ;; line-spacing .15
- kill-ring-max 400
- project-mode-line t
- read-buffer-completion-ignore-case t
- read-file-name-completion-ignore-case t
- require-final-newline t
- scroll-conservatively 1000
- scroll-margin 1
- scroll-preserve-screen-position t
- truncate-lines nil
- treesit-enabled-modes t
- use-dialog-box nil
- use-short-answers t
- visual-line-fringe-indicators '(nil nil)
- x-underline-at-descent-line t
- window-combination-resize t ;; resize windows
- )
-
-(add-hook 'emacs-startup-hook (lambda ()
-				(progn
-				  (split-window-right)
-				  (switch-to-buffer "*scratch*"))))
-
-(setopt frame-title-format
-        (list '(:eval (format "GNU Emacs %s - " emacs-version))
-              '(buffer-file-name "%f" "%b")))
-
-(when scroll-bar-mode
-  ;; this disable scroll on minibuffer
-  (message "[config] scroll bar enabled and configured")
-  (set-window-scroll-bars (minibuffer-window) nil nil nil nil 1))
-
-(prefer-coding-system 'utf-8)
-
-;; Default Window Size
-(add-to-list 'default-frame-alist '(height . 35))
-(add-to-list 'default-frame-alist '(width . 160))
-
-;; Mouse
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-
-;; Theme + Font
-(unless runs-only-once
-  (setq runs-only-once t)
-  (custom-set-faces
-   '(default ((t (:height 120)))))
-  (load-theme 'gruber-darker))
-
-;;From documentation
-;;   Sizes: 6x12, 8x14, 8x16, 10x18, 10x20, 11x22, 12x24, 14x28 and 16x32.
-;;   Weights: normal and bold (except for 6x12), plus CRT VGA-bold for 8x14 and 8x16.")
-(setq terminus-fonts-sizes
-      (list (* 6 12) (* 8 14) (* 8 16) (* 10 8) (* 10 20) (* 11 22) (* 12 24) (* 14 28) (* 16 32)))
-
-
-;; use .emacs.d/backup to store backup, WARNING storing sensitive data.
-(let ((temporary-file-directory (expand-file-name
-                                 (convert-standard-filename "backup/")
-                                 user-emacs-directory)))
-  (unless (file-exists-p temporary-file-directory)
-    (make-directory temporary-file-directory))
-  (setq backup-directory-alist
-        `((".*" . ,temporary-file-directory)))
-  (setq auto-save-file-name-transforms
-        `((".*" ,temporary-file-directory t))))
-
-
-
-;; ediff "d" now merge two diff without markers
-(defun ediff-copy-both-to-C ()
-  (interactive)
-  (ediff-copy-diff ediff-current-difference nil 'C nil
-                   (concat
-                    (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
-                    (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
-(defun add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'ediff-copy-both-to-C))
-(add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
-(setq-default
- ediff-diff-options "-w"
- ediff-keep-variants nil
- ediff-split-window-function 'split-window-horizontally
- ediff-window-setup-function 'ediff-setup-windows-plain)
-
-
-(global-set-key (kbd "M-o")         'other-window)
-(global-set-key (kbd "C-x k")       'kill-current-buffer) ;; kill without ask
-(global-set-key (kbd "C-c k")       'kill-buffer)
-(global-set-key (kbd "C-x C-b")     'ibuffer)             ;; visualize all buffers on menu
-(global-set-key (kbd "M-!")         'async-shell-command)
-(global-set-key (kbd "M-&")         'shell-command)
-(global-set-key (kbd "M-u")         'upcase-dwim)
-(global-set-key (kbd "M-l")         'downcase-dwim)
-(global-set-key (kbd "M-c")         'capitalize-dwim)
-(global-set-key (kbd "C-x C-d")     'dired)
-(global-set-key (kbd "C-,")         'duplicate-line)
-(global-set-key (kbd "<f9>")        (lambda ()
-				      (interactive)
-				      (if (project-current)
-                                          (project-compile)
-                                        (call-interactively #'compile))))
-(global-set-key (kbd "S-C-<left>")  'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>")  'shrink-window)
-(global-set-key (kbd "S-C-<up>")    'enlarge-window)
-
-
-;; dired
-(put 'dired-find-alternate-file 'disabled nil)
-(setopt dired-dwim-target t
-        dired-kill-when-opening-new-dired-buffer t
-        dired-listing-switches "-alh")
-
-
-;; mode-line
-;; (setopt mode-line-format
-;;         (list " "
-;; 	      'mode-line-mule-info 'mode-line-modified 'mode-line-client 'mode-line-frame-remote
-;; 	      'mode-line-frame-identification
-;; 	      ""
-
-;; 	      '(:eval (abbreviate-file-name default-directory))
-;; 	      mode-line-buffer-identification
-;; 	      "["
-;; 	      '(line-number-mode "L%l|")
-;; 	      '(column-number-mode "C%c|")
-;; 	      '(-3 "%p")
-;; 	      "|%I"
-;; 	      "]"
-
-;; 	      'global-mode-string
-
-;; 	      'mode-line-format-right-align
-
-;; 	      "   %[("
-;; 	      '(:propertize
-;;                 (:eval
-;;                  (with-current-buffer (current-buffer)
-;;                    (nerd-icons-icon-for-buffer)))
-;;                 display (raise 0.1))
-;; 	      "["
-;; 	      'mode-name
-;; 	      "]"
-;; 	      'mode-line-process
-;; 	      'minor-mode-alist
-;; 	      "%n"
-;; 	      ")%] "
-;; 	      '(which-function-mode ("" which-func-format))
-;; 	      " "
-;; 	      ))
-
-
+;;; UTILITES
 
 (when *is-a-mac*
   ;; do not resize on scroll
@@ -365,579 +40,396 @@
 (defun bool-to-int (bool)
   "BOOL -> INT."
   (if bool 1 0))
+
+;;; PACKAGES
+
+(require 'package)
+;; TODO deal to worker without internet for some reason, emergencial mode.
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Do not change package-selected-packages (custom.el) when package-install
+(advice-add 'package--save-selected-packages :override #'ignore)
+
+(setq-default
+ package-selected-packages
+ '(
+   anzu
+   cape
+   consult
+   diff-hl
+   diminish
+   dumb-jump
+   eglot
+   embark
+   embark-consult
+   exec-path-from-shell
+   expand-region
+   popwin
+   flycheck
+   prism
+   helpful
+   git-link
+   git-timemachine
+   goto-last-change
+   goto-line-preview
+   hl-todo
+   hungry-delete
+   magit
+   move-dup
+   multiple-cursors
+   mwim
+   no-littering
+   nvm
+   orderless
+   org-appear
+   org-download
+   org-roam
+   page-break-lines
+   pdf-tools
+   rainbow-delimiters
+   rainbow-mode
+   rg
+   sudo-edit
+   undo-fu
+   undo-fu-session
+   uuidgen
+   verb
+   vundo
+   yafolding
+   zzz-to-char
+
+   ;; Themes
+   ef-themes
+   gruber-darker-theme
+   modus-themes
+   purp-theme
+   srcery-theme
+   standard-themes
+
+   ;; File Modes
+   fish-mode
+   i3wm-config-mode
+   cmake-mode
+   deno-ts-mode
+   dockerfile-mode
+   go-mode
+   hledger-mode
+   markdown-mode
+   meson-mode
+   rust-mode
+   svelte-mode
+   typescript-mode
+   web-mode
+   yaml-mode
+   zig-mode
+   ))
+
+(eval-and-compile
+  (progn
+    ;; 3th lib 'no-littering' is required
+    (when (not (package-installed-p 'no-littering))
+      (package-install 'no-littering))
+    (require 'no-littering)
+
+    ;; dash is also required
+    (when (not (package-installed-p 'dash))
+      (package-install 'dash))
+    (require 'dash)
+
+    (defun list-missing-pckgs ()
+      "List all missing packages."
+      (-filter
+       (-not #'package-installed-p)
+       package-selected-packages))
+
+    ;; install packages
+    (let ((packages-not-installed (list-missing-pckgs))
+	  (should-restart? t))
+      (when packages-not-installed
+	(-each packages-not-installed #'package-install)
+	(when should-restart?
+	    ;; OVERKILL REACTION
+	    (restart-emacs))))))
+
+(defmacro no-litterize (path var)
+  "Set VAR to no-littering as PATH."
+  `(let ((dir (no-littering-expand-var-file-name ,path)))
+     (make-directory dir t)
+     (setq ,var `((".*" ,dir t)))))
+(no-litterize "lock-files/" lock-file-name-transforms)
+(no-litterize "backups/" backup-directory-alist)
+
+;; ;; Font size
+;; (custom-set-faces '(default ((t (:height 100)))))
+
+;; ;; Default Window Size
+;; (add-to-list 'default-frame-alist '(height . 40))
+;; (add-to-list 'default-frame-alist '(width . 180))
+
+(global-set-key (kbd "C-x C-d")  'dired)
+(global-set-key (kbd "C-x C-b")  'ibuffer)
+(global-set-key (kbd "M-!")      'async-shell-command)
+(global-set-key (kbd "C-,")      'duplicate-line)
+
+(global-set-key (kbd "S-C-<right>")  'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<left>")   'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<up>")     'shrink-window)
+(global-set-key (kbd "S-C-<down>")   'enlarge-window)
+
+(global-set-key [remap goto-line]          'goto-line-preview)
+(global-set-key [remap goto-line-relative] 'goto-line-preview-relative)
+(global-set-key (kbd "C-x /")              'goto-last-change)
+
+(global-set-key (kbd "C-.") 'embark-act)
+
+(global-set-key (kbd "M-y"    ) 'consult-yank-pop)
+(global-set-key (kbd "C-x b"  ) 'consult-buffer)
+(global-set-key (kbd "C-c p"  ) 'consult-project-buffer)
+(global-set-key (kbd "C-c m"  ) 'consult-global-mark)
+(global-set-key (kbd "C-c f"  ) 'consult-find)
+(global-set-key (kbd "C-c i"  ) 'consult-imenu)
+(global-set-key (kbd "C-c r"  ) 'consult-ripgrep)
+(global-set-key (kbd "C-c l"  ) 'consult-line-multi)
+(global-set-key (kbd "M-g g"  ) 'consult-goto-line)
+(global-set-key (kbd "M-g M-g") 'consult-goto-line)
+
+(global-set-key (kbd "M-@") 'er/expand-region)
+
+(global-set-key (kbd "C->")     'mc/mark-next-like-this)
+(global-set-key (kbd "C-<")     'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/edit-lines)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
+
+(global-set-key (kbd "C-a") 'mwim-beginning)
+(global-set-key (kbd "C-e") 'mwim-end)
+
+;; (global-set-key (kbd "M-l")         'downcase-dwim)
+;; (global-set-key (kbd "M-c")         'capitalize-dwim)
+
+(global-set-key (kbd "M-<up>"  ) 'move-dup-move-lines-up)
+(global-set-key (kbd "M-<down>") 'move-dup-move-lines-down)
+
+(global-set-key (kbd "M-z")   #'zzz-to-char)
+(global-set-key (kbd "<f9>")  (lambda () (interactive)
+				"Run compile on project if available."
+				(if (project-current) (project-compile)
+                                  (call-interactively #'compile))))
+
+(defun flycheck-configure ()
+  "Configure flycheck."
+  (progn
+    (global-flycheck-mode 1)
+    (global-flycheck-eglot-mode 1)
+    ;; (setopt flycheck-indication-mode 'left-margin) ;; this use margin instead fringe
+    (setopt flycheck-annotate-mode 'oel)
+    (setopt flymake-start-on-save-buffer nil)
+    (setopt flymake-start-on-flymake-mode nil)
+    (setopt flycheck-highlighting-style '(delimiters "" ""))
+    (setopt flycheck-mode-line-prefix " ")))
+
+(defun org-mode-configure ()
+  "Configure Org."
+  (progn
+    (add-hook 'org-mode-hook #'visual-line-mode)
+    (add-hook 'org-mode-hook #'org-appear-mode)
+    (setopt org-return-follows-link t
+	    org-startup-folded 'fold
+	    org-hide-emphasis-markers t)
+    ;; TODO use envvar
+    (setopt org-roam-directory (file-truename "~/doc/Notas"))))
+
+(defun dump-jump-configure ()
+  "Configure Dump Jump."
+  (progn
+    ;; enable dump-jump as a option in xref-backend-functions
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+    (setopt dumb-jump-prefer-searcher 'rg)
+    ;; consult required
+    (setopt xref-show-definitions-function #'consult-xref)))
+
+(defun diff-hl-configure ()
+  "Configure lateral diff on buffers."
+  (progn
+    (add-hook 'prog-mode-hook #'diff-hl-mode)
+    ;; (add-hook 'prog-mode-hook #'diff-hl-margin-mode)
+    (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
+    (setopt diff-hl-disable-on-remote t)
+    (setopt diff-hl-fringe-bmp-function 'diff-hl-fringe-bmp-from-type)))
+
+(defun helpful-configure ()
+  "Switch all describe-* to use helpful."
+  (progn
+    (advice-add 'describe-function :override #'helpful-function)
+    (advice-add 'describe-command  :override #'helpful-command)
+    (advice-add 'describe-key      :override #'helpful-key)
+    (advice-add 'describe-variable :override #'helpful-variable)
+    (advice-add 'describe-symbol   :override #'helpful-symbol)))
+
+(defun whitespace-configure ()
+  "Configure whitespace."
+  (progn
+    (setopt whitespace-style '(face spaces empty tabs newline trailing space-mark tab-mark))
+    (add-hook 'before-save-hook #'whitespace-cleanup)))
+
+(defun popwin-configure ()
+  "Configure popwin - avoid bottom buffers to close on C-g or loose focus."
+  (progn
+    (popwin-mode t)
+    (push "*Warnings*" popwin:special-display-config)
+    (push "*Flycheck errors*" popwin:special-display-config)))
+
+(diff-hl-configure)
+(dump-jump-configure)
+(flycheck-configure)
+(helpful-configure)
+(org-mode-configure)
+(popwin-configure)
+(whitespace-configure)
 
 
-(use-package windmove
-  :config
-  (windmove-default-keybindings))
+(exec-path-from-shell-initialize) ;; load PATH
+(prefer-coding-system 'utf-8)
+(windmove-default-keybindings) ;; moviment with shift+arrow
 
-(use-package icomplete
-  :hook
-  (icomplete-minibuffer-setup-hook . (lambda () (setq truncate-lines t))))
+(blink-cursor-mode              1)
+(column-number-mode             1)
+(context-menu-mode              1) ;; enable menu with mouse right click
+(delete-selection-mode          1)
+(electric-pair-mode             0) ;; auto close pairs
+(fido-mode                      1)
+(fringe-mode                    8) ;; in pixel
+(global-anzu-mode               t)
+(global-auto-revert-mode        1)
+(global-completion-preview-mode 1)
+(global-hl-line-mode            0)
+(global-page-break-lines-mode   1)
+(global-so-long-mode            1)
+(global-visual-line-mode        0) ;; wraps words long lines
+(menu-bar-mode                  1)
+(pixel-scroll-precision-mode    0)
+(repeat-mode                    1)
+(save-place-mode                1)
+(savehist-mode                  1)
+(scroll-bar-mode                1) ;; i like it
+(show-paren-mode                1)
+(tool-bar-mode                  0)
+(tooltip-mode                  -1)
+(undo-fu-session-global-mode    t)
+(which-key-mode                 1)
+(winner-mode                    1) ;; C-c buffers layout history
 
-(use-package ansi-color
-  :hook
-  (compilation-filter-hook . ansi-color-compilation-filter))
-
-(use-package eldoc
-  :diminish
-  :init
-  (setq eldoc-idle-delay 0
-        eldoc-echo-area-use-multiline-p t
-        eldoc-documentation-compose 'eldoc-documentation-compose)
-  (global-eldoc-mode t))
-
-(use-package flymake
-  :disabled
-  :custom
-  (flymake-mode-line-lighter " ")
-  (flymake-indicator-type 'margins)
-  (flymake-margin-indicator-position 'right-margin)
-  :hook
-  (prog-mode-hook . flymake-mode))
-
-(use-package completion-preview
-  :diminish
-  :config
-  (global-completion-preview-mode t))
-
-(use-package which-key :diminish
-  :init
-  (setq which-key-idle-delay 1.5
-        which-key-show-early-on-C-h t)
-  (which-key-mode t))
-
-(use-package dabbrev :diminish
-  :init
-  (setq dabbrev-case-replace nil))
-
-(use-package whitespace-mode
-  :init
-  (setq whitespace-style '(face spaces empty tabs newline trailing space-mark tab-mark))
-  :hook
-  (before-save-hook . whitespace-cleanup))
-
-(require 'uniquify)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+;; (recentf-mode            1)
+;; (transient-mark-mode     1)
 
 
-
-(setq-default c-basic-offset 4
-              c-ts-mode-indent-offset 4)
-
-
-
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(when (file-exists-p custom-file)
-  (load-file custom-file))
+(diminish 'page-break-lines-mode)
+(diminish 'eldoc-mode)
+(diminish 'rainbow-mode "  ")
+(diminish 'rainbow-delimiters-mode " ")
+(diminish 'which-key-mode)
+(diminish 'completion-preview-mode)
+(diminish 'anzu-mode)
 
 
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (progn
+	      (split-window-right)
+	      (switch-to-buffer "*scratch*")
+	      )))
 
-;; 3party
-(global-set-key [remap goto-line] 'goto-line-preview)
-(global-set-key (kbd "C-x /")     'goto-last-change)
+(add-hook 'prog-mode-hook 'hl-todo-mode)
 
-(use-package jinx
-  :diminish "  "
-  ;; this is a commentary in English, this is a error: banama
-  ;; este é um comentário em português, isso é um erro: banama
-  :custom
-  (jinx-languages "en pt_BR")
-  :hook
-  (emacs-startup-hook . global-jinx-mode))
+(add-hook 'hledger-mode-hook (lambda () (whitespace-mode)))
 
-(use-package mode-line-bell
-  :config
-  (mode-line-bell-mode))
-
-(use-package dumb-jump
-  :custom
-  (dumb-jump-prefer-searcher 'rg)
-  (xref-show-definitions-function #'xref-show-definitions-completing-read)
-  :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-  (add-hook 'dumb-jump-after-jump-hook 'better-jumper-set-jump))
-
-(use-package rainbow-mode
-  :diminish "  ")
-
-(use-package rainbow-delimiters
-  :init
-  (setq global-rainbow-delimiters-active t)
-  (defun global-rainbow-delimiters-mode () (interactive)
-
-         (setq global-rainbow-delimiters-active (not global-rainbow-delimiters-active))
-
-         (dolist (buffer (buffer-list))
-           (with-current-buffer buffer
-               (rainbow-delimiters-mode (bool-to-int global-rainbow-delimiters-active))))
-
-         (if global-rainbow-delimiters-active
-             (progn
-               (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-               (message "Global Rainbow Delimiters: [ON]"))
-           (progn
-             (remove-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-             (message "Global Rainbow Delimiters: [OFF]"))))
-  :diminish " "
-  :hook (prog-mode-hook . rainbow-delimiters-mode)
-  :bind
-  ("<f5>" . global-rainbow-delimiters-mode))
-
-(use-package org-mode
-  :hook
-  (org-mode-hook . org-modern-mode)
-  (org-mode-hook . visual-line-mode)
-  (org-mode-hook . verb-mode)
-  :custom
-  (org-modern-fold-stars
-   '(("▶" . "▼")
-     ("▷▷" . "▽▽")
-     ("⯈⯈⯈" . "⯆⯆⯆")
-     ("▹▹▹▹" . "▿▿▿▿")
-     ("▸▸▸▸▸" . "▾▾▾▾▾"))))
-
-(use-package org-appear
-  :hook
-  (org-mode-hook . org-appear-mode))
-
-(use-package consult
-  :config
-  (consult-customize
-   consult-theme :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep consult-man
-   consult-bookmark consult-recent-file consult-xref
-   ;; :preview-key "M-."
-   :preview-key '(:debounce 0.8 any))
-  ;; :custom
-  ;; (completion-in-region-function #'consult-completion-in-region)
-  ;; :hook
-  ;; (completion-list-mode . consult-preview-at-point-mode)
-  :bind (("M-y"     . consult-yank-pop)
-         ("C-x b"   . consult-buffer)
-         ("C-c p"   . consult-project-buffer)
-         ("C-c m"   . consult-global-mark)
-         ("C-c f"   . consult-find)
-         ("C-c i"   . consult-imenu)
-         ("C-c r"   . consult-ripgrep)
-         ("C-c l"   . consult-line-multi)
-         ("M-g g"   . consult-goto-line)
-         ("M-g M-g" . consult-goto-line)))
-
-(use-package multiple-cursors
-  :custom-face
-  (mc/cursor-bar-face ((t (:background "chartreuse" :foreground "#ffffff" :height 1))))
-  (mc/cursor-face ((t (:foreground "chartreuse"))))
-  :bind
-  ("C->" . 'mc/mark-next-like-this)
-  ("C-<" . 'mc/mark-previous-like-this)
-  ("C-c C-<" . 'mc/edit-lines)
-  ("C-c C->" . 'mc/mark-all-like-this))
-
-(use-package expand-region
-  :bind
-  ("M-@" . er/expand-region))
-
-(use-package mwim
-  :bind (("C-a" . mwim-beginning)
-         ("C-e" . mwim-end)))
-
-(use-package hledger-mode
-  :init
-  (setq hledger-currency-string "R$")
-  :mode ("\\.journal\\'" . hledger-mode)
-  :bind (:map hledger-mode-map
-              ("<f9>" . hledger-run-command))
-  :config
-  (add-hook 'hledger-mode-hook (lambda ()
-                                 (whitespace-mode))))
-
-(use-package highlight-numbers
-  :config
-  (add-hook 'prog-mode-hook 'highlight-numbers-mode))
-
-(use-package popwin
-  :config
-  (push "*Warnings*" popwin:special-display-config)
-  (popwin-mode t))
-
-(use-package helpful
-  :bind
-  ("C-h f" . helpful-callable)
-  ("C-h v" . helpful-variable)
-  ("C-h k" . helpful-key)
-  ("C-h x" . helpful-command))
-
-(use-package marginalia
-  :config
-  (setq marginalia-align 'left)
-  :init
-  (marginalia-mode t))
-
-(use-package treemacs
-  :config
-  (treemacs-follow-mode t)
-  (treemacs-tag-follow-mode t)
-  (treemacs-project-follow-mode t)
-  :custom
-  (treemacs-position 'right)
-  (treemacs-deferred-git-apply-delay 5)
-  (treemacs-git-mode 'simple)
-  :bind
-  ("C-c t" . treemacs))
-
-(use-package corfu
-  ;; :custom-face
-  ;; (corfu-default ((t (:inherit default))))
-  :init
-  (global-corfu-mode t)
-  (corfu-history-mode t)
-  (corfu-popupinfo-mode t)
-  :config
-  ;; Option 1: Unbind RET completely
-  (keymap-unset corfu-map "RET")
-  :custom
-  ;; (corfu-auto t)
-  (corfu-popupinfo-delay 1)
-  (corfu-preselect 'directory)
-  :bind (:map corfu-map
-              ("C-n" . corfu-next)
-              ("C-p" . corfu-previous)
-              ("<escape>" . corfu-quit)
-              ;; ("<return>" . corfu-insert)
-              ("M-d" . corfu-show-documentation)
-              ("M-l" . corfu-show-location)))
-
-(use-package corfu-terminal
-  :if (version< emacs-version "31")
-  :if (not (display-graphic-p))
-  :after corfu
-  :init
-  (corfu-terminal-mode))
-
-(use-package cape
-  :init
-  (add-hook 'completion-at-point-functions #'cape-keyword)
-  (add-hook 'completion-at-point-functions #'cape-abbrev)
-  (add-hook 'completion-at-point-functions #'cape-dabbrev)
-  (add-hook 'completion-at-point-functions #'cape-file)
-  (add-hook 'completion-at-point-functions #'cape-elisp-block)
-  (add-hook 'completion-at-point-functions #'cape-dict)
-  (add-hook 'completion-at-point-functions #'cape-history))
-
-(use-package anzu
-  :diminish
-  :init
-  (global-anzu-mode))
-
-(use-package visual-fill-column
-  :disabled
-  :custom
-  (visual-fill-column-center-text t)
-  (visual-fill-column-width 90)
-  :hook
-  (org-mode-hook . (lambda ()
-                (setq-local whitespace-style '(face newline-mark))
-                (setq-local whitespace-display-mappings
-                            '((newline-mark ?\n [?↵ ?\n])))
-                (whitespace-mode 1)))
-  (org-mode . visual-fill-column-mode))
-
-(use-package expreg
-  :bind (("M-@" . expreg-expand)
-	 ("M-C-@" . expreg-contract)))
-
-(use-package rg
-  :ensure-system-package rg
-  :custom
-  (rg-keymap-prefix "\C-cs")
-  :init
-  (rg-enable-default-bindings))
-
-;; (use-package buffer-name-relative
-;;   :init (buffer-name-relative-mode))
-
-(use-package exec-path-from-shell
-  :custom
-  (exec-path-from-shell-arguments '("-l"))
-  :init (exec-path-from-shell-initialize))
-
-(use-package super-save
-  :diminish
-  :config
-  (super-save-mode t))
-
-(use-package symbol-overlay
-  :disabled
-  :bind
-  ("<f6>" . symbol-overlay-put))
-
-(use-package move-dup
-  :bind
-  (("M-<up>" . move-dup-move-lines-up)
-   ("M-<down>" . move-dup-move-lines-down)))
-
-;; (use-package eldoc-box
-;;   :diminish
-;;   :config
-;;   ;; stolen from https://gitlab.com/sadiq/dotfiles/-/commit/fa8db2dacb304f568fde8d69a1c51e879f03dde8
-;;   (defun custom-eldoc-box-at-point-position (width height)
-;;     (let* ((point-pos (eldoc-box--point-position-relative-to-native-frame))
-;;            ;; calculate point coordinate relative to native frame
-;;            ;; because childframe coordinate is relative to native frame
-;;            (x (car point-pos))
-;;            (y (cdr point-pos)))
-;;       (cons
-;;        ;; Try keeping the box at the right with an offset of 10 pixel
-;;        (max 0 (min (+ x 10) (- (frame-inner-width) width 10)))
-;;        ;; Try keeping the box at the top with an offset of 15 pixel
-;;        ;; Also add a smaller offset of 5 if the box is too small
-;;        (max 0 (- y height (if (<= height (* 3 (frame-char-height))) 5 15))))))
-;;   (defun custom-eldoc-box-corner-position-function (width height)
-;;     (let* ((w-size (window-body-pixel-edges))
-;;            (w-b (nth 3 w-size))
-;;            (w-r (nth 0 w-size))
-;;            (w-w (window-pixel-width))
-;;            (point-pos (eldoc-box--point-position-relative-to-native-frame))
-;;            (x (car point-pos))
-;;            (y (car point-pos)))
-;;     (cons x y)))
-;;   :custom
-;;   (eldoc-box-lighter "")
-;;   (eldoc-box-clear-with-C-g t)
-;;   (eldoc-box-position-function #'eldoc-box--default-upper-corner-position-function)
-;;   ;; (eldoc-box-position-function #'custom-eldoc-box-corner-position-function)
-;;   ;; (eldoc-box-position-function #'custom-eldoc-box-at-point-position)
-;;   ;; (eldoc-box-offset '(16 130 16))
-;;   :hook
-;;   (eglot-managed-mode . eldoc-box-hover-mode)
-;;   (prog-mode . eldoc-box-hover-mode))
-
-(use-package prism
-  :bind
-  ;; TODO update to python use prism-whitespace-mode
-  ("<f7>" . prism-mode))
+(add-hook 'completion-at-point-functions #'cape-keyword)
+(add-hook 'completion-at-point-functions #'cape-abbrev)
+(add-hook 'completion-at-point-functions #'cape-dabbrev)
+(add-hook 'completion-at-point-functions #'cape-file)
+(add-hook 'completion-at-point-functions #'cape-elisp-block)
+(add-hook 'completion-at-point-functions #'cape-dict)
+(add-hook 'completion-at-point-functions #'cape-history)
 
 
-(use-package nerd-icons)
-(use-package nerd-icons-dired
-  :after nerd-icons
-  :hook
-  (dired-mode-hook . nerd-icons-dired-mode))
-(use-package treemacs-nerd-icons
-  :after (nerd-icons treemacs)
-  :config
-  (treemacs-load-theme "nerd-icons"))
-(use-package nerd-icons-ibuffer
-  :after nerd-icons
-  :hook (ibuffer-mode-hook . nerd-icons-ibuffer-mode))
-(use-package nerd-icons-completion
-  :after marginalia
-  :after nerd-icons
-  :config
-  (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
-(use-package nerd-icons-corfu
-  :after (corfu nerd-icons)
-  :config
-  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+(setopt eglot-autoshutdown t
+	eglot-extend-to-xref t
+	eglot-ignored-server-capabilities
+	'(:codeLensProvider
+	  :hoverProvider
+	  :documentOnTypeFormattingProvider
+	  :foldingRangeProvider
+	  :inlayHintProvider))
+
+(setopt frame-resize-pixelwise t)
+
+(setopt ef-dream-palette-overrides
+	'((bg-main		 "#131015")
+	  (bg-hl-line		 "#232224")
+	  (fg-mode-line-active	 "#f2ddcf")
+	  (bg-mode-line-active	 "#472b00")
+	  (yellow-cooler         "#ff9f0a")
+	  (bg-hl-line		 "#2e1a3a")
+	  (bg-hl-line		 "#352102")
+	  (bg-hl-line		 "#3b393e")
+	  (bg-mode-line-inactive "#5E4527")))
+
+(setopt compilation-always-kill t)
+
+(setopt treesit-enabled-modes t
+	treesit-auto-install-grammar 'always)
+
+(setopt display-line-numbers-type 'relative) ;; TODO implement linum relative in goto-line-preview-relative
+
+(setopt dired-kill-when-opening-new-dired-buffer t
+        dired-listing-switches "-alh")
+
+(setopt c-basic-offset 4
+	c-ts-mode-indent-offset 4)
+
+(setopt backup-by-copying t
+	;; blink-cursor-blinks 0
+	;; compilation-max-output-line-length nil
+	;; compilation-scroll-output t
+	;; completion-auto-help nil
+	cursor-type 'box
+	custom-buffer-indent 4
+	;; custom-buffer-sort-alphabetically t
+	custom-safe-themes t
+	;; display-line-numbers-width 4
+	;; enable-recursive-minibuffers t
+	;; ibuffer-expert t
+	;; indent-tabs-mode t
+	;; indicate-buffer-boundaries 'left
+	indicate-empty-lines t
+	;; inhibit-startup-screen t
+	;; line-spacing .15
+	;; kill-ring-max 400
+	;; project-mode-line t
+	;; read-buffer-completion-ignore-case t
+	;; read-file-name-completion-ignore-case t
+	require-final-newline t
+	;; scroll-conservatively 1000
+	;; scroll-margin 1
+	;; scroll-preserve-screen-position t
+	;; truncate-lines nil
+	;; treesit-enabled-modes t
+	;; use-dialog-box nil
+	use-short-answers t
+	;; visual-line-fringe-indicators '(nil nil)
+	x-underline-at-descent-line t
+	window-combination-resize t)
+
 
+(defalias 'yes-or-no-p 'y-or-n-p)
 
-(use-package flycheck
-  :hook ((after-init-hook . global-flycheck-mode)
-         (after-init-hook . global-flycheck-annotate-mode))
-  :config
-  (global-flycheck-eglot-mode 1)
-  (setopt flycheck-annotate-current-line-style 'eol)
-  (setopt flycheck-mode-line-prefix " ")
-  :bind
-  ("<f8>". global-flycheck-annotate-mode))
+(setopt frame-title-format (list '(:eval (format "GNU Emacs %s - " emacs-version))
+				 '(buffer-file-name "%f" "%b")))
 
-(use-package flyover
-  :disabled
-  :diminish "[ Overlay Errors]"
-  :custom
-  (flyover-use-theme-colors t)
-  :custom-face
-  (flyover-marker
-   ((t :inherit default
-       :foreground "black"
-       :style 'line)))
-  :bind
-  ("<f8>". flyover-mode))
+(when scroll-bar-mode
+  ;; this disable scroll on minibuffer
+  (message "[config] scroll bar enabled and configured")
+  (set-window-scroll-bars (minibuffer-window) nil nil nil nil 1))
 
-(use-package page-break-lines
-  :diminish
-  :custom
-  (page-break-lines-max-width 79)
-  :config
-  (global-page-break-lines-mode t))
+(setopt custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file) (load-file custom-file))
 
-(use-package gruber-darker-theme
-  :custom-face
-  ;; (rainbow-delimiters-depth-1-face ((t (:foreground "#AE81FF"))))
-  ;; (rainbow-delimiters-depth-2-face ((t (:foreground "#66D9EF"))))
-  ;; (rainbow-delimiters-depth-3-face ((t (:foreground "#A6E22E"))))
-  ;; (rainbow-delimiters-depth-4-face ((t (:foreground "#E6DB74"))))
-  ;; (rainbow-delimiters-depth-5-face ((t (:foreground "#FD971F"))))
-  ;; (rainbow-delimiters-depth-6-face ((t (:foreground "#F92672"))))
-  ;; (rainbow-delimiters-depth-7-face ((t (:foreground "#AE81FF"))))
-  ;; (rainbow-delimiters-depth-8-face ((t (:foreground "#66D9EF"))))
-  ;; (rainbow-delimiters-depth-9-face ((t (:foreground "#A6E22E"))))
-  ;; (rainbow-delimiters-depth-10-face ((t (:foreground "#E6DB74"))))
-  ;; (rainbow-delimiters-depth-11-face ((t (:foreground "#FD971F"))))
-  ;; (rainbow-delimiters-depth-12-face ((t (:foreground "#F92672"))))
-  (note    ((t :foreground "#73c936")))
-  (warning ((t :foreground "#ffdd33")))
-  (error   ((t :foreground "#c73c3f")))
-  (flymake-error
-   ((((supports :underline (:style wave)))
-     (:underline (:style wave :color "#c73c3f")
-                 :foreground unspecified
-                 :background unspecified
-                 :inherit unspecified))
-    (t (:foreground "#c73c3f" :weight bold :underline t))))
-  (flymake-warning
-   ((((supports :underline (:style wave)))
-     (:underline (:style wave :color "#ffdd33")
-                 :foreground unspecified
-                 :background unspecified
-                 :inherit unspecified))
-    (t (:forground "#ffdd33" :weight bold :underline t))))
-  (flymake-note
-   ((((supports :underline (:style wave)))
-     (:underline (:style wave :color "#73c936")
-                 :foreground unspecified
-                 :background unspecified
-                 :inherit unspecified))
-    (t (:forground "#73c936" :weight bold :underline t))))
-  (mode-line-inactive ((t :background "#181818")))
-  (mode-line-buffer-id ((t :background nil))))
-
-
-(use-package undo-fu
-  :init
-  (setq undo-limit 67108864
-        undo-strong-limit 100663296)
-  (undo-fu-session-global-mode t))
-
-(use-package vundo
-  :custom
-  (vundo-window-max-height 5)
-  (vundo-glyph-alist vundo-unicode-symbols)
-  :bind ("C-x C-/". vundo))
-
-(use-package embark
-  :config
-  (setq embark-verbose-indicator-display-action '(display-buffer-at-bottom
-                                                  (window-height . fit-window-to-buffer)))
-  :bind
-  ;; ("M-." . embark-dwim)
-  ("C-." . embark-act))
-(use-package embark-consult
-  :after consult
-  :hook
-  (embark-collect-mode-hook . consult-preview-at-point-mode))
-
-(use-package web-mode
-  :mode ("\\.html\\'" . web-mode))
-
-(use-package eglot
-  :custom
-  (eglot-autoshutdown t)
-  (eglot-extend-to-xref t)
-  (eglot-ignored-server-capabilities '(:codeLensProvider
-                                       :hoverProvider
-                                       :documentOnTypeFormattingProvider
-                                       :foldingRangeProvider
-                                       :inlayHintProvider)))
-
-(use-package deno-ts-mode
-  :disabled
-  :after eglot
-  :config
-  (put 'deno-ts-mode 'eglot-language-id "typescript"))
-
-(use-package yafolding
-  :hook (prog-mode-hook . yafolding-mode))
-
-(use-package smartscan
-  :disabled
-  :hook (prog-mode-hook . smartscan-mode))
-
-(use-package verb
-  :after org-mode
-  :custom
-  (verb-auto-kill-response-buffers t))
-
-(use-package diff-hl
-  :custom-face
-  (diff-hl-delete ((t (:inherit nil))))
-  (diff-hl-insert ((t (:inherit nil))))
-  (diff-hl-update ((t (:inherit nil))))
-  (diff-hl-change ((t (:background nil))))
-  :config
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-  (let* ((width 2)
-         (bitmap (vector (1- (expt 2 width)))))
-    (define-fringe-bitmap 'my:diff-hl-bitmap bitmap 1 width '(top t)))
-  (setq diff-hl-fringe-bmp-function (lambda (type pos) 'my:diff-hl-bitmap))
-  (global-diff-hl-mode)
-  (diff-hl-dired-mode t)
-  (diff-hl-flydiff-mode t))
-
-(use-package pdf-tools
-  :defer t
-  :mode  ("\\.pdf\\'" . pdf-view-mode)
-  :config
-  (setq pdf-view-display-size 'fit-page)
-  (add-hook 'pdf-view-mode-hook #'pdf-view-roll-minor-mode))
-
-(use-package hl-todo
-  :hook
-  (prog-mode-hook . hl-todo-mode))
-
-(use-package modus-themes
-  :init
-  (setq modus-themes-bold-constructs nil
-        modus-themes-completions '((matches bold italic))
-        modus-themes-italic-constructs nil
-        modus-themes-mixed-fonts t
-        modus-themes-prompts '(bold)
-        modus-themes-variable-pitch-ui t))
-
-(use-package orderless
-  :custom
-  (completion-category-overrides '((file (styles partial-completion))))
-  (completion-styles '(orderless basic partial-completion)))
-
-(use-package ef-themes
-  :custom
-  ;; pretty colors from valignatev
-  (ef-dream-palette-overrides
-   '((bg-main			"#131015")
-     (bg-hl-line		"#232224")
-     (fg-mode-line-active	"#f2ddcf")
-     (bg-mode-line-active	"#472b00")
-     (yellow-cooler		"#ff9f0a")
-     (bg-hl-line		"#2e1a3a")
-     (bg-hl-line		"#352102")
-     (bg-hl-line		"#3b393e")
-     (bg-mode-line-inactive	"#5E4527"))))
-
-(use-package zzz-to-char
-  :bind
-  ("M-z" . zzz-to-char))
-
-(use-package standard-themes
-  :custom
-  (standard-dark-palette-overrides
-   (append '((bg-main			"#101010")
-             (bg-dim			"#282828")
-             (bg-mode-line-active	"#622486")
-             (string			"#ff7f24")
-             (comment			"#dfb08f")
-             ))))
-
-(provide 'init)
 ;;; init.el ends here
