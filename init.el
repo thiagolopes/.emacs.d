@@ -288,15 +288,6 @@
 (windmove-default-keybindings) ;; moviment with shift+arrow
 
 
-(diminish 'page-break-lines-mode)
-(diminish 'eldoc-mode)
-(diminish 'rainbow-mode "  ")
-(diminish 'rainbow-delimiters-mode " ")
-(diminish 'which-key-mode)
-(diminish 'completion-preview-mode)
-(diminish 'anzu-mode)
-
-
 (add-hook 'emacs-startup-hook
           (lambda ()
             (progn
@@ -355,7 +346,8 @@
 	tab-always-indent 'complete
 	package-menu-use-current-if-no-marks nil
 	frame-inhibit-implied-resize t
-	compilation-scroll-output 'first-error)
+	compilation-scroll-output 'first-error
+        compilation-always-kill t)
 
 (setopt ef-dream-palette-overrides
         '((bg-main               "#131015")
@@ -368,7 +360,6 @@
           (bg-hl-line            "#3b393e")
           (bg-mode-line-inactive "#5E4527")))
 
-(setopt compilation-always-kill t)
 
 (setopt treesit-enabled-modes t
         treesit-auto-install-grammar 'always)
@@ -384,8 +375,7 @@
         c-ts-mode-indent-offset 4)
 
 (setopt
- ;; compilation-scroll-output t
- ;; completion-auto-help nil
+  ;; completion-auto-help nil
  ;; custom-buffer-sort-alphabetically t
  ;; display-line-numbers-width 4
  ;; enable-recursive-minibuffers t
@@ -426,6 +416,7 @@
  line-spacing                   0
  menu-bar-mode                  t
  flyspell-mode-map              nil
+ flyspell-mode-line-string      nil
  package-autosuggest-mode       t
  pixel-scroll-mode              nil
  pixel-scroll-precision-mode    nil ;; see bug#69972
@@ -447,6 +438,16 @@
  x-underline-at-descent-line    t
  project-mode-line              t
  )
+
+
+(diminish 'page-break-lines-mode)
+(diminish 'eldoc-mode)
+(diminish 'rainbow-mode "  ")
+(diminish 'rainbow-delimiters-mode " ")
+(diminish 'which-key-mode)
+(diminish 'completion-preview-mode)
+(diminish 'anzu-mode)
+(diminish 'auto-revert-mode)
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
