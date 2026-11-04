@@ -290,36 +290,6 @@
 (prefer-coding-system 'utf-8)
 (windmove-default-keybindings) ;; moviment with shift+arrow
 
-(blink-cursor-mode              1)
-(column-number-mode             1)
-(context-menu-mode              1) ;; enable menu with mouse right click
-(delete-selection-mode          1)
-(electric-pair-mode             0) ;; auto close pairs
-(fido-mode                      1)
-(fringe-mode                    8) ;; in pixel
-(global-anzu-mode               t)
-(global-auto-revert-mode        1)
-(global-completion-preview-mode 1)
-(global-hl-line-mode            0)
-(global-page-break-lines-mode   1)
-(global-so-long-mode            1)
-(global-visual-line-mode        0) ;; wraps words long lines
-(menu-bar-mode                  1)
-(pixel-scroll-precision-mode    0)
-(repeat-mode                    1)
-(save-place-mode                1)
-(savehist-mode                  1)
-(scroll-bar-mode                1) ;; i like it
-(show-paren-mode                1)
-(tool-bar-mode                  0)
-(tooltip-mode                  -1)
-(undo-fu-session-global-mode    t)
-(which-key-mode                 1)
-(winner-mode                    1) ;; C-c buffers layout history
-
-;; (recentf-mode            1)
-;; (transient-mark-mode     1)
-
 
 (diminish 'page-break-lines-mode)
 (diminish 'eldoc-mode)
@@ -334,10 +304,12 @@
           (lambda ()
             (progn
               (split-window-right)
-              (switch-to-buffer "*scratch*")
-              )))
+              (switch-to-buffer "*scratch*"))))
 
 (add-hook 'prog-mode-hook 'hl-todo-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+(add-hook 'text-mode-hook 'flyspell-mode)
 
 (add-hook 'hledger-mode-hook (lambda () (whitespace-mode)))
 
@@ -352,14 +324,41 @@
 
 (setopt eglot-autoshutdown t
         eglot-extend-to-xref t
-        eglot-ignored-server-capabilities
-        '(:codeLensProvider
-          :hoverProvider
-          :documentOnTypeFormattingProvider
-          :foldingRangeProvider
-          :inlayHintProvider))
+        eglot-ignored-server-capabilities '(:codeLensProvider
+					    :hoverProvider
+					    :documentOnTypeFormattingProvider
+					    :foldingRangeProvider :inlayHintProvider))
 
-(setopt frame-resize-pixelwise t)
+(setopt font-use-system-font t
+        frame-resize-pixelwise t
+        window-resize-pixelwise t
+        mode-line-compact 'long)
+
+(setopt save-interprogram-paste-before-kill t
+        mouse-yank-at-point t
+        mouse-drag-and-drop-region t
+        mouse-drag-and-drop-region-cross-program t
+        mouse-drag-mode-line-buffer t)
+
+(setopt imenu-auto-rescan t
+	view-read-only t)
+
+(setopt vc-deduce-backend-nonvc-modes t
+	vc-dir-save-some-buffers-on-revert t
+	vc-find-revision-no-save t
+	vc-follow-symlinks t
+	vc-use-incoming-outgoing-prefixes t)
+
+(setopt minibuffer-visible-completions t
+	completions-detailed t
+	completions-group t
+	completion-auto-select 'second-tab
+	completion-eager-update t
+	global-completion-preview-mode t
+	tab-always-indent 'complete
+	package-menu-use-current-if-no-marks nil
+	frame-inhibit-implied-resize t
+	compilation-scroll-output 'first-error)
 
 (setopt ef-dream-palette-overrides
         '((bg-main               "#131015")
@@ -380,43 +379,76 @@
 (setopt display-line-numbers-type 'relative) ;; TODO implement linum relative in goto-line-preview-relative
 
 (setopt dired-kill-when-opening-new-dired-buffer t
-        dired-listing-switches "-alh")
+        dired-listing-switches "-alh"
+	dired-auto-revert-buffer t
+	dired-mouse-drag-files t)
 
 (setopt c-basic-offset 4
         c-ts-mode-indent-offset 4)
 
-(setopt backup-by-copying t
-        ;; blink-cursor-blinks 0
-        ;; compilation-max-output-line-length nil
-        ;; compilation-scroll-output t
-        ;; completion-auto-help nil
-        cursor-type 'box
-        custom-buffer-indent 4
-        ;; custom-buffer-sort-alphabetically t
-        custom-safe-themes t
-        ;; display-line-numbers-width 4
-        ;; enable-recursive-minibuffers t
-        ;; ibuffer-expert t
-        indent-tabs-mode nil ;; use space instead tabs
-        ;; indicate-buffer-boundaries 'left
-        indicate-empty-lines t
-        ;; inhibit-startup-screen t
-        ;; line-spacing .15
-        ;; kill-ring-max 400
-        ;; project-mode-line t
-        ;; read-buffer-completion-ignore-case t
-        ;; read-file-name-completion-ignore-case t
-        require-final-newline t
-        ;; scroll-conservatively 1000
-        ;; scroll-margin 1
-        ;; scroll-preserve-screen-position t
-        ;; truncate-lines nil
-        ;; treesit-enabled-modes t
-        ;; use-dialog-box nil
-        use-short-answers t
-        ;; visual-line-fringe-indicators '(nil nil)
-        x-underline-at-descent-line t
-        window-combination-resize t)
+(setopt
+ ;; compilation-scroll-output t
+ ;; completion-auto-help nil
+ ;; custom-buffer-sort-alphabetically t
+ ;; display-line-numbers-width 4
+ ;; enable-recursive-minibuffers t
+ ;; ibuffer-expert t
+ ;; indicate-buffer-boundaries 'left
+ ;; inhibit-startup-screen t
+ ;; read-buffer-completion-ignore-case t
+ ;; read-file-name-completion-ignore-case t
+ ;; scroll-conservatively 1000
+ ;; scroll-margin 1
+ ;; scroll-preserve-screen-position t
+ ;; treesit-enabled-modes t
+ ;; truncate-lines nil
+ ;; use-dialog-box nil
+ backup-by-copying              t
+ blink-cursor-mode              t
+ column-number-mode             t
+ context-menu-mode              t ;; enable menu with mouse right click
+ cursor-type                    'box
+ custom-buffer-indent           4
+ custom-safe-themes             t
+ delete-selection-mode          t
+ editorconfig-mode              t
+ electric-pair-mode             nil ;; auto close pairs
+ etags-regen-mode               t
+ fido-mode                      t
+ fringe-mode                    8 ;; in pixel
+ global-anzu-mode               t
+ global-auto-revert-mode        t
+ global-completion-preview-mode t
+ global-hl-line-mode            nil
+ global-page-break-lines-mode   t
+ global-so-long-mode            t
+ global-visual-line-mode        nil ;; wraps words long lines
+ global-xref-mouse-mode         t
+ indent-tabs-mode               nil
+ indicate-empty-lines           t
+ line-spacing                   0
+ menu-bar-mode                  t
+ package-autosuggest-mode       t
+ pixel-scroll-mode              nil
+ pixel-scroll-precision-mode    nil ;; see bug#69972
+ recentf-mode                   t
+ repeat-mode                    t
+ require-final-newline t
+ save-place-mode                t
+ savehist-mode                  t
+ scroll-bar-mode                'right ;; i like it
+ show-paren-mode                t
+ tool-bar-mode                  nil
+ tooltip-mode                   nil
+ undo-fu-session-global-mode    t
+ use-short-answers              t
+ vc-auto-revert-mode            t
+ which-key-mode                 t
+ window-combination-resize      t
+ winner-mode                    t ;; C-c buffers layout history
+ x-underline-at-descent-line    t
+ project-mode-line               t
+ )
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
