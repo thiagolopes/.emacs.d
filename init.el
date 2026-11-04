@@ -15,7 +15,7 @@
 (setq-local *is-a-linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
 
 (setopt user-full-name "Thiago Lopes"
-	user-mail-address "thiagolopes@protonmail.com")
+        user-mail-address "thiagolopes@protonmail.com")
 
 ;;; UTILITES
 
@@ -143,12 +143,12 @@
 
     ;; install packages
     (let ((packages-not-installed (list-missing-pckgs))
-	  (should-restart? t))
+          (should-restart? t))
       (when packages-not-installed
-	(-each packages-not-installed #'package-install)
-	(when should-restart?
-	    ;; OVERKILL REACTION
-	    (restart-emacs))))))
+        (-each packages-not-installed #'package-install)
+        (when should-restart?
+            ;; OVERKILL REACTION
+            (restart-emacs))))))
 
 (defmacro no-litterize (path var)
   "Set VAR to no-littering as PATH."
@@ -210,8 +210,8 @@
 
 (global-set-key (kbd "M-z")   #'zzz-to-char)
 (global-set-key (kbd "<f9>")  (lambda () (interactive)
-				"Run compile on project if available."
-				(if (project-current) (project-compile)
+                                "Run compile on project if available."
+                                (if (project-current) (project-compile)
                                   (call-interactively #'compile))))
 
 (defun flycheck-configure ()
@@ -232,8 +232,8 @@
     (add-hook 'org-mode-hook #'visual-line-mode)
     (add-hook 'org-mode-hook #'org-appear-mode)
     (setopt org-return-follows-link t
-	    org-startup-folded 'fold
-	    org-hide-emphasis-markers t)
+            org-startup-folded 'fold
+            org-hide-emphasis-markers t)
     ;; TODO use envvar
     (setopt org-roam-directory (file-truename "~/doc/Notas"))))
 
@@ -331,11 +331,11 @@
 
 
 (add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (progn
-	      (split-window-right)
-	      (switch-to-buffer "*scratch*")
-	      )))
+          (lambda ()
+            (progn
+              (split-window-right)
+              (switch-to-buffer "*scratch*")
+              )))
 
 (add-hook 'prog-mode-hook 'hl-todo-mode)
 
@@ -351,31 +351,31 @@
 
 
 (setopt eglot-autoshutdown t
-	eglot-extend-to-xref t
-	eglot-ignored-server-capabilities
-	'(:codeLensProvider
-	  :hoverProvider
-	  :documentOnTypeFormattingProvider
-	  :foldingRangeProvider
-	  :inlayHintProvider))
+        eglot-extend-to-xref t
+        eglot-ignored-server-capabilities
+        '(:codeLensProvider
+          :hoverProvider
+          :documentOnTypeFormattingProvider
+          :foldingRangeProvider
+          :inlayHintProvider))
 
 (setopt frame-resize-pixelwise t)
 
 (setopt ef-dream-palette-overrides
-	'((bg-main		 "#131015")
-	  (bg-hl-line		 "#232224")
-	  (fg-mode-line-active	 "#f2ddcf")
-	  (bg-mode-line-active	 "#472b00")
-	  (yellow-cooler         "#ff9f0a")
-	  (bg-hl-line		 "#2e1a3a")
-	  (bg-hl-line		 "#352102")
-	  (bg-hl-line		 "#3b393e")
-	  (bg-mode-line-inactive "#5E4527")))
+        '((bg-main               "#131015")
+          (bg-hl-line            "#232224")
+          (fg-mode-line-active   "#f2ddcf")
+          (bg-mode-line-active   "#472b00")
+          (yellow-cooler         "#ff9f0a")
+          (bg-hl-line            "#2e1a3a")
+          (bg-hl-line            "#352102")
+          (bg-hl-line            "#3b393e")
+          (bg-mode-line-inactive "#5E4527")))
 
 (setopt compilation-always-kill t)
 
 (setopt treesit-enabled-modes t
-	treesit-auto-install-grammar 'always)
+        treesit-auto-install-grammar 'always)
 
 (setopt display-line-numbers-type 'relative) ;; TODO implement linum relative in goto-line-preview-relative
 
@@ -383,46 +383,46 @@
         dired-listing-switches "-alh")
 
 (setopt c-basic-offset 4
-	c-ts-mode-indent-offset 4)
+        c-ts-mode-indent-offset 4)
 
 (setopt backup-by-copying t
-	;; blink-cursor-blinks 0
-	;; compilation-max-output-line-length nil
-	;; compilation-scroll-output t
-	;; completion-auto-help nil
-	cursor-type 'box
-	custom-buffer-indent 4
-	;; custom-buffer-sort-alphabetically t
-	custom-safe-themes t
-	;; display-line-numbers-width 4
-	;; enable-recursive-minibuffers t
-	;; ibuffer-expert t
-	;; indent-tabs-mode t
-	;; indicate-buffer-boundaries 'left
-	indicate-empty-lines t
-	;; inhibit-startup-screen t
-	;; line-spacing .15
-	;; kill-ring-max 400
-	;; project-mode-line t
-	;; read-buffer-completion-ignore-case t
-	;; read-file-name-completion-ignore-case t
-	require-final-newline t
-	;; scroll-conservatively 1000
-	;; scroll-margin 1
-	;; scroll-preserve-screen-position t
-	;; truncate-lines nil
-	;; treesit-enabled-modes t
-	;; use-dialog-box nil
-	use-short-answers t
-	;; visual-line-fringe-indicators '(nil nil)
-	x-underline-at-descent-line t
-	window-combination-resize t)
+        ;; blink-cursor-blinks 0
+        ;; compilation-max-output-line-length nil
+        ;; compilation-scroll-output t
+        ;; completion-auto-help nil
+        cursor-type 'box
+        custom-buffer-indent 4
+        ;; custom-buffer-sort-alphabetically t
+        custom-safe-themes t
+        ;; display-line-numbers-width 4
+        ;; enable-recursive-minibuffers t
+        ;; ibuffer-expert t
+        indent-tabs-mode nil ;; use space instead tabs
+        ;; indicate-buffer-boundaries 'left
+        indicate-empty-lines t
+        ;; inhibit-startup-screen t
+        ;; line-spacing .15
+        ;; kill-ring-max 400
+        ;; project-mode-line t
+        ;; read-buffer-completion-ignore-case t
+        ;; read-file-name-completion-ignore-case t
+        require-final-newline t
+        ;; scroll-conservatively 1000
+        ;; scroll-margin 1
+        ;; scroll-preserve-screen-position t
+        ;; truncate-lines nil
+        ;; treesit-enabled-modes t
+        ;; use-dialog-box nil
+        use-short-answers t
+        ;; visual-line-fringe-indicators '(nil nil)
+        x-underline-at-descent-line t
+        window-combination-resize t)
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setopt frame-title-format (list '(:eval (format "GNU Emacs %s - " emacs-version))
-				 '(buffer-file-name "%f" "%b")))
+                                 '(buffer-file-name "%f" "%b")))
 
 (when scroll-bar-mode
   ;; this disable scroll on minibuffer
