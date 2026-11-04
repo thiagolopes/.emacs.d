@@ -246,7 +246,11 @@
     ;; (add-hook 'prog-mode-hook #'diff-hl-margin-mode)
     (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
     (setopt diff-hl-disable-on-remote t)
-    (setopt diff-hl-fringe-bmp-function 'diff-hl-fringe-bmp-from-type)))
+    (setopt diff-hl-fringe-bmp-function 'diff-hl-fringe-bmp-from-type)
+    (custom-set-faces
+     '(diff-hl-change ((t (:inherit diff-changed))))
+     '(diff-hl-delete ((t (:inherit diff-removed))))
+     '(diff-hl-insert ((t (:inherit diff-added)))))))
 
 (defun helpful-configure ()
   "Switch all describe-* to use helpful."
@@ -421,6 +425,7 @@
  indicate-empty-lines           t
  line-spacing                   0
  menu-bar-mode                  t
+ flyspell-mode-map              nil
  package-autosuggest-mode       t
  pixel-scroll-mode              nil
  pixel-scroll-precision-mode    nil ;; see bug#69972
@@ -440,7 +445,7 @@
  window-combination-resize      t
  winner-mode                    t ;; C-c buffers layout history
  x-underline-at-descent-line    t
- project-mode-line               t
+ project-mode-line              t
  )
 
 
