@@ -444,6 +444,8 @@
  vc-auto-revert-mode            t
  vhl/animation-style            'pulse
  volatile-highlights-mode       t
+ vundo-compact-display          t
+ vundo-glyph-alist              vundo-unicode-symbols
  which-key-mode                 t
  window-combination-resize      t
  winner-mode                    t ;; C-c buffers layout history
