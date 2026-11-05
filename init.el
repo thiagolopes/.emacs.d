@@ -200,8 +200,9 @@
 (global-set-key (kbd "C-a") 'mwim-beginning)
 (global-set-key (kbd "C-e") 'mwim-end)
 
-;; (global-set-key (kbd "M-l")         'downcase-dwim)
-;; (global-set-key (kbd "M-c")         'capitalize-dwim)
+(global-set-key (kbd "M-u") 'upcase-dwim)
+(global-set-key (kbd "M-l") 'downcase-dwim)
+(global-set-key (kbd "M-c") 'capitalize-dwim)
 
 (global-set-key (kbd "M-<up>"  ) 'move-dup-move-lines-up)
 (global-set-key (kbd "M-<down>") 'move-dup-move-lines-down)
@@ -409,6 +410,8 @@
  electric-pair-mode             nil ;; auto close pairs
  etags-regen-mode               t
  fido-mode                      t
+ flyspell-mode-line-string      nil
+ flyspell-mode-map              nil
  fringe-mode                    8 ;; in pixel
  global-anzu-mode               t
  global-auto-revert-mode        t
@@ -420,13 +423,13 @@
  global-xref-mouse-mode         t
  indent-tabs-mode               nil
  indicate-empty-lines           t
- line-spacing                   0
+ ispell-extra-args              '("--sug-mode=ultra")
+ ispell-quietly                 t
  menu-bar-mode                  t
- flyspell-mode-map              nil
- flyspell-mode-line-string      nil
  package-autosuggest-mode       t
  pixel-scroll-mode              nil
  pixel-scroll-precision-mode    nil ;; see bug#69972
+ project-mode-line              t
  recentf-mode                   t
  repeat-mode                    t
  require-final-newline t
@@ -439,11 +442,12 @@
  undo-fu-session-global-mode    t
  use-short-answers              t
  vc-auto-revert-mode            t
+ vhl/animation-style            'pulse
+ volatile-highlights-mode       t
  which-key-mode                 t
  window-combination-resize      t
  winner-mode                    t ;; C-c buffers layout history
  x-underline-at-descent-line    t
- project-mode-line              t
  )
 
 
@@ -455,6 +459,8 @@
 (diminish 'completion-preview-mode)
 (diminish 'anzu-mode)
 (diminish 'auto-revert-mode)
+(diminish 'volatile-highlights-mode)
+(diminish 'beacon-mode)
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
