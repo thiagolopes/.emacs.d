@@ -54,6 +54,7 @@
  '(
    ace-jump-mode
    anzu
+   beacon
    cape
    consult
    diff-hl
@@ -64,14 +65,12 @@
    embark-consult
    exec-path-from-shell
    expand-region
-   popwin
    flycheck
-   prism
-   helpful
    git-link
    git-timemachine
    goto-last-change
    goto-line-preview
+   helpful
    hl-todo
    hungry-delete
    magit
@@ -86,6 +85,8 @@
    org-roam
    page-break-lines
    pdf-tools
+   popwin
+   prism
    rainbow-delimiters
    rainbow-mode
    rg
@@ -97,7 +98,6 @@
    vundo
    yafolding
    zzz-to-char
-   beacon
 
    ;; Themes
    amaranth-dark-theme
@@ -109,13 +109,13 @@
    standard-themes
 
    ;; File Modes
-   fish-mode
-   i3wm-config-mode
    cmake-mode
    deno-ts-mode
    dockerfile-mode
+   fish-mode
    go-mode
    hledger-mode
+   i3wm-config-mode
    markdown-mode
    meson-mode
    rust-mode
@@ -451,16 +451,16 @@
  )
 
 
-(diminish 'page-break-lines-mode)
-(diminish 'eldoc-mode)
-(diminish 'rainbow-mode "  ")
-(diminish 'rainbow-delimiters-mode " ")
-(diminish 'which-key-mode)
-(diminish 'completion-preview-mode)
 (diminish 'anzu-mode)
 (diminish 'auto-revert-mode)
-(diminish 'volatile-highlights-mode)
 (diminish 'beacon-mode)
+(diminish 'completion-preview-mode)
+(diminish 'eldoc-mode)
+(diminish 'page-break-lines-mode)
+(diminish 'rainbow-delimiters-mode " ")
+(diminish 'rainbow-mode "  ")
+(diminish 'volatile-highlights-mode)
+(diminish 'which-key-mode)
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
