@@ -151,7 +151,9 @@
         (-each packages-not-installed #'package-install)
         (when should-restart?
             ;; OVERKILL REACTION
-            (restart-emacs))))))
+          (restart-emacs))))))
+
+(require 'ansi-color)
 
 (defmacro no-litterize (path var)
   "Set VAR to no-littering as PATH."
@@ -313,6 +315,8 @@
 (add-hook 'completion-at-point-functions #'cape-elisp-block)
 (add-hook 'completion-at-point-functions #'cape-dict)
 (add-hook 'completion-at-point-functions #'cape-history)
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
 
 
 (setopt eglot-autoshutdown t
@@ -423,6 +427,7 @@
  global-xref-mouse-mode         t
  indent-tabs-mode               nil
  indicate-empty-lines           t
+ ispell-dictionary              "us"
  ispell-extra-args              '("--sug-mode=ultra")
  ispell-quietly                 t
  menu-bar-mode                  t
