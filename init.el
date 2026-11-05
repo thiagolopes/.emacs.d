@@ -52,6 +52,7 @@
 (setq-default
  package-selected-packages
  '(
+   ace-jump-mode
    anzu
    cape
    consult
@@ -184,6 +185,8 @@
 (global-set-key (kbd "C-c l"  ) 'consult-line-multi)
 (global-set-key (kbd "M-g g"  ) 'consult-goto-line)
 (global-set-key (kbd "M-g M-g") 'consult-goto-line)
+
+(global-set-key (kbd "C-c j") 'ace-jump-mode)
 
 (global-set-key (kbd "M-@") 'er/expand-region)
 
@@ -388,8 +391,8 @@
  ;; scroll-margin 1
  ;; scroll-preserve-screen-position t
  ;; treesit-enabled-modes t
- ;; truncate-lines nil
  ;; use-dialog-box nil
+ ace-jump-mode-case-fold        t
  backup-by-copying              t
  blink-cursor-mode              t
  column-number-mode             t
