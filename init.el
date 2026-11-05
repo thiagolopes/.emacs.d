@@ -97,8 +97,10 @@
    vundo
    yafolding
    zzz-to-char
+   beacon
 
    ;; Themes
+   amaranth-dark-theme
    ef-themes
    gruber-darker-theme
    modus-themes
@@ -287,7 +289,6 @@
 
 
 (exec-path-from-shell-initialize) ;; load PATH
-(prefer-coding-system 'utf-8)
 (windmove-default-keybindings) ;; moviment with shift+arrow
 
 
@@ -323,7 +324,8 @@
 (setopt font-use-system-font t
         frame-resize-pixelwise t
         window-resize-pixelwise t
-        mode-line-compact 'long)
+        mode-line-compact 'long
+        prefer-coding-system 'utf-8)
 
 (setopt save-interprogram-paste-before-kill t
         mouse-yank-at-point t
@@ -394,6 +396,8 @@
  ;; use-dialog-box nil
  ace-jump-mode-case-fold        t
  backup-by-copying              t
+ beacon-mode                    t
+ beacon-size                    80
  blink-cursor-mode              t
  column-number-mode             t
  context-menu-mode              t ;; enable menu with mouse right click
