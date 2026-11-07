@@ -95,6 +95,7 @@
    undo-fu-session
    uuidgen
    verb
+   volatile-highlights
    vundo
    yafolding
    zzz-to-char
