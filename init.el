@@ -285,6 +285,7 @@
   "Configure popwin - avoid bottom buffers to close on C-g or loose focus."
   (progn
     (popwin-mode t)
+    (push "*eldoc*" popwin:special-display-config)
     (push "*Warnings*" popwin:special-display-config)
     (push "*Flycheck errors*" popwin:special-display-config)))
 
