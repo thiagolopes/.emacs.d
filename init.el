@@ -224,6 +224,7 @@
     (global-flycheck-mode 1)
     (global-flycheck-eglot-mode 1)
     ;; (setopt flycheck-indication-mode 'left-margin) ;; this use margin instead fringe
+    (setopt flycheck-eglot-exclusive nil)
     (setopt flycheck-annotate-mode 'oel)
     (setopt flymake-start-on-save-buffer nil)
     (setopt flymake-start-on-flymake-mode nil)
