@@ -61,6 +61,8 @@
    diminish
    dumb-jump
    eglot
+   elfeed
+   elfeed-tube
    embark
    embark-consult
    exec-path-from-shell
@@ -237,7 +239,10 @@
             org-startup-folded 'fold
             org-hide-emphasis-markers t)
     ;; TODO use envvar
-    (setopt org-roam-directory (file-truename "~/doc/Notas"))))
+    (when-let* ((custom-org-roam-envvar (exec-path-from-shell-getenv "ORG_ROAM_DIR"))
+                (custom-org-roam (file-truename custom-org-roam-envvar))
+                (exist-p (file-directory-p custom-org-roam)))
+      (setopt org-roam-directory custom-org-roam))))
 
 (defun dump-jump-configure ()
   "Configure Dump Jump."
@@ -283,6 +288,22 @@
     (push "*Warnings*" popwin:special-display-config)
     (push "*Flycheck errors*" popwin:special-display-config)))
 
+(defun exec-path-from-shell-configure ()
+  (setq exec-path-from-shell-shell-name "/bin/zsh")
+  (setq exec-path-from-shell-variables '("PATH" "ORG_ROAM_DIR" "ELFEED_FILE"))
+  (exec-path-from-shell-initialize))
+
+(defun elfeed-configure ()
+  (when-let* ((elfeed-envvar (exec-path-from-shell-getenv "ELFEED_FILE"))
+              (elfeed-file (file-truename elfeed-envvar))
+              (exists! (file-exists-p elfeed-file)))
+    (setq-local elfeed-file-el (file-truename "~/doc/rss.el"))
+    (when (file-exists-p elfeed-file-el) (load-file elfeed-file-el))))
+
+
+(windmove-default-keybindings) ;; moviment with shift+arrow
+
+(exec-path-from-shell-configure)
 (diff-hl-configure)
 (dump-jump-configure)
 (flycheck-configure)
@@ -290,10 +311,7 @@
 (org-mode-configure)
 (popwin-configure)
 (whitespace-configure)
-
-
-(exec-path-from-shell-initialize) ;; load PATH
-(windmove-default-keybindings) ;; moviment with shift+arrow
+(elfeed-configure)
 
 
 (add-hook 'emacs-startup-hook
@@ -428,7 +446,6 @@
  global-xref-mouse-mode         t
  indent-tabs-mode               nil
  indicate-empty-lines           t
- ispell-dictionary              "us"
  ispell-extra-args              '("--sug-mode=ultra")
  ispell-quietly                 t
  menu-bar-mode                  t
