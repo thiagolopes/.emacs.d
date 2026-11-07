@@ -62,7 +62,6 @@
    dumb-jump
    eglot
    elfeed
-   elfeed-tube
    embark
    embark-consult
    exec-path-from-shell
@@ -110,6 +109,7 @@
    purp-theme
    srcery-theme
    standard-themes
+   zenburn-theme
 
    ;; File Modes
    cmake-mode
