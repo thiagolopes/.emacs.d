@@ -371,6 +371,7 @@
 (setopt minibuffer-visible-completions t
 	completions-detailed t
 	completions-group t
+        completions-max-height 20
 	completion-auto-select 'second-tab
 	completion-eager-update t
 	global-completion-preview-mode t
