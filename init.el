@@ -14,8 +14,9 @@
 (setq-local *is-a-mac* (eq system-type 'darwin))
 (setq-local *is-a-linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
 
-(setopt user-full-name "Thiago Lopes"
-        user-mail-address "thiagolopes@protonmail.com")
+(setq-default
+ user-full-name "Thiago Lopes"
+ user-mail-address "thiagolopes@protonmail.com")
 
 ;;; UTILITES
 
@@ -153,7 +154,7 @@
       (when packages-not-installed
         (-each packages-not-installed #'package-install)
         (when should-restart?
-            ;; OVERKILL REACTION
+          ;; OVERKILL REACTION
           (restart-emacs))))))
 
 (require 'ansi-color)
@@ -220,79 +221,76 @@
 
 (defun flycheck-configure ()
   "Configure flycheck."
-  (progn
-    (global-flycheck-mode 1)
-    (global-flycheck-eglot-mode 1)
-    ;; (setopt flycheck-indication-mode 'left-margin) ;; this use margin instead fringe
-    (setopt flycheck-eglot-exclusive nil)
-    (setopt flycheck-annotate-mode 'oel)
-    (setopt flymake-start-on-save-buffer nil)
-    (setopt flymake-start-on-flymake-mode nil)
-    (setopt flycheck-highlighting-style '(delimiters "" ""))
-    (setopt flycheck-mode-line-prefix " ")))
+  (global-flycheck-mode 1)
+  (global-flycheck-eglot-mode 1)
+  ;; (setq-default flycheck-indication-mode 'left-margin) ;; this use margin instead fringe
+  (setq-default
+   flycheck-annotate-mode 'oel
+   flymake-start-on-save-buffer nil
+   flymake-start-on-flymake-mode nil
+   flycheck-highlighting-style '(delimiters "" "")
+   flycheck-mode-line-prefix " "
+   flycheck-eglot-exclusive nil))
 
 (defun org-mode-configure ()
   "Configure Org."
-  (progn
-    (add-hook 'org-mode-hook #'visual-line-mode)
-    (add-hook 'org-mode-hook #'org-appear-mode)
-    (setopt org-return-follows-link t
-            org-startup-folded 'fold
-            org-hide-emphasis-markers t)
-    ;; TODO use envvar
-    (when-let* ((custom-org-roam-envvar (exec-path-from-shell-getenv "ORG_ROAM_DIR"))
-                (custom-org-roam (file-truename custom-org-roam-envvar))
-                (exist-p (file-directory-p custom-org-roam)))
-      (setopt org-roam-directory custom-org-roam))))
+  (add-hook 'org-mode-hook #'org-appear-mode)
+  (add-hook 'org-mode-hook #'visual-line-mode)
+  (setq-default org-return-follows-link t
+          org-startup-folded 'fold
+          org-hide-emphasis-markers t)
+  ;; TODO use envvar
+  (when-let* ((custom-org-roam-envvar (exec-path-from-shell-getenv "ORG_ROAM_DIR"))
+              (custom-org-roam (file-truename custom-org-roam-envvar))
+              (exist-p (file-directory-p custom-org-roam)))
+    (setq-default org-roam-directory custom-org-roam)))
 
 (defun dump-jump-configure ()
   "Configure Dump Jump."
-  (progn
-    ;; enable dump-jump as a option in xref-backend-functions
-    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-    (setopt dumb-jump-prefer-searcher 'rg)
-    ;; consult required
-    (setopt xref-show-definitions-function #'consult-xref)))
+  ;; enable dump-jump as a option in xref-backend-functions
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  (setq-default dumb-jump-prefer-searcher 'rg)
+  ;; consult required
+  (setq-default xref-show-definitions-function #'consult-xref))
 
 (defun diff-hl-configure ()
   "Configure lateral diff on buffers."
-  (progn
-    (add-hook 'prog-mode-hook #'diff-hl-mode)
-    ;; (add-hook 'prog-mode-hook #'diff-hl-margin-mode)
-    (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
-    (setopt diff-hl-disable-on-remote t)
-    (setopt diff-hl-fringe-bmp-function 'diff-hl-fringe-bmp-from-type)
+  (add-hook 'prog-mode-hook #'diff-hl-mode)
+  (add-hook 'prog-mode-hook #'diff-hl-margin-mode)
+  (add-hook 'dired-mode-hook #'diff-hl-dired-mode)
+  (setq-default
+   diff-hl-disable-on-remote t
+   diff-hl-fringe-bmp-function 'diff-hl-fringe-bmp-from-type)
+  (with-eval-after-load 'diff-hl
     (custom-set-faces
-     '(diff-hl-change ((t (:inherit diff-changed))))
-     '(diff-hl-delete ((t (:inherit diff-removed))))
-     '(diff-hl-insert ((t (:inherit diff-added)))))))
+     `(diff-hl-change ((t (:foreground ,(face-foreground 'diff-changed nil 'default) :background nil))))
+     `(diff-hl-delete ((t (:foreground ,(face-foreground 'diff-removed nil 'default) :background nil))))
+     `(diff-hl-insert ((t (:foreground ,(face-foreground 'diff-added nil 'default) :background nil)))))))
 
 (defun helpful-configure ()
   "Switch all describe-* to use helpful."
-  (progn
-    (advice-add 'describe-function :override #'helpful-function)
-    (advice-add 'describe-command  :override #'helpful-command)
-    (advice-add 'describe-key      :override #'helpful-key)
-    (advice-add 'describe-variable :override #'helpful-variable)
-    (advice-add 'describe-symbol   :override #'helpful-symbol)))
+  (advice-add 'describe-function :override #'helpful-function)
+  (advice-add 'describe-command  :override #'helpful-command)
+  (advice-add 'describe-key      :override #'helpful-key)
+  (advice-add 'describe-variable :override #'helpful-variable)
+  (advice-add 'describe-symbol   :override #'helpful-symbol))
 
 (defun whitespace-configure ()
   "Configure whitespace."
-  (progn
-    (setopt whitespace-style '(face spaces empty tabs newline trailing space-mark tab-mark))
-    (add-hook 'before-save-hook #'whitespace-cleanup)))
+  (setq-default whitespace-style '(face spaces empty tabs newline trailing space-mark tab-mark))
+  (add-hook 'before-save-hook #'whitespace-cleanup))
 
 (defun popwin-configure ()
   "Configure popwin - avoid bottom buffers to close on C-g or loose focus."
-  (progn
-    (popwin-mode t)
-    (push "*eldoc*" popwin:special-display-config)
-    (push "*Warnings*" popwin:special-display-config)
-    (push "*Flycheck errors*" popwin:special-display-config)))
+  (popwin-mode t)
+  (push "*eldoc*" popwin:special-display-config)
+  (push "*Warnings*" popwin:special-display-config)
+  (push "*Flycheck errors*" popwin:special-display-config))
 
 (defun exec-path-from-shell-configure ()
-  (setq exec-path-from-shell-shell-name "/bin/zsh")
-  (setq exec-path-from-shell-variables '("PATH" "ORG_ROAM_DIR" "ELFEED_FILE"))
+  (setq-default
+   exec-path-from-shell-shell-name "/bin/zsh"
+   exec-path-from-shell-variables '("PATH" "ORG_ROAM_DIR" "ELFEED_FILE"))
   (exec-path-from-shell-initialize))
 
 (defun elfeed-configure ()
@@ -329,88 +327,108 @@
 
 (add-hook 'hledger-mode-hook (lambda () (whitespace-mode)))
 
-(add-hook 'completion-at-point-functions #'cape-keyword)
-(add-hook 'completion-at-point-functions #'cape-abbrev)
-(add-hook 'completion-at-point-functions #'cape-dabbrev)
-(add-hook 'completion-at-point-functions #'cape-file)
-(add-hook 'completion-at-point-functions #'cape-elisp-block)
-(add-hook 'completion-at-point-functions #'cape-dict)
-(add-hook 'completion-at-point-functions #'cape-history)
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
+;; (add-hook 'completion-at-point-functions #'cape-keyword)
+;; (add-hook 'completion-at-point-functions #'cape-abbrev)
+;; (add-hook 'completion-at-point-functions #'cape-dabbrev)
+;; (add-hook 'completion-at-point-functions #'cape-file)
+;; (add-hook 'completion-at-point-functions #'cape-elisp-block)
+;; (add-hook 'completion-at-point-functions #'cape-dict)
+;; (add-hook 'completion-at-point-functions #'cape-history)
 
 
-(setopt eglot-autoshutdown t
-        eglot-extend-to-xref t
-        eglot-ignored-server-capabilities '(:codeLensProvider
-					    :hoverProvider
-					    :documentOnTypeFormattingProvider
-					    :foldingRangeProvider :inlayHintProvider))
+(setq-default
+ eglot-autoshutdown t
+ eglot-extend-to-xref t
+ eglot-ignored-server-capabilities '(:codeLensProvider
+				     :hoverProvider
+				     :documentOnTypeFormattingProvider
+				     :foldingRangeProvider :inlayHintProvider))
 
-(setopt font-use-system-font t
-        frame-resize-pixelwise t
-        window-resize-pixelwise t
-        mode-line-compact 'long
-        prefer-coding-system 'utf-8)
-
-(setopt save-interprogram-paste-before-kill t
-        mouse-yank-at-point t
-        mouse-drag-and-drop-region t
-        mouse-drag-and-drop-region-cross-program t
-        mouse-drag-mode-line-buffer t)
-
-(setopt imenu-auto-rescan t
-	view-read-only t)
-
-(setopt vc-deduce-backend-nonvc-modes t
-	vc-dir-save-some-buffers-on-revert t
-	vc-find-revision-no-save t
-	vc-follow-symlinks t
-	vc-use-incoming-outgoing-prefixes t)
-
-(setopt minibuffer-visible-completions t
-	completions-detailed t
-	completions-group t
-        completions-max-height 20
-	completion-auto-select 'second-tab
-	completion-eager-update t
-	global-completion-preview-mode t
-	tab-always-indent 'complete
-	package-menu-use-current-if-no-marks nil
-	frame-inhibit-implied-resize t
-	compilation-scroll-output 'first-error
-        compilation-always-kill t)
-
-(setopt ef-dream-palette-overrides
-        '((bg-main               "#131015")
-          (bg-hl-line            "#232224")
-          (fg-mode-line-active   "#f2ddcf")
-          (bg-mode-line-active   "#472b00")
-          (yellow-cooler         "#ff9f0a")
-          (bg-hl-line            "#2e1a3a")
-          (bg-hl-line            "#352102")
-          (bg-hl-line            "#3b393e")
-          (bg-mode-line-inactive "#5E4527")))
-
-
-(setopt treesit-enabled-modes t
-        treesit-auto-install-grammar 'always)
-
-(setopt display-line-numbers-type 'relative) ;; TODO implement linum relative in goto-line-preview-relative
-
-(setopt dired-kill-when-opening-new-dired-buffer t
-        dired-listing-switches "-alh"
-	dired-auto-revert-buffer t
-	dired-mouse-drag-files t)
-
-(setopt c-basic-offset 4
-        c-ts-mode-indent-offset 4)
+(setq-default
+ font-use-system-font t
+ frame-resize-pixelwise t
+ window-resize-pixelwise t
+ mode-line-compact 'long
+ prefer-coding-system 'utf-8)
 
 (setopt
-  ;; completion-auto-help nil
+ save-interprogram-paste-before-kill t
+ mouse-yank-at-point t
+ mouse-drag-and-drop-region t
+ mouse-drag-and-drop-region-cross-program t
+ mouse-drag-mode-line-buffer t)
+
+(setq-default
+ imenu-auto-rescan t
+ view-read-only t)
+
+(setopt
+ vc-deduce-backend-nonvc-modes t
+ vc-dir-save-some-buffers-on-revert t
+ vc-find-revision-no-save t
+ vc-follow-symlinks t
+ vc-use-incoming-outgoing-prefixes t)
+
+(setopt
+ minibuffer-visible-completions t
+ completions-detailed t
+ completions-group t
+ completions-max-height 20
+ completion-auto-select 'second-tab
+ completion-eager-update t
+ global-completion-preview-mode t
+ tab-always-indent 'complete
+ package-menu-use-current-if-no-marks nil
+ frame-inhibit-implied-resize t
+ compilation-scroll-output 'first-error
+ compilation-always-kill t)
+
+(setq-default
+ zenburn-override-colors-alist
+ '(("zenburn-fg+1" . "#FFFFEF") ("zenburn-fg" . "#DCDCCC") ("zenburn-fg-1" . "#70705E") ("zenburn-bg-2" . "#000000")
+   ("zenburn-bg-1" . "#202020") ("zenburn-bg-05" . "#2D2D2D") ("zenburn-bg" . "#313131") ("zenburn-bg+05" . "#383838")
+   ("zenburn-bg+1" . "#3E3E3E") ("zenburn-bg+2" . "#4E4E4E") ("zenburn-bg+3" . "#5E5E5E") ("zenburn-red+1" . "#E9B0B0")
+   ("zenburn-red" . "#D9A0A0") ("zenburn-red-1" . "#C99090") ("zenburn-red-2" . "#B98080") ("zenburn-red-3" . "#A97070")
+   ("zenburn-red-4" . "#996060") ("zenburn-orange" . "#ECBC9C") ("zenburn-yellow" . "#FDECBC") ("zenburn-yellow-1" . "#EDDCAC")
+   ("zenburn-yellow-2" . "#DDCC9C") ("zenburn-green-1" . "#6C8C6C") ("zenburn-green" . "#8CAC8C") ("zenburn-green+1" . "#9CBF9C")
+   ("zenburn-green+2" . "#ACD2AC") ("zenburn-green+3" . "#BCE5BC") ("zenburn-green+4" . "#CCF8CC") ("zenburn-cyan" . "#A0EDF0")
+   ("zenburn-blue+1" . "#9CC7FB") ("zenburn-blue" . "#99DDE0") ("zenburn-blue-1" . "#89C5C8") ("zenburn-blue-2" . "#79ADB0")
+   ("zenburn-blue-3" . "#699598") ("zenburn-blue-4" . "#597D80") ("zenburn-blue-5" . "#436D6D") ("zenburn-magenta" . "#E090C7")))
+
+(setq-default
+ ef-dream-palette-overrides
+ '((bg-main               "#131015")
+   (bg-hl-line            "#232224")
+   (fg-mode-line-active   "#f2ddcf")
+   (bg-mode-line-active   "#472b00")
+   (yellow-cooler         "#ff9f0a")
+   (bg-hl-line            "#2e1a3a")
+   (bg-hl-line            "#352102")
+   (bg-hl-line            "#3b393e")
+   (bg-mode-line-inactive "#5E4527")))
+
+(setopt
+ treesit-enabled-modes t
+ treesit-auto-install-grammar 'always)
+
+(setq-default display-line-numbers-type 'relative) ;; TODO implement linum relative in goto-line-preview-relative
+
+(setq-default
+ dired-kill-when-opening-new-dired-buffer t
+ dired-listing-switches "-alh"
+ dired-auto-revert-buffer t
+ dired-mouse-drag-files t)
+
+(setq-default
+ c-basic-offset 4
+ c-ts-mode-indent-offset 4)
+
+(setopt
+ ;; completion-auto-help nil
  ;; custom-buffer-sort-alphabetically t
  ;; display-line-numbers-width 4
- ;; enable-recursive-minibuffers t
  ;; ibuffer-expert t
  ;; indicate-buffer-boundaries 'left
  ;; inhibit-startup-screen t
@@ -493,7 +511,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(setopt frame-title-format (list '(:eval (format "GNU Emacs %s - " emacs-version))
+(setq-default frame-title-format (list '(:eval (format "GNU Emacs %s - " emacs-version))
                                  '(buffer-file-name "%f" "%b")))
 
 (when scroll-bar-mode
@@ -501,7 +519,7 @@
   (message "[config] scroll bar enabled and configured")
   (set-window-scroll-bars (minibuffer-window) nil nil nil nil 1))
 
-(setopt custom-file (concat user-emacs-directory "custom.el"))
+(setq-default custom-file (concat user-emacs-directory "custom.el"))
 (when (file-exists-p custom-file) (load-file custom-file))
 
 ;;; init.el ends here
