@@ -43,7 +43,6 @@
   (if bool 1 0))
 
 ;;; PACKAGES
-
 (require 'package)
 ;; TODO deal to worker without internet for some reason, emergencial mode.
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -439,6 +438,8 @@
  ;; scroll-preserve-screen-position t
  ;; treesit-enabled-modes t
  ;; use-dialog-box nil
+
+ ;; delete-selection-mode          t
  ace-jump-mode-case-fold        t
  backup-by-copying              t
  beacon-mode                    t
@@ -449,9 +450,9 @@
  cursor-type                    'box
  custom-buffer-indent           4
  custom-safe-themes             t
- delete-selection-mode          t
  editorconfig-mode              t
  electric-pair-mode             nil ;; auto close pairs
+ enable-recursive-minibuffers   t
  etags-regen-mode               t
  fido-mode                      t
  flyspell-mode-line-string      nil
@@ -465,6 +466,9 @@
  global-so-long-mode            t
  global-visual-line-mode        nil ;; wraps words long lines
  global-xref-mouse-mode         t
+ icomplete-prospects-height     1
+ icomplete-separator            (propertize " | " 'face '('bold :foreground "blue4"))
+ icomplete-tidy-shadowed-file-names t
  indent-tabs-mode               nil
  indicate-empty-lines           t
  ispell-extra-args              '("--sug-mode=ultra")
