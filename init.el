@@ -26,10 +26,9 @@
   (global-set-key (kbd "<pinch>") 'ignore)
   (global-set-key (kbd "<C-wheel-up>") 'ignore)
   (global-set-key (kbd "<C-wheel-down>") 'ignore)
-
-  (setq-default mac-control-modifier 'control)
-  (setq-default mac-command-modifier 'meta)
-  (setq-default mac-right-option-modifier 'control))
+  (setq-default mac-control-modifier 'control
+                mac-command-modifier 'meta
+                mac-right-option-modifier 'control))
 
 (defun kill-all-buffers ()
   "Kill all open buffers."
@@ -352,7 +351,7 @@
  mode-line-compact 'long
  prefer-coding-system 'utf-8)
 
-(setopt
+(setq-default
  save-interprogram-paste-before-kill t
  mouse-yank-at-point t
  mouse-drag-and-drop-region t
@@ -363,21 +362,20 @@
  imenu-auto-rescan t
  view-read-only t)
 
-(setopt
+(setq-default
  vc-deduce-backend-nonvc-modes t
  vc-dir-save-some-buffers-on-revert t
  vc-find-revision-no-save t
  vc-follow-symlinks t
  vc-use-incoming-outgoing-prefixes t)
 
-(setopt
+(setq-default
  minibuffer-visible-completions t
  completions-detailed t
  completions-group t
  completions-max-height 20
  completion-auto-select 'second-tab
  completion-eager-update t
- global-completion-preview-mode t
  tab-always-indent 'complete
  package-menu-use-current-if-no-marks nil
  frame-inhibit-implied-resize t
@@ -408,7 +406,7 @@
    (bg-hl-line            "#3b393e")
    (bg-mode-line-inactive "#5E4527")))
 
-(setopt
+(setq-default
  treesit-enabled-modes t
  treesit-auto-install-grammar 'always)
 
